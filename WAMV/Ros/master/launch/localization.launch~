@@ -1,0 +1,19 @@
+<launch>
+
+	<rosparam command="load" file="$(find master)/params/parameters.yaml" />
+
+	<node pkg="robot_localization" type="ukf_localization_node" name="ukf_odom_imu" clear_params="true">
+	</node>
+
+<!-- -->
+	<node pkg="robot_localization" type="ukf_localization_node" name="ukf_se_map" clear_params="true">
+	</node>
+		<remap from="/odometry/filtered" to="/odometry/map" />
+
+
+	<node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" clear_params="true">
+		<remap from="/imu/data" to="/top_imu" />
+		<remap from="/gps/fix" to="/fix" />
+	</node>
+
+</launch>

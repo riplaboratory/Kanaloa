@@ -1,0 +1,32 @@
+<launch>
+        <node
+          pkg="nmea_navsat_driver"
+          type="nmea_serial_driver"
+          name="gps"
+        >
+        <param name="port" value="/dev/ttyACM0"/>
+        <param name="baud" value="4800"/>
+
+        </node>
+	
+	<node
+          pkg="urg_node"
+          type="urg_node"
+          name="lidar">
+        <param name="ip_address" value="192.168.0.10" />
+
+        </node>
+
+        <include
+          file="$(find razor_imu_9dof)/launch/razor-pub.launch"
+        />
+
+        <node
+          pkg="rosbag"
+          type="record"
+          name="record_data"
+          args="-o ~/bagfiles/test -a"
+        />
+
+
+</launch>

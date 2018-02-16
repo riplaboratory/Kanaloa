@@ -1,0 +1,94 @@
+# Master parameter list
+
+### LOCALIZATION
+#ukf_odom_imu:
+#  two_d_mode: true
+#  print_diagnostics: true
+#
+#  map_frame: map
+#  odom_frame: odom
+#  base_link_frame: base_link
+#  world_frame: odom
+
+#  odom0: odometry/gps
+#  odom0_config: [true, true, false,
+#                false, false, false,
+#                false, false, false,
+#                false, false, false,
+#                false, false, false]
+#  odom0_differential: false
+
+#  imu0: top_imu
+#  imu0_config: [false, false, false,
+#                true,  true,  false,
+#                false, false, false,
+#                false, false, false,
+#                true,  true,  false]
+
+#  imu0_differential: false
+#  imu0_relative: false
+#  imu0_remove_gravitational_acceleration: true
+
+
+###ukf_se_map:
+#ukf_se_map:
+#  frequency: 30
+#  sensor_timeout: 0.1
+#  two_d_mode: true
+#  transform_time_offset: 0.0
+#  print_diagnostics: true
+#  debug: false
+#
+#  map_frame: map
+#  odom_frame: odom
+#  base_link_frame: base_link
+#  world_frame: map
+
+#  imu0: top_imu
+#  imu0_config: [false, false, false,
+#                true,  true,  false,
+#                false, false, false,
+#                false, false, false,
+#                true,  true,  false]
+
+#  imu0_differential: false
+#  imu0_relative: false
+#  imu0_remove_gravitational_acceleration: true
+  
+#  odom0: odometry/gps
+#  odom0_config: [true, true, false,
+#                false, false, false,
+#                false, false, false,
+#                false, false, false,
+#                false, false, false]
+#  odom0_differential: false
+
+  
+
+#  odom0: BrennansOdo
+#  odom0_config: [true, true, false,
+#                false, false, false,
+#                false, false, false,
+#                false, false, false,
+#                false, false, false]
+#  odom0_nodelay: false
+#  odom0_differential: false
+#  odom0_relative: false
+#  odom0_queue_size: 10
+
+
+### GPS LOCALIZATION
+#navsat_transform:
+
+#  frequency: 30
+#  magnetic_declination_radians: 0.15708
+#  yaw_offset: 0.0
+# wait_for_datum: true
+# datum: [21.296206, -157.815384, 0.0, map, base_link]
+
+### HECTOR MAPPING
+#hector_mapping
+
+#map_resolution: 0.5
+#map_size: 1024
+

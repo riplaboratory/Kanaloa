@@ -1,0 +1,55 @@
+<launch>
+ 
+  <arg name="razor_config_file" default="$(find master)/params/my_razor2.yaml"/>
+ <node pkg="razor_imu_9dof" type="imu_node2.py" name="lidar_imu_node" output="screen">
+    <rosparam file="$(arg razor_config_file)" command="load"/>
+  </node>
+<!--
+  <node pkg="razor_imu_9dof" type="display_3D_visualization.py" name="display_3D_visualization_node" output="screen">
+  </node>
+
+  <arg name="razor_config_file2" default="$(find master)/params/my_razor2.yaml"/>
+  <node pkg="razor_imu_9dof" type="imu_node2.py" name="top_imu" output="screen">
+    <rosparam file="$(arg razor_config_file2)" command="load"/>
+  </node>
+-->
+
+  <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="gps">
+  				<param name="port" value="/dev/sparegps"/>
+  				<param name="baud" value="4800"/>
+						
+	</node>
+
+
+<!-- 
+  <node pkg="urg_node" type="urg_node" name="lidar">
+		<param name="ip_address" value="192.168.0.10" />
+  </node>
+
+
+
+  <node pkg="hector_imu_attitude_to_tf"
+        type="imu_attitude_to_tf_node"
+        name="imu_attitude_to_tf_node"
+        output="screen">
+        
+        <remap from="imu_topic" to ="/lidar_imu"/>
+        <param name="base_stabilized_frame" type="string" value="/base_stabilized" />
+        <param name="base_frame" type="string" value="base_link"/>
+  </node>
+-->
+<!--
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/record_cam" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+ -->
+	<node pkg="rosserial_python" type="serial_node.py" name="serial">
+        <param name="port" value="/dev/ttyACM0" />
+  </node>
+
+</launch>

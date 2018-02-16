@@ -1,0 +1,37 @@
+### LOCALIZATION
+ukf_localization_imu:
+  frequency: 30
+  sensor_timeout: 0.1
+  two_d_mode: false
+  transform_time_offset: 0.0
+  print_diagnostics: true
+  debug: false
+
+  map_frame: map
+  odom_frame: odom
+  base_link_frame: base_link
+  world_frame: odom
+
+  imu0: imu
+  imu0_config: [false, false, false,
+                true,  true,  true,
+                false, false, false,
+                true,  true,  true,
+                true,  true,  true]
+  imu0_nodelay: false
+  imu0_differential: false
+  imu0_relative: false
+  imu0_queue_size: 10
+  imu0_remove_gravitational_acceleration: true
+
+  imu1: imu2
+  imu1_config: [false, false, false,
+                true,  true,  true,
+                false, false, false,
+                true,  true,  true,
+                true,  true,  true]
+  imu1_nodelay: false
+  imu1_differential: false
+  imu1_relative: false
+  imu1_queue_size: 10
+  imu1_remove_gravitational_acceleration: true
