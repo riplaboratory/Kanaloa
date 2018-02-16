@@ -1,5 +1,7 @@
 # Kanaloa
-This is the official git for team Kanaloa
+This is the official git for team Kanaloa.
+
+Do not commit edits to the master branch UNTIL THEY HAVE BEEN FULLY VETTED IN HARDWARE!  
 
 Directory naming convention: All directories must start with a capital letter.  If the directory name has multiple words, capitalize the first letter of subsequent words.  NO SPACES IN DIRECTORY NAMES.
 
