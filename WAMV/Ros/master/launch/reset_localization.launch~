@@ -1,0 +1,10 @@
+<launch>
+
+<!--launch file for SLAM-->
+	<include file="$(find master)/launch/slam.launch" />
+
+<!-- launch file for localization-->
+	<include file="$(find master)/launch/localization.launch" />  
+
+
+</launch>
