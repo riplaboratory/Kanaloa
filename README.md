@@ -1,5 +1,5 @@
 # Kanaloa
-This is the official git for team Kanaloa.
+This is the official Github for team Kanaloa.
 
 Do not commit edits to the master branch UNTIL THEY HAVE BEEN FULLY VETTED IN HARDWARE!  
 
