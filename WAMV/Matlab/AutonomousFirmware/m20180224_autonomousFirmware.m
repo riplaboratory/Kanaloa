@@ -1,4 +1,4 @@
-function m20180224_stationKeepingAndWaypointNavigation()
+function m20180224_autonomousFirmware()
 
     % Initialize Matlab as ROS node (ROS should already be running)
     rosshutdown;
