@@ -1,6 +1,7 @@
 function m20180224_autonomousFirmware()
 
-    % Initialize Matlab as ROS node (ROS should already be running)
+    % Initialize Matlab ROS node
+%     clear global;
     rosshutdown;
     rosinit;
     
@@ -8,28 +9,27 @@ function m20180224_autonomousFirmware()
     pub = createRosPublishers();
     sub = createRosSubscibers();
     
-    % Initialize variables
-    pose = intializePose();
-    global xGoal yGoal
-    intializeGoal(pub);
+    % Instantiate (preallocate memory) for major structures
+    pose = instantiatePose();
+    goal = instantiateGoal(pub);
 
-    % Grab current GPS position
-    initialPose = getInitialPose(sub);
+    % Grab initial pose (for map zero)
+    initialPose = getInitialPose();
     
     % Start control loop
     while (true)
         
-%         % Not working, for now
-%         updateGoal();
-
-        % Get GPS and IMU data
-        sen = getGpsImuData(sub);
+        % Check the goal topics, update as necessary
+        goal = updateGoal(goal);
         
         % Update pose
-        pose = updatePose(sen,initialPose);
+        pose = updatePose(initialPose);
                 
         % Display stuff
-        displayStuff(sen,pose)
+        displayStuff(goal,pose);
+
+        % Mandatory short pause (or else the callbacks won't execute!)
+        pause(0.2)
         
     end
 
@@ -47,24 +47,35 @@ function pub = createRosPublishers()
     pub.yGoal = rospublisher('/yGoal','std_msgs/Float32');
     
     % Display
-    disp('Matlab ROS publishers created...');
+    disp('Matlab ROS node publishers created...');
     
 end
 
 function sub = createRosSubscibers()
 
-    % Create ROS topic (for subscribing) in current instance of ROS
-    sub.gps = rossubscriber('/fix', 'sensor_msgs/NavSatFix');
-    sub.imu = rossubscriber('/imu/data', 'sensor_msgs/Imu');
-    sub.xGoal = rossubscriber('/xGoal',@xGoalCallback);
-    sub.yGoal = rossubscriber('/yGoal',@yGoalCallback);
+    try
+
+        % Create ROS topic (for subscribing) in current instance of ROS
+        sub.gps = rossubscriber('/fix',@gpsCallback);
+        sub.imu = rossubscriber('/imu/data',@imuCallback);
+        sub.xGoal = rossubscriber('/xGoal',@xGoalCallback);
+        sub.yGoal = rossubscriber('/yGoal',@yGoalCallback);
     
-    % Display
-    disp('Matlab ROS scubscribers created...');
+        % Display
+        disp('Matlab ROS node scubscribers created...');
+        
+    catch
+       
+        disp(' ')
+        disp('Matlab cannot find the necessary topics...are you sure ROS is running?');
+        disp('Error will be thrown');
+        disp(' ')
+        
+    end
 
 end
 
-function pose = intializePose()
+function pose = instantiatePose()
 
     % Position
     pose.x = 0;
@@ -92,23 +103,17 @@ function pose = intializePose()
 
 end
 
-function intializeGoal(pub)
+function goal = instantiateGoal(pub)
 
-    % Initialize xGoal and yGoal as global variables, set to 0
-    global xGoal
-    global yGoal
-    global xGoalTrigger
-    global yGoalTrigger
-    xGoal = 0;
-    yGoal = 0;
-    xGoalTrigger = 0;
-    yGoalTrigger = 0;
-    
-    % Publish initial value (zero) to ROS
+    % Instantiate goal structure variable
+    goal.x = 0;
+    goal.y = 0;
+
+    % Publish initial goal variable to ROS
     xGoalMsg = rosmessage(pub.xGoal);       % create ros message for publisher
     yGoalMsg = rosmessage(pub.yGoal);
-    xGoalMsg.Data = xGoal;                  % attach relevant data to ROS message
-    yGoalMsg.Data = yGoal;
+    xGoalMsg.Data = goal.x;                 % attach relevant data to ROS message
+    yGoalMsg.Data = goal.y;
     send(pub.xGoal,xGoalMsg);               % send (publish) to ROS
     send(pub.yGoal,yGoalMsg);
     
@@ -117,25 +122,130 @@ function intializeGoal(pub)
     
 end
 
-function initialPose = getInitialPose(sub)
+function initialPose = getInitialPose()
+
+    % Instantiate ROS callback subsciber global variables
+    global gpsLat gpsLon gpsAlt
+    global imutz
     
-    % Grab initial GPS position
-    gpsMsg = receive(sub.gps);
-    initialPose.lat = gpsMsg.Latitude;
-    initialPose.lon = gpsMsg.Longitude;
-    initialPose.alt = gpsMsg.Altitude;
+    % Check that gps and imu topics have published something
+    while gpsLat  == []
+        disp('waiting for GPS update...use ctrl+C to kill program if waiting excessively');
+        pause(0.25);
+    end
+    while imutz == []
+        disp('waiting for IMU update...use ctrl+C to kill program if waiting excessively');
+        pause(0.25);
+    end
     
-    % Grab intial IMU orientation (about z)
-    imuMsg = receive(sub.imu);
-    Qx = imuMsg.Orientation.X;              % quaternion x
-    Qy = imuMsg.Orientation.Y;              % quaternion y
-    Qz = imuMsg.Orientation.Z;              % quaternion z
-    Qw = imuMsg.Orientation.W;              % quaternion w
-    [tz,~,~] = quat2angle([Qx,Qy,Qz,Qw]);   % assuming that the x-axis is the forward axis of the boat
-    initialPose.tz = tz;                    % angle from north [rad]
+    % Set inital pose based off sensor information
+    initialPose.lat = gpsLat;       % latitude [deg]
+    initialPose.lon = gpsLon;       % longitude [deg]
+    initialPose.alt = gpsAlt;       % altitude [m]
+    initialPose.tz = imutz;         % angle from north [rad]
         
     % Display
-    disp('Grabbing initial GPS lat and lon...')
+    disp('Grabbing initial pose...')
+    
+end
+
+function goal = updateGoal(goal)
+
+    % Instantiate ROS callback subsciber global variables
+    global xGoal yGoal
+        
+    % Check ROS goal callbacks, if different from Matlab goal, overwrite
+    if xGoal ~= goal.x
+        goal.x = xGoal;
+    end
+    if yGoal ~= goal.y
+        goal.y = yGoal;
+    end
+    
+end
+
+function pose = updatePose(initialPose)
+
+    % Instantiate ROS callback subsciber global variables
+    global gpsLat gpsLon gpsAlt     % latitude [deg], latitude [deg], and altitude [m]
+    global imutx imuty imutz        % euler angular position
+    global imudtx imudty imudtz     % euler angular velocity
+    global imuddx imuddy imuddz     % euler linear acceleration
+    
+    % Convert lattitude and longitude to meters in map
+    lla = [gpsLat, gpsLon, gpsAlt];  % current latitude [deg], longitude [deg], altitude [m]
+    llo = [initialPose.lat, initialPose.lon];
+    psio = rad2deg(initialPose.tz);
+    href = -initialPose.alt;
+    pos = lla2flat(lla, llo, psio, href);
+    
+    % Position
+    pose.x = pos(1);
+    pose.y = pos(2);
+    pose.z = pos(3);
+    pose.tx = imutx;
+    pose.ty = imuty;
+    pose.tz = imutz;
+    
+    % Velocity
+    pose.dx = 0;
+    pose.dy = 0;
+    pose.dz = 0;
+    pose.dtx = imudtx;
+    pose.dty = imudty;
+    pose.dtz = imudtz;
+
+    % Acceleration
+    pose.ddx = imuddx;
+    pose.ddy = imuddy;
+    pose.ddz = imuddz;
+    pose.ddtx = 0;
+    pose.ddty = 0;
+    pose.ddtz = 0;
+    
+end
+
+function displayStuff(goal,pose)
+    
+    % Instantiate ROS callback subsciber global variables
+    global xGoal yGoal
+
+    % Print information
+    clc;
+    fprintf('Current Goal:     %.3f, %.3f\n',goal.x,goal.y);
+    fprintf('Current Position: %.3f, %.3f, %.3f\n',pose.x,pose.y,pose.z);
+    fprintf('Current Heading:  %.2f\n',rad2deg(pose.tz));
+    fprintf('\n');
+    
+end
+
+function gpsCallback(~,message)
+
+    global gpsLat gpsLon gpsAlt
+    gpsLat = message.Latitude;
+    gpsLon = message.Longitude;
+    gpsAlt = message.Altitude;
+
+end
+
+function imuCallback(~,message)
+
+    global imuQx imuQy imuQz imuQw  % quaternion angular position
+    global imutx imuty imutz        % euler angular position
+    global imudtx imudty imudtz     % euler angular velocity
+    global imuddx imuddy imuddz     % euler linear acceleration
+    
+    imuQx = message.Orientation.X;
+    imuQy = message.Orientation.Y;
+    imuQz = message.Orientation.Z;
+    imuQw = message.Orientation.W;
+    [imutz,imuty,imutx] = quat2angle([imuQx,imuQy,imuQz,imuQw]);
+    imudtx = message.AngularVelocity.X;
+    imudty = message.AngularVelocity.Y;
+    imudtz = message.AngularVelocity.Z;
+    imuddx = message.LinearAcceleration.X;
+    imuddy = message.LinearAcceleration.Y;
+    imuddz = message.LinearAcceleration.Z;
     
 end
 
@@ -152,94 +262,11 @@ function yGoalCallback(~,message)
    global yGoal yGoalTrigger
    yGoal = message.Data;
    yGoalTrigger = 1;
-
+   
 end
 
-function updateGoal()
 
-%     global xGoal xGoalTrigger
-%     global yGoal yGoalTrigger
-%         
-%     if xGoalTrigger == 1
-%         xGoalTrigger = 0;
-%         disp(['xGoal has changed to ',num2str(xGoal)]);
-%     end
-%     if yGoalTrigger == 1
-%         yGoalTrigger = 0;
-%         disp(['yGoal has changed to ',num2str(yGoal)]);
-%     end
-    
-end
-
-function sen = getGpsImuData(sub)
-    
-    % Get GPS and IMU message
-    gpsMsg = receive(sub.gps);
-    imuMsg = receive(sub.imu);
-    
-    % Save to sensor structure
-    sen.gps.lat = gpsMsg.Latitude;              % latitude
-    sen.gps.lon = gpsMsg.Longitude;             % longitude
-    sen.gps.alt = gpsMsg.Altitude;              % altitude
-    sen.imu.Qx = imuMsg.Orientation.X;          % quaternion x
-    sen.imu.Qy = imuMsg.Orientation.Y;          % quaternion y
-    sen.imu.Qz = imuMsg.Orientation.Z;          % quaternion z
-    sen.imu.Qw = imuMsg.Orientation.W;          % quaternion w
-    sen.imu.dtx = imuMsg.AngularVelocity.X;     % angular velocity about x
-    sen.imu.dty = imuMsg.AngularVelocity.Y;     % angular velocity about y
-    sen.imu.dtz = imuMsg.AngularVelocity.Z;     % angular velocity about z
-    sen.imu.ddx = imuMsg.LinearAcceleration.X;  % linear acceleration along x
-    sen.imu.ddy = imuMsg.LinearAcceleration.Y;  % linear acceleration along y
-    sen.imu.ddz = imuMsg.LinearAcceleration.Z;  % linear acceleration along z
-    
-    % Convert quaternion to Euler angle
-    quat = [sen.imu.Qx,sen.imu.Qy,...
-        sen.imu.Qz,sen.imu.Qw];
-    [sen.imu.tz, sen.imu.ty, sen.imu.tx] = quat2angle(quat);    % assuming that the x-axis is the forward axis of the boat
-    
-end
-
-function pose = updatePose(sen,initialPose)
-    
-    % Convert lattitude and longitude to m x m
-    lla = [sen.gps.lat, sen.gps.lon, sen.gps.alt];  % current latitude [deg], longitude [deg], altitude [m]
-    llo = [initialPose.lat, initialPose.lon];
-    psio = rad2deg(initialPose.tz);
-    href = -initialPose.alt;
-    pos = lla2flat(lla, llo, psio, href);
-    
-    % Position
-    pose.x = pos(1);
-    pose.y = pos(2);
-    pose.z = pos(3);
-    pose.tx = sen.imu.tx;
-    pose.ty = sen.imu.ty;
-    pose.tz = sen.imu.tz;
-    
-    % Velocity
-    pose.dx = 0;
-    pose.dy = 0;
-    pose.dz = 0;
-    pose.dtx = sen.imu.dtx;
-    pose.dty = sen.imu.dty;
-    pose.dtz = sen.imu.dtz;
-
-    % Acceleration
-    pose.ddx = sen.imu.ddx;
-    pose.ddy = sen.imu.ddy;
-    pose.ddz = sen.imu.ddz;
-    pose.ddtx = 0;
-    pose.ddty = 0;
-    pose.ddtz = 0;
-
-end
-
-function displayStuff(sen,pose)
-
-    disp(sprintf('Current Position (x [m], y[m], z[m]): %.3f, %.3f, %.3f',pose.x,pose.y,pose.z))
-    disp(sprintf('Current Heading (to north [deg]): %.2f',rad2deg(pose.tz)))
-
-end
+%% DOODOO IN PANTS
 
 
 function garbage()
