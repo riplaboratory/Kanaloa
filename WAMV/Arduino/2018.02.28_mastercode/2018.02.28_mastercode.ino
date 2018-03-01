@@ -154,7 +154,7 @@ void setup() {
   pinMode(ch8Pin, INPUT); 
   pinMode(killSwitch1, OUTPUT);
   pinMode(killSwitch2, OUTPUT); 
-  Serial.begin(9600);
+  Serial.begin(57600);
   }
  
 void loop(){
