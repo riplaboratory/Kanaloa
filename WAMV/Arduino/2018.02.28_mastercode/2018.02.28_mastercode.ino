@@ -440,6 +440,6 @@ void loop(){
   }
   // Delay ignores the zero-value motor commands, which gets rid of the pulsing.
   //delay(500);
-  //nh.spinOnce();
+  nh.spinOnce();
   //delay(1);
 }
