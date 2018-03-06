@@ -1,7 +1,6 @@
 function m20180224_autonomousFirmware()
 
     % Initialize Matlab ROS node
-%     clear global;
     rosshutdown;
     rosinit;
     
@@ -9,42 +8,51 @@ function m20180224_autonomousFirmware()
     pub = createRosPublishers();
     sub = createRosSubscibers();
     
-    % Instantiate (preallocate memory) for major structures
-    pose = instantiatePose();
-    goal = instantiateGoal(pub);
-
-    % Grab initial pose (for map zero)
-    initialPose = getInitialPose();
+    % Wait for first topics to publish
+    pause(1.25);
     
+    % Instantiate (preallocate memory) for major structures
+    [pose,goal,thrustCommands] = instantiateStructs();
+    
+    % Get map zero reference
+    zeroPose = getZeroPose();
+    
+    % Set initial goal to current position of WAM-V
+    goal = initialGoal(goal,zeroPose,pub);
+        
     % Start control loop
     while (true)
         
-        % Check the goal topics, update as necessary
-        goal = updateGoal(goal);
+        % Mandatory short pause (or else the callbacks won't execute!)
+        pause(0.1);
+        
+        % Check the ROS goal topics, overwrite Matlab goals if changed
+        goal = checkRosGoal(goal);
         
         % Update pose
-        pose = updatePose(initialPose);
+        pose = updatePose(zeroPose,pose);
+        
+        % Controller (pick one!)
+        thrustCommands = stationKeeping(goal,pose,pub,thrustCommands);
                 
         % Display stuff
-        displayStuff(goal,pose);
-
-        % Mandatory short pause (or else the callbacks won't execute!)
-        pause(0.2)
+        displayStuff(goal,pose,thrustCommands);
         
     end
-
 
 end
 
 function pub = createRosPublishers()
+    % Creates the relevant ROS publishers.
 
     % Create ROS topic (for publishing) in current instance of ROS
-    pub.q1 = rospublisher('/motor_q1', 'std_msgs/UInt16');
-    pub.q2 = rospublisher('/motor_q2', 'std_msgs/UInt16');
-    pub.q3 = rospublisher('/motor_q3', 'std_msgs/UInt16');
-    pub.q4 = rospublisher('/motor_q4', 'std_msgs/UInt16');
-    pub.xGoal = rospublisher('/xGoal','std_msgs/Float32');
-    pub.yGoal = rospublisher('/yGoal','std_msgs/Float32');
+    pub.autoQ1 = rospublisher('/autoQ1', 'std_msgs/UInt16');
+    pub.autoQ2 = rospublisher('/autoQ2', 'std_msgs/UInt16');
+    pub.autoQ3 = rospublisher('/autoQ3', 'std_msgs/UInt16');
+    pub.autoQ4 = rospublisher('/autoQ4', 'std_msgs/UInt16');
+    pub.xGoal = rospublisher('/xGoalInput','std_msgs/Float32');
+    pub.yGoal = rospublisher('/yGoalInput','std_msgs/Float32');
+    pub.tzGoal = rospublisher('/tzGoalInput','std_msgs/Float32');
     
     % Display
     disp('Matlab ROS node publishers created...');
@@ -52,137 +60,152 @@ function pub = createRosPublishers()
 end
 
 function sub = createRosSubscibers()
+    % Creates the relevant ROS subscribers.
 
     try
 
         % Create ROS topic (for subscribing) in current instance of ROS
         sub.gps = rossubscriber('/fix',@gpsCallback);
+        sub.gpsGS = rossubscriber('/groundGps',@gpsGSCallback);
         sub.imu = rossubscriber('/imu/data',@imuCallback);
-        sub.xGoal = rossubscriber('/xGoal',@xGoalCallback);
-        sub.yGoal = rossubscriber('/yGoal',@yGoalCallback);
+        sub.xGoal = rossubscriber('/xGoalInput',@xGoalCallback);
+        sub.yGoal = rossubscriber('/yGoalInput',@yGoalCallback);
+        sub.tzGoal = rossubscriber('/tzGoalInput',@tzGoalCallrosback);
     
         % Display
         disp('Matlab ROS node scubscribers created...');
         
     catch
        
-        disp(' ')
-        disp('Matlab cannot find the necessary topics...are you sure ROS is running?');
-        disp('Error will be thrown');
-        disp(' ')
+        disp(' ');
+        disp('Cannot find topics, are you sure ROS is running???');
+        disp(' ');
         
     end
 
 end
 
-function pose = instantiatePose()
+function [pose,goal,thrustCommands] = instantiateStructs()
+    % Preallocates/instantiates memory for important structure variables in
+    % the code.  More for good bookeeping than speed...
 
-    % Position
-    pose.x = 0;
+    % Instantiate pose
+    pose.x = 0;         % position
     pose.y = 0;
     pose.z = 0;
     pose.tx = 0;
     pose.ty = 0;
     pose.tz = 0;
-    
-    % Velocity
-    pose.dx = 0;
+    pose.dx = 0;        % velocity
     pose.dy = 0;
     pose.dz = 0;
     pose.dtx = 0;
     pose.dty = 0;
     pose.dtz = 0;
-
-    % Acceleration
-    pose.ddx = 0;
+    pose.ddx = 0;       % acceleration
     pose.ddy = 0;
     pose.ddz = 0;
     pose.ddtx = 0;
     pose.ddty = 0;
     pose.ddtz = 0;
 
-end
-
-function goal = instantiateGoal(pub)
-
-    % Instantiate goal structure variable
+    % Instantiate goal
     goal.x = 0;
     goal.y = 0;
-
-    % Publish initial goal variable to ROS
-    xGoalMsg = rosmessage(pub.xGoal);       % create ros message for publisher
-    yGoalMsg = rosmessage(pub.yGoal);
-    xGoalMsg.Data = goal.x;                 % attach relevant data to ROS message
-    yGoalMsg.Data = goal.y;
-    send(pub.xGoal,xGoalMsg);               % send (publish) to ROS
-    send(pub.yGoal,yGoalMsg);
+    
+    % Instantiate trust commands
+    thrustCommands.Q1 = 0;
+    thrustCommands.Q2 = 0;
+    thrustCommands.Q3 = 0;
+    thrustCommands.Q4 = 0;
     
     % Display
-    disp('Setting initial waypoint goal to [0,0]');
+    disp('Instantiating major structures...');
     
 end
 
-function initialPose = getInitialPose()
-
+function zeroPose = getZeroPose()
+    % Sets the zero point (pose) of the robot in the map frame.  When
+    % differential GPS is working, set this zero to the ground station GPS
+    % lat-lon.  For now setting this to the initial WAM-V position when
+    % script runs.  
+    
     % Instantiate ROS callback subsciber global variables
     global gpsLat gpsLon gpsAlt
+    global gpsGSLat gpsGSLon gpsGSAlt
     global imutz
     
-    % Check that gps and imu topics have published something
-    while gpsLat  == []
-        disp('waiting for GPS update...use ctrl+C to kill program if waiting excessively');
-        pause(0.25);
-    end
-    while imutz == []
-        disp('waiting for IMU update...use ctrl+C to kill program if waiting excessively');
-        pause(0.25);
-    end
-    
+%     % Set inital pose based off sensor information
+%     zeroPose.lat = gpsLat;       % latitude [deg]
+%     zeroPose.lon = gpsLon;       % longitude [deg]
+%     zeroPose.alt = gpsAlt;       % altitude [m]
+%     zeroPose.tz = imutz;         % angle from north [rad]
+
     % Set inital pose based off sensor information
-    initialPose.lat = gpsLat;       % latitude [deg]
-    initialPose.lon = gpsLon;       % longitude [deg]
-    initialPose.alt = gpsAlt;       % altitude [m]
-    initialPose.tz = imutz;         % angle from north [rad]
+    zeroPose.lat = gpsGSLat;       % latitude [deg]
+    zeroPose.lon = gpsGSLon;       % longitude [deg]
+    zeroPose.alt = gpsGSAlt;       % altitude [m]
+    zeroPose.tz = imutz;           % angle from north [rad]
         
     % Display
-    disp('Grabbing initial pose...')
+    disp('Grabbing zero pose...');
     
 end
 
-function goal = updateGoal(goal)
+function goal = initialGoal(goal,zeroPose,pub)
+    % Sets the initial goal of the WAM-V to the current position of the
+    % WAM-V (so that it doesn't start moving when the code runs).
+
+    % Get current position of WAM-V
+    [x,y,~] = latlon2mm(zeroPose);
+
+    % Set initial goal to current position of WAM-V
+    goal.x = x;
+    goal.y = y;
+    goal.tz = zeroPose.tz;
+        
+    % Display
+    disp('Setting initial waypoint goal to starting position');
+    
+end
+
+function goal = checkRosGoal(goal)
+    % Checks the /xGoalInput and yGoalInput topics in ROS, if they are
+    % different than the current value in Matlab (goal.x and goal.y), then
+    % overwrite the value in Matlab
 
     % Instantiate ROS callback subsciber global variables
-    global xGoal yGoal
+    global xGoalInput yGoalInput tzGoalInput
         
     % Check ROS goal callbacks, if different from Matlab goal, overwrite
-    if xGoal ~= goal.x
-        goal.x = xGoal;
+    if  goal.x ~= xGoalInput
+        goal.x = xGoalInput;
     end
-    if yGoal ~= goal.y
-        goal.y = yGoal;
+    if goal.y ~= yGoalInput
+        goal.y = yGoalInput;
+    end
+    if goal.tz ~= tzGoalInput
+        goal.tz = tzGoalInput;
     end
     
 end
 
-function pose = updatePose(initialPose)
+function pose = updatePose(zeroPose,pose)
+    % Get sensor data and use it to update the pose of the robot.  Eventual
+    % sensor fusion will insert itself in a big way here. 
 
     % Instantiate ROS callback subsciber global variables
-    global gpsLat gpsLon gpsAlt     % latitude [deg], latitude [deg], and altitude [m]
     global imutx imuty imutz        % euler angular position
     global imudtx imudty imudtz     % euler angular velocity
     global imuddx imuddy imuddz     % euler linear acceleration
     
-    % Convert lattitude and longitude to meters in map
-    lla = [gpsLat, gpsLon, gpsAlt];  % current latitude [deg], longitude [deg], altitude [m]
-    llo = [initialPose.lat, initialPose.lon];
-    psio = rad2deg(initialPose.tz);
-    href = -initialPose.alt;
-    pos = lla2flat(lla, llo, psio, href);
+    % Convert lat-lon from GPS to meters
+    [x,y,z] = latlon2mm(zeroPose);
     
     % Position
-    pose.x = pos(1);
-    pose.y = pos(2);
-    pose.z = pos(3);
+    pose.x = x;
+    pose.y = y;
+    pose.z = z;
     pose.tx = imutx;
     pose.ty = imuty;
     pose.tz = imutz;
@@ -205,17 +228,188 @@ function pose = updatePose(initialPose)
     
 end
 
-function displayStuff(goal,pose)
-    
-    % Instantiate ROS callback subsciber global variables
-    global xGoal yGoal
+function thrustCommands = stationKeeping(goal,pose,pub,thrustCommands)
 
+    % EVENTUALLY, WE WILL WRITE NICE FUNCTIONS FOR ALL OF THIS, BUT RUSHING
+    % FOR NOW. 
+    
+    % Calculate errors
+    error.xDist2goal = goal.x-pose.x;
+    error.yDist2goal = goal.y-pose.y;
+    error.head2goal = goal.tz-pose.tz;
+    error.dist2goal = sqrt((goal.x-pose.x)^2+(goal.y-pose.y)^2);
+    error.pathHead2goal = atan2(sin(atan2(error.yDist2goal,...
+        error.xDist2goal)-error.head2goal),cos(atan2(error.yDist2goal,...
+        error.xDist2goal)-error.head2goal));   
+    
+    % Determine behavior
+    % Behavior 1 = Outside approach radius, and not facing path heading.  Pure rotation to face goal.
+    % Behavior 2 = Outside approach radius, and facing path heading.  Drive forward and control path heading to goal.  
+    % Behavior 3 = Inside apprach radius, and not facing path heading.  Pure rotation to face goal.
+    % Behavior 4 = Inside approach radius, and facing path heading. Drive forward slowly and control path heading to goal.  
+    % Behavior 5 = Inside goal radius, but not facing path heading.  Pure rotation to face goal heading.
+    % Behavior 6 = Inside goal radius, and facing path heading.  Full stop.
+    
+    % Instantiate behavior variable
+    behavior = 0;
+    
+    % User variables
+    approachRadius = 15;    % [m]
+    goalRadius = 3;         % [m]
+    pathArc = deg2rad(5);   % [rad]
+    
+    if error.dist2goal >= approachRadius
+        if error.pathHead2goal >= pathArc
+            behavior = 1;
+        else
+            behavior = 2; 
+        end
+    elseif error.dist2goal < approachRadius && error.dist2goal >= goalRadius
+        if error.pathHead2goal >= pathArc
+            behavior = 3;
+        else
+            behavior = 4;
+        end
+    else
+        if error.head2goal >= pathArc
+            behavior = 5;
+        else
+            behavior = 6;
+        end
+    end
+    
+    % PID gains
+    kp.pos = 10;
+    kp.rot = 15;
+    kp.vel = 10; 
+    kd.pos = 0.5;
+    kd.rot = 0.3;
+    kd.vel = 0.3;
+    ki.pos = 0.1;
+    ki.rot = 0.1;
+    ki.vel = 0.1;
+    
+    % Controller output vector, u (all proportional PID controller for now...)
+    if behavior == 1
+        u.Q1.prop = kp.rot*error.pathHead2goal;
+        u.Q2.prop = -kp.rot*error.pathHead2goal;
+        u.Q3.prop = -kp.rot*error.pathHead2goal;
+        u.Q4.prop = kp.rot*error.pathHead2goal;
+    elseif behavior == 2
+        u.Q1.prop = kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+        u.Q2.prop = -kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+        u.Q3.prop = -kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+        u.Q4.prop = kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+    elseif behavior == 3
+        u.Q1.prop = kp.rot*error.pathHead2goal;
+        u.Q2.prop = -kp.rot*error.pathHead2goal;
+        u.Q3.prop = -kp.rot*error.pathHead2goal;
+        u.Q4.prop = kp.rot*error.pathHead2goal;
+    elseif behavior == 4
+        u.Q1.prop = kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+        u.Q2.prop = -kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+        u.Q3.prop = -kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+        u.Q4.prop = kp.rot*error.pathHead2goal+kp.pos*error.dist2goal;
+    elseif behavior == 5
+        u.Q1.prop = kp.rot*error.head2goal;
+        u.Q2.prop = -kp.rot*error.head2goal;
+        u.Q3.prop = -kp.rot*error.head2goal;
+        u.Q4.prop = kp.rot*error.head2goal;
+    elseif behavior == 6
+        u.Q1.prop = 0;
+        u.Q2.prop = 0;
+        u.Q3.prop = 0;
+        u.Q4.prop = 0;
+    end
+       
+    % Sum all output vectors
+    thrustCommands.Q1 = u.Q1.prop;
+    thrustCommands.Q2 = u.Q2.prop;
+    thrustCommands.Q3 = u.Q3.prop;
+    thrustCommands.Q4 = u.Q4.prop;
+    
+    % Limit control output vector
+    if thrustCommands.Q1 >= 55
+        thrustCommands.Q1 = 55;
+    end
+    if thrustCommands.Q1 <= -55
+        thrustCommands.Q1 = -55;
+    end
+    if thrustCommands.Q2 >= 55
+        thrustCommands.Q2 = 55;
+    end
+    if thrustCommands.Q2 <= -55
+        thrustCommands.Q2 = -55;
+    end
+    if thrustCommands.Q3 >= 55
+        thrustCommands.Q3 = 55;
+    end
+    if thrustCommands.Q3 <= -55
+        thrustCommands.Q3 = -55;
+    end
+    if thrustCommands.Q4 >= 55
+        thrustCommands.Q4 = 55;
+    end
+    if thrustCommands.Q4 <= -55
+        thrustCommands.Q4 = -55;
+    end
+    
+    % Map output vector, u, to 0 to 100 (what the topic wants)
+   thrustCommands.Q1 = round(thrustCommands.Q1*(200/110),0);
+   thrustCommands.Q2 = round(thrustCommands.Q2*(200/110),0);
+   thrustCommands.Q3 = round(thrustCommands.Q3*(200/110),0);
+   thrustCommands.Q4 = round(thrustCommands.Q4*(200/110),0);
+    
+    % Publish
+    Q1msg = rosmessage(pub.autoQ1);
+    Q2msg = rosmessage(pub.autoQ2);
+    Q3msg = rosmessage(pub.autoQ3);
+    Q4msg = rosmessage(pub.autoQ4);
+    Q1msg.Data = thrustCommands.Q1;
+    Q2msg.Data = thrustCommands.Q2;
+    Q3msg.Data = thrustCommands.Q3;
+    Q4msg.Data = thrustCommands.Q4;
+    send(pub.autoQ1,Q1msg);
+    send(pub.autoQ2,Q2msg);
+    send(pub.autoQ3,Q3msg);
+    send(pub.autoQ4,Q4msg);
+    
+end
+
+function displayStuff(goal,pose,thrustCommands)
+    % Display stuff to Matlab command window, or in terminal if SSHing.
+    
     % Print information
     clc;
-    fprintf('Current Goal:     %.3f, %.3f\n',goal.x,goal.y);
-    fprintf('Current Position: %.3f, %.3f, %.3f\n',pose.x,pose.y,pose.z);
-    fprintf('Current Heading:  %.2f\n',rad2deg(pose.tz));
+    fprintf('Current Goal [m]:      %.1f, %.1f, %.1f\n',goal.x,goal.y,goal.tz);
+    fprintf('Current Position [m]:  %.1f, %.1f, %.1f\n',pose.x,pose.y,pose.z);
+    fprintf('Current Heading [deg]: %.2f\n',rad2deg(pose.tz));
+    fprintf('Thrusters [0 to 100]:  %u, %u, %u, %u,\n',...
+        thrustCommands.Q1,thrustCommands.Q2,thrustCommands.Q3,thrustCommands.Q4);
     fprintf('\n');
+    
+end
+
+function [x,y,z] = latlon2mm(zeroPose)
+    % Takes the zero pose of of the GPS (in lat-lon), then looks at the
+    % global variables for the current position of the robot (in lat-lon),
+    % and uses this info to calculate the curren position of the robot in
+    % [m x m].
+
+    % Instantiate ROS callback subsciber global variables
+    global gpsLat gpsLon gpsAlt     % latitude [deg], latitude [deg], and altitude [m]
+
+    % Convert lattitude and longitude to meters in map
+    lla = [gpsLat, gpsLon, gpsAlt];
+    llo = [zeroPose.lat, zeroPose.lon];
+    psio = rad2deg(zeroPose.tz);
+    href = -zeroPose.alt;
+    posmm = lla2flat(lla, llo, psio, href);
+    
+    % Because Matlab is silly and doesn't let lla2flat output directly to matrix...
+    x = posmm(1);
+    y = posmm(2);
+    z = posmm(3);
     
 end
 
@@ -225,6 +419,15 @@ function gpsCallback(~,message)
     gpsLat = message.Latitude;
     gpsLon = message.Longitude;
     gpsAlt = message.Altitude;
+
+end
+
+function gpsGSCallback(~,message)
+
+    global gpsGSLat gpsGSLon gpsGSAlt
+    gpsGSLat = message.Latitude;
+    gpsGSLon = message.Longitude;
+    gpsGSAlt = message.Altitude;
 
 end
 
@@ -251,17 +454,22 @@ end
 
 function xGoalCallback(~,message)
 
-    global xGoal xGoalTrigger
-    xGoal = message.Data;
-    xGoalTrigger = 1;
+    global xGoalInput
+    xGoalInput = message.Data;
 
 end
 
 function yGoalCallback(~,message)
 
-   global yGoal yGoalTrigger
-   yGoal = message.Data;
-   yGoalTrigger = 1;
+   global yGoalInput
+   yGoalInput = message.Data;
+   
+end
+
+function tzGoalCallback(~,message)
+
+   global tzGoalInput
+   tzGoalInput = message.Data;
    
 end
 
