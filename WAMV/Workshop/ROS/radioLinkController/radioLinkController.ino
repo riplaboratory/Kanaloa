@@ -47,7 +47,7 @@ void loop() {
   // full up = 1085; full down = 1920; neutral = 1505
   int receiverPinPulseWidth = pulseIn(receiverPin, HIGH); // read pulse width from receiver
 
-  int motorOut = map(receiverPinPulseWidth, 1085, 1920, 63, 31);
+  int motorOut = map(receiverPinPulseWidth, 993, 1749, 63, 31);
   analogWrite(motorPin, motorOut);
   Serial.println(receiverPin); 
   test.data = motorOut;
