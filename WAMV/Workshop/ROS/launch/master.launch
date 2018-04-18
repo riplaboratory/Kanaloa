@@ -1,0 +1,21 @@
+<launch>
+        <node
+          pkg="nmea_navsat_driver"
+          type="nmea_serial_driver"
+          name="gps"
+        >
+        <param name="port" value="/dev/ttyUSB1"/>
+        <param name="baud" value="9600"/>
+		<remap from="fix" to="gps"/>
+
+        </node>
+
+        <include
+          file="$(find razor_imu_9dof)/launch/razor-pub.launch"
+        />
+
+		<include
+			file="$(find usb_cam)/launch/usb_cam-test.launch"
+		/>
+
+</launch>
