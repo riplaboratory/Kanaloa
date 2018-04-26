@@ -1,9 +1,9 @@
-# kanaloa
+# Kanaloa
 This is the official Github for team Kanaloa.
 
 Do not commit edits to the master branch UNTIL THEY HAVE BEEN FULLY VETTED IN HARDWARE!  
 
-# directory and filename convention
+# Directory and filename convention
 
 Directory naming convention:
 All directories must start with a capital letter.  If the directory name has multiple words, capitalize the first letter of subsequent words.  No spaces in directory names.  Example: "SampleDirectory"
