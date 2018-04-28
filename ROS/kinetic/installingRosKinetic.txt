@@ -35,4 +35,32 @@ $ source ~/.bashrc
 
 $ sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
 
+8. Setup default environment sources
 
+$ cd
+$ gedit .bashrc
+
+At the end of the file, add:
+
+source /opt/ros/kinetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+export ROS_HOSTNAME=10.42.0.1
+export ROS_IP=10.42.0.1
+export ROS_HOSTNAME=localhost
+export ROS_IP=localhost
+
+## Uncomment for local machine
+export ROS_MASTER_URI=http://localhost:11311/
+
+## Uncomment for pi
+#export ROS_MASTER_URI=http://10.42.0.58:11311/
+
+Save and close
+
+9. Create ROS workspace
+
+$ cd
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/
+$ catkin_make
