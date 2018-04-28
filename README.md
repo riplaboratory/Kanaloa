@@ -1,5 +1,5 @@
 # Kanaloa
-This is the official Github for team Kanaloa.  Our main website can be found [here] http://rip.eng.hawaii.edu/research/unmanned-x-systems/
+This is the official Github for team Kanaloa.  Our main website can be found [here](http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
 
 Do not commit edits to the master branch UNTIL THEY HAVE BEEN FULLY VETTED IN HARDWARE!  
 
