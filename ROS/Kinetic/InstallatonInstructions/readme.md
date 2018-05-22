@@ -1,12 +1,12 @@
 # Installing ROS Kinetic
 Last update: 2018.05.22
 
-### 1. Uninstall ROS
+## 1. Uninstall ROS
 If you're not sure if you already have an existing version of ros, uninstall with:
 
 $ sudo apt-get purge ros-*
 
-### 2. Install ROS
+## 2. Install ROS
 Detailed instructions from the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu):
 
 1. Setup your sources list and keys:
