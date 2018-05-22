@@ -4,7 +4,9 @@ Last update: 2018.05.22
 ## 1. Uninstall ROS
 If you're not sure if you already have an existing version of ros, uninstall with:
 
-`sudo apt-get purge ros-*`
+```
+sudo apt-get purge ros-*
+```
 
 ## 2. Install ROS
 Detailed instructions from the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu):
@@ -18,11 +20,15 @@ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C
 
 2. Ensure debian package index is up-to-date:
 
-`sudo apt-get update`
+```
+sudo apt-get update
+```
 
 3. Install
 
-`sudo apt-get install ros-kinetic-desktop-full`
+```
+sudo apt-get install ros-kinetic-desktop-full
+```
 
 4. Find available packages
 
@@ -46,7 +52,9 @@ source ~/.bashrc
 
 7. Install rosinstall
 
-`sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential`
+```
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+```
 
 8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/ROS/Kinetic/.bashrc_inclusions)
 
