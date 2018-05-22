@@ -1,6 +1,6 @@
 First, to uninstall ros:
 
-$ sudo apt-get purge ros-fuerte-*
+$ sudo apt-get purge ros-kinetic
 
 To install (http://wiki.ros.org/kinetic/Installation/Ubuntu):
 
