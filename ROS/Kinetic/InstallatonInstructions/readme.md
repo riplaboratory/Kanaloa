@@ -1,6 +1,8 @@
 # Installing ROS Kinetic
 Last update: 2018.05.22
 
+This tutorial assumes that you already have Ubuntu 16.04 installed on your machine.
+
 ## 1. Uninstall ROS
 If you're not sure if you already have an existing version of ros, uninstall with:
 
