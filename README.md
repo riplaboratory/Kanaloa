@@ -5,10 +5,10 @@ Do not commit edits to the master branch **until they have been fully vetted in 
 
 ## Directory and filename convention
 
-### 1. Directory naming convention:
+### 1. Directories:
 All directories must start with a capital letter.  If the directory name has multiple words, capitalize the first letter of subsequent words; you may use underscores `_` when necessary, but try to avoid doing this.  No spaces in directory names.  Example: `SampleDirectory`
 
-### 2. File naming convention:
+### 2. Files:
 All filenames must start with the date that file was originally created.  This is in the format `YYYY.MM.DD_name`.  `name` must start with a lowercase letter.  If `name` has multiple words, capitalize the first letter of subsequent words; you may use underscores `_` when necessary, but try to avoid doing this.  No spaces in filenames.  Example: `2018.01.01_sampleFilename.extension`
 
 ### 3. Exceptions:
