@@ -1,5 +1,10 @@
 # .bashrc Inclusions
-Copy and past the following text at the end of your ROS .bashrc file.  In a default install of ROS, your .bashrc file will be located in your home directory (it is a hidden file, so you will see it in the file explorer by default).
+Copy and past the following text at the end of your ROS .bashrc file.  In a default install of ROS, your .bashrc file will be located in your home directory (it is a hidden file, so you will not see it in the file explorer by default).  You can access it with
+```
+cd
+gedit .bashrc
+```
+Once open, add the following lines to the end of the file:
 
 ```
 source /opt/ros/kinetic/setup.bash
@@ -13,6 +18,6 @@ export ROS_IP=localhost
 ## Uncomment for local machine
 export ROS_MASTER_URI=http://localhost:11311/
 
-## Uncomment for pi
+## Uncomment for Raspberry Pi (you have to change the IP to the IP of the Raspberry Pi!)
 #export ROS_MASTER_URI=http://10.42.0.58:11311/
 ```
