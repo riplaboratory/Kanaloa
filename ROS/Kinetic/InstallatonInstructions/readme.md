@@ -11,7 +11,7 @@ sudo apt-get purge ros-*
 ```
 
 ## 2. Install ROS
-Detailed instructions from the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu):
+Detailed instructions can be found at the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu):
 
 1. Setup your sources list and keys:
 
@@ -31,6 +31,7 @@ sudo apt-get update
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
+Type `y`, then hit `enter` to confirm the install.
 
 4. Find available packages
 
