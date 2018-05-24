@@ -2,7 +2,7 @@
 
 These launch files should go into `~/catkin_ws/src/usb_cam/launch`.  They can be launched with the command:
 
-```roslaunch launchFilename.launch```
+```roslaunch usb_cam launchFilename.launch```
 
 ## Some notes about usb_cam
 
