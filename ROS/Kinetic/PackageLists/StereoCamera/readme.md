@@ -1,4 +1,4 @@
-# ROS Stereo Camera Package List
+# Stereo Camera Package List
 
 ## 1. [usb_cam](https://github.com/ros-drivers/usb_cam)
 
