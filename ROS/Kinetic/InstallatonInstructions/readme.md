@@ -62,6 +62,12 @@ Type `y`, then hit `enter` to confirm the install.
 
 8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/ROS/Kinetic/.bashrc_inclusions)
 
+9. Install Catkin
+
+```
+sudo apt-get install ros-kinetic-catkin
+```
+
 9. Create ROS workspace
 
 ```
