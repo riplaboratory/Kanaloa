@@ -31,7 +31,7 @@ sudo apt-get update
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
-   Type `y`, then hit `enter` to confirm the install.
+Type `y`, then hit `enter` to confirm the install.
 
 4. Find available packages
 
@@ -58,7 +58,7 @@ source ~/.bashrc
 ```
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
-   Type `y`, then hit `enter` to confirm the install.
+Type `y`, then hit `enter` to confirm the install.
 
 8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/ROS/Kinetic/.bashrc_inclusions)
 
