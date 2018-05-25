@@ -16,13 +16,13 @@ For computers that are used for engineering workflows, a Windows operating syste
 The last option, dual-booting, involves installing two (or more) operating systems on the same computer, and selecting which operating system you want to engage every time you power the computer on (therefore, only one operating system is running at any given time).  For machines that require significant workflows in both Windows and Ubuntu, dual-booting is generally the best option.  Dual-booting can be tricky to setup however, because Windows was not necessarily made to run alongside another opearting system, and Ubuntu simply does not have the same level of support as Windows.  This document outlines some tips for a clean dual boot-install.
 
 ## Standard installation instructions 
-Standard installation instructions can be found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).
+Standard installation instructions can be found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).  You will need a flash drive (or a writable DVD)/
 
 ## Virtualization installation instructions 
 Instructions for installing VMWare Workstation player, and then installing Unbuntu through this virtual machine can be found [at this link](http://theholmesoffice.com/installing-ubuntu-in-vmware-player-on-windows/)
 
-## Dual-Booting Installation Instructions
-The process for dualbooting Ubuntu can be found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).  You will need a flash drive (or a writable DVD), and a computer already running Windows.
+## Dual-Booting Installation instructions
+The process for dualbooting Ubuntu is identical to the standard installation procedured found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).  The exception this time is that you will need to already have a Windows operating system installed, as well as a flash drive (or a writable DVD).
 
 ### Dual-booting tips
 1. Make sure Windows is installed *first*.  Windows was not necessarily made to run alongside another operating system, but Unbuntu was made to run alongside Windows.  Therefore, Ubuntu *should* install itself correctly if you install it after Windows is already installed on the computer.
