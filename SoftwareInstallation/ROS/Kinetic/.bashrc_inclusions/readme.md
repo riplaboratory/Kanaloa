@@ -1,7 +1,7 @@
 # .bashrc Inclusions
 Copy and past the following text at the end of your ROS .bashrc file.  In a default install of ROS, your .bashrc file will be located in your home directory (it is a hidden file, so you will not see it in the file explorer by default).  You can access it with
 ```
-cd
+cd ~
 gedit .bashrc
 ```
 Once open, add the following lines to the end of the file:
