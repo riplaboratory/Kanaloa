@@ -13,57 +13,57 @@ sudo apt-get purge ros-*
 ## 2. Install ROS
 Detailed instructions can be found at the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu):
 
-1. Setup your sources list and keys:
+  1. Setup your sources list and keys:
 
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 ```
 
-2. Ensure debian package index is up-to-date:
+  2. Ensure debian package index is up-to-date:
 
 ```
 sudo apt-get update
 ```
 
-3. Install
+  3. Install
 
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
-Type `y`, then hit `enter` to confirm the install.
+    Type `y`, then hit `enter` to confirm the install.
 
-4. Find available packages
+  4. Find available packages
 
 ```
 apt-cache search ros-kinetic
 ```
 
-5. Initialize rosdep
+  5. Initialize rosdep
 
 ```
 sudo rosdep init
 rosdep update
 ```
 
-6. Environment setup
+  6. Environment setup
 
 ```
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-You will need to close any open terminal window(s) for these changes to take effect.
+    You will need to close any open terminal window(s) for these changes to take effect.
 
-7. Install rosinstall
+  7. Install rosinstall
 
 ```
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
-Type `y`, then hit `enter` to confirm the install.
+    Type `y`, then hit `enter` to confirm the install.
 
-8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)
+  8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)
 
-9 Create ROS workspace
+  9. Create ROS workspace
 
 ```
 cd
