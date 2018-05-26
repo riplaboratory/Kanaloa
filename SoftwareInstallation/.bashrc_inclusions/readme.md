@@ -1,9 +1,12 @@
 # .bashrc Inclusions
-Copy and past the following text at the end of your ROS .bashrc file.  In a default install of ROS, your .bashrc file will be located in your home directory (it is a hidden file, so you will not see it in the file explorer by default).  You can access it with
+The .bashrc file is a shell script that runs every time a new terminal is launched.  This file autosets inclusions to each terminal window for convenience.  Listed below are all of our standard .bashrc file inclusions.
+
+This file is located in your home directory.  It is a hidden file, so you will not see it in your file explorer by default.  You can access it by:
 ```
 cd ~
 gedit .bashrc
 ```
+
 Once open, add the following lines to the end of the file:
 
 ```
