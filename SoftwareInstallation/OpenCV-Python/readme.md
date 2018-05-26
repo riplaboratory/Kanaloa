@@ -19,7 +19,15 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
+   3. Anaconda install
+
+```
 conda update -n base conda
+conda install -c conda-forge opencv 
+conda install -c menpo opencv3
+```
+
+
 
    3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
 
