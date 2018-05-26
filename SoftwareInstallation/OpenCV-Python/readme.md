@@ -18,13 +18,13 @@ sudo apt-get upgrade
 ```
 
 3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, many of which are probably already installed on your system:
-  1. `build-essential` developer tools
-  2. `pkg-config` developer tools
-  3. `cmake` developer tools
-  4. `libjpeg8-dev`, `libtiff5-dev`, `libjasper-dev`, `libpng12-dev` image I/O libraries
-  5. `libavcodec-dev`, `libavformat-dev`, `libswscale-dev`, `libv4l-dev`, `libxvidcore-dev`, `libx264-dev` video I/O libraries
-  6. `libgtk-3-dev` GUI library
-  7. `python3` libraries
+   1. `build-essential` developer tools
+   2. `pkg-config` developer tools
+   3. `cmake` developer tools
+   4. `libjpeg8-dev`, `libtiff5-dev`, `libjasper-dev`, `libpng12-dev` image I/O libraries
+   5. `libavcodec-dev`, `libavformat-dev`, `libswscale-dev`, `libv4l-dev`, `libxvidcore-dev`, `libx264-dev` video I/O libraries
+   6. `libgtk-3-dev` GUI library
+   7. `python3` libraries
   
 ```
 sudo apt-get install -y build-essential cmake pkg-config
@@ -34,4 +34,4 @@ sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
 ```
 
-2.
+4.
