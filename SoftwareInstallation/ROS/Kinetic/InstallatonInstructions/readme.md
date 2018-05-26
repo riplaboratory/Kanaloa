@@ -61,7 +61,7 @@ sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool
 ```
     Type `y`, then hit `enter` to confirm the install.
 
-  8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)
+  8. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions).
 
   9. Create ROS workspace
 
