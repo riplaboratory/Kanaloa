@@ -17,14 +17,14 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-  3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
-    1. `build-essential` developer tools
-    2. `pkg-config` developer tools
-    3. `cmake` developer tools
-    4. `libjpeg8-dev`, `libtiff5-dev`, `libjasper-dev`, `libpng12-dev` image I/O libraries
-    5. `libavcodec-dev`, `libavformat-dev`, `libswscale-dev`, `libv4l-dev`, `libxvidcore-dev`, `libx264-dev` video I/O libraries
-    6. `libgtk-3-dev` GUI library
-    7. `python3` libraries
+   3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
+      1. `build-essential` developer tools
+      2. `pkg-config` developer tools
+      3. `cmake` developer tools
+      4. `libjpeg8-dev`, `libtiff5-dev`, `libjasper-dev`, `libpng12-dev` image I/O libraries
+      5. `libavcodec-dev`, `libavformat-dev`, `libswscale-dev`, `libv4l-dev`, `libxvidcore-dev`, `libx264-dev` video I/O libraries
+      6. `libgtk-3-dev` GUI library
+      7. `python3` libraries
 
 ```
 sudo apt-get install -y build-essential cmake pkg-config
@@ -55,6 +55,15 @@ sudo rm -rf ~/get-pip.py ~/.cache/pip
 
    6. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions).
    
-   7. source ~/.bashrc
+   7. Update your current terminal session with the changes to `.bashrc`.
+
+```
+source ~/.bashrc
+```
+   Alternatively, you may simply close the current terminal session, and open a new one.
+   
+## Testing your installation
+
+   1. 
    
    
