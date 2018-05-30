@@ -35,10 +35,13 @@ conda install -c conda-forge opencv
 conda install -c menpo opencv3
 ```
 
-   4. Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, it adds `/opt/ros/kinetic/lib/python2.7/dist-packages` through the Linux .bashrc script.  This happens when we activate ROS with the command `source /opt/ros/kinetic/setup.bash` (this is part of our standard [.bashrc_inclusions](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions))
+   4. Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, and has it's own computer vision file (`cv2.so`) which overrides any other Python import request to OpenCV.  This is located in the `/opt/ros/kinetic/lib/python2.7/dist-packages`, which is called when ROS is activated in our .bashrc inclusions (`source /opt/ros/kinetic/setup.bash`).  There are a few workarounds for this; we could remove that line from the .bashrc inclusions; however, that will mean that any Python 2.7 script called from ther terminal in ROS will break, which is not an ideal solution.  Instead, ensure that any Python script you write that utilizes OpenCV containts the following line of code:
+   
+```
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+```
 
-
-   3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
+   5. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
 
 ```
 sudo apt-get install -y build-essential cmake pkg-config
@@ -94,38 +97,7 @@ workon facecourse-py3
 pip install numpy scipy matplotlib scikit-image scikit-learn ipython
 deactivate
 
-
-
 ```
-
-   4. Download OpenCV from source.  The easiest way to do ensure you have the most up-to-date version is by cloning their official git:
-
-```
-cd ~
-sudo apt-get install git
-git clone https://github.com/opencv/opencv.git
-cd opencv 
-git checkout 3.3.1 
-cd ~
-git clone https://github.com/opencv/opencv_contrib.git
-cd opencv_contrib
-git checkout 3.3.1
-cd ~
-```
-
-   5. Setup your Python environment, and virtual Python environments (not necessary but highly recommended).
-
-```
-cd ~
-wget https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo apt-get install -y python3-testresources
-sudo pip install virtualenv virtualenvwrapper
-sudo rm -rf ~/get-pip.py ~/.cache/pip
-```
-
-   6. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions).
-   
    7. Update your current terminal session with the changes to `.bashrc`.
 
 ```
