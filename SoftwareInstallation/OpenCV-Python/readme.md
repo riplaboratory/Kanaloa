@@ -7,9 +7,10 @@ OpenCV-Python can be insatlled using apt repositories (e.g. `sudo apt-get instal
 In our case, because we already use the excellent Anaconda Python package installer, it makes a lot of sense to install OpenCV this way.  
 
 ## Prerequisites
-   1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu))
-   2. Anaconda Python installation ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/AnacondaPython))
-   3. ROS Kinetic ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/ROS/Kinetic/InstallatonInstructions).  Note that ROS is not actually required for this installation, rather ROS causes some issues with the OpenCV Python installation, and therefore some workaround instructions are provided in this guide.
+   1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu)).
+   2. Anaconda Python installation ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/AnacondaPython)).
+   3. ROS Kinetic ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/ROS/Kinetic/InstallatonInstructions)).  Note that ROS is not actually required for this installation, rather ROS causes some issues with the OpenCV Python installation, and therefore some workaround instructions are provided in this guide.
+   4. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
 
 ## Installation instructions
 
@@ -33,7 +34,8 @@ conda update -n base conda
 conda install -c conda-forge opencv 
 conda install -c menpo opencv3
 ```
-   4. Because ROS Kinetic (or any edition of ROS for that matter) 
+
+   4. Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, it adds `/opt/ros/kinetic/lib/python2.7/dist-packages` through the Linux .bashrc script.  This happens when we activate ROS with the command `source /opt/ros/kinetic/setup.bash` (this is part of our standard [.bashrc_inclusions](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions))
 
 
    3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
