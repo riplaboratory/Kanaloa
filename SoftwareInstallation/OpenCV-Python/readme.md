@@ -1,10 +1,17 @@
 # OpenCV-Python
 OpenCV stands for "Open Computer Vision", and is a collection of C/C++ libraries specific for computer vison.  It has interfaces/APIs in C++, Python, and Java. 
 
-# This is still under work...
+## Alternative Installation Options
+OpenCV-Python can be insatlled using apt repositories (e.g. `sudo apt-get install python-opencv`); however, these repositories are generally out of date for OpenCV, and therefore are not ideal.  Aternatively, one can build from source; however, the official installation instructions found [at this link](https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html) are fairly poor.  There are third party instrcutions for installing from source like those from [Manuel Ignacio López Quintero](https://milq.github.io/install-opencv-ubuntu-debian/), [pyimagesearch](https://www.pyimagesearch.com/2016/10/24/ubuntu-16-04-how-to-install-opencv/), [Learn Open CV](https://www.learnopencv.com/install-opencv3-on-ubuntu/), and [SciVision](https://www.scivision.co/install-opencv-python-windows/); however, this is still a challenging process non-advanced Linux users due to the many versions of OpenCV, Ubuntu, and associated dependencies.  
+
+In our case, because we already use the excellent Anaconda Python package installer, it makes a lot of sense to install OpenCV this way.  
+
+## Prerequisites
+   1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu))
+   2. Anaconda Python installation ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/AnacondaPython))
+   3. ROS Kinetic ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/ROS/Kinetic/InstallatonInstructions).  Note that ROS is not actually required for this installation, rather ROS causes some issues with the OpenCV Python installation, and therefore some workaround instructions are provided in this guide.
 
 ## Installation instructions
-OpenCV-Python can be installed using apt repositoires (e.g. `sudo apt-get install python-opencv`); however, these repositories are generally out of date for OpenCV.  Thusly, building from source is necessary.  The official installation instructions can be found [at this link](https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html); however, these instructions are fairly poor.  Third party instructions from Manuel Ignacio López Quintero, and pyimagesearch.com can be found [at this link](https://milq.github.io/install-opencv-ubuntu-debian/), and [at this link](https://www.pyimagesearch.com/2016/10/24/ubuntu-16-04-how-to-install-opencv/), respectively.
 
    1. If you installed an earlier release of OpenCV using Apt, uninstall using:
 
@@ -19,14 +26,14 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-   3. Anaconda install
+   3. Install OpenCV and OpenCV3 using Anaconda.  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
 
 ```
 conda update -n base conda
 conda install -c conda-forge opencv 
 conda install -c menpo opencv3
 ```
-
+   4. Because ROS Kinetic (or any edition of ROS for that matter) 
 
 
    3. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
