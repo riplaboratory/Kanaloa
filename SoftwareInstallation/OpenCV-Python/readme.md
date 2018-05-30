@@ -35,11 +35,19 @@ conda install -c conda-forge opencv
 conda install -c menpo opencv3
 ```
 
-   4. Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, and has it's own computer vision file (`cv2.so`) which overrides any other Python import request to OpenCV.  This is located in the `/opt/ros/kinetic/lib/python2.7/dist-packages`, which is called when ROS is activated in our .bashrc inclusions (`source /opt/ros/kinetic/setup.bash`).  There are a few workarounds for this; we could remove that line from the .bashrc inclusions; however, that will mean that any Python 2.7 script called from ther terminal in ROS will break, which is not an ideal solution.  Instead, ensure that any Python script you write that utilizes OpenCV containts the following line of code:
+   4. Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, and has it's own computer vision file (`cv2.so`) which overrides any other Python import request to OpenCV.  This is located in the `/opt/ros/kinetic/lib/python2.7/dist-packages`, which is called when ROS is activated in our .bashrc inclusions (`source /opt/ros/kinetic/setup.bash`).  There are a few workarounds for this; we could remove that line from the .bashrc inclusions; however, that will mean that any Python 2.7 script called from ther terminal in ROS will break, which is not an ideal solution.  Instead, ensure that any Python script you write that utilizes OpenCV contains the folloing code before the import calls:
    
 ```
-sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+while True:
+    try:
+        sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+        break
+    except ValueError:
+        print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
+        print(' ')
+        break
 ```
+   This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The try-catch syntax is necessary because after the path has been removed from the interpreter, subsequent calls will throw an error (trying to remove a path that does not exist).  
 
    5. Install the dependencies.  Note that there is some flexibility on which packages are necessary here.  This is a generous list of dependencies, some of which may already be installed on your system:
 
@@ -98,43 +106,7 @@ pip install numpy scipy matplotlib scikit-image scikit-learn ipython
 deactivate
 
 ```
-   7. Update your current terminal session with the changes to `.bashrc`.
 
-```
-source ~/.bashrc
-```
-   Alternatively, you may simply close the current terminal session, and open a new one.
-   
-   8. Confiure and build using `CMake`.
-
-```
-cd ~/opencv/
-mkdir build
-cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
-   -D CMAKE_INSTALL_PREFIX=/usr/local \
-   -D INSTALL_PYTHON_EXAMPLES=ON \
-   -D INSTALL_C_EXAMPLES=OFF \
-   -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-   -D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
-   -D BUILD_EXAMPLES=ON .. 
-```
-
-   If the CMake command existed without any errors, you can now compile OpenCV using:
-
-```
-make -j4
-```
-
-   The `-j4` controls the number of processors to be used in the compilation process.  Sometimes selecting too many processors will cause the compile to bomb out.  If this occurs, then try again using: 
-
-```
-make clean
-make
-```
-
-   9.
-   
 ## Testing your installation
 
    1. 
