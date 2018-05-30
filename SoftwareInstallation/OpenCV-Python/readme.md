@@ -109,6 +109,38 @@ deactivate
 
 ## Testing your installation
 
-   1. 
+   1. Open spyder by opening a new terminal window and entering:
+ 
+```
+spyder
+```
+
+   2. Create a new script, and enter the following:
+
+```
+import sys
+print(sys.path)
+print(' ')
+
+while True:
+    try:
+        sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+        print('removing /opt/ros/kinetic/lib/python2.7/dist-packages from sys.path')
+        print(' ')
+        break
+    except ValueError:
+        print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
+        print(' ')
+        break
+
+import cv2 as cv
+print(' ')
+print(cv.__version__)
+print(' ')
+```
+
+   This should return the list of directories in the current PYTHONPATH, and the version of opencv.
+   
+   3. Run it a second time, this time, the list of directories on the current PYTHONPATH should no longer contain `'/opt/ros/kinetic/lib/python2.7/dist-packages'`.
    
    
