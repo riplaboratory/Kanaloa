@@ -1,8 +1,11 @@
 # Ubuntu
 
 ## Background information
-[Unbuntu](https://www.ubuntu.com/) is a popular __distribution__ of a  Linux operating system for x86 systems, which is produced by Canonical.  There are many different distributions Linux operating systems, many of which are intended for different purposes.  One requirement for a Linux operating system is that it is "open-source"; i.e. the source code is openly available.  As a result, all Linux operating systems are free to use and install (though it is common for the developer to ask for compensation for their work).  An alternative operating system can be used for many different purposes, in our lab, we utilize Ubuntu to run Robot Operating System (ROS), which is officially compatible with Ubuntu.  
+[Unbuntu](https://www.ubuntu.com/) is a popular __distribution__ of a  Linux operating system for x86 systems, which is produced by Canonical.  There are many different distributions Linux operating systems, many of which are intended for different purposes.  One requirement for a Linux operating system is that it is "open-source"; i.e. the source code is openly available.  As a result, all Linux operating systems are free to use and install (though it is common for the developer to ask for compensation for their work).  An alternative operating system can be used for many different purposes, in our lab, we utilize Ubuntu to run Robot Operating System (ROS), which is officially compatible with Ubuntu.
 
+## Prerequisites
+   1. A computer.  If you're doing a dual-boot on a computer with a Windows environment, Windows should already be installed. 
+   
 ## Installation options
 There are three general methods of installing an alternative operating system:
   1. Clean install on a new computer.
