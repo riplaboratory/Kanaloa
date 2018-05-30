@@ -27,3 +27,9 @@ export PATH="/home/brennan/anaconda3/bin:$PATH"
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 ```
+
+Any terminal sessions you open after saving will reflect these inclusions.  You can update your current terminal session with these changes without closing it `.bashrc` by typing:
+
+```
+source ~/.bashrc
+```
