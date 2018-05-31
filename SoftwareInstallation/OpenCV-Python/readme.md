@@ -95,9 +95,7 @@ deactivate
 
 ## Conflicting Python installations
 __this section is under development__
-Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, and *additionally* has it's own built-in computer vision file `cv2.so` (which natively overrides any other Python import request to OpenCV), we're in a situation where we have conflicting editions of Python.
-
-
+Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, and *additionally* has it's own built-in computer vision file `cv2.so` (which natively overrides any other Python import request to OpenCV), we're in a situation where we have conflicting editions of Python (a common problem for heavy Python users).  We can address this problem by using `venv`, which is a Python module that allows the user to create lightweight vrtual envrionments with their own site directories that are isolated from the system site directories.  Each virtual environment has its own Python binary (aka: you can create any number fo environments with various Python versions), and can have its own independent set of installed Python packages in its site directories.  More information on `venv` [can be found at this link](https://docs.python.org/3/library/venv.html#module-venv).
 
 __on simply removing ROS Python library from PYTHONPATH__:
 This is located in the `/opt/ros/kinetic/lib/python2.7/dist-packages`, which is called when ROS is activated in our .bashrc inclusions (`source /opt/ros/kinetic/setup.bash`).  There are a few workarounds for this; we could remove that line from the .bashrc inclusions; however, that will mean that any Python 2.7 script called from ther terminal in ROS will break, which is not an ideal solution.  Instead, ensure that any Python script you write that utilizes OpenCV contains the folloing code before the import calls:
