@@ -12,6 +12,58 @@ In our case, because we already use the excellent Anaconda Python package instal
    3. ROS Kinetic ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/ROS/Kinetic/InstallatonInstructions)).  Note that ROS is not actually required for this installation, rather ROS causes some issues with the OpenCV Python installation, and therefore some workaround instructions are provided in this guide.
    4. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
 
+## Avoiding conflicting Python installations using virtual environments
+Because all current versions of ROS natively use Python 2.7, and *additionally* has it's own built-in computer vision library `cv2.so`, we're in a situation where we have conflicting editions of Python *and* conflicting versions of Python libraries.  This is actually a common issue for heavy Python users; and it can be solved by running Python in a virtual environment.  A virtual environment will allow us to run versions of Python that are isolated from the system site directories, with their own Python binaries (aka: any verion of Python), and their own independent set of Python packages.  
+
+There are two supported Python modules for doing this:
+   - `venv`: documentation [at this link](https://docs.python.org/3/library/venv.html#module-venv)
+   - `conda` environment manager: documentation [at this link](https://conda.io/docs/user-guide/tasks/manage-environments.html)
+
+`venv` is natively supported by Python, whereas the `conda` environment manager is a part of the conda package installer (part of the Anaconda Python distribution).  Both solutions will work for our purposes; however, because we are using the conda package installer [the general advice](https://stackoverflow.com/questions/34398676/does-conda-replace-the-need-for-virtualenv) is to use the `conda` environment manager.
+
+   By default, your vitual environments are stored in your Anaconda folder `.../anaconda3/envs/`.  TO create a new environment, open a new terminal type: 
+
+```
+conda create --name ocv2 
+```
+
+   This will create a new environment in the current running version of Python (3.x).  It is possible to change the Python interpreter version, and instantiate the environment with specific packages.  For more details, read the conda documentation link above.  To enter the new `ocv2` environment you just created, type:
+
+```
+source activate ocv2
+```
+
+   You should now be inside the `ocv2` environment.  You can tell by the `(ocv2)` that proceeds all of the lines in your terminal.  You can readout all of your environments (and tell which on you're currently in) by typing:
+   
+```
+conda info -e
+```
+
+   Just like in the base environment, you can also view all of your installed packages by typing:
+   
+```
+conda list
+```
+
+   In this newly created environment, you should see a blank list of packages.
+
+   You can start writing Python code in this new environment directly in the terminal.  You can also run an IDE inside this new environment.  To launch the Spyder IDE, type:
+   
+```
+spyder
+```
+   
+   And Spyder should launch inside this new environment.  
+   
+   In order to quit out of the environment, type:
+   
+```
+source deactivate
+```
+
+## Setting up ocv2 conda virtual environment
+At this point, we installed Anaconda Python 3.x distribution with the conda package installer, and set up a Python 3.x virtual environment called `ocv2` to prevent us from conflicting with 
+
 ## Installation instructions
 
    1. If you installed an earlier release of OpenCV using Apt, uninstall using:
@@ -34,53 +86,6 @@ conda update -n base conda
 conda install -c conda-forge opencv 
 conda install -c menpo opencv3
 ```
-
-
-## Addressing conflicting Python installaions using virtual environments
-Because ROS Kinetic (or any edition of ROS for that matter)  natively uses Python 2.7, and *additionally* has it's own built-in computer vision file `cv2.so` (which natively overrides any other Python import request to OpenCV), we're in a situation where we have conflicting editions of Python (a common problem for heavy Python users).  We can address this problem by running Python in a virtual environment.  This will allow us to run versions of Python that are isolated from the system site directories, with their own Python binaries (aka: any verion of Python), and their own independent set of Python packages.  
-
-There are two supported Python modules for doing this:
-   - `venv`: documentation [at this link](https://docs.python.org/3/library/venv.html#module-venv)
-   - `conda create`: documentation [at this link](https://conda.io/docs/user-guide/tasks/manage-environments.html)
-
-`venv` is natively supported by Python, whereas `conda create` is a part of the conda package installer (part of the Anaconda Python distribution).  Both sotluions will work; because we are using the conda package installer, [the general advice](https://stackoverflow.com/questions/34398676/does-conda-replace-the-need-for-virtualenv) is to use the `conda create` solution.
-
-   By default, your vitual environments are stored in your Anaconda folder `.../anaconda3/envs/`.  TO create a new environment, type: 
-
-```
-conda create --name ocv2 
-```
-
-   This will create a new environment in the current running version of Python (3.x).  It is possible to change the Python interpreter version, and instantiate the environment with specific packages.  For more details, read the conda documentation link above.  
-
-   To enter the new `ocv2` environment you just created, type:
-
-```
-source activate ocv2
-```
-
-   You should now be inside the `ocv2` environment.  You can tell by the `(ocv2)` that proceeds all of the lines in your terminal.  You can readout all of your environments (and tell which on you're currently in) by typing:
-   
-```
-conda info -e
-```
-
-   You can start writing Python code in this new environment directly in the terminal.  You can also run an IDE inside this new environment.  To launch the Spyder IDE, type:
-   
-```
-spyder
-```
-   
-   And Spyder should launch inside this new environment.  
-   
-   In order to quit out of the environment, type:
-   
-```
-source deactivate
-```
-
-## Setting up ocv2 conda virtual environment
-At this point, we installed Anaconda Python 3.x distribution with the conda package installer, and set up a Python 3.x virtual environment called `ocv2` to prevent us from conflicting with 
 
 
 __on simply removing ROS Python library from PYTHONPATH__:
