@@ -104,6 +104,39 @@ There are two supported Python modules for doing this:
 
 `venv` is natively supported by Python, whereas `conda create` is a part of the conda package installer (part of the Anaconda Python distribution).  Both sotluions will work; because we are using the conda package installer, [the general advice](https://stackoverflow.com/questions/34398676/does-conda-replace-the-need-for-virtualenv) is to use the `conda create` solution.
 
+   By default, your vitual environments are stored in your Anaconda folder `.../anaconda3/envs/`.  TO create a new environment, type: 
+
+```
+conda create --name ocv2 
+```
+
+   This will create a new environment in the current running version of Python (3.x).  It is possible to change the Python interpreter version, and instantiate the environment with specific packages.  For more details, read the conda documentation link above.  
+
+   To enter the new `ocv2` environment you just created, type:
+
+```
+source activate ocv2
+```
+
+   You should now be inside the `ocv2` environment.  You can tell by the `(ocv2)` that proceeds all of the lines in your terminal.  You can readout all of your environments (and tell which on you're currently in) by typing:
+   
+```
+conda info -e
+```
+
+   At this point, you can start writing Python code in this new environment directly in the terminal.  You can also run an IDE inside this new environment.  To launch the Spyder IDE, type:
+   
+```
+spyder
+```
+   
+   And Spyder should launch inside this new environment.  
+   
+   In order to quit out of the environment, type:
+   
+```
+source deactivate
+```
 
 
 __on simply removing ROS Python library from PYTHONPATH__:
