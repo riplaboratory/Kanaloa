@@ -8,7 +8,7 @@ Python is an open-source programming language.  A Python *distribution* is a Pyt
 ## Anaconda installation instructions for Linux (Ubuntu)
 Official installation instructions for Anaconda can be found [at this link](https://docs.anaconda.com/anaconda/install/linux).
 
-   1. Download the [Anaconda installer](https://www.anaconda.com/download/#linux)
+   1. Download the [Anaconda installer](https://www.anaconda.com/download/#linux) (download the Python 3.x version)
    2. Navigate to the file you downloaded in terminal using `cd`.  Then run the file using:
 
 ```
