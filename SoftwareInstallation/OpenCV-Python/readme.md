@@ -75,22 +75,25 @@ source activate ocv2
 ```
 conda install scipy
 ```
-   Optionally, you may check that the installtion of the Scipy libraries was successful by typing:
 
-```
-   conda list
-```
+   Optionally, you may check that the installtion of the Scipy libraries was successful by typing `conda list`.
 
-   3. Install OpenCV and OpenCV3 using the conda packate installer  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
+   3. Install OpenCV and OpenCV3 using the conda package installer  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
 
 ```
 conda install -c conda-forge opencv 
 conda install -c menpo opencv3
 ```
-
-
-__on simply removing ROS Python library from PYTHONPATH__:
-This is located in the `/opt/ros/kinetic/lib/python2.7/dist-packages`, which is called when ROS is activated in our .bashrc inclusions (`source /opt/ros/kinetic/setup.bash`).  There are a few workarounds for this; we could remove that line from the .bashrc inclusions; however, that will mean that any Python 2.7 script called from ther terminal in ROS will break, which is not an ideal solution.  Instead, ensure that any Python script you write that utilizes OpenCV contains the folloing code before the import calls:
+   
+   Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.  
+   
+   4. We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  
+   
+   There are a few workarounds for this; we could remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  Therefore, we have two more direct solutions:
+      1. Explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of our Python script.  The advantage of this method is your opencv symbolic import call is standard, but the disadvantage is any rospy symbolic import calls must be done explicitly with the whole path.
+      2. Explicitly import the Anaconda OpenCV install (located at `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` for a default installation).  The advanatage of this method is that any rospy symbolic import calls are standard, but the OpenCV symbolic import call is not.
+      
+   For method one, ensure that any Python script you write that utilizes OpenCV contains the folloing code before the import calls:
    
 ```
 while True:
@@ -102,6 +105,7 @@ while True:
         print(' ')
         break
 ```
+
    This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The try-catch syntax is necessary because after the path has been removed from the interpreter, subsequent calls will throw an error (trying to remove a path that does not exist).  
 
 
