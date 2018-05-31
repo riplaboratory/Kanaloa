@@ -62,27 +62,28 @@ source deactivate
 ```
 
 ## Setting up ocv2 conda virtual environment
-At this point, we installed Anaconda Python 3.x distribution with the conda package installer, and set up a Python 3.x virtual environment called `ocv2` to prevent us from conflicting with 
+At this point, we installed Anaconda Python 3.x distribution with the conda package installer, and set up a Python 3.x virtual environment called `ocv2` to prevent us from conflicting with the Python 2.7 installation already on the machine from the ROS install.  Now, we want to set up this `ocv2` environment with everything relevant to OpenCV-Python.
 
-## Installation instructions
-
-   1. If you installed an earlier release of OpenCV using Apt, uninstall using:
+   1. Enter the `ocv2` environment by typing:
 
 ```
-sudo apt-get autoremove libopencv-dev python-opencv
+source activate ocv2
 ```
 
-   2. Update Apt repositories
+   2. Install `scipy` (a common distribution of Python libraries targeted at mathematical operations).
 
 ```
-sudo apt-get update
-sudo apt-get upgrade
+conda install scipy
 ```
-
-   3. Install OpenCV and OpenCV3 using Anaconda.  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
+   Optionally, you may check that the installtion of the Scipy libraries was successful by typing:
 
 ```
-conda update -n base conda
+   conda list
+```
+
+   3. Install OpenCV and OpenCV3 using the conda packate installer  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
+
+```
 conda install -c conda-forge opencv 
 conda install -c menpo opencv3
 ```
