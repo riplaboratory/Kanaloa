@@ -160,4 +160,4 @@ This should print which directory lines were added or removed from the PYTHONPAT
 With this, you have:
 1. Set up a virtual Python environment through the `conda` environment manager.
 2. Installed OpenCV and OpenCV3 onto this virtul Python environment through the `conda` package installer.
-3. Learned how to manipulate the directories containing the symbolic import links to Python libraries on the PYTHONPATH.
+3. Learned how to manipulate the directories on the PYTHONPATH, to avoid conflicting symbolic import links to Python libraries, particularly `cv2` and `rospy`.
