@@ -87,32 +87,38 @@ conda install -c menpo opencv3
    
    Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.  
    
-   4. We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  
+   4. We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
    
-   There are a few workarounds for this; we could remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  Therefore, we have two more direct solutions:
-      1. Explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of our Python script.  The advantage of this method is your opencv symbolic import call is standard, but the disadvantage is any rospy symbolic import calls must be done explicitly with the whole path.
-      2. Explicitly import the Anaconda OpenCV install (located at `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` for a default installation).  The advanatage of this method is that any rospy symbolic import calls are standard, but the OpenCV symbolic import call is not.
-      
-   For method one, ensure that any Python script you write that utilizes OpenCV contains the folloing code before the import calls:
+   One potential workaround would be to remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  A more explicit (but less universal) solution would be to explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of any python script requiring `cv2` for Python 3.  An error-checking version of this Python code is given below:
    
 ```
-while True:
-    try:
-        sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-        break
-    except ValueError:
-        print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
-        print(' ')
-        break
+# Put this code BEFORE your cv2 import call to prevent conflicts with the ROS Python 2.7 OpenCV package.
+try:
+    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+except ValueError:
+    print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
+    print(' ')
 ```
 
-   This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The try-catch syntax is necessary because after the path has been removed from the interpreter, subsequent calls will throw an error (trying to remove a path that does not exist).  
-
+   This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The path only should be removed once, for a given Python interpreter instantiation; the try-catch will prevent errors for this reason.
+   
+   Optionally, if you are interested in seeing vieing a list of the directories on the PYTHONPATH (the .bashrc will not necessarily tell you this explicitly), you may do this with the following Python code:
+   
+```
+import sys
+print(sys.path)
+print(' ')
+```
 
 ## Testing your installation
-__this section is under development__
 
-   1. Open spyder by opening a new terminal window and entering:
+   1. Launch our `ocv2` virtual environment by opening a new terminal and entering:
+
+```
+source environment ocv2
+```
+
+   2. Open spyder by opening a new terminal window and entering:
  
 ```
 spyder
@@ -122,30 +128,27 @@ spyder
 
 ```
 import sys
-print(sys.path)
-print(' ')
 
-while True:
-    try:
-        sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-        print('removing /opt/ros/kinetic/lib/python2.7/dist-packages from sys.path')
-        print(' ')
-        break
-    except ValueError:
-        print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
-        print(' ')
-        break
+try:
+    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+    print('removing /opt/ros/kinetic/lib/python2.7/dist-packages from sys.path')
+    print(' ')
+except ValueError:
+    print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
+    print(' ')
 
 import cv2 as cv
+
+#%%  Code
+
+print('Current directories on PYTHONPATH:')
+print(sys.path)
 print(' ')
-print(cv.__version__)
-print(' ')
+print('OpenCV version:   ' + cv.__version__)
+print('OpenCV directory: ' + cv.__file__)
 ```
 
-   This should return the list of directories in the current PYTHONPATH, and the version of opencv.
-   
-   3. Run it a second time, this time, the list of directories on the current PYTHONPATH should no longer contain `'/opt/ros/kinetic/lib/python2.7/dist-packages'`.
-   
+   This should return the list of directories in the current PYTHONPATH, the current running verion of OpenCV, and the directory where the symbolic link is located.   
 
 ## Extra stuff (under development)
 
