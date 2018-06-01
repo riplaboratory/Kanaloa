@@ -6,21 +6,19 @@ GitKraken is a third-party cross-platform GUI for Git.  Github offers a first-pa
    1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu)).
    
 ## Installation instructions
-Official installation instructions can be found [at this link](https://support.gitkraken.com/how-to-install).
+Official installation instructions can be found [at this link](https://support.gitkraken.com/how-to-install).  Our instructions are a more concise version of the official ones.  
 
-   1. Open a new terminal window, and install using:
+First, open a new terminal window, and download and install GitKraken using:
 
 ```
 wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
 sudo dpkg -i gitkraken-amd64.deb
 ```
 
-## Test your installation
-
-  1. Open a new terminal window and enter:
+That's it, you're done!  You can test your installation by launching GitKraken.  Open a new terminal window and type:
   
 ```
 gitkraken
 ```
 
-  The software should launch without issue.
+The software should launch without issue.
