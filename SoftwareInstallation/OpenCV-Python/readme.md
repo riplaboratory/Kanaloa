@@ -110,9 +110,7 @@ print(sys.path)
 print(' ')
 ```
 
-A common example of these library import calls together include `rospy` (the ROS Python 2.7 module), and `cv2`.  In order to import `rospy`, we need to add a directory not on the default PYTHONPATH, and in order to import `cv2`, we need to remove all of the ROS Python 2.7 libraries from the PYTHONPATH to avoid the conflicts.  An example of this 
-
-## Testing your installation
+## Testing your installation with an example Python import script
 
 Launch our `ocv2` virtual environment by opening a new terminal and entering:
 
@@ -126,32 +124,38 @@ Open spyder by opening a new terminal window and entering:
 spyder
 ```
 
-Create a new script, and enter the following:
+A common example of these library import calls together include `rospy` (the ROS Python 2.7 module), and `cv2`.  In order to import `rospy`, we need to add a directory not on the default PYTHONPATH, and in order to import `cv2`, we need to remove all of the ROS Python 2.7 libraries from the PYTHONPATH to avoid the conflicts (as discussed earlier).  An example of this is given below:
 
 ```
-#%%  Import calls
-
-# Remove ROS Python 2.7 libraries from PYTHONPATH
 import sys
-if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
-    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-else:
-    print('/opt/ros/kinetic/lib/python2.7/dist-packages already removed from sys.path')
-    print(' ')
 
-# Imports
+# Add rospy library directories to the PYTHONPATH
+if not any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
+    print('adding /opt/ros/kinetic/lib/python2.7/dist-packages to the PYTHONPATH...')
+    sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
+if not any('/usr/lib/python2.7/dist-packages' in s for s in sys.path):
+    print('adding /usr/lib/python2.7/dist-packages to the PYTHONPATH...')
+    sys.path.append('/usr/lib/python2.7/dist-packages')
+print('importing rospy...')
+import rospy
+
+# Remove ROS Python 2.7 libraries from PYTHONPATH to avoid conflict
+if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
+    print('removing /opt/ros/kinetic/lib/python2.7/dist-packages to the PYTHONPATH...')
+    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+if any('/usr/lib/python2.7/dist-packages' in s for s in sys.path):
+    print('removing /usr/lib/python2.7/dist-packages to the PYTHONPATH...')
+    sys.path.remove('/usr/lib/python2.7/dist-packages')
+print('importing cv2...')
 import cv2 as cv
 
-#%%  Code
-
-print('Current directories on PYTHONPATH:')
-print(sys.path)
 print(' ')
+print('rospy name:       ' + rospy.get_name())
 print('OpenCV version:   ' + cv.__version__)
 print('OpenCV directory: ' + cv.__file__)
 ```
 
-This should return the list of directories in the current PYTHONPATH, the current running verion of OpenCV, and the directory where the symbolic link is located.   
+This should print which directory lines were added or removed from the PYTHONPATH, and print the current rospy name (probably '/unnamed', the current running verion of OpenCV, and the directory where the OpenCV symbolic link is located.   
 
 ## Extra stuff (under development)
 
