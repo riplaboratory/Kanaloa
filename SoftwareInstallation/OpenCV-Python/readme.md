@@ -21,7 +21,7 @@ There are two supported Python modules for doing this:
 
 `venv` is natively supported by Python, whereas the `conda` environment manager is a part of the conda package installer (part of the Anaconda Python distribution).  Both solutions will work for our purposes; however, because we are using the conda package installer [the general advice](https://stackoverflow.com/questions/34398676/does-conda-replace-the-need-for-virtualenv) is to use the `conda` environment manager.
 
-By default, your vitual environments are stored in your Anaconda folder `.../anaconda3/envs/`.  TO create a new environment, open a new terminal type: 
+By default, your vitual environments are stored in your Anaconda folder `.../anaconda3/envs/`.  TO create a new environment, open a new terminal and type: 
 
 ```
 conda create --name ocv2 
@@ -127,6 +127,8 @@ spyder
 Create a new script, and enter the following:
 
 ```
+#%%  Import calls
+
 import sys
 
 try:
