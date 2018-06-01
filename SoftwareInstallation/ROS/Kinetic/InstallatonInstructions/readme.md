@@ -1,6 +1,4 @@
 # Installing ROS Kinetic
-Last update: 2018.05.22
-
 This tutorial assumes that you already have Ubuntu 16.04 installed on your machine.
 
 ## Prerequisites
