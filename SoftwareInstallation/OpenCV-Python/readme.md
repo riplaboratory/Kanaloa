@@ -85,10 +85,11 @@ conda install -c conda-forge opencv
 conda install -c menpo opencv3
 ```
    
-Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.  
-   
+Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.
+
+## Avoiding conflicting Python libraries
 We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
-   
+
 One potential workaround would be to remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  A more explicit (but less universal) solution would be to explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of any python script requiring `cv2` for Python 3.  An error-checking version of this Python code is given below:
    
 ```
@@ -108,6 +109,8 @@ import sys
 print(sys.path)
 print(' ')
 ```
+
+A common example of these library import calls together include `rospy` (the ROS Python 2.7 module), and `cv2`.  In order to import `rospy`, we need to add a directory not on the default PYTHONPATH, and in order to import `cv2`, we need to remove all of the ROS Python 2.7 libraries from the PYTHONPATH to avoid the conflicts.  An example of this 
 
 ## Testing your installation
 
