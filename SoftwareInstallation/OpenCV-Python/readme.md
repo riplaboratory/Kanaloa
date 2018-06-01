@@ -64,32 +64,32 @@ source deactivate
 ## Setting up ocv2 conda virtual environment
 At this point, we installed Anaconda Python 3.x distribution with the conda package installer, and set up a Python 3.x virtual environment called `ocv2` to prevent us from conflicting with the Python 2.7 installation already on the machine from the ROS install.  Now, we want to set up this `ocv2` environment with everything relevant to OpenCV-Python.
 
-1. Enter the `ocv2` environment by typing:
+Enter the `ocv2` environment by typing:
 
 ```
 source activate ocv2
 ```
 
-2. Install `scipy` (a common distribution of Python libraries targeted at mathematical operations).
+Install `scipy` (a common distribution of Python libraries targeted at mathematical operations).
 
 ```
 conda install scipy
 ```
 
-      Optionally, you may check that the installtion of the Scipy libraries was successful by typing `conda list`.
+Optionally, you may check that the installtion of the Scipy libraries was successful by typing `conda list`.
 
-3. Install OpenCV and OpenCV3 using the conda package installer  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
+Install OpenCV and OpenCV3 using the conda package installer  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
 
 ```
 conda install -c conda-forge opencv 
 conda install -c menpo opencv3
 ```
    
-   Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.  
+Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.  
    
-4. We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
+We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
    
-   One potential workaround would be to remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  A more explicit (but less universal) solution would be to explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of any python script requiring `cv2` for Python 3.  An error-checking version of this Python code is given below:
+One potential workaround would be to remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  A more explicit (but less universal) solution would be to explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of any python script requiring `cv2` for Python 3.  An error-checking version of this Python code is given below:
    
 ```
 # Put this code BEFORE your cv2 import call to prevent conflicts with the ROS Python 2.7 OpenCV package.
@@ -100,9 +100,9 @@ except ValueError:
     print(' ')
 ```
 
-   This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The path only should be removed once, for a given Python interpreter instantiation; the try-catch will prevent errors for this reason.
+This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The path only should be removed once, for a given Python interpreter instantiation; the try-catch will prevent errors for this reason.
    
-   Optionally, if you are interested in seeing vieing a list of the directories on the PYTHONPATH (the .bashrc will not necessarily tell you this explicitly), you may do this with the following Python code:
+Optionally, if you are interested in seeing vieing a list of the directories on the PYTHONPATH (the .bashrc will not necessarily tell you this explicitly), you may do this with the following Python code:
    
 ```
 import sys
@@ -112,19 +112,19 @@ print(' ')
 
 ## Testing your installation
 
-1. Launch our `ocv2` virtual environment by opening a new terminal and entering:
+Launch our `ocv2` virtual environment by opening a new terminal and entering:
 
 ```
 source environment ocv2
 ```
 
-2. Open spyder by opening a new terminal window and entering:
+Open spyder by opening a new terminal window and entering:
  
 ```
 spyder
 ```
 
-3. Create a new script, and enter the following:
+Create a new script, and enter the following:
 
 ```
 import sys
@@ -148,7 +148,7 @@ print('OpenCV version:   ' + cv.__version__)
 print('OpenCV directory: ' + cv.__file__)
 ```
 
-   This should return the list of directories in the current PYTHONPATH, the current running verion of OpenCV, and the directory where the symbolic link is located.   
+This should return the list of directories in the current PYTHONPATH, the current running verion of OpenCV, and the directory where the symbolic link is located.   
 
 ## Extra stuff (under development)
 
