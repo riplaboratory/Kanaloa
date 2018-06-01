@@ -128,13 +128,15 @@ Create a new script, and enter the following:
 ```
 #%%  Import calls
 
+# Remove ROS Python 2.7 libraries from PYTHONPATH
 import sys
-
 if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
     sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
 else:
     print('/opt/ros/kinetic/lib/python2.7/dist-packages already removed from sys.path')
+    print(' ')
 
+# Imports
 import cv2 as cv
 
 #%%  Code
