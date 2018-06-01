@@ -93,11 +93,10 @@ One potential workaround would be to remove that line `source /opt/ros/kinetic/s
    
 ```
 # Put this code BEFORE your cv2 import call to prevent conflicts with the ROS Python 2.7 OpenCV package.
-try:
+if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
     sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-except ValueError:
-    print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
-    print(' ')
+else:
+    print('/opt/ros/kinetic/lib/python2.7/dist-packages already removed from sys.path')
 ```
 
 This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The path only should be removed once, for a given Python interpreter instantiation; the try-catch will prevent errors for this reason.
@@ -131,13 +130,10 @@ Create a new script, and enter the following:
 
 import sys
 
-try:
+if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
     sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-    print('removing /opt/ros/kinetic/lib/python2.7/dist-packages from sys.path')
-    print(' ')
-except ValueError:
-    print('/opt/ros/kinetic/lib/python2.7/dist-packages aready removed from sys.path')
-    print(' ')
+else:
+    print('/opt/ros/kinetic/lib/python2.7/dist-packages already removed from sys.path')
 
 import cv2 as cv
 
