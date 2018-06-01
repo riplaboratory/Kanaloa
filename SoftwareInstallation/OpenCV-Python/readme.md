@@ -158,6 +158,6 @@ print('OpenCV directory: ' + cv.__file__)
 This should print which directory lines were added or removed from the PYTHONPATH, and print the current rospy name (probably '/unnamed', the current running verion of OpenCV, and the directory where the OpenCV symbolic link is located. 
 
 With this, you have:
-1. Installed OpenCV and OpenCV3 through the Anaconda installer
-2. Set up a virtual python environment through the `conda` environment manager
+1. Set up a virtual Python environment through the `conda` environment manager.
+2. Installed OpenCV and OpenCV3 onto this virtul Python environment through the `conda` package installer.
 3. Learned how to manipulate the directories containing the symbolic import links to Python libraries on the PYTHONPATH.
