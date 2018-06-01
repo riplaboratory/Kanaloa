@@ -8,7 +8,7 @@ Note that these instructions are targeted at Python 3.x; however, they may also 
    2. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
 
 ## Anaconda installation instructions for Linux (Ubuntu)
-Official installation instructions for Anaconda can be found [at this link](https://docs.anaconda.com/anaconda/install/linux).
+Official installation instructions for Anaconda can be found [at this link](https://docs.anaconda.com/anaconda/install/linux).  Our instructions are a more concise version of the official ones.
 
 First, download the [Anaconda installer](https://www.anaconda.com/download/#linux) (download the Python 3.x version)
  
