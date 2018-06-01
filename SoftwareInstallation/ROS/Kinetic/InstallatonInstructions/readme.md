@@ -58,7 +58,9 @@ Install Python for ROS
 
 ```
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+sudo apt-get install python-rospkg
 ```
+
 Type `y`, then hit `enter` to confirm the install.
 
 Next, ensure that you've add our standard .bashrc inclusions (this was a prerequisite, but make sure you've done this if you haven't already).  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions).
