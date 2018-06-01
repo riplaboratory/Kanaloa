@@ -8,63 +8,64 @@ This tutorial assumes that you already have Ubuntu 16.04 installed on your machi
    2. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
 
 ## Installation instructions
-Detailed instructions can be found at the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu):
-   1. If you're not sure if you already have an existing version of ros, uninstall with:
+Detailed instructions are available at the [ROS Wiki](http://wiki.ros.org/kinetic/Installation/Ubuntu).  Our instrctions are a more concise version of these.  
+
+First, if you're not sure if you already have an existing version of ros, uninstall with:
 
 ```
 sudo apt-get purge ros-*
 ```
 
-   2. Setup your sources list and keys:
+Setup your Apt sources list and keys:
 
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 ```
 
-   3. Ensure debian package index is up-to-date:
+Ensure Apt debian package index is up-to-date:
 
 ```
 sudo apt-get update
 ```
 
-   4. Install
+Install using Apt
 
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
-    Type `y`, then hit `enter` to confirm the install.
+Type `y`, then hit `enter` to confirm the install.
 
-   5. Find available packages
+Next, find available ROS packages in Apt.
 
 ```
 apt-cache search ros-kinetic
 ```
 
-   6. Initialize rosdep
+Initialize rosdep
 
 ```
 sudo rosdep init
 rosdep update
 ```
 
-   7. Environment setup
+Setup your ROS environment Environment setup
 
 ```
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-   8. Install rosinstall
+Install Python for ROS
 
 ```
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
-   Type `y`, then hit `enter` to confirm the install.
+Type `y`, then hit `enter` to confirm the install.
 
-   9. Add our standard .bashrc inclusions.  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions).
+Next, ensure that you've add our standard .bashrc inclusions (this was a prerequisite, but make sure you've done this if you haven't already).  Detailed instrcuctions can be found in [this directory](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions).
 
-   10. Create ROS workspace
+Create ROS workspace
 
 ```
 cd
