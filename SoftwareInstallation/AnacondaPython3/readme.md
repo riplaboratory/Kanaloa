@@ -1,4 +1,4 @@
-# Python 3 install
+# Anaconda Python 3 install
 Python is an open-source programming language.  A Python *distribution* is a Python intepreter packaged with a number of Python libraries for various computing tasks.  We are using the [Anaconda](https://www.anaconda.com/) distribution, which is targeted for data science computing, and is available for both Windows and Linux.  
 
 Note that these instructions are targeted at Python 3.x; however, they may also be used for the legacy Python 2.7 as well.  
