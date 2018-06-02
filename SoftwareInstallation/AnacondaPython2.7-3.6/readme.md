@@ -77,12 +77,6 @@ You should now be inside the `py27` environment.  You can tell by the `(py27)` t
 python --version
 ```
 
-You can readout all of your environments (and tell which on you're currently in) by typing:
-   
-```
-conda info -e
-```
-
 Just like in the base environment, you can also view all of your installed packages by typing:
    
 ```
@@ -96,7 +90,7 @@ You can start writing Python code in this new environment directly in the termin
 ```
 spyder
 ```
-   
+
 And Spyder should launch inside this new environment.  
    
 In order to quit out of the environment, type:
