@@ -21,7 +21,7 @@ Based on the name, you may infer than OpenCV 2 is the distribution of OpenCV for
 
 __If I am using OpenCV 3, why is the Python import call `import cv2`?  Shouldn't it be `import cv3`?__
 
-Admittedly, this is confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed), although you are using OpenCV 3, the module is still called `cv2` because it doesn't represent the version of OpenCV but the actual C++ API underneath, which is, to be contrasted from the C API, named - `cv2`.  So the module will likely be called `cv2` for a very long time (regardless of the actual version of OpenCV).  
+Admittedly, this is confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed), although you are using OpenCV 3, the Python library is still called `cv2` because `cv2` is *not* named after the version of OpenCV, it is named after the actual C++ API underneath, which is, to be contrasted from the older C API, named `cv2`.  So the module will likely be called `cv2` for a very long time (regardless of the actual version of OpenCV).  For brevity, it is common to `import cv2 as cv` in Python.  
 
 __Doesn't ROS come with a version of OpenCV?__
 
