@@ -54,22 +54,36 @@ As alluded to in the FAQ section, the default installation of ROS comes with a v
 
 Although these Python libraries are safely isolated in different directories, any running version of Python can call them, regardless of the virtual environment its running in, provided that Python knows where the symbolic link (`cv2.so` in our case) is located.  This information is stored in your `PYTHONPATH` variable, which is loaded each time a new Python interpreter is loaded.  In a Unix system, you can control what ends up on the `PYTHONPATH` using the .bashrc scipt, i.e. as long as you launch Python (or your Python IDE) from a terminal window, your `PYTHONPATH` will be repeatably generated.
 
-This causes us some problem however, because ROS has inclusions to the 
+Because both ROS and Anaconda have source inclusions to the `.bashrc`, all of the Python libraries contained within those installation directories are on the `PYTHONPATH`.  Naturally, this means that the OpenCV 3 library, `cv2`, has symbolic links on the `PYTHONPATH` from both `/opt/ros/kinetic/lib/python2.7/dist-packages` (ROS install), and `~/anaconda3/envs/py27/lib/python2.7/site-packages` (Anaconda install).  These may conflict depending on which version you want to use.  
 
-This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
+One potential workaround would be to edit the `.bashrc` sources to our liking, e.g. removing the `source /opt/ros/kinetic/setup.bash` line; however, this can cause unexpected behaviors from other elements of ROS that rely on that `.bashrc` inclusion, which is not an ideal solution for non-advanced users.  A more explicit solution is to directly edit the `PYTHONPATH` variable to include or exclude the Python library paths that have conflicts before we make the import calls on a Python script.  
 
-One potential workaround would be to remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  A more explicit (but less universal) solution would be to explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of any python script requiring `cv2` for Python 3.  An error-checking version of this Python code is given below:
+An example Python code that excludes (removes) the ROS Python 2.7 OpenCV library from the `PYTHONPATH` is given as.
    
 ```
-# Put this code BEFORE your cv2 import call to prevent conflicts with the ROS Python 2.7 OpenCV package.
+# Put this code BEFORE your import call to remove all ROS Python 2.7 libraries.
+import sys
 if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
     sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
 else:
     print('/opt/ros/kinetic/lib/python2.7/dist-packages already removed from sys.path')
+ import cv2 as cv
 ```
 
-This code will remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH, leaving only the Anaconda (and any other import paths you may have on your system) import path.  The path only should be removed once, for a given Python interpreter instantiation; the try-catch will prevent errors for this reason.
-   
+Conversely, an example Python code that includes the ROS Python 2.7 OpenCV library from the `PYTHONPATH` is given as.
+
+```
+# Put this code BEFORE your import call to include all ROS Python 2.7 libraries.
+import sys
+if not any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
+    sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
+else:
+    print('/opt/ros/kinetic/lib/python2.7/dist-packages already added to sys.path')
+
+```
+
+You can insert this code in between your import calls as necessary to include the libraries that you need in your particular script.  
+
 Optionally, if you are interested in seeing vieing a list of the directories on the PYTHONPATH (the .bashrc will not necessarily tell you this explicitly), you may do this with the following Python code:
    
 ```
@@ -80,10 +94,10 @@ print(' ')
 
 ## Testing your installation with an example Python import script
 
-Launch our `ocv2` virtual environment by opening a new terminal and entering:
+Launch our `py27` virtual environment by opening a new terminal and entering:
 
 ```
-source environment ocv2
+source environment py27
 ```
 
 Open spyder by opening a new terminal window and entering:
@@ -92,7 +106,7 @@ Open spyder by opening a new terminal window and entering:
 spyder
 ```
 
-A common example of these library import calls together include `rospy` (the ROS Python 2.7 module), and `cv2`.  In order to import `rospy`, we need to add a directory not on the default PYTHONPATH, and in order to import `cv2`, we need to remove all of the ROS Python 2.7 libraries from the PYTHONPATH to avoid the conflicts (as discussed earlier).  An example of this is given below:
+An example highlighting the need for explicit inclusions and exclusions to the `PYTHONPATH` include `rospy` (a ROS Python 2.7 library), and `cv2` (the newer Anaconda version we installed in this tutorial).  In order to import `rospy`, we need to add a directory that is not on the `PYTHONPATH` by default; and in order to import the Anaconda installation of `cv2`, we need to remove the ROS Python 2.7 libraries from the `PYTHONPATH`.  An example of this is given below:
 
 ```
 import sys
@@ -123,9 +137,4 @@ print('OpenCV version:   ' + cv.__version__)
 print('OpenCV directory: ' + cv.__file__)
 ```
 
-This should print which directory lines were added or removed from the PYTHONPATH, and print the current rospy name (probably '/unnamed', the current running verion of OpenCV, and the directory where the OpenCV symbolic link is located. 
-
-With this, you have:
-1. Set up a virtual Python environment through the `conda` environment manager.
-2. Installed OpenCV and OpenCV3 onto this virtul Python environment through the `conda` package installer.
-3. Learned how to manipulate the directories on the PYTHONPATH, to avoid conflicting symbolic import links to Python libraries, particularly `cv2` and `rospy`.
+This should print which directory lines were added or removed from the PYTHONPATH prior to the `rospy` and `cv2` imports, and print the current rospy name ('/unnamed'), the current running verion of OpenCV (which should be the newest version that you installed in this tutorial), and the directory where the OpenCV symbolic link is located. 
