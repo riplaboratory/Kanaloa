@@ -28,7 +28,7 @@ __Doesn't ROS come with a version of OpenCV?__
 Yes.  But because it is distributed with ROS, it is not necessarily the most up-to-date distribution an OpenCV developer would desire.  This tutorial will show you how to safely install, and import the newest version of the OpenCV-Python library without conflicting with the version installed with ROS.  
 
 ## Installing OpenCV into your `py27` virtual environment using Anaconda
-If you followed the instructions on the Anaconda Python 2.7 and Python 3.6 install carefully, you should now have an installation of Python 3.6 in your base Python environment, and an installation of Python 2.7 in an environment called `py27`.  Althought OpenCV supports both Python 2.7 and 3.6, ROS (particularly `rospy`) only supports Python 2.7, which means that we will be using the `py27` environment to interact between OpenCV and ROS.  
+If you followed the instructions on the Anaconda Python 2.7 and Python 3.6 install carefully, you should now have an installation of Python 3.6 in your base Python environment, and an installation of Python 2.7 in an environment called `py27`.  Althought OpenCV supports both Python 2.7 and 3.6, ROS  only supports Python 2.7, which means that we will be using the `py27` environment to interact between OpenCV and ROS (however, if you are ONLY using OpenCV, then it may be advisable to use Python 3.6 instead).  
 
 Enter the `py27` environment by typing:
 
