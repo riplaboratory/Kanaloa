@@ -48,9 +48,9 @@ At the time of writing, the latest version of opencv available is version 3.4.1.
 conda install opencv=3.4.1
 ```
 
-Conda will then install the version of opencv that you specify.  It should also automatically select the version that matches the Python binary of the environment that you're currently in (Python 2.7 in our case).  You can (and should) double check all of this information before you accept all of the prompts. 
+Conda will then install the version of opencv that you specify.  It should also automatically select the version that matches the Python binary of the environment that you're currently in (Python 2.7 in our case).  You can (and should) double check all of this information before you accept all of the prompts.  This also means that if you want to run OpenCV in a Python 3.6 environment, you need to run this line again inside that environment.  
 
-Optionally, you may check that the installtion of the Scipy libraries was successful by typing `conda list`.
+Optionally, you may check that the installation of the Scipy libraries was successful by typing `conda list`.
 
 ## Avoiding conflicting OpenCV Python library import calls (and any Python library imports for that matter)
 As alluded to in the FAQ section, the default installation of ROS comes with a version of OpenCV.  For sake of reference, for a default ROS Kinetic installation, this OpenCV Python library is located in `/opt/ros/kinetic/lib/python2.7/dist-packages`.  In the last step of this tutorial, we installed the most up-to-date version of OpenCV into our `py27` virtual environment.  For sake of reference, all `conda` virtual environments are stored in `~/anaconda3/envs`, and therefore, our up-to-date OpenCV Python library is stored in `~/anaconda3/envs/py27/lib/python2.7/site-packages`.
