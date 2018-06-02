@@ -12,14 +12,14 @@ OpenCV-Python can be insatlled using apt repositories (e.g. `sudo apt-get instal
 
 In our case, because we already use the excellent Anaconda Python package installer, it makes a lot of sense to install OpenCV this way.  
 
-On another note, as of writing, ROS Kinetic includes a version of the OpenCV library in its default installation.  However, because it is packaged with ROS, this version is not necessarily updated as often as is desriable.  Following these instructions will 
+On another note, ROS Kinetic includes a version of the OpenCV library in its default installation.  However, because it is packaged with ROS, this version is not necessarily updated as often as is desriable.  Following these instructions will 
 
 ## FAQs
-__What is the difference between OpenCV2 and OpenCV3?__
-Based on the name, someone may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution for Python 3.6; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the newest version with all of the newest library wrappers; you should be using OpenCV 3.
+__What is the difference between OpenCV 2 and OpenCV 3?__
+Based on the name, you may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution of OpenCV for Python 3.x; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the most current version (at the time of writing) with all of the newest library wrappers.  In short you should be using OpenCV 3.
 
 __If I am using OpenCV 3, why is the Python import call still `import cv2`?  Shouldn't it be `import cv3`?__
-Admittedly, this is confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed) Although you are using OpenCV 3, the module is still called `cv2` because it doesn't represent the version of OpenCV but the actual C++ API underneath, which is, to be contrasted from the C API, named - `cv2`.  So it will likely be called `cv2` for a very long time.  
+Admittedly, this is confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed) Although you are using OpenCV 3, the module is still called `cv2` because it doesn't represent the version of OpenCV but the actual C++ API underneath, which is, to be contrasted from the C API, named - `cv2`.  So the module will likely be called `cv2` for a very long time (regardless of the actual version of OpenCV).  
 
 __Doesn't ROS come with a version of OpenCV?__
 Yes.  But because it is distributed with ROS, it is not necessarily the most up-to-date distribution an OpenCV developer would desire.  This tutorial will show you how to safely manage the newest version of OpenCV alongside the version that already comes with ROS.  
@@ -47,21 +47,16 @@ conda install opencv=3.4.1
 
 Conda will then install the version of opencv that you specify.  It should also automatically select the version that matches the Python binary of the environment that you're currently in (Python 2.7 in our case).  You can (and should) double check all of this information before you accept all of the prompts. 
 
-
-
 Optionally, you may check that the installtion of the Scipy libraries was successful by typing `conda list`.
 
-Install OpenCV and OpenCV3 using the conda package installer  Note that we are getting OpenCV through [conda-forge](https://anaconda.org/conda-forge/opencv), and OpenCV3 through [menpo](https://anaconda.org/menpo/opencv3).
+## Avoiding conflicting OpenCV Python library import calls (and any Python library imports for that matter)
+As alluded to in the FAQ section, the default installation of ROS comes with a version of OpenCV.  For sake of reference, for a default ROS Kinetic installation, this OpenCV Python library is located in `/opt/ros/kinetic/lib/python2.7/dist-packages`.  In the last step of this tutorial, we installed the most up-to-date version of OpenCV into our `py27` virtual environment.  For sake of reference, all `conda` virtual environments are stored in `~/anaconda3/envs`, and therefore, our up-to-date OpenCV Python library is stored in `~/anaconda3/envs/py27/lib/python2.7/site-packages`.
 
-```
-conda install -c conda-forge opencv 
-conda install -c menpo opencv3
-```
-   
-Similar to before, you may optionally check that the installtion of the OpenCV libraries was successful by typing `conda list`.
+Although these Python libraries are safely isolated in different directories, any running version of Python can call them, regardless of the virtual environment its running in, provided that Python knows where the symbolic link (`cv2.so` in our case) is located.  This information is stored in your `PYTHONPATH` variable, which is loaded each time a new Python interpreter is loaded.  In a Unix system, you can control what ends up on the `PYTHONPATH` using the .bashrc scipt, i.e. as long as you launch Python (or your Python IDE) from a terminal window, your `PYTHONPATH` will be repeatably generated.
 
-## Avoiding conflicting Python libraries
-We now have Python 3.x virtual environment called `ocv2` running the `opencv` and `opencv3` packages.  Although this virutal environment is completely separate from any other Python environments on your system, it was (presumably) launched through a terminal session with our standard `.bashrc` inclusions.  This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
+This causes us some problem however, because ROS has inclusions to the 
+
+This means that the ROS Python 2.7 `dist-packages` (located in the `/opt/ros/kinetic/lib/python2.7/dist-packages` directory in a default ROS Kinetic installation) directory was still included in the `PYTHONPATH` (the list of symbolic links Python looks through to find packages), and therefore can (and does) still conflict with OpenCV (and potentially other packages) import calls in our `ocv2` environment.  For reference, the ROS Python 2.7 symbolic link is located in `/opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so`, and the Anaconda Python 3.6 symbolic link is located in `/home/USERNAME/anaconda3/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so` (both for default installations).  
 
 One potential workaround would be to remove that line `source /opt/ros/kinetic/setup.bash` from the .bashrc inclusions.  This will prevent the Python 2.7 packages from ROS from making it onto the `PYTHONPATH`; however, that will mean that any ROS Python 2.7 script called from the terminal will break, which is not an ideal solution.  A more explicit (but less universal) solution would be to explicitly remove the `/opt/ros/kinetic/lib/python2.7/dist-packages` from the PYTHONPATH at the start of any python script requiring `cv2` for Python 3.  An error-checking version of this Python code is given below:
    
