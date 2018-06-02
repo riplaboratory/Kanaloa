@@ -17,7 +17,7 @@ On another note, ROS Kinetic includes a version of the OpenCV library in its def
 ## FAQs
 __What is the difference between OpenCV 2 and OpenCV 3?__
 
-Based on the name, you may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution of OpenCV for Python 3.x; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the most current version (at the time of writing) with all of the newest library wrappers.  In short you should be using OpenCV 3.
+Based on the name, you may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution of OpenCV for Python 3.x; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the most current version (at the time of writing) with all of the newest library wrappers.  In short, you should be using OpenCV 3.
 
 __If I am using OpenCV 3, why is the Python import call `import cv2`?  Shouldn't it be `import cv3`?__
 
