@@ -32,7 +32,7 @@ When this is done, close and re-open your terminal session.  You can then test y
 conda list
 ```
 
-Which should bring up a list of packages.  If it does, you are successful!
+Which should bring up a list of packages.  If it does, you are successful with the Python 3.6 install.
 
 ## Avoiding conflicting Python installations using virtual environments
 At this point, we only have the Anaconda Python 3.6 distribution installed; however, it is often useful to have multiple versions of Python on a single machine (particularly Python 2.7 and Python 3.6).  This is because Python 2.7 (legacy), is incompatible with the current Python 3.6, and therefore, should generally be treated as entirely different programming environments.  ROS in particular, is only compatible with Python 2.7, and will remain that way for the forseeable future.   
