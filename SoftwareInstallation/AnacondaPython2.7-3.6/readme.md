@@ -100,5 +100,4 @@ source deactivate
 ```
 
 ## Potential issues
-Sypder launches to a black screen with terminal error `shader program is not linked`.
-https://github.com/spyder-ide/spyder/issues/3226#issuecomment-394060919
+Sypder launches to a black screen with terminal error `shader program is not linked`.  Solution documented [at this link](https://github.com/spyder-ide/spyder/issues/3226#issuecomment-394060919).
