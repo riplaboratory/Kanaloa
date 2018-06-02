@@ -23,7 +23,7 @@ export ROS_IP=10.42.0.1
 export ROS_HOSTNAME=localhost
 export ROS_IP=localhost
 export ROS_MASTER_URI=http://localhost:11311/		# Uncomment for local machine
-#export ROS_MASTER_URI=http://10.42.0.58:11311/ 	# uncomment for Raspberry Pi (you have to change the IP to the IP of the Raspbe
+#export ROS_MASTER_URI=http://10.42.0.58:11311/ 	# uncomment for Raspberry Pi
 
 # added by Anaconda3 installer
 export PATH="/home/brennan/anaconda3/bin:$PATH"
