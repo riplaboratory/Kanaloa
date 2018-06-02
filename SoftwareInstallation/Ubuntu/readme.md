@@ -1,7 +1,7 @@
 # Ubuntu
 
 ## Background information
-[Unbuntu](https://www.ubuntu.com/) is a popular __distribution__ of a  Linux operating system for x86 systems, which is produced by Canonical.  There are many different distributions Linux operating systems, many of which are intended for different purposes.  One requirement for a Linux operating system is that it is "open-source"; i.e. the source code is openly available.  As a result, all Linux operating systems are free to use and install (though it is common for the developer to ask for compensation for their work).  An alternative operating system can be used for many different purposes, in our lab, we utilize Ubuntu to run Robot Operating System (ROS), which is officially compatible with Ubuntu.
+[Ubuntu](https://www.ubuntu.com/) is a popular __distribution__ of a  Linux operating system for x86 systems, which is produced by Canonical.  There are many different distributions Linux operating systems, many of which are intended for different purposes.  One requirement for a Linux operating system is that it is "open-source"; i.e. the source code is openly available.  As a result, all Linux operating systems are free to use and install (though it is common for the developer to ask for compensation for their work).  An alternative operating system can be used for many different purposes, in our lab, we utilize Ubuntu to run Robot Operating System (ROS), which is officially compatible with Ubuntu.
 
 ## Prerequisites
    1. A computer.  If you're doing a dual-boot on a computer with a Windows environment, Windows should already be installed. 
@@ -19,7 +19,7 @@ For computers that are used for engineering workflows, a Windows operating syste
 The last option, dual-booting, involves installing two (or more) operating systems on the same computer, and selecting which operating system you want to engage every time you power the computer on (therefore, only one operating system is running at any given time).  For machines that require significant workflows in both Windows and Ubuntu, dual-booting is generally the best option.  Dual-booting can be tricky to setup however, because Windows was not necessarily made to run alongside another opearting system, and Ubuntu simply does not have the same level of support as Windows.  This document outlines some tips for a clean dual boot-install.
 
 ## Standard installation instructions 
-Standard installation instructions can be found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).  You will need a flash drive (or a writable DVD)/
+Standard installation instructions can be found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).  You will need a flash drive you are willing to wipe (or a writable DVD, but a flash drive is much better).
 
 ## Virtualization installation instructions 
 Instructions for installing VMWare Workstation player, and then installing Unbuntu through this virtual machine can be found [at this link](http://theholmesoffice.com/installing-ubuntu-in-vmware-player-on-windows/)
