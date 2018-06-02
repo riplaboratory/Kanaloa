@@ -15,11 +15,14 @@ In our case, because we already use the excellent Anaconda Python package instal
 On another note, as of writing, ROS Kinetic includes a version of the OpenCV library in its default installation.  However, because it is packaged with ROS, this version is not necessarily updated as often as is desriable.  Following these instructions will 
 
 ## FAQs
-__What is the difference between OpenCV2 and OpenCV3?__  Based on the name, someone may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution for Python 3.6; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the newest version with all of the newest library wrappers; you should be using OpenCV 3.
+__What is the difference between OpenCV2 and OpenCV3?__
+Based on the name, someone may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution for Python 3.6; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the newest version with all of the newest library wrappers; you should be using OpenCV 3.
 
-__Doesn't ROS come with a version of OpenCV?__  Yes.  But because it is distributed with ROS, it is not necessarily the most up-to-date distribution an OpenCV developer would desire.  This tutorial will show you how to safely manage the newest version of OpenCV alongside the version that already comes with ROS.  
+__If I am using OpenCV 3, why is the Python import call still `import cv2`?  Shouldn't it be `import cv3`?__
+Admittedly, this is confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed) Although you are using OpenCV 3, the module is still called `cv2` because it doesn't represent the version of OpenCV but the actual C++ API underneath, which is, to be contrasted from the C API, named - `cv2`.  So it will likely be called `cv2` for a very long time.  
 
-__If I am using OpenCV 3, why is the Python import call still `import cv2`?  Shouldn't it be `cv3`?__  Admittedly, this is very confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed) Although you are using OpenCV 3, the module is still called `cv2` because it doesn't represent the version of OpenCV but the actual C++ API underneath, which is, to be contrasted from the C API, named - `cv2`.  So it will likely be called `cv2` for a very long time.  
+__Doesn't ROS come with a version of OpenCV?__
+Yes.  But because it is distributed with ROS, it is not necessarily the most up-to-date distribution an OpenCV developer would desire.  This tutorial will show you how to safely manage the newest version of OpenCV alongside the version that already comes with ROS.  
 
 ## Setting up ocv2 conda virtual environment
 If you followed the instructions on the Anaconda Python 2.7 and Python 3.6 install carefully, you should now have an installation of Python 3.6 in your base Python environment, and an installation of Python 2.7 in an environment called `py27`.  Althought OpenCV supports both Python 2.7 and 3.6, ROS (particularly `rospy`) only supports Python 2.7, which means that we will be using the `py27` environment to interact between OpenCV and ROS.  
