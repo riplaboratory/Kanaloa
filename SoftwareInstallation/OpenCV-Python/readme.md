@@ -1,80 +1,50 @@
 # OpenCV-Python
 OpenCV stands for "Open Computer Vision", and is a collection of C/C++ libraries specific for computer vison.  It has interfaces/APIs in C++, Python, and Java. 
 
+## Prerequisites
+1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu)).
+2. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
+3. ROS Kinetic ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/ROS/Kinetic/InstallatonInstructions)).  Note that ROS is not actually required for this installation, rather ROS causes some issues with the OpenCV Python installation, and therefore some workaround instructions are provided in this guide.
+4. Anaconda Python 2.7 and Python 3.6 install ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/AnacondaPython2.7-3.6)).
+
 ## Alternative Installation Options
 OpenCV-Python can be insatlled using apt repositories (e.g. `sudo apt-get install python-opencv`); however, these repositories are generally out of date for OpenCV, and therefore are not ideal.  Aternatively, one can build from source; however, the official installation instructions found [at this link](https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html) are fairly poor.  There are third party instrcutions for installing from source like those from [Manuel Ignacio López Quintero](https://milq.github.io/install-opencv-ubuntu-debian/), [pyimagesearch](https://www.pyimagesearch.com/2016/10/24/ubuntu-16-04-how-to-install-opencv/), [Learn Open CV](https://www.learnopencv.com/install-opencv3-on-ubuntu/), and [SciVision](https://www.scivision.co/install-opencv-python-windows/); however, this is still a challenging process non-advanced Linux users due to the many versions of OpenCV, Ubuntu, and associated dependencies.  
 
 In our case, because we already use the excellent Anaconda Python package installer, it makes a lot of sense to install OpenCV this way.  
 
-## Prerequisites
-1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu)).
-2. Anaconda Python 3.x installation ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/AnacondaPython)).
-3. ROS Kinetic ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/ROS/Kinetic/InstallatonInstructions)).  Note that ROS is not actually required for this installation, rather ROS causes some issues with the OpenCV Python installation, and therefore some workaround instructions are provided in this guide.
-4. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
+On another note, as of writing, ROS Kinetic includes a version of the OpenCV library in its default installation.  However, because it is packaged with ROS, this version is not necessarily updated as often as is desriable.  Following these instructions will 
 
-## Avoiding conflicting Python installations using virtual environments
-Because all current versions of ROS natively use Python 2.7, and *additionally* has it's own built-in computer vision library `cv2.so`, we're in a situation where we have conflicting editions of Python *and* conflicting versions of Python libraries.  This is actually a common issue for heavy Python users; and it can be solved by running Python in a virtual environment.  A virtual environment will allow us to run versions of Python that are isolated from the system site directories, with their own Python binaries (aka: any verion of Python), and their own independent set of Python packages.  
+## FAQs
+__What is the difference between OpenCV2 and OpenCV3?__  Based on the name, someone may infer than OpenCV 2 is the distribution of OpenCV for Python 2.7, and OpenCV 3 is the distribution for Python 3.6; however, this is not the case.  Simply put, OpenCV 2 is an older version of OpenCV.  OpenCV 3 is the newest version with all of the newest library wrappers; you should be using OpenCV 3.
 
-There are two supported Python modules for doing this:
-   - `venv`: documentation [at this link](https://docs.python.org/3/library/venv.html#module-venv)
-   - `conda` environment manager: documentation [at this link](https://conda.io/docs/user-guide/tasks/manage-environments.html)
+__Doesn't ROS come with a version of OpenCV?__  Yes.  But because it is distributed with ROS, it is not necessarily the most up-to-date distribution an OpenCV developer would desire.  This tutorial will show you how to safely manage the newest version of OpenCV alongside the version that already comes with ROS.  
 
-`venv` is natively supported by Python, whereas the `conda` environment manager is a part of the conda package installer (part of the Anaconda Python distribution).  Both solutions will work for our purposes; however, because we are using the conda package installer [the general advice](https://stackoverflow.com/questions/34398676/does-conda-replace-the-need-for-virtualenv) is to use the `conda` environment manager.
-
-By default, your vitual environments are stored in your Anaconda folder `.../anaconda3/envs/`.  TO create a new environment, open a new terminal and type: 
-
-```
-conda create --name ocv2 
-```
-
-This will create a new environment in the current running version of Python (3.x).  It is possible to change the Python interpreter version, and instantiate the environment with specific packages.  For more details, read the conda documentation link above.  To enter the new `ocv2` environment you just created, type:
-
-```
-source activate ocv2
-```
-
-You should now be inside the `ocv2` environment.  You can tell by the `(ocv2)` that proceeds all of the lines in your terminal.  You can readout all of your environments (and tell which on you're currently in) by typing:
-   
-```
-conda info -e
-```
-
-Just like in the base environment, you can also view all of your installed packages by typing:
-   
-```
-conda list
-```
-
-In this newly created environment, you should see a blank list of packages.
-
-You can start writing Python code in this new environment directly in the terminal.  You can also run an IDE inside this new environment.  To launch the Spyder IDE, type:
-   
-```
-spyder
-```
-   
-And Spyder should launch inside this new environment.  
-   
-In order to quit out of the environment, type:
-   
-```
-source deactivate
-```
+__If I am using OpenCV 3, why is the Python import call still `import cv2`?  Shouldn't it be `cv3`?__  Admittedly, this is very confusing.  [According to this link](https://stackoverflow.com/questions/44102738/why-cant-i-import-opencv3-even-though-the-package-is-installed) Although you are using OpenCV 3, the module is still called `cv2` because it doesn't represent the version of OpenCV but the actual C++ API underneath, which is, to be contrasted from the C API, named - `cv2`.  So it will likely be called `cv2` for a very long time.  
 
 ## Setting up ocv2 conda virtual environment
-At this point, we installed Anaconda Python 3.x distribution with the conda package installer, and set up a Python 3.x virtual environment called `ocv2` to prevent us from conflicting with the Python 2.7 installation already on the machine from the ROS install.  Now, we want to set up this `ocv2` environment with everything relevant to OpenCV-Python.
+If you followed the instructions on the Anaconda Python 2.7 and Python 3.6 install carefully, you should now have an installation of Python 3.6 in your base Python environment, and an installation of Python 2.7 in an environment called `py27`.  Althought OpenCV supports both Python 2.7 and 3.6, ROS (particularly `rospy`) only supports Python 2.7, which means that we will be using the `py27` environment to interact between OpenCV and ROS.  
 
-Enter the `ocv2` environment by typing:
-
-```
-source activate ocv2
-```
-
-Install `scipy` (a common distribution of Python libraries targeted at mathematical operations).
+Enter the `py27` environment by typing:
 
 ```
-conda install scipy
+source activate py27
 ```
+
+You can check for the latest version of OpenCV in the conda package installer by typing:
+
+```
+conda search opencv
+```
+
+At the time of writing, the latest version of opencv available is version 3.4.1.  Therefore, to install, type:
+
+```
+conda install opencv=3.4.1
+```
+
+Conda will then install the version of opencv that you specify.  It should also automatically select the version that matches the Python binary of the environment that you're currently in (Python 2.7 in our case).  You can (and should) double check all of this information before you accept all of the prompts. 
+
+
 
 Optionally, you may check that the installtion of the Scipy libraries was successful by typing `conda list`.
 
