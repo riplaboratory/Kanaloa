@@ -7,4 +7,4 @@ This directory contains instructions on the various software installations for o
    - `Matlab`: This directory contains information on installing Matlab.  __Priority: only if you need to run, or code in Matlab, which is likely__.
    - `OpenCV-Python`: This directory contains information on installing OpenCV-Python.  This is used for various computer vision applications.  __Priority: only if you're coding computer vision applications__.
    - `ROS`: This directory contains information on installing ROS (Robot Operating System).  __Priority: if you're doing any work in ROS, which is likely__.
-   - `Ubuntu`: This directory contains information on installing Ubnutu (a Linux distribution for x86 systems).  __Priority: mandatory__.
+   - `Ubuntu16.04`: This directory contains information on installing Ubnutu (a Linux distribution for x86 systems).  __Priority: mandatory__.
