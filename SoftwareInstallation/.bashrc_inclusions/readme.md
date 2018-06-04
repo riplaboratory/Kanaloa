@@ -25,8 +25,8 @@ export ROS_IP=localhost
 export ROS_MASTER_URI=http://localhost:11311/		# Uncomment for local machine
 #export ROS_MASTER_URI=http://10.42.0.58:11311/ 	# uncomment for Raspberry Pi
 
-# added by Anaconda3 installer
-export PATH="/home/brennan/anaconda3/bin:$PATH"
+# added by Anaconda2 installer
+export PATH="/home/brennan/anaconda2/bin:$PATH"
 ```
 
 Any terminal sessions you open after saving will reflect these inclusions.  You can update your current terminal session with these changes without closing it `.bashrc` by typing:
