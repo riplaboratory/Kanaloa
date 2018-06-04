@@ -42,7 +42,7 @@ Alternatively, the .bashrc is reloaded each time a new terminal window is open, 
 conda list
 ```
 
-Which should bring up a list of packages.  If it does, you are successful with the Python 2.7 install.
+Which should bring up a list of packages.  If it does, you are successful with the Python 2.7 install. 
 
 ## Avoiding conflicting Python installations using virtual environments
 At this point, we only have the Anaconda Python 2.7 distribution installed.  As previously discussed, Python 2.7 is the legacy version of Python, which is now being phased out in favor of the newer Python 3.6.  For this reason, there is a lot of value in having working, non-conflicting binaries for both Python 2.7 and Python 3.6.  This is a common issue with heavy Python users, and it can be accomplished by using Python virtual environments.  Virtual environments allow the different versions of Python to stay isolated from the system site directories, with their own Python binaries and their own independent set of Python packages.  
@@ -67,21 +67,21 @@ At the moment, we only have a single `base` envrionment.  You can check which ve
 python --version
 ```
 
-To create a new environment called `py27` *and* install Python 2.7 onto this environment, open a new terminal and type: 
+To create a new environment called `py36` *and* install Python 3.6 onto this environment, open a new terminal and type: 
 
 ```
-conda create -n py27 python=2.7 anaconda
+conda create -n py36 python=3.6 anaconda
 ```
 
-The `conda` package manager should automatically identify all of the packages in their Anaconda Python 2.7 distribution.  Accept all of the prompts in the terminal window to install.  
+The `conda` package manager should automatically identify all of the packages in their Anaconda Python 3.6 distribution.  Accept all of the prompts in the terminal window to install.  
 
-To enter the new `py27` environment you just created, type:
+To enter the new `py36` environment you just created, type:
 
 ```
-source activate py27
+source activate py36
 ```
 
-You should now be inside the `py27` environment.  You can tell by the `(py27)` that proceeds all of the lines in your terminal.  You can verify that your current environment uses Python 2.7 by typing:
+You should now be inside the `py36` environment.  You can tell by the `(py36)` that proceeds all of the lines in your terminal.  You can verify that your current environment uses Python 3.6 by typing:
 
 ```
 python --version
@@ -93,15 +93,15 @@ Just like in the base environment, you can also view all of your installed packa
 conda list
 ```
 
-In this environment, you should should see that these packages are are py27 (Python 2.7) versions, as opposed to the py36 (Python 3.6) versions in the `base` environment.  
+In this environment, you should should see that these packages are are py36 (Python 3.6) versions, as opposed to the py27 (Python 2.7) versions in the `base` environment.  
 
-You can start writing Python code in this new environment directly in the terminal.  You can also run an IDE inside this new environment.  To launch the Spyder IDE, type:
+You can start writing Python code in this new environment directly in the terminal.  You can also run an IDE inside this new environment.  To launch the Spyder IDE, ensure you're inside of your `py36` environment, and type:
    
 ```
 spyder
 ```
 
-And Spyder should launch inside this new environment.  
+And Spyder should launch inside this new environment.  Double check by looking at the version of Python listed in the interpreter (console) window. 
    
 In order to quit out of the environment, type:
    
@@ -110,4 +110,16 @@ source deactivate
 ```
 
 ## Potential issues
-Sypder launches to a black screen with terminal error `shader program is not linked`.  Solution documented [at this link](https://github.com/spyder-ide/spyder/issues/3226#issuecomment-394060919).
+
+### Spyder launched to a black screen, and terminal reads "shader program is not linked".  Running Nvidia graphics.  
+Sypder launches to a black screen with terminal error `shader program is not linked`.  Solution documented [at this link](https://github.com/spyder-ide/spyder/issues/3226#issuecomment-394060919).  Note that link has Python 3.6 running in the base environment, and Python 2.7 running in a virtual environment, called `py27` (which is the opposite of our case); however, the general fix remains the same.
+
+In short, enter the Python environment demonstrating the issue (if it's the base environment, then skip), and install OpenGL by typing:
+
+```
+conda install pyopengl
+```
+
+Accept all of the prompts on the installer screens.
+
+Spyder should now launch without issue.  
