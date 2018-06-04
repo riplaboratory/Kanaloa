@@ -7,7 +7,7 @@ In this tutorial, we will install BOTH Python 2.7 and Python 3.6, and instruct y
    1. Ubuntu 16.04 ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/Ubuntu)).
    2. Standard .bashrc inclusions ([instructions here](https://github.com/riplaboratory/Kanaloa/tree/master/SoftwareInstallation/.bashrc_inclusions)).
    
-## Python 2.7 vs 3.6
+## Python 2.7 versus 3.6
 At the time of writing, the most up-to-date version of Python is Python 3, particularly Python 3.6.  Python 3 is *not* backwards compatible with the legacy Python 2 (the last version of which is Python 2.7); however, because there are still a lot of Python applications that have not been updated to support Python 3, and therefore, will only run in a Python 2.7 environment.  In our case, ROS only supports Python 2.7, while OpenCV supports both Python 2.7 and Python 3.6.  For this reason, there is a lot of value in having working, non-conflicting binaries for both Python 2.7 and Python 3.6.
 
 In this tutorial, we will install Python 2.7 using the Anaconda 2 distribution, *and then* install Python 3.6 in a virtual environment called `py36`.  This will allow us to write software for ROS primarily in Python 2.7, while still having a safely-isolated installation of Python 3.6 that we can access at any time.  
