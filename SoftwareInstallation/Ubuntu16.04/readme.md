@@ -1,11 +1,11 @@
-# Ubuntu
+# Ubuntu 16.04
 
 ## Background information
-[Ubuntu](https://www.ubuntu.com/) is a popular __distribution__ of a  Linux operating system for x86 systems, which is produced by Canonical.  There are many different distributions Linux operating systems, many of which are intended for different purposes.  One requirement for a Linux operating system is that it is "open-source"; i.e. the source code is openly available.  As a result, all Linux operating systems are free to use and install (though it is common for the developer to ask for compensation for their work).  An alternative operating system can be used for many different purposes, in our lab, we utilize Ubuntu to run Robot Operating System (ROS), which is officially compatible with Ubuntu.
+[Ubuntu](https://www.ubuntu.com/) is a popular __distribution__ of a  Linux operating system for x86 systems, which is produced by Canonical.  One requirement for a Linux operating system is that it is "open-source"; i.e. the source code is openly available.  As a result, all Linux operating systems are free to use and install, and there are many different distributions (versions) of Linux.  Installing a second operating system like Linux can offer extended functionality to your computer.  In our lab, we make heavy use of Robot Operating System (ROS), which is not officially compatible with Windows, but *is* compatible with Ubuntu.
 
 ## Prerequisites
    1. A computer.  If you're doing a dual-boot on a computer with a Windows environment, Windows should already be installed. 
-   
+
 ## Installation options
 There are three general methods of installing an alternative operating system:
   1. Clean install on a new computer.
@@ -17,6 +17,11 @@ In our lab, we take advantage of all three of these methods.  For computers that
 For computers that are used for engineering workflows, a Windows operating system is typically necessary.  In order to run Ubuntu on these computers, we have two options: virtualization and dual booting.  Virtualization involves running an operating system inside of a virtual machine, while another operating system is active.  Modern virtualization using solutions like [VMWare Workstation Player](https://www.vmware.com/products/workstation-player.html) provides excellent performance, and have free versions for non-commercial use; however, for robotics applications, there are two major drawbacks to virtualization: (1) although the performance impact is generally minor, there is a significant performance impact to anything involving graphical rendering, generally eliminating this option for vision applications, and (2) I/O (plugging in sensors to the computer) can become a problem for anything other than USB devices.  
 
 The last option, dual-booting, involves installing two (or more) operating systems on the same computer, and selecting which operating system you want to engage every time you power the computer on (therefore, only one operating system is running at any given time).  For machines that require significant workflows in both Windows and Ubuntu, dual-booting is generally the best option.  Dual-booting can be tricky to setup however, because Windows was not necessarily made to run alongside another opearting system, and Ubuntu simply does not have the same level of support as Windows.  This document outlines some tips for a clean dual boot-install.
+
+## Which version should I install?
+As indicated by the title, we use __Ubuntu 16.04__ (nicknamed "Xenial Xerus").  Every couple of versions of Ubuntu (or so) is coined a Long Term Support, or "LTS" distribution, which means that Canonical will support that version for an extended period of time.  Ubuntu 16.04 is an LTS distribution, which will be supported until April 2021.  
+
+At the time of writing, the most recent LTS distribution of Ubuntu is 18.04 (nicknamed Bionic Beaver), which will be supported until April 2023.  We will probably switch over to this version of Ubuntu eventually, but for sake of avoiding bleeding edge software compatability issues, we generally wait some time before moving versions, especially for our robot systems.   
 
 ## Standard installation instructions 
 Standard installation instructions can be found [at this link](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0).  You will need a flash drive you are willing to wipe (or a writable DVD, but a flash drive is much better).
