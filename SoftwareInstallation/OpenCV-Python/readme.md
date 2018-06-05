@@ -124,35 +124,59 @@ Launch spyder in your base environment (Python 2.7) by opening a new terminal an
 spyder
 ```
 
-An example highlighting the need for explicit inclusions and exclusions to the `PYTHONPATH` include `rospy` (a ROS Python 2.7 library), and `cv2` (the newer Anaconda version we installed in this tutorial).  In order to import `rospy`, we need to add a directory that is not on the `PYTHONPATH` by default; and in order to import the Anaconda installation of `cv2`, we need to remove the ROS Python 2.7 libraries from the `PYTHONPATH`.  An example of this is given below:
+In the code below, the Anaconda Python package directory paths are removed from the `PYTHONPATH`, then OpenCV (`cv2`) is imported, which imports the ROS-installed version of OpenCV.  Then, the ROS Python package directory paths are removed, and the Anaconda Python packge directory paths are added back into the `PYTHONPATH`.  Upon reloading `cv2`, the Anaconda-installed version of OpenCV is now loaded.  The OpenCV version, and the directory it was imported from are printed for each import/reload.  This should give you an idea of how you can manipulate the `PYTHONPATH` to control which Python packges are imported on a per-script basis.  
+
+Note that it was unecessary to remove and append *all* of the Anaconda Python package directory paths, only the one that contained the `cv2` module symbolic link.  But for completeness, this was done anyway.
 
 ```
+# Import packages for manipulating PYTHONPATH 
 import sys
+import getpass
 
-# Add rospy library directories to the PYTHONPATH
+# Ensure ROS Python 2.7 packages are added to PYTHONPATH
 if not any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
-    print('adding /opt/ros/kinetic/lib/python2.7/dist-packages to the PYTHONPATH...')
     sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
-if not any('/usr/lib/python2.7/dist-packages' in s for s in sys.path):
-    print('adding /usr/lib/python2.7/dist-packages to the PYTHONPATH...')
-    sys.path.append('/usr/lib/python2.7/dist-packages')
-print('importing rospy...')
-import rospy
+# Ensure all Anaconda Python 2.7 packages are removed from PYTHONPATH
+if any('/home/'+getpass.getuser()+'/anaconda2' in s for s in sys.path):
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python27.zip')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/plat-linux2')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/lib-tk')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/lib-old')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/lib-dynload')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/site-packages')
+    sys.path.remove('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/site-packages/IPython/extensions')   
 
-# Remove ROS Python 2.7 libraries from PYTHONPATH to avoid conflict
-if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
-    print('removing /opt/ros/kinetic/lib/python2.7/dist-packages to the PYTHONPATH...')
-    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-if any('/usr/lib/python2.7/dist-packages' in s for s in sys.path):
-    print('removing /usr/lib/python2.7/dist-packages to the PYTHONPATH...')
-    sys.path.remove('/usr/lib/python2.7/dist-packages')
-print('importing cv2...')
-import cv2 as cv
+# Import cv2 (OpenCV) package from ROS directory
+if 'cv2' not in sys.modules:
+    import cv2
+else:
+    reload(cv2)
 
+# Print ROS OpenCV version and directory location
 print(' ')
-print('rospy name:       ' + rospy.get_name())
-print('OpenCV version:   ' + cv.__version__)
-print('OpenCV directory: ' + cv.__file__)
-```
+print('ROS OpenCV version:          ' + cv2.__version__)
+print('ROS OpenCV directory:        ' + cv2.__file__)
 
-This should print which directory lines were added or removed from the PYTHONPATH prior to the `rospy` and `cv2` imports, and print the current rospy name ('/unnamed'), the current running verion of OpenCV (which should be the newest version that you installed in this tutorial), and the directory where the OpenCV symbolic link is located. 
+# Ensure ROS Python 2.7 packages are removed from PYTHONPATH
+if any('/opt/ros/kinetic/lib/python2.7/dist-packages' in s for s in sys.path):
+    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+# Ensure all Anaconda Python 2.7 packages are added to PYTHONPATH
+if not any('/home/'+getpass.getuser()+'/anaconda2' in s for s in sys.path):
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python27.zip')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/plat-linux2')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/lib-tk')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/lib-old')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/lib-dynload')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/site-packages')
+    sys.path.append('/home/'+getpass.getuser()+'/anaconda2/lib/python2.7/site-packages/IPython/extensions')   
+    
+# Import cv2 (OpenCV) package from Anaconda directory
+reload(cv2)
+
+# Print Anaconda OpenCV version and directory location
+print(' ')
+print('Anaconda OpenCV version:     ' + cv2.__version__)
+print('Anaconda OpenCV directory:   ' + cv2.__file__)
+```
