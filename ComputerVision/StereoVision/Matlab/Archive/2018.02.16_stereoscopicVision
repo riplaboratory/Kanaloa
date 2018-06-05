@@ -1,0 +1,90 @@
+% Prep workspace
+clear all;
+close all;
+% clc;
+
+% Start ros
+rosshutdown;
+rosinit;
+
+% Initialize loop variables
+n_pairs = 50;       % total number of stereo image pairs
+snapDelay = 1;      % approximate delay in between snaps [s]
+start_count = 1;    % can change the start count in image filename
+view = 1;           % counter for print ellipses
+
+% Create subscriber with callback function
+imgSubR = rossubscriber('camera1/usb_cam1/image_raw',@rightImageRawCallback);
+imgSubL = rossubscriber('camera2/usb_cam2/image_raw',@leftImageRawCallback);
+
+% Declare global variables
+global R_data_global
+global R_width_global
+global R_height_global
+global L_data_global
+
+% Pause (allow first message to publish)
+pause(2);
+
+% Preallocate data matrices (for speed)
+width = R_width_global;
+height = R_height_global;
+R_data = zeros(width*height*3,1,'uint8');
+L_data = zeros(width*height*3,1,'uint8');
+
+for i = start_count:start_count+n_pairs-1
+    
+    % Save message callback data to local variables (if global variable is overwritten during this step, images will skew)
+    R_data = R_data_global;
+    L_data = L_data_global;
+        
+    % Perform complex reshape process from image message    
+    imgR = cat(3,cat(3,reshape(R_data(1:3:end),[width,height])',...
+        reshape(R_data(2:3:end),[width,height])'),...
+        reshape(R_data(3:3:end),[width,height])');
+    imgL = cat(3,cat(3,reshape(L_data(1:3:end),[width,height])',...
+        reshape(L_data(2:3:end),[width,height])'),...
+        reshape(L_data(3:3:end),[width,height])');
+    
+    imwrite(imgR,sprintf('snap_R_%d.png',i));
+    imwrite(imgL,sprintf('snap_L_%d.png',i));
+    
+    if view == 1
+        disp(['IMAGE TAKEN, PAUSING......',num2str(i)]);
+        view = 2;
+    else
+        disp(['IMAGE TAKEN, PAUSING ',num2str(i)]);
+        view = 1;
+    end
+    
+    pause(snapDelay);
+
+end
+
+function rightImageRawCallback(~,message)
+    
+    % Declare global variables to store position and orientation
+    global R_data_global
+    global R_width_global
+    global R_height_global
+    
+    % Set relevant message parameters to global variables
+    R_data_global = message.Data;
+    R_width_global = message.Width;
+    R_height_global = message.Height;
+    
+end
+
+function leftImageRawCallback(~,message)
+    
+    % Declare global variables to store position and orientation
+    global L_data_global
+    global L_width_global
+    global L_height_global
+    
+    % Set relevant message parameters to global variables
+    L_data_global = message.Data;
+    L_width_global = message.Width;
+    L_height_global = message.Height;
+    
+end
