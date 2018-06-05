@@ -69,9 +69,9 @@ You should now have The Python 2.7 OpenCV library installed in your `base` (Pyth
 ## Avoiding conflicting OpenCV Python package import calls (and any Python package import for that matter)
 As alluded to in the FAQ section, the default installation of ROS comes with a version of Python 2.7, with a number of associated packages.  We do not necessarily wish to use the Python binary that came with ROS, but it is important to know where the Python packages are located.
 
-   -ROS Kinetic Python 2.7 packages: `/opt/ros/kinetic/lib/python2.7/dist-packages`
-   -Anaconda 2 Python 2.7 `base` environment packages: `~/anaconda2/lib/python2.7/site-packages`
-   -Anaconda 2 Python 3.6 `py36` environment packages: `~/anaconda2/envs/py36/lib/python3.6/site-packages`
+   - ROS Kinetic Python 2.7 packages: `/opt/ros/kinetic/lib/python2.7/dist-packages`
+   - Anaconda 2 Python 2.7 `base` environment packages: `~/anaconda2/lib/python2.7/site-packages`
+   - Anaconda 2 Python 3.6 `py36` environment packages: `~/anaconda2/envs/py36/lib/python3.6/site-packages`
 
 Note that all `conda` virtual environments are stored in `~/anaconda3/envs`, and any other virtual environments you create will follow a similar directory structure.  
 
