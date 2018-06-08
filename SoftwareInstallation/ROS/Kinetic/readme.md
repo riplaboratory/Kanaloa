@@ -75,4 +75,4 @@ catkin_make
 ```
 
 ## Install ROS Packages
-Lists with installation instructions for groupings of ROS packages for various functionalities can be found [in our PackageLists directory](https://github.com/riplaboratory/Kanaloa/tree/master/ROS/Kinetic/PackageLists).  You may want to install all, or some of these package groups depending on the functionality you need from your ROS install.  
+Lists with installation instructions for groupings of ROS packages for various functionalities can be found in their respective project folders.  You should install all of the packages associated with each project you want to reproduce. 
