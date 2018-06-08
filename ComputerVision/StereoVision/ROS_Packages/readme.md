@@ -12,7 +12,9 @@ cd ~/catkin_ws
 catkin_make
 ```
 
-### Setting up a usb_cam launch file
+Alternatively, a version of the node is stored in this repository.  The version in this repository may not necessarily be updated as frequently, but it *should* be a tested version.
+
+### Setting up a `usb_cam` launch file
 The `usb_cam` launch files are stored in `~/catkin_ws/src/usb_cam/launch`.  By default, there is a sample launch file called `usb_cam-test.launch` that you may use for reference; however, this launch file does not use all of the possible parameters.  A list of the possible parameters can be found [at the usb_cam wiki page](http://wiki.ros.org/usb_cam).
 
 For our purposes, the important parameters to get correct are:
@@ -64,3 +66,31 @@ For example, an external video device for computer vision should have `autofocus
 <param name="autofocus" value="false" />
 <param name="focus" value="0" />
 ```
+
+### Testing `usb_cam`
+If your launch file is configured as desired (let's call this file `test.launch`), you need to compile your changes using `catkin` (any time you make changes to a package, you must re-compile).  Navigate to `~/catkin_ws` and run `catkin_make`, by opening a terminal window and typing:
+
+```
+cd ~/catkin_ws
+catkin_make
+```
+
+Then, make sure your your external video device is plugged in and launch `roscore` (this step is not totally necessary for this node, but it is good practice) by typing:
+
+```
+roscore
+```
+
+Keep `roscore` running, and in a new terminal window (ctrl+alt+T) or tab (ctrl+shift+T), type:
+
+```
+roslaunch usb_cam test.launch
+```
+
+This should launch the node.  If you keep the "image_view" package lines in your launch file (see the sampe `usb_cam-test.launch` file that the `usb_cam` package comes with), then a new window will open that will let you view the camera streaming in real time.  Otherwise, you can confirm that the node is publishing by opening a new terminal window and typing:
+
+```
+rostopic list
+```
+
+You should now see the various usb_cam topics pubished by the node.  
