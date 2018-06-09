@@ -35,8 +35,8 @@ Comments can be made in two ways:
 End every statement with a semicolon ; 
 Functions are basically codes simplified into one keyword
 Two main functions:
-Setup: Everything here is run once. Gets everything “set up.”
-Loop: Runs the code over and over. 
+1. Setup: Everything here is run once. Gets everything “set up.”
+2. Loop: Runs the code over and over. 
 Void is a function that does not return any values from running the code. 
 Curly bracket (or braces) encloses around functions.
 
