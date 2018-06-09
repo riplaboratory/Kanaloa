@@ -37,6 +37,7 @@ Functions are basically codes simplified into one keyword
 Two main functions:
 1. Setup: Everything here is run once. Gets everything “set up.”
 2. Loop: Runs the code over and over. 
+
 Void is a function that does not return any values from running the code. 
 Curly bracket (or braces) encloses around functions.
 
