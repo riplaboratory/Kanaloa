@@ -52,8 +52,8 @@ Look particularly for the field `VideoStreaming Interface Descriptor`, as this d
 For example, for an external video device with resolution 1920x1080, that supports `(FORMAT_UNCOMPRESSED)`, and a framerate of 60 fps, your parameters would look something like:
 
 ```
-<param name="image_width" value="2560" />
-<param name="image_height" value="720" />
+<param name="image_width" value="1920" />
+<param name="image_height" value="1080" />
 <param name="pixel_format" value="yuyv" />
 <param name="framerate" value="60" />
 ```
