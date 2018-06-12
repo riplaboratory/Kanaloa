@@ -63,7 +63,6 @@ An example for two video devices given the names 'cameraLeft' and 'cameraRight' 
 ```
 ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft"
 ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight"
-
 ```
 
 Save and close your file.  To commit your changes, go back to your terminal and type:
