@@ -48,21 +48,22 @@ sudo gedit
 This will open a gedit window.  In file, you can add new symbolic links by adding new lines in the form:
 
 ```
-ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_NAME]"
+SUBSYSTEM=="[DEVICE_PREFIX]", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]"
 ```
 
 Note that you must change the bracketed fields as appropriate to your device:
 
+   - `[DEVICE_PREFIX]` should be the prefix of the device you're interested in when you `ls /dev`.  This is `tty` for most USB-Serial devices, and is `media` for video devices (using `video` will not work).  
    - `[VENDOR_ID]` should be the four digit vendor ID you found earlier.
    - `[PRODUCT_ID]` should be the four digit product ID you found earlier.
    - `[SERIAL_NUMBER]` should be the serial number you found earlier (omit if not necessary).
-   - `[DESIRED_NAME]` should be the persistent name you wish to assign to the device.
+   - `[DESIRED_SYMBOLIC_NAME]` should be the persistent name you wish to assign to the device.
 
 An example for two video devices given the names 'cameraLeft' and 'cameraRight' is:
 
 ```
-ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft"
-ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight"
+SUBSYSTEM=="media", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft"
+SUBSYSTEM=="media", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight"
 ```
 
 Save and close your file.  To commit your changes, go back to your terminal and type:
@@ -73,3 +74,10 @@ sudo udevadm trigger
 
 This will commit your new rules.  To check that your rules worked, you can use `ls /dev`.  When you plug in your device, it will still generate a generic `tty` or `video` directory in `/dev`; however, it will also generate a symbolic link (matching your desired name), which points to the correct generic directory.  Instead of referencing a generic link, you can now reference the symbolic link you created to always reference the correct USB device (as long as it's plugged in and detected).
 
+You can explicitly check that your symbolic link works by typing into your terminal window:
+
+```
+ls -l /dev/[DESIRED_SYMBOLIC_NAME]
+```
+
+Which should output the generic directory associated with your persistent symbolic link.
