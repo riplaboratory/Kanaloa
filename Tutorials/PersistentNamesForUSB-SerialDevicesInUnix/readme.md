@@ -3,7 +3,7 @@
 The concepts discussed in this tutorial are in major thanks to the following references:
 
    - [Michael Ludvig at HintShop](http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/).
-   - [A Stack Exchange question](https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+   - [A Stack Exchange question](https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name)
    - [Another Stack Exchange question](https://unix.stackexchange.com/questions/378690/udev-rules-for-video-devices)
    - [Tayyar Guzel at Embedded Related](https://www.embeddedrelated.com/showarticle/1053.php)
    - [Daniel Drake at Reactivated](http://www.reactivated.net/writing_udev_rules.html).
