@@ -2,11 +2,11 @@
 
 The concepts discussed in this tutorial are in major thanks to the following references:
 
-   - [Michael Ludvig at HintShop](http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/).
+   - [Michael Ludvig at HintShop](http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/)
    - [A Stack Exchange question](https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name)
    - [Another Stack Exchange question](https://unix.stackexchange.com/questions/378690/udev-rules-for-video-devices)
    - [Tayyar Guzel at Embedded Related](https://www.embeddedrelated.com/showarticle/1053.php)
-   - [Daniel Drake at Reactivated](http://www.reactivated.net/writing_udev_rules.html).
+   - [Daniel Drake at Reactivated](http://www.reactivated.net/writing_udev_rules.html)
 
 The purpose of this tutorial is to assign persistent names to USB serial devices plugged into a Unix computer.  Normally when plugging in a serial device, it is assigned a generic name, e.g. `/dev/ttyUSB0` or `/dev/ttyACM1`, etc.  This can be problematic when using multiple USB devices, as we generally address these devices by these names.  It is thus, desirable to have persistent names assigned to the individual serial (the word 'serial' being used in the context of a manufacturer part number, as opposed to a 'serial'-type communication standard) number of a USB-serial device.  
 
