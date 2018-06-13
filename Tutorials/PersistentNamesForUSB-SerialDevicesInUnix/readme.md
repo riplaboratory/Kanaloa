@@ -1,6 +1,12 @@
 # Persistent names for USB-Serial Devices (in Unix systems)
 
-The concepts discussed in this tutorial are in major thanks to [Michael Ludvig at HintShop](http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/).  Other good references on the topic are [Stack Exchange](https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name), [Embedded Related](https://www.embeddedrelated.com/showarticle/1053.php), and [Reactivated](http://www.reactivated.net/writing_udev_rules.html).
+The concepts discussed in this tutorial are in major thanks to the following references:
+
+   - [Michael Ludvig at HintShop](http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/).
+   - [A Stack Exchange question](https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+   - [Another Stack Exchange question](https://unix.stackexchange.com/questions/378690/udev-rules-for-video-devices)
+   - [Tayyar Guzel at Embedded Related](https://www.embeddedrelated.com/showarticle/1053.php)
+   - [Daniel Drake at Reactivated](http://www.reactivated.net/writing_udev_rules.html).
 
 The purpose of this tutorial is to assign persistent names to USB serial devices plugged into a Unix computer.  Normally when plugging in a serial device, it is assigned a generic name, e.g. `/dev/ttyUSB0` or `/dev/ttyACM1`, etc.  This can be problematic when using multiple USB devices, as we generally address these devices by these names.  It is thus, desirable to have persistent names assigned to the individual serial (the word 'serial' being used in the context of a manufacturer part number, as opposed to a 'serial'-type communication standard) number of a USB-serial device.  
 
@@ -45,15 +51,21 @@ cd /etc/udev/rules.d
 sudo gedit
 ```
 
-This will open a gedit window.  In file, you can add new symbolic links by adding new lines in the form:
+This will open a gedit window.  In file, you can add new symbolic links by adding new lines containing information about the symbolic link.
+
+__If the device you're interested in is a `tty` serial device, use this format to create a symbolic link:__
 
 ```
-SUBSYSTEM=="[DEVICE_PREFIX]", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]"
+```
+__If the device you're interested in is a `video` serial device, use this format to create a symbolic link:__
+
+```
+KERNEL=="video*", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]"
 ```
 
 Note that you must change the bracketed fields as appropriate to your device:
 
-   - `[DEVICE_PREFIX]` should be the prefix of the device you're interested in when you `ls /dev`.  This is `tty` for most USB-Serial devices, and is `media` for video devices (using `video` will not work).  
    - `[VENDOR_ID]` should be the four digit vendor ID you found earlier.
    - `[PRODUCT_ID]` should be the four digit product ID you found earlier.
    - `[SERIAL_NUMBER]` should be the serial number you found earlier (omit if not necessary).
@@ -62,8 +74,8 @@ Note that you must change the bracketed fields as appropriate to your device:
 An example for two video devices given the names 'cameraLeft' and 'cameraRight' is:
 
 ```
-SUBSYSTEM=="media", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft"
-SUBSYSTEM=="media", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight"
+KERNEL=="video*", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft"
+KERNEL=="video*", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight"
 ```
 
 Save and close your file.  To commit your changes, go back to your terminal and type:
