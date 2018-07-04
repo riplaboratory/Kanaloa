@@ -85,3 +85,7 @@ see what it looks like in rviz.
    + Under **Laser Scan** (now within the **Display** menu), select **/laser** as the topic. 
    
 
+
+
+## Running the Hector_Slam Node
+
