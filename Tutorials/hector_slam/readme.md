@@ -3,6 +3,9 @@
 This SOP (**S**tandard **O**perating **P**rocedure) was created to give instructions on how to run the [hector_slam](http://wiki.ros.org/hector_slam/Tutorials/MappingUsingLoggedData)
 node with our current setup of our [UST-20LX Hokuyo Lidar](https://www.roscomponents.com/en/lidar-laser-scanner/86-ust-20lx.html).
 
+
+
+
 ## Configuration Setup of the Hokuyo Lidar
 
 First, we will need to configure our network settings to be able to communicate with the Hokuyo lidar. The particular 
@@ -28,7 +31,8 @@ lidar we have uses an ethernet connection to send data to our device.
    
 11. You should see the following here:
    
-   ```  1|  auto lo  
+   ```  
+        1|  auto lo  
         2|  iface lo inet loopback 
    ```
         
@@ -48,6 +52,8 @@ the Hokuyo ethernet connection established. I.e. you will not have internet conn
 you can still connect to the internet, but I didn't look too far into it.**
 
 
+
+
 ## Getting Data from the Hokuyo Lidar Using Urg_Node
 
 Now that the network connection is configured, we can start getting data from it. Follow these steps:
@@ -63,12 +69,11 @@ Now that the network connection is configured, we can start getting data from it
    ```sudo apt-get install ros-kinetic-urg-c```
    ```sudo apt-get install ros-kinetic-laser-proc```
 
-2. By default, the Hokuyo lidar has an IP of 192.168.0.10. Again, there is probably a way to change this, but I didn't look into it.
-Run the urg_node package by inputting the following:
+2. By default, the Hokuyo lidar has an IP of 192.168.0.10. Again, there is probably a way to change this, but I didn't look into it. Run the urg_node package by inputting the following:
 
    ```rosrun urg_node urg_node _ip_address:="192.168.0.10"```
 
-It should say that it is streaming data now.
+   It should say that it is streaming data now.
 
 3. Not completely necessary for hector_slam, but if you wanna double-check if the lidar is actually getting data, you can
 see what it looks like in rviz.
