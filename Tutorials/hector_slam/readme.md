@@ -29,7 +29,8 @@ lidar we have uses an ethernet connection to send data to our device.
 11. You should see the following here:
    
    ```  1|  auto lo  
-        2|  iface lo inet loopback ```
+        2|  iface lo inet loopback 
+   ```
         
 12. *Underneath the code*, input the following, save, and exit: 
 
@@ -37,7 +38,8 @@ lidar we have uses an ethernet connection to send data to our device.
        allow-hotplug eth0  
        iface eth0 inet static  
             address 192.168.0.1  
-            netmask 255.255.255.0 ```
+            netmask 255.255.255.0 
+   ```
             
 13. The Hokuyo Lidar should now be configured. For reference in troubleshooting, refer to [this](https://blog.csdn.net/hajungong007/article/details/79210140).
 
