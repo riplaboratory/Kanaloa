@@ -104,7 +104,7 @@ see what it looks like in rviz.
      21     <param name="use_tf_pose_start_estimate" value="false"/>
      22     <param name="pub_map_odom_transform" value="false"/>
 ```     
-   Save the settings. 
+  Save the settings. 
    
 4. Last thing to do is simply launch the **hector_slam** launch file:
 
