@@ -27,7 +27,7 @@ lidar we have uses an ethernet connection to send data to our device.
    
 10. Open a terminal (CTRL + ALT + T) and input the following: 
    
-   ```sudo gedit /etc/network/interfaces```
+      ```sudo gedit /etc/network/interfaces```
    
 11. You should see the following here:
    
@@ -108,5 +108,5 @@ see what it looks like in rviz.
    
 4. Last thing to do is simply launch the **hector_slam** launch file:
 
-``` roslaunch hector_slam_launch tutorial.launch ```
+   ``` roslaunch hector_slam_launch tutorial.launch ```
 
