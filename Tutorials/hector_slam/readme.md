@@ -93,8 +93,8 @@ see what it looks like in rviz.
    
 2. For this particular configuration, odometry is not being used (it may be implemented later though.) Therefore, transformations involving odom need to be disabled. To do so, the launch file for the **hector_mapping** node must be edited. Type the following into a terminal (ensure **roscore** is running):
 
-```roscd hector_mapping/launch```
-```gedit mapping_default.launch```
+   ```roscd hector_mapping/launch```
+   ```gedit mapping_default.launch```
 
 3. Find these under the the **Tf Use** section and change these to look like this:
 
