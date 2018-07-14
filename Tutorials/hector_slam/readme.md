@@ -99,7 +99,8 @@ see what it looks like in rviz.
 
 3. Find these under the the **Tf Use** section and change these to look like this:
 
-```  20     <param name="use_tf_scan_transformation" value="false"/>
+```  
+     20     <param name="use_tf_scan_transformation" value="false"/>
      21     <param name="use_tf_pose_start_estimate" value="false"/>
      22     <param name="pub_map_odom_transform" value="false"/>
 ```     
