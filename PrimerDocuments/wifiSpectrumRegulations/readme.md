@@ -35,7 +35,7 @@ In north america, there are genreally 196 channels, spaced at various increments
  - _U-NII-2C (extended)_: 5.47 GHz to 5.730 GHz (channel 96 to channel 144)
  - _U-NII-3 (upper)_: 5.650 GHz to 5.835 GHz (channel 138 to channel 165)
  
-While there can be some abiguity regarding these generalized bands, they are important to know, because the band (and subsequently, channel) you're transmitting on significantly affects your legal EIRP.  This screenshot taken from [scc-ares-races.org](scc-ares-races.org) 
+While there can be some abiguity regarding these generalized bands (see this [Wikipedia link](https://en.wikipedia.org/wiki/List_of_WLAN_channels) if you're interested in a detailed breakdown), they are important to know, because the band (and subsequently, channel) you're transmitting on significantly affects your legal EIRP.  This screenshot taken from [scc-ares-races.org](scc-ares-races.org) describes the allowed antenna gain and maximum transmitter power for each band.  
 ![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/fccPart15PowerLimitsForWifi.PNG)
 
 ## Regarding range
