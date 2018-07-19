@@ -8,12 +8,17 @@ Because RF is very useful for wireless communication, in all countries around th
 
 Wi-Fi commonly operates in the 900 MHz, 2.4 GHz, 3.3 GHz, and 5 GHz frequency band; this is largely because these frequency bands are regulated as "amateur" bands by the FCC, meaning that, with minor regulation, anyone can transmit and receive on these bands without a license.  In this primer document, we will particularly discuss the regulations imposed on the 2.4 and 5 GHz frequency bands.
 
-## Radiator Power [dBm], Antenna Gain [dBi], and EIRP [dBm or watts]
-A RF transmit system consists of two components: (1) an intential radiator that provides the signal, and (2) an antenna that broadcasts it.  The radiator can provide the signal at some power, typically measured in dBm or W, and the antenna can provide a gain (the larger the antenna the larger the gain) to this signal typically measured in dBi or W.  Adding these two values together results in your equivalent isotropically radiated power (EIRP) for that combination of radiator and antenna.  More radiator power, and a larger antenna gain results in more EIRP, which _generally_ results in more range (all other things equal).
+## Terms
 
-These concepts are important to know because this is how the FCC limits your transmit power over RF.  Note that EIRP is not quite the same thing as ERP (effective radiated power), though they are similar terms.  [You may read about the difference here](https://en.wikipedia.org/wiki/Effective_radiated_power)
+ - *frequency*: the number of periodic waves per second in a signal (in this case, radio frequency signal).  The inverse of frequency is the period of the signal).
+ - *band* or *bandwidth*: a term that loosely refers to a range of frequencies.
+ - *channel*: a standardized band (range of frequencies) that a given signal is permitted to utilize to avoid interference between signals.  The larger the channel band, the less likely you are to interfere with another signal, but the less number of signals you can fit in a given frequency range.  In some standards the channels can overlap each other slightly, which increases the chance of interference, but allows more channels to fit in a given frequency range.
+ - *intentional radiator power [dBm]*: the power of the source signal provided by the internal radiator; this must then be fed into an antenna to produce an RF wave.  More radiator power _generally_ results in more range. 
+ - *antenna gain [dBi]*: the "power" (gain) of the antenna of an RF wave.  More antenna gain _generally_ results in more range.
+ - *equivalent isotropically radiated power (EIRP) [dBm or watt]*: the sum of the intentional radiator power and the antenna gain.  A larger EIRP _generally_ results in more range.  Note that EIRP is not quite the same thing as ERP (effective radiated power), though they are similar terms.  [You may read about the difference here](https://en.wikipedia.org/wiki/Effective_radiated_power)
 
 ## 2.4 GHz
+In the 2.4 GHz frequency band, there are generally 14 channels.  
 The screenshot taken from [air802.com](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
 ![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/FCC2.4GHzBANDRULES(POINT-TO-POINT).PNG)
 
