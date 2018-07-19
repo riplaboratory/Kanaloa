@@ -11,7 +11,7 @@ Wi-Fi commonly operates in the 900 MHz, 2.4 GHz, and 5 GHz frequency band; this 
 ## Terms
 
  - **frequency**: the number of periodic waves per second in a signal (in this case, radio frequency signal).  The inverse of frequency is the period of the signal).
- - **band* or *bandwidth**: a term that loosely refers to a range of frequencies.
+ - **band** or **bandwidth**: a term that loosely refers to a range of frequencies.
  - **channel**: a standardized band (range of frequencies) that a given signal is permitted to utilize to avoid interference between signals.  The larger the channel band, the less likely you are to interfere with another signal, but the less number of signals you can fit in a given frequency range.  In some standards the channels can overlap each other slightly, which increases the chance of interference, but allows more channels to fit in a given frequency range.
  - **intentional radiator power [dBm]**: the power of the source signal provided by the internal radiator; this must then be fed into an antenna to produce an RF wave.  More radiator power _generally_ results in more range. 
  - **antenna gain [dBi]**: the "power" (gain) of the antenna of an RF wave.  More antenna gain _generally_ results in more range.
