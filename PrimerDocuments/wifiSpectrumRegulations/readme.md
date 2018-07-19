@@ -14,3 +14,4 @@ A RF transmit system consists of two components: (1) an intential radiator that 
 These concepts are important to know because this is how the FCC limits your transmit power over RF.  Note that EIRP is not quite the same thing as ERP (effective radiated power), though they are similar terms.  [You may read about the difference here](https://en.wikipedia.org/wiki/Effective_radiated_power)
 
 ## 2.4 GHz
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/FCC2.4GHzBANDRULES(POINT-TO-POINT).PNG)
