@@ -18,8 +18,9 @@ Wi-Fi commonly operates in the 900 MHz, 2.4 GHz, 3.3 GHz, and 5 GHz frequency ba
  - *equivalent isotropically radiated power (EIRP) [dBm or watt]*: the sum of the intentional radiator power and the antenna gain.  A larger EIRP _generally_ results in more range.  Note that EIRP is not quite the same thing as ERP (effective radiated power), though they are similar terms.  [You may read about the difference here](https://en.wikipedia.org/wiki/Effective_radiated_power)
 
 ## 2.4 GHz
-In the 2.4 GHz frequency band, there are generally 14 channels.  
-The screenshot taken from [air802.com](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
+In north america, there are generally 13 channels, spaced at 5 MHz increments.  This screenshot taken from Wikipedia describes the center frequency of each of these 13 channels:
+[Interference Concerns (Wikipedia)](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/InterferenceConcerns.PNG)
+The screenshot taken from [FCC 2.4 GHz BAND RULES (POINT-TO-POINT) (air802.com)](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
 ![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/FCC2.4GHzBANDRULES(POINT-TO-POINT).PNG)
 
 ## Regarding range
