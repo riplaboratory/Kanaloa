@@ -23,7 +23,7 @@ In north america, there are generally 13 channels, spaced at 5 MHz increments.  
 It is possible to have more than one device occupying a channel at the same time; however, you run a significant risk of interference when doing this.  Ideally, you want to have each device intelligently transmitting on different channels.
 
 Regarding transmission power, the screenshot taken from [FCC 2.4 GHz BAND RULES (POINT-TO-POINT) (air802.com)](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
-![screenshot]https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/FCC2.4GHzBANDRULES.PNG)
+![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/FCC2.4GHzBANDRULES.PNG)
 
 From this, you can see that the maximum allowable EIRP is 52 dBm, which can be achieved with a 22 dBm radiator power, and 30 dBi antenna.  A 30 dBi antenna designed for ~2.4 GHz is extremely large and cumbersome; however, so practical considerations need to be made regarding the relationship between radiator power and antenna gain.  
 
