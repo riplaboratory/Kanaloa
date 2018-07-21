@@ -84,7 +84,7 @@ void test_mode(){
       switch2 = true;                               // Set boolean variable to true meaning switch is engaged.
    }
    
-   if(pulseIn(ch8Pin, HIGH, 32000) >= 1200){                 // Read PWM signal to see if remote switch is disengaged.
+   if(pulseIn(ch8Pin, HIGH, 32000) >= 1100){                 // Read PWM signal to see if remote switch is disengaged.
       remoteStatement = "Remote killswitch is disengaged.";  // Set string variable to say switch's state.
       remote = false;                                        // Set boolean variable to false meaning switch is disengaged.
    }
@@ -116,10 +116,10 @@ void test_mode(){
    //--------------------------------------------------------------
    
    if(softwareSwitch == false){                    // Check to see if software switch is engaged
-    digitalWrite(relayPin, LOW);                   // If software switch is engaged, trigger relay 
+    digitalWrite(relayPin, HIGH);                   // If software switch is engaged, trigger relay 
    }
    else{
-    digitalWrite(relayPin, HIGH);                  // Otherwise, leave relay alone
+    digitalWrite(relayPin, LOW);                  // Otherwise, leave relay alone
    }
 }
 
@@ -141,7 +141,7 @@ void main_function(){
     switch2 = true;                             // Set boolean variable to true meaning switch is engaged.
    }
    
-   if(pulseIn(ch8Pin, HIGH, 30000) > 1000){     // Read PWM signal to see if remote switch is disengaged.
+   if(pulseIn(ch8Pin, HIGH, 32000) >= 1100){    // Read PWM signal to see if remote switch is disengaged.
     remote = false;                             // Set boolean variable to false meaning switch is disengaged.
    }
    else{
@@ -160,9 +160,9 @@ void main_function(){
    //--------------------------------------------------------------
    
    if(softwareSwitch == false){    // Check to see if software switch is engaged
-    digitalWrite(relayPin, LOW);   // If software switch is engaged, trigger relay 
+    digitalWrite(relayPin, HIGH);  // If software switch is engaged, trigger relay 
    }
    else{
-    digitalWrite(relayPin, HIGH);  // Otherwise, leave relay alone
+    digitalWrite(relayPin, LOW);   // Otherwise, leave relay alone
    }  
 }
