@@ -27,6 +27,8 @@ Regarding transmission power, the screenshot taken from [FCC 2.4 GHz BAND RULES 
 
 From this, you can see that the maximum allowable EIRP is 52 dBm, which can be achieved with a 22 dBm radiator power, and 30 dBi antenna.  A 30 dBi antenna designed for ~2.4 GHz is extremely large and cumbersome; however, so practical considerations need to be made regarding the relationship between radiator power and antenna gain.  
 
+These regulations come from [FCC Title 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247).
+
 ## 5 GHz
 In north america, there are genreally 196 channels, spaced at various increments (from 10 MHz all the way to 160 MHz), which means that certain channels will, by definition, overlap with others.  While this may sound like a lot more channels than 2.4 GHz, but not all of the channels are free to use.  Of those that are free to use, the channels are generally divided into four different "bands"
 
@@ -35,8 +37,11 @@ In north america, there are genreally 196 channels, spaced at various increments
  - **U-NII-2C (extended)**: 5.47 GHz to 5.730 GHz (channel 96 to channel 144)
  - **U-NII-3 (upper)**: 5.650 GHz to 5.835 GHz (channel 138 to channel 165)
  
-While there can be some abiguity regarding these generalized bands (see this [Wikipedia link](https://en.wikipedia.org/wiki/List_of_WLAN_channels) if you're interested in a detailed breakdown), they are important to know, because the band (and subsequently, channel) you're transmitting on significantly affects your legal EIRP.  This screenshot taken from [scc-ares-races.org](scc-ares-races.org) describes the allowed antenna gain and maximum transmitter power for each band.  
+While there can be some abiguity regarding these generalized bands (see this [Wikipedia link](https://en.wikipedia.org/wiki/List_of_WLAN_channels) if you're interested in a detailed breakdown), they are important to know, because the band (and subsequently, channel) you're transmitting on significantly affects your legal EIRP.  This screenshot taken from [scc-ares-races.org](https://www.scc-ares-races.org/mesh/doc/WiFi_Part_15_Power_Limits_v150424.pdf) describes the allowed antenna gain and maximum transmitter power for each band.  
 ![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/fccPart15PowerLimitsForWifi.PNG)
+Note that "PTP" stands for point-to-point, and "PTMP" stands for point-to-multiple-point.  
+
+These regulations come from [FCC Title 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247).
 
 ## Regarding range
  - [Height above average terrain](https://en.wikipedia.org/wiki/Height_above_average_terrain)
