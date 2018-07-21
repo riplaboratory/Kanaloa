@@ -84,9 +84,9 @@ void test_mode(){
       switch2 = true;                               // Set boolean variable to true meaning switch is engaged.
    }
    
-   if(pulseIn(ch8Pin, HIGH, 30000) > 1000){                 // Read PWM signal to see if remote switch is disengaged.
-      remoteStatement = "Remote killswitch is disengaged."; // Set string variable to say switch's state.
-      remote = false;                                       // Set boolean variable to false meaning switch is disengaged.
+   if(pulseIn(ch8Pin, HIGH, 32000) >= 1200){                 // Read PWM signal to see if remote switch is disengaged.
+      remoteStatement = "Remote killswitch is disengaged.";  // Set string variable to say switch's state.
+      remote = false;                                        // Set boolean variable to false meaning switch is disengaged.
    }
    else {
       remoteStatement = "Remote killswitch is engaged.";    // Set string variable to say switch's state.
@@ -104,10 +104,12 @@ void test_mode(){
    // Print statements
    //------------------
 
-   Serial.println(switch1Statement);  // Print state of physical killswitch 1.
-   Serial.println(switch2Statement);  // Print state of physical killswitch 2.
-   Serial.println(remoteStatement);   // Print state of remote kill switch. 
-   delay(500);                        // Delay for half a second for readability.
+   Serial.println(switch1Statement);                  // Print state of physical killswitch 1.
+   Serial.println(switch2Statement);                  // Print state of physical killswitch 2.
+   Serial.print("ch8 PWM: ");                         // Print PWM signal from receiver.
+   Serial.println(pulseIn(ch8Pin, HIGH, 32000));      // PWM signal. 
+   Serial.println(remoteStatement);                   // Print state of remote kill switch. 
+   delay(500);                                        // Delay for half a second for readability.
    
    //--------------------------------------------------------------
    // Send kill signal to relay dependingo on software switch state
