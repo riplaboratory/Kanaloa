@@ -56,6 +56,7 @@ https://www.electroschematics.com/9601/dpdt-switch-relay/
 
 
 # Relay Boards/Modules
-
+https://www.amazon.com/dp/B0057OC6D8/?tag=stackoverflow17-20
 
 # Relays vs. Transistors
+https://itp.nyu.edu/physcomp/lessons/electronics/transistors-relays-and-controlling-high-current-loads/
