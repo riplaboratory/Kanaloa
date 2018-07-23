@@ -12,8 +12,11 @@ There are generally four different configurations of relays:
    - single-pole, single-throw, normally-open (SPST NO)
    - single-pole, single-throw, normally-closed (SPST NC)
  - single-pole, double-throw (SPDT)
- - double-pole, double-throw (DPDT)
  - double-pole, single-throw (DPST)
+   - double-pole, single-throw, normally-open (SPST NO)
+   - double-pole, single-throw, normally-closed (SPST NC)
+ - double-pole, double-throw (DPDT)
+ 
 
 The **poles** refers to whether there is a switching circuit on one side of the switch (single-pole), or a switching circuit on both the both sides of the switch (double-pole).  The **throws** refers to whether the switching circuit simply breaks the connection (single-throw), or throws between two different current paths (double throw).  
 
@@ -41,6 +44,17 @@ A schematic of a SPDT relay taken from [Electro Schematics](https://www.electros
 
 ![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/Relays/Images/SPDT-schematic.png)
 
-# Relay Operation
+## double-pole, single-throw, normally-open (DPST NO) & double-pole, single-throw, normally-closed (DPST NC)
 
-A standalone relay generally has five contacts.
+more in the future...
+https://www.electroschematics.com/9605/dpst-switch-relay/
+
+## double-pole, double-throw (DPDT)
+
+more in the future...
+https://www.electroschematics.com/9601/dpdt-switch-relay/
+
+
+# Relay Boards/Modules
+
+
