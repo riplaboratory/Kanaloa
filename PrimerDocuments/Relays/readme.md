@@ -58,3 +58,4 @@ https://www.electroschematics.com/9601/dpdt-switch-relay/
 # Relay Boards/Modules
 
 
+# Relays vs. Transistors
