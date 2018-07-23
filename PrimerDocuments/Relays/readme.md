@@ -25,11 +25,11 @@ The normally-open, and normally-closed part of the relay refers to whether or no
 
 A schematic of a SPST NO relay taken from [Electro Schematics](https://www.electroschematics.com/9593/normally-open-relay-switch/) is shown below:
 
-~[image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/Relays/Images/SPST-NO-schematic.png)
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/Relays/Images/SPST-NO-schematic.png)
 
 A schematic of a SPST NC relay taken from [Electro Schematics](https://www.electroschematics.com/9595/normally-closed-relay-switch/) is shown below:
 
-~[image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/Relays/Images/SPST-NC-schematic.png)
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/Relays/Images/SPST-NC-schematic.png)
 
 
 ## single-pole, double throw (SPDT)
