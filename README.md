@@ -23,10 +23,9 @@ There are two types of files: those that require manual version control, and tho
 
 **For files tha do not require manual version control**, follow the same naming convention as above, omitting the date.  Example: `sampleFilename.extension`.
 
-### 2.a. Filename exceptions:
-Matlab (in Linux) dislikes filenames that start with numbers.  For this reason, Matlab script `.m` filenames should begin with the letter `m`.  Other than this, the naming convention remains the same.  Example: `m20180101_sampleMatlabFilename.m`
-
-Similarly, the Arduino IDE (in Linux) dislikes filenames that start with numbers.  It also prefers to sit inside a directory with the same name as the filename.  For this reason, Arduino script `.ino` filenames should begin with the letter a.  The script should sit inside a directory named identical to the filename.  Other than this, the naming convention remains the same.  Example: `[PATH]/a20180101_sampleArduinoFilename/a20180101_sampleArduinoFilename.ino`
+**Exceptions**:
+ - Matlab (in Linux) dislikes filenames that start with numbers.  For this reason, Matlab script `.m` filenames should begin with the letter `m`.  Other than this, the naming convention remains the same.  Example: `m20180101_sampleMatlabFilename.m`
+ - Arduino IDE (in Linux) dislikes filenames that start with numbers.  It also prefers that .ino scrips sit inside a directory with the same name as the filename.  For this reason, Arduino script `.ino` filenames should begin with the letter a.  The script should sit inside a directory named identical to the filename.  Other than this, the naming convention remains the same.  Example: `.../a20180101_sampleArduinoFilename/a20180101_sampleArduinoFilename.ino`
 
 ## Writing readme.md files
 For writing tutorials and/or primer dicuments in Git, put the document in its own directory.  Name the directory a properly descriptive name (e.g. "InstallationInstructions", "PackageLists", "WritingAPackage", etc.), then name the document inside the directory "readme.md".  This will allow you to leverage Git's [built-in writing and formatting syntax](https://help.github.com/articles/basic-writing-and-formatting-syntax/), which will allow you to write nicely-formatted documents like the one you are reading right now!  
