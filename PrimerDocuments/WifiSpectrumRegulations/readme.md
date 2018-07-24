@@ -19,11 +19,11 @@ Wi-Fi commonly operates in the 900 MHz, 2.4 GHz, and 5 GHz frequency band; this 
 
 ## 2.4 GHz
 In north america, there are generally 13 channels, spaced at 5 MHz increments.  This screenshot taken from [this Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 13 channels:
-![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/InterferenceConcerns.PNG)
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/InterferenceConcerns.PNG)
 It is possible to have more than one device occupying a channel at the same time; however, you run a significant risk of interference when doing this.  Ideally, you want to have each device intelligently transmitting on different channels.
 
 Regarding transmission power, the screenshot taken from [FCC 2.4 GHz BAND RULES (POINT-TO-POINT) (air802.com)](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
-![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/FCC2.4GHzBANDRULES.PNG)
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/FCC2.4GHzBANDRULES.PNG)
 
 From this, you can see that the maximum allowable EIRP is 52 dBm, which can be achieved with a 22 dBm radiator power, and 30 dBi antenna.  A 30 dBi antenna designed for ~2.4 GHz is extremely large and cumbersome; however, so practical considerations need to be made regarding the relationship between radiator power and antenna gain.  
 
@@ -38,7 +38,7 @@ In north america, there are genreally 196 channels, spaced at various increments
  - **U-NII-3 (upper)**: 5.650 GHz to 5.835 GHz (channel 138 to channel 165)
  
 While there can be some abiguity regarding these generalized bands (see this [Wikipedia link](https://en.wikipedia.org/wiki/List_of_WLAN_channels) if you're interested in a detailed breakdown), they are important to know, because the band (and subsequently, channel) you're transmitting on significantly affects your legal EIRP.  This screenshot taken from [scc-ares-races.org](https://www.scc-ares-races.org/mesh/doc/WiFi_Part_15_Power_Limits_v150424.pdf) describes the allowed antenna gain and maximum transmitter power for each band.  
-![screenshot](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/wifiSpectrumRegulations/fccPart15PowerLimitsForWifi.PNG)
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/fccPart15PowerLimitsForWifi.PNG)
 Note that "PTP" stands for point-to-point, and "PTMP" stands for point-to-multiple-point.  
 
 These regulations come from [FCC Title 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247).
