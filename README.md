@@ -3,7 +3,7 @@ This is the official Github for team Kanaloa.  Our main website can be found [he
 
 Do not commit edits to the master branch **until they have been fully vetted in hardware**!
 
-## 1. Directory Listing
+## 1. Directory listing
  - `PrimerDocuments: detailed notes on a topic.
  - `Projects`: files related to a specific project or event.
  - `SurfaceVehicles`: files related to the operation of a specific surfave vehicle.
