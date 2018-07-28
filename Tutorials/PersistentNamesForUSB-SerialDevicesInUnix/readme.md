@@ -20,7 +20,7 @@ lsusb
 
 This lists all of the USB devices on your computer, with a Vendor ID and Product ID (in the form VendorID:ProductID).  Next, plug in the device you're interested in assigning a persistent name to, wait a few seconds, and type `lsusb` again.  Look for the device that changed from the last list of USB devices, and you now have the Vendor ID, and Product ID of the device you're interested in.  Hold on to this information.
 
-If all of the USB devices you use are different, then this is enough information to uniquely identify all of your USB devices; however, if you are using mmultiple of the *same* USB device (e.g. multiple Arduinos, cameras, FTDI breakouts (*even if the devices plugged into the breakout are different!*)), then you also need a *serial number* to distinguish these.  To find this information, unplug the device you're interested in, open a new terminal window, and type:
+If all of the USB devices you use are different, then this is enough information to uniquely identify all of your USB devices; however, if you are using multiple of the *same* USB device (e.g. multiple Arduinos, cameras, FTDI breakouts (_even if the devices plugged into the breakout are different!_), then you also need a _serial number_ to distinguish these.  To find this information, unplug the device you're interested in, open a new terminal window, and type:
 
 ```
 ls /dev
