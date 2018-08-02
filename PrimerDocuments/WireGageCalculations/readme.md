@@ -17,9 +17,9 @@ Other modifiers that exist that we do not account for in this primer document, a
 
 ## Step 1: continuous current vs. conductor length
 
-As increase in continuous current *and* conductor length will necessitate an increase in the wire gauge.  A chart detailing this information is available from (Canal Marketing)[http://canalmarketing.info/copper-wire-load-chart-images#], and is shown below:
+As increase in continuous current *and* conductor length will necessitate an increase in the wire gauge.  A chart detailing this information is available from [Canal Marketing](http://canalmarketing.info/copper-wire-load-chart-images#), and is shown below:
 
-!(image)[https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/WireLengthVsAmperage.jpg]
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/WireLengthVsAmperage.jpg)
 
 Based on your continuous current, and your conductor length, this chart will give you a conductor size in american wire gauge (AWG).  
 
@@ -27,13 +27,13 @@ Based on your continuous current, and your conductor length, this chart will giv
 
 For the sake of standard sizing throughout this document, convert the conductor size from AWG to pure cross sectional area.  A chart describing AWG vs. cross sectional area is available from [Engineering Toolbox](https://www.engineeringtoolbox.com/wire-gauges-d_419.html), and is shown below:
 
-!(image)[https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/AwgChart.PNG]
+![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/AwgChart.PNG)
 
 The number you need is the _cross sectional area_ doe your conductor.  Knowing this number, you can move onto step 3.
 
 ## Step 3: conductor material modifier
 
-Conductor material is typically assumed to be copper; however, copper-clad-aluminum (CCA) is often used for reasons of cost (copper is more conductive, but significantly more expensive, than aluminum).  There is a lot of conflicting, circumstantial information on this topic online.  For clear reasons, companies that manufacture pure copper wire will defend that it is cost-superior to CCA, whereas companise that manufacture CCA will defend that it is cost-superior to pure copper.  There are some circumstantial claims regarding the skin effect for conductors in support of CCA; however, to be certain, it is best to look at actual emperical evidence of conductivity.  There is an excellent article detailing this debate at (Budgetphile)[http://www.budgetphile.com/2013/11/budget-wiring-reality-of-copper-clad.html].  In this work, it was found that 100 ft of 16 AWG CCA has a resistance of around 0.6 ohms.  This results in a resistivity of 2.5591E-8 [ohm*m], or a conductivity of 3.9077E7 [1/(ohm*m)].
+Conductor material is typically assumed to be copper; however, copper-clad-aluminum (CCA) is often used for reasons of cost (copper is more conductive, but significantly more expensive, than aluminum).  There is a lot of conflicting, circumstantial information on this topic online.  For clear reasons, companies that manufacture pure copper wire will defend that it is cost-superior to CCA, whereas companise that manufacture CCA will defend that it is cost-superior to pure copper.  There are some circumstantial claims regarding the skin effect for conductors in support of CCA; however, to be certain, it is best to look at actual emperical evidence of conductivity.  There is an excellent article detailing this debate at [Budgetphile](http://www.budgetphile.com/2013/11/budget-wiring-reality-of-copper-clad.html).  In this work, it was found that 100 ft of 16 AWG CCA has a resistance of around 0.6 ohms.  This results in a resistivity of 2.5591E-8 [ohm*m], or a conductivity of 3.9077E7 [1/(ohm*m)].
 
 Conductivity of copper = 5.95E7 [1/(ohm*m)]
 Conductivity of aluminum = 3.77E7 [1/(ohm*m)]
@@ -46,7 +46,7 @@ This will result in an increased required cross sectional area when using CCA.
 
 ## Step 4: stranding modifier
 
-Next you should also consider the relationship between stranded and single core wire.  Because wire gauge standard is based on the diameter of the conductor, solid core wire has the best conductivity, since stranded wire is not 100% dense.  However, solid core wire is rarely used for large gauge applications, because way too stiff to be useful for anything.  Thusly, you need to know how many “strands” (cores) are in your wire stranded wire.  The chart previously linked from (Engineering Toolbox)[https://www.engineeringtoolbox.com/wire-gauges-d_419.html] also discusses wire stranding.  Based on this analysis, the following multiplers can be used:
+Next you should also consider the relationship between stranded and single core wire.  Because wire gauge standard is based on the diameter of the conductor, solid core wire has the best conductivity, since stranded wire is not 100% dense.  However, solid core wire is rarely used for large gauge applications, because way too stiff to be useful for anything.  Thusly, you need to know how many “strands” (cores) are in your wire stranded wire.  The chart previously linked from [Engineering Toolbox](https://www.engineeringtoolbox.com/wire-gauges-d_419.html) also discusses wire stranding.  Based on this analysis, the following multiplers can be used:
 
  - solid core conductivity, c = 1
  - 3 core conductivity ratio, c = 0.67221 ≈ 0.67
