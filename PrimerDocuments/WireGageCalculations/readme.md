@@ -19,7 +19,7 @@ Other modifiers that exist that we do not account for in this primer document, a
 
 As current draw increases, the wire gauge, and wire length must also increase.  A handy chart taken from (Canal Marketing)[http://canalmarketing.info/copper-wire-load-chart-images#] demonstrates this relationship:
 
-(image)[!https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/WireLengthVsAmperage.jpg]
+(!image)[https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/WireLengthVsAmperage.jpg]
 
 There are also two significantly impactful variables that are ignored in this table: conductor material, and stranded vs. solid wire.
 
