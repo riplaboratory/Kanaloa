@@ -33,30 +33,36 @@ The number you need is the _cross sectional area_ doe your conductor.  Knowing t
 
 ## Step 3: conductor material modifier
 
-Conductor material is typically assumed to be copper; however, copper-clad-aluminum (CCA) is often used for reasons of cost (copper is more conductive, but significantly more expensive, than aluminum).  There is a lot of conflicting, circumstantial information on this topic online.  For clear reasons, companies that manufacture pure copper wire will defend that it is cost-superior to CCA, whereas companise that manufacture CCA will defend that it is cost-superior to pure copper.  There are some circumstantial claims regarding the skin effect for conductors in support of CCA; however, to be certain, it is best to look at actual emperical evidence of conductivity.  There is an excellent article detailing this debate at [Budgetphile](http://www.budgetphile.com/2013/11/budget-wiring-reality-of-copper-clad.html).  In this work, it was found that 100 ft of 16 AWG CCA has a resistance of around 0.6 ohms.  This results in a resistivity of 2.5591E-8 [ohm•m], or a conductivity of 3.9077E7 [1/(ohm•m)].
+Conductor material is typically assumed to be copper; however, copper-clad-aluminum (CCA) is often used for reasons of cost (copper is more conductive, but significantly more expensive, than aluminum), and pure aluminum wire is also used in rarer cases.  There is a lot of conflicting, circumstantial information on this topic online.  For clear reasons, companies that manufacture pure copper wire will defend that it is cost-superior to CCA, whereas companise that manufacture CCA will defend that it is cost-superior to pure copper.  There are some circumstantial claims regarding the skin effect for conductors in support of CCA; however, to be certain, it is best to look at actual emperical evidence of conductivity.  There is an excellent article detailing this debate at [Budgetphile](http://www.budgetphile.com/2013/11/budget-wiring-reality-of-copper-clad.html).  In this work, it was found that 100 ft of 16 AWG CCA has a resistance of around 0.6 ohms.  This results in a resistivity of 2.5591E-8 [ohm•m], or a conductivity of 3.9077E7 [1/(ohm•m)].
 
 - Conductivity of copper = 5.95E7 [1/(ohm•m)]
 - Conductivity of aluminum = 3.77E7 [1/(ohm•m)]
 - Conductivity of CCA = 3.9077E7 [1/(ohm•m)]
 - CCA/Copper conductivity ratio: (3.91E7)/(5.95E7) = 0.657143 ≈ 0.66
+- Aluminum/Copper conductivity ratio: (3.77E7)/(5.95E7) = 0.63361 ≈ 0.63
 
-Given that CCA slots somewhere in between copper and pure aluminum, this result is quite believable.  Thusly, your first modifier is: **If you are using CCA, then take your cross sectional area from the previous step and multiply it by 1/0.66**
+Given that CCA slots somewhere in between copper and pure aluminum, this result is quite believable.  Thusly, your first modifier is: **If you are using CCA, then take your cross sectional area from the previous step and multiply it by (1/0.66); if you are using aluminum, then take your cross sectional area from the previous step, and multiple it by (1/0.63).**
 
-This will result in an increased required cross sectional area when using CCA.
+This will result in an increased required cross sectional area when using CCA or aluminum wire.
 
 ## Step 4: stranding modifier
 
-Next you should also consider the relationship between stranded and single core wire.  Because wire gauge standard is based on the diameter of the conductor, solid core wire has the best conductivity, since stranded wire is not 100% dense.  However, solid core wire is rarely used for large gauge applications, because way too stiff to be useful for anything.  Thusly, you need to know how many “strands” (cores) are in your wire stranded wire.  The chart previously linked from [Engineering Toolbox](https://www.engineeringtoolbox.com/wire-gauges-d_419.html) also discusses wire stranding.  Based on this analysis, the following multiplers can be used:
+Next you should also consider the relationship between stranded and single core wire.  Because wire gauge standard is based on the diameter of the conductor, solid core wire has the best conductivity, since stranded wire is not 100% dense.  However, solid core wire is rarely used for large gauge applications, because way too stiff to be useful for anything.  For an exact calculation of the losses assocaited with stranding, you need to know the exact method of stranding used in your particular wire.  However, as a general rule, according to [Wikipedia](https://en.wikipedia.org/wiki/American_wire_gauge) the gaps in a stranded wire configuration occupy approximately 10% of the wire area.  
 
- - solid core conductivity, c = 1
- - 3 core conductivity ratio, c = 0.67221 ≈ 0.67
- - 4-6 core conductivity ratio, c = 0.53777 ≈ 0.54
- - 7-24 core conductivity ratio, c = 0.46708 ≈ 0.47
- - 25-42 core conductivity ratio, c = 0.40333 ≈ 0.40
- - 43+ core conductivity ratio, c = 0.33611 ≈ 0.34
-
-Therefore, your second multipler is: **If you are using stranded wire, take your cross sectional area from the previous step, and multiply it by 1/c from the chart above**
+Therefore, your second modifier is: **If you are using stranded wire, take your cross sectional area from the previous step, and multiply it by (1.1) from the chart above**
 
 This will result in increased required cross sectional area when using stranded wire. 
 
-https://docs.google.com/document/d/1gT1hnzMKZPhWRTM7eS9sFVf8cWUCZ6KWmbnEr8JUOXc/edit#
+# Examples
+
+## 1. Need to carry 150 A over a range of 2 ft
+
+Design problem:
+ - 150 A
+ - 2 ft distance
+ - ["10 gauge" CCA](https://www.amazon.com/gp/product/B00J357DGW/), approximately 4.3 [mm^2] or 4.3E-6 [m^2] cross sectional area
+ - stranded wire
+
+Based on the chart in step one, I need 8 AWG, solid core, copper wire to carry 150 A over 2 ft.  Next, converting this to a cross sectional area, we get 8.3 [mm^2] or 8.3E-6 [m^2].  Next, applying the modifier for CCA we get (8.3E-6)•(1/0.66) = 12.6E-6 [m^2].  Next, applying the modifier for stranded wire, we get a final required cross sectional area of (12.6E-6)•(1.1) = 13.8E-6 [m^2].
+
+Because each strand of "10 gauge" CCA is approximately 4.3E-6 [m^2], we will need to run four strands in parallel to effectively carry 60 A over two feet.  Three strands strand is probably OK as well, since that will equivalently give 12.9E-6, which is close enough. 
