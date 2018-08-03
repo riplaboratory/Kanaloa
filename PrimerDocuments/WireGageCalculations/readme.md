@@ -17,7 +17,7 @@ Other modifiers exist that we do not account for in this primer document, as the
  
 ## 1. Wire sizing process
 
-### 1.1. Step 1: continuous current vs. conductor length
+### Step 1: continuous current vs. conductor length
 
 As increase in continuous current *and* conductor length will necessitate an increase in the wire gauge.  A chart detailing this information is available from [Canal Marketing](http://canalmarketing.info/copper-wire-load-chart-images#), and is shown below:
 
@@ -25,7 +25,7 @@ As increase in continuous current *and* conductor length will necessitate an inc
 
 Based on your continuous current, and your conductor length, this chart will give you a conductor size in american wire gauge (AWG).  
 
-### 1.2. Step 2: convert AWG to cross sectional area
+### Step 2: convert AWG to cross sectional area
 
 For the sake of standard sizing throughout this document, convert the conductor size from AWG to pure cross sectional area.  A chart describing AWG vs. cross sectional area is available from [Wikipedia](https://en.wikipedia.org/wiki/American_wire_gauge), and is shown below:
 
@@ -33,7 +33,7 @@ For the sake of standard sizing throughout this document, convert the conductor 
 
 The number you need is the _cross sectional area_ doe your conductor.  Knowing this number, you can move onto step 3.
 
-### 1.3. Step 3: conductor material modifier
+### Step 3: conductor material modifier
 
 Conductor material is typically assumed to be copper; however, copper-clad-aluminum (CCA) is often used for reasons of cost (copper is more conductive, but significantly more expensive, than aluminum), and pure aluminum wire is also used in rarer cases.  There is a significant amount of circumstantial information on this topic online.  To be certain, it is best to look at actual emperical evidence of conductivity of these wire types, particularly in the larger gauge varieties.  There is an excellent article detailing this debate at [Budgetphile](http://www.budgetphile.com/2013/11/budget-wiring-reality-of-copper-clad.html).  In this work, it was found that 100 ft of 16 AWG CCA has a resistance of around 0.6 ohms.  This results in a resistivity of 2.5591E-8 [ohm•m], or a conductivity of 3.9077E7 [1/(ohm•m)] ≈ 3.91E7 [1/(ohm•m)].
 
@@ -48,7 +48,7 @@ Given that CCA slots somewhere in between copper and pure aluminum, this result 
 
 Thusly, your first modifier is: **If you are using CCA, then take your cross sectional area from the previous step and multiply it by (1/0.66); if you are using aluminum, then take your cross sectional area from the previous step, and multiple it by (1/0.63).**  This will result in an increased required cross sectional area when using CCA or aluminum wire.
 
-### 1.4. Step 4: stranding modifier
+### Step 4: stranding modifier
 
 Next you should also consider the relationship between stranded and single core wire.  Because wire gauge standard is based on the diameter of the conductor, solid core wire has the best conductivity, since stranded wire is not 100% dense.  However, solid core wire is rarely used for large gauge applications, because way too stiff to be useful for anything.  For an exact calculation of the losses assocaited with stranding, you need to know the exact method of stranding used in your particular wire.  However, as a general rule, according to [Wikipedia](https://en.wikipedia.org/wiki/American_wire_gauge) the gaps in a stranded wire configuration occupy approximately 10% of the wire area.  
 
