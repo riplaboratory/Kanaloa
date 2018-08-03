@@ -35,10 +35,10 @@ The number you need is the _cross sectional area_ doe your conductor.  Knowing t
 
 Conductor material is typically assumed to be copper; however, copper-clad-aluminum (CCA) is often used for reasons of cost (copper is more conductive, but significantly more expensive, than aluminum).  There is a lot of conflicting, circumstantial information on this topic online.  For clear reasons, companies that manufacture pure copper wire will defend that it is cost-superior to CCA, whereas companise that manufacture CCA will defend that it is cost-superior to pure copper.  There are some circumstantial claims regarding the skin effect for conductors in support of CCA; however, to be certain, it is best to look at actual emperical evidence of conductivity.  There is an excellent article detailing this debate at [Budgetphile](http://www.budgetphile.com/2013/11/budget-wiring-reality-of-copper-clad.html).  In this work, it was found that 100 ft of 16 AWG CCA has a resistance of around 0.6 ohms.  This results in a resistivity of 2.5591E-8 [ohm•m], or a conductivity of 3.9077E7 [1/(ohm•m)].
 
-Conductivity of copper = 5.95E7 [1/(ohm•m)]
-Conductivity of aluminum = 3.77E7 [1/(ohm•m)]
-Conductivity of CCA = 3.9077E7 [1/(ohm•m)]
-CCA/Copper conductivity ratio: (3.91E7)/(5.95E7) = 0.657143 ≈ 0.66
+- Conductivity of copper = 5.95E7 [1/(ohm•m)]
+- Conductivity of aluminum = 3.77E7 [1/(ohm•m)]
+- Conductivity of CCA = 3.9077E7 [1/(ohm•m)]
+- CCA/Copper conductivity ratio: (3.91E7)/(5.95E7) = 0.657143 ≈ 0.66
 
 Given that CCA slots somewhere in between copper and pure aluminum, this result is quite believable.  Thusly, your first modifier is: **If you are using CCA, then take your cross sectional area from the previous step and multiply it by 1/0.66**
 
