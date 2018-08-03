@@ -73,24 +73,28 @@ Regarding wire material, it is much more difficult for resellers to "lie" about 
 Design problem:
  - 150 A
  - 2 ft distance
- - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) (approximately 4.3 [mm^2] = 4.3E-6 [m^2] cross sectional area).  OR [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/) (13.3 [mm^2] = 13.3E-6 [m^2] cross sectional area)
+ - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) (approximately 4.3 [mm^2] = 4.3E-6 [m^2] cross sectional area)
+ - OR [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/) (13.3 [mm^2] = 13.3E-6 [m^2] cross sectional area)
 
-["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) (approximately 4.3 [mm^2] = 4.3E-6 [m^2] cross sectional area) wire version
+**["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) math:**
  - Step 1: 8 AWG
  - Step 2: 8 AWG = 8.37 [mm^2] = 8.37E-6 [m^2]
  - Step 3: CCA modifier = (8.37E-6)•(1/0.66) = 12.7E-6 [m^2]
  - Step 4: Stranded modifier = (12.7E-6)•(1.1) = 14.0E-6 [m^2]
  
-[6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/) (13.3 [mm^2] = 13.3E-6 [m^2] cross sectional area wire version 
+**[6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/) math:**
  - Step 1: 8 AWG
  - Step 2: 8 AWG = 8.37 [mm^2] = 8.37E-6 [m^2]
  - Step 3: No CCA modifier (pure copper)
  - Step 4: Stranded modifier = (8.37E-6)•(1.1) = 9.21E-6 [m^2]
  
-If using the ["10 gauge" CCA](https://www.amazon.com/gp/product/B00J357DGW/), you will need at least four runs to meet the necessary cross sectional area.  If using [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/), a single run will suffice. 
+Thusly, if using the ["10 gauge" CCA](https://www.amazon.com/gp/product/B00J357DGW/), you will need at least four runs to meet the necessary cross sectional area.  If using [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/), a single run will suffice. 
  
 ## 4. Large gauge wire we generally buy
 
  - [2 AWG, pure copper, stranded](https://www.amazon.com/gp/product/B01MUC9VT3/)
  - [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/)
  - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/)
+ 
+
+https://www.paneltronics.com/atimo_s/news/E11Excerpts.pdf
