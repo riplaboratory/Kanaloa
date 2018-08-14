@@ -31,7 +31,7 @@ For the sake of standard sizing throughout this document, convert the conductor 
 
 ![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WireGageCalculations/Images/AwgSpecifications.PNG)
 
-The number you need is the _cross sectional area_ doe your conductor.  Knowing this number, you can move onto step 3.
+The number you need is the _cross sectional area_ of your conductor.  Knowing this number, you can move onto step 3.
 
 ### Step 3: conductor material modifier
 
@@ -68,8 +68,7 @@ Regarding wire material, it is much more difficult for resellers to "lie" about 
 
 ## 3. Examples
 
-### 3.1. Need to carry 150 A over a range of 2 ft
-
+### 3.1. Need to carry 150 A over a range of 2 ft 
 Design problem:
  - 150 A
  - 2 ft distance
@@ -89,12 +88,27 @@ Design problem:
  - Step 4: Stranded modifier = (8.37E-6)•(1.1) = 9.21E-6 [m^2]
  
 Thusly, if using the ["10 gauge" CCA](https://www.amazon.com/gp/product/B00J357DGW/), you will need at least four runs to meet the necessary cross sectional area.  If using [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/), a single run will suffice. 
+
+### 3.2. Need to carry 90 A over a range of 2 ft
+Design problem:
+ - 90 A
+ - 2 ft distance
+ - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) (approximately 4.3 [mm^2] = 4.3E-6 [m^2] cross sectional area)
+ - OR [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/) (13.3 [mm^2] = 13.3E-6 [m^2] cross sectional area)
+ 
+**[TRUE 8 Gauge AWG CCA, stranded](https://www.amazon.com/gp/product/B016NKRBC0/) math:**
+ - Step 1: 12 AWG
+ - Step 2: 12 AWG = 3.31 [mm^2] = 3.31E-6 [m^2]
+ - Step 3: CCA modifier = (3.31E-6)•(1/0.66) = 5.02E-6 [m^2]
+ - Step 4: Stranded modifier = (5.02E-6)•(1.1) = 5.52E-6 [m^2]
+ 
+If using the [TRUE 8 Gauge AWG CCA, stranded](https://www.amazon.com/gp/product/B016NKRBC0/), you will need only one run to meet the necessary cross sectional area.  8 AWG is perhaps a little oversized, but gives some breathing room for an extended wire length.
  
 ## 4. Large gauge wire we generally buy
 
  - [2 AWG, pure copper, stranded](https://www.amazon.com/gp/product/B01MUC9VT3/)
  - [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/)
- - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/)
- 
+ - [10 AWG, CCA, stranded](https://www.amazon.com/gp/product/B016NKRBC0/)
+ - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) (very cheap, but a weird wire size)
 
 https://www.paneltronics.com/atimo_s/news/E11Excerpts.pdf
