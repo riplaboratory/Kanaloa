@@ -11,8 +11,11 @@ A MOSFET has three leads, the gate, drain, and source.  By changing the voltage 
 
 This might seem backwards, but remember, electrons are negatively charged particles that flow from ground to the higher voltage potential, and holes are gaps in electrons that flow from the higher voltage potential to ground.  
 
-In a MOSFET's normal state (0 V applied to the gate), the resistance across the drain to the source is very high, which is almost like an open circuit (no current flow).  When a voltage potential from the gate to the source (ground for an N-channel MOSFET, drain for a P-channel MOSFET), the resistance across the drain to the source is reduced, allowing current to flow.  
+In a MOSFET's normal state (0 V applied to the gate), the resistance across the drain to the source is very high, which is almost like an open circuit (no current flow).  When a voltage potential from the gate to the source (gate-to-ground for an N-channel MOSFET, gate-to-load for a P-channel MOSFET), the resistance across the drain to the source is reduced, allowing current to flow.
 
 ## MOSFETs for switching
 
-MOSFET gates have very high input impedance, making them ideal for use as a high current switch controlled by a logic component like an Arduino
+MOSFET gates (the gate-to-source voltage) have very high input impedance, making them ideal for use as a high current switch directly controlled by a logic component like an Arduino.  
+
+
+https://www.electronics-tutorials.ws/transistor/tran_7.html
