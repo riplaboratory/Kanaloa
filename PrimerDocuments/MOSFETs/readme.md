@@ -17,5 +17,8 @@ In a MOSFET's normal state (0 V applied to the gate), the resistance across the 
 
 MOSFET gates (the gate-to-source voltage) have very high input impedance, making them ideal for use as a high current switch directly controlled by a logic component like an Arduino.  
 
-
 https://www.electronics-tutorials.ws/transistor/tran_7.html
+
+## MOSFETs for motor direction control
+
+http://www.robotroom.com/BipolarHBridge.html
