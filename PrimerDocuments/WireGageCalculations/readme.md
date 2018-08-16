@@ -108,7 +108,7 @@ If using the [TRUE 8 Gauge AWG CCA, stranded](https://www.amazon.com/gp/product/
 
  - [2 AWG, pure copper, stranded](https://www.amazon.com/gp/product/B01MUC9VT3/)
  - [6 AWG, pure copper, stranded](https://www.amazon.com/Welding-Battery-Copper-Flexible-Inverter/dp/B01MTALKID/)
- - [10 AWG, CCA, stranded](https://www.amazon.com/gp/product/B016NKRBC0/)
+ - [8 AWG, CCA, stranded](https://www.amazon.com/gp/product/B016NKRBC0/)
  - ["10 gauge" (more like 11 AWG), CCA, stranded](https://www.amazon.com/gp/product/B00J357DGW/) (very cheap, but a weird wire size)
 
 https://www.paneltronics.com/atimo_s/news/E11Excerpts.pdf
