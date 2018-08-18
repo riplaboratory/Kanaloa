@@ -1,0 +1,8 @@
+prefix=/home/raymond/vmrc_ws/devel
+
+Name: usv_gazebo_plugins
+Description: Description of usv_gazebo_plugins
+Version: 0.0.1
+Cflags: -I/home/raymond/vmrc_ws/src/vmrc/usv_gazebo_plugins/include
+Libs: -L/home/raymond/vmrc_ws/devel/lib 
+Requires: message_runtime gazebo_dev roscpp

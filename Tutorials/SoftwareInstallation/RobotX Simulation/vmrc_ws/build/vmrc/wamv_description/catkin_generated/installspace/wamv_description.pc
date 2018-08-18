@@ -1,0 +1,8 @@
+prefix=/home/raymond/vmrc_ws/install
+
+Name: wamv_description
+Description: Description of wamv_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/raymond/vmrc_ws/install/lib 
+Requires: xacro

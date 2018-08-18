@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- Basic WAM-V with gazebo plugins for dynamics -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="WAM-V">
+  <!-- WAMV with "T" thruster configuration -->
+  <xacro:include filename="$(find wamv_gazebo)/urdf/wamv_gazebo.xacro" />
+  <xacro:wamv_gazebo thruster_layout="$(find wamv_gazebo)/urdf/thruster_layouts/wamv_t_thrusters.xacro"/>
+</robot>

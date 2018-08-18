@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>wamv_description</name>
+  <version>0.0.0</version>
+  <description>The wamv_description package</description>
+  <maintainer email="bsb@todo.todo">bsb</maintainer>
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>xacro</build_depend>
+  <exec_depend>xacro</exec_depend>
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

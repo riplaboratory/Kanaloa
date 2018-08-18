@@ -1,0 +1,2 @@
+vmrc/robotx_gazebo:vmrc/usv_gazebo_plugins:vmrc/wamv_description:vmrc/wamv_gazebo
+-DCATKIN_DEVEL_PREFIX=/home/raymond/vmrc_ws/devel -DCMAKE_INSTALL_PREFIX=/home/raymond/vmrc_ws/install -G Unix Makefiles

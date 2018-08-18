@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="WAM-V">
+  <!-- Basic frame of WAM-V -->
+  <xacro:include filename="$(find wamv_gazebo)/urdf/wamv_gazebo.urdf.xacro" />
+
+  <!-- ADD SENSORS -->
+  <!-- Add a front camera -->
+  <xacro:wamv_camera name="front_camera"/>
+  <!-- Add simulated GPS -->
+  <xacro:wamv_gps name="gps_wamv"/>
+  <!-- Add Simulated IMU -->
+  <xacro:wamv_imu name="imu_wamv"/>
+  <!-- Add P3D ground truth -->
+  <xacro:wamv_p3d name="p3d_wamv"/>
+  <xacro:property name="stereo_x" value="1.0" />
+  <xacro:wamv_camera name="stereo_left" x="${stereo_x}" y="0.3" z="1.5" P="${radians(15)}" />
+  <xacro:wamv_camera name="stereo_right" x="${stereo_x}" y="-0.3" z="1.5" P="${radians(15)}" />
+</robot>
