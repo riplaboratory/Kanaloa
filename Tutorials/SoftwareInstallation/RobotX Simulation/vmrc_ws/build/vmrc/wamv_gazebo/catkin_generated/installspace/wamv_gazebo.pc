@@ -1,0 +1,8 @@
+prefix=/home/raymond/vmrc_ws/install
+
+Name: wamv_gazebo
+Description: Description of wamv_gazebo
+Version: 0.0.1
+Cflags: 
+Libs: -L/home/raymond/vmrc_ws/install/lib 
+Requires: wamv_description usv_gazebo_plugins xacro

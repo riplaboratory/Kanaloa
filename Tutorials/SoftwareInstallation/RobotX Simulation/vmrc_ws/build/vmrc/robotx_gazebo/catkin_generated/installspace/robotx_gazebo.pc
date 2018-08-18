@@ -1,0 +1,8 @@
+prefix=/home/raymond/vmrc_ws/install
+
+Name: robotx_gazebo
+Description: Description of robotx_gazebo
+Version: 0.0.1
+Cflags: -I/home/raymond/vmrc_ws/install/include
+Libs: -L/home/raymond/vmrc_ws/install/lib -lgazebo_ros_color
+Requires: wamv_gazebo xacro gazebo_dev std_msgs
