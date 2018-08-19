@@ -21,15 +21,15 @@ $ sudo apt full-upgrade
 ```
 ### Setup and install dependencies:
 ```console
-    $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
-    $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+$ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 
-    $ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+$ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 
-    $ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+$ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 
-    $ sudo apt update
+$ sudo apt update
 ```
     
 ```console
@@ -117,9 +117,11 @@ After that several macros are added for a GPS, IMU, and ground truth pose. These
 
 Let's add a stereo camera pair to the robot. Add the following lines after the other sensors:
 
+```xacro
   <xacro:property name="stereo_x" value="1.0" />
   <xacro:wamv_camera name="stereo_left" x="${stereo_x}" y="0.3" z="1.5" P="${radians(15)}" />
   <xacro:wamv_camera name="stereo_right" x="${stereo_x}" y="-0.3" z="1.5" P="${radians(15)}" />
+```
 A couple things to notice about this:
 
 A common property "stereo_x" is used so the value is not copied in multiple places
