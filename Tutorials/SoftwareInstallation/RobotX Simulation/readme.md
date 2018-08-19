@@ -15,10 +15,10 @@ These instructions contain information for building the VMRC environment in Gaze
 
 ### Install all software in your host system
 Because the simulation uses some relatively new (as of summer 2018) features in ROS and Gazebo, it is highly recommended that you upgrade the packages installed on your system:
-   ```console
-   $ sudo apt update
-   $ sudo apt full-upgrade
-   ```
+```console
+$ sudo apt update
+$ sudo apt full-upgrade
+```
 ### Setup and install dependencies:
 ```console
     $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -81,15 +81,15 @@ A URDF file is a format to describe a robot including joints, sensors, inertial 
 
 Let's copy an example locally as a starting point:
 
-``` console 
+```console 
 $ cd /path_to_vmrc_ws/vmrc_ws/src/vmrc/wamv_gazebo/urdf
 ```
-``` console
+```console
 $ cp wamv_gazebo_sensors.urdf.xacro my_wamv.urdf.xacro
 ```
 This file contains something like this:
 
-``` console
+```console
 cat my_wamv.urdf.xacro
 ```
 ```xacro
