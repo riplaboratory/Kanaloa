@@ -17,24 +17,18 @@ These instructions contain information for building the VMRC environment in Gaze
 Because the simulation uses some relatively new (as of summer 2018) features in ROS and Gazebo, it is highly recommended that you upgrade the packages installed on your system:
    ```console
    $ sudo apt update
+   $ sudo apt full-upgrade
    ```
-    ```console
-    $ sudo apt full-upgrade
-    ```
 ### Setup and install dependencies:
-```console
-$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-```
-    ```console
+	```console
+	$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
     $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-    ```
-    ```console
+    
     $ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-    ```
-    ```console
+    
     $ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-    ```
-    ```console
+    
     $ sudo apt update
     ```
     
