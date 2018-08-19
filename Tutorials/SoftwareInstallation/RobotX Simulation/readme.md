@@ -15,34 +15,68 @@ These instructions contain information for building the VMRC environment in Gaze
 
 ### Install all software in your host system
 Because the simulation uses some relatively new (as of summer 2018) features in ROS and Gazebo, it is highly recommended that you upgrade the packages installed on your system:
-   ```$ sudo apt update```
-    ```$ sudo apt full-upgrade```
+   ```console
+   $ sudo apt update
+   ```
+    ```console
+    $ sudo apt full-upgrade
+    ```
 ### Setup and install dependencies:
-```$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'```
-    ```$ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116```
-    ```$ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'```
-    ```$ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -```
-    ```$ sudo apt update```
+```console
+$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+    ```console
+    $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+    ```
+    ```console
+    $ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+    ```
+    ```console
+    $ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+    ```
+    ```console
+    $ sudo apt update
+    ```
     
-```$ sudo apt install cmake mercurial gazebo7 git libeigen3-dev libgazebo7-dev pkg-config python ros-kinetic-gazebo-plugins ros-kinetic-gazebo-ros ros-kinetic-hector-gazebo-plugins ros-kinetic-joy ros-kinetic-joy-teleop ros-kinetic-robot-localization ros-kinetic-ros-base ros-kinetic-teleop-tools ros-kinetic-teleop-twist-keyboard ros-kinetic-velodyne-simulator ros-kinetic-xacro ruby wget```
+```console
+$ sudo apt install cmake mercurial gazebo7 git libeigen3-dev libgazebo7-dev pkg-config python ros-kinetic-gazebo-plugins ros-kinetic-gazebo-ros ros-kinetic-hector-gazebo-plugins ros-kinetic-joy ros-kinetic-joy-teleop ros-kinetic-robot-localization ros-kinetic-ros-base ros-kinetic-teleop-tools ros-kinetic-teleop-twist-keyboard ros-kinetic-velodyne-simulator ros-kinetic-xacro ruby wget
+```
     
 #### Now build a workspace for VMRC. 
 If you are familiar with ROS catkin workspaces, this is a similar concept. The steps to setup the workspace are:
 
-```$ mkdir -p ~/vmrc_ws/src```
-```$ cd ~/vmrc_ws/src```
+```console
+$ mkdir -p ~/vmrc_ws/src
+```
+```console
+$ cd ~/vmrc_ws/src
+```
 Clone the VMRC repository:
-    ```$ hg clone https://bitbucket.org/osrf/vmrc```
+    ```console
+    $ hg clone https://bitbucket.org/osrf/vmrc
+    ```
 Build instructions
 Source the ROS setup.bash file:
-    ```$ source /opt/ros/kinetic/setup.bash```
+    ```console
+    $ source /opt/ros/kinetic/setup.bash
+    ```
 Build all the software:
-    ```$ cd ~/vmrc_ws```
-    ```$ catkin_make```
+    ```console 
+    $ cd ~/vmrc_ws
+    ```
+    ```console 
+    $ catkin_make
+    ```
 Test Run
-    ```$ cd ~/vmrc_ws```
-    ```$ source devel/setup.bash```
-    ```$ roslaunch robotx_gazebo sandisland.launch ```
+    ```console 
+    $ cd ~/vmrc_ws
+    ```
+    ```console 
+    $ source devel/setup.bash
+    ```
+    ```console 
+    $ roslaunch robotx_gazebo sandisland.launch 
+    ```
 ## Thruster Configuration
 There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and 'X'. Each individual thruster has it's own unique ROS topic name and can be manipulated through ROS scripts.
 ![alt text](https://bitbucket-assetroot.s3.amazonaws.com/repository/BgXLzgM/2101300599-Propulsion%20Options.png?Signature=FDYopYvj97CpMN3hCIZX%2Figg%2F2E%3D&Expires=1534632783&AWSAccessKeyId=AKIAIQWXW6WLXMB5QZAQ)
