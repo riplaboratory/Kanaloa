@@ -178,19 +178,19 @@
       <inertia ixx="120.0" ixy="0.0" ixz="0.0" iyy="393" iyz="0.0" izz="446.0"/>
     </inertial>
   </link>
-  <link name="left_engine_link">
+  <link name="left_rear_engine_link">
     <visual>
       <geometry>
         <mesh filename="package://wamv_description/mesh/engine.dae"/>
       </geometry>
     </visual>
-    <collision name="left_engine_vertical_axis_collision">
+    <collision name="left_rear_engine_vertical_axis_collision">
       <origin rpy="0 0 0" xyz="-0.16 0 -0.24"/>
       <geometry>
         <box size="0.2 0.15 0.83"/>
       </geometry>
     </collision>
-    <collision name="left_engine_rear_end_collision">
+    <collision name="left_rear_engine_rear_end_collision">
       <origin rpy="0 0 0" xyz="-0.34 0 0.12"/>
       <geometry>
         <box size="0.12 0.15 0.12"/>
@@ -201,13 +201,13 @@
       <inertia ixx="0.889245" ixy="0.0" ixz="0.0" iyy="0.911125" iyz="0.0" izz="0.078125"/>
     </inertial>
   </link>
-  <link name="left_propeller_link">
+  <link name="left_rear_propeller_link">
     <visual>
       <geometry>
         <mesh filename="package://wamv_description/mesh/propeller.dae"/>
       </geometry>
     </visual>
-    <collision name="left_propeller_collision">
+    <collision name="left_rear_propeller_collision">
       <origin rpy="0 1.57 0" xyz="-0.08 0 0"/>
       <geometry>
         <cylinder length="0.18" radius="0.24"/>
@@ -218,32 +218,32 @@
       <inertia ixx="0.008545" ixy="0.0" ixz="0.0" iyy="0.008545" iyz="0.0" izz="0.0144"/>
     </inertial>
   </link>
-  <joint name="left_chasis_engine_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="-2.373776 1.027135 0.318237"/>
+  <joint name="left_rear_chasis_engine_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.785" xyz="-2.373776 1.027135 0.318237"/>
     <parent link="base_link"/>
-    <child link="left_engine_link"/>
+    <child link="left_rear_engine_link"/>
   </joint>
-  <joint name="left_engine_propeller_joint" type="continuous">
+  <joint name="left_rear_engine_propeller_joint" type="continuous">
     <axis rpy="0 0 0" xyz="1 0 0"/>
-    <parent link="left_engine_link"/>
-    <child link="left_propeller_link"/>
+    <parent link="left_rear_engine_link"/>
+    <child link="left_rear_propeller_link"/>
     <origin rpy="0 0 0" xyz="-0.278156 0 -0.509371"/>
     <limit effort="100" velocity="100"/>
     <dynamics damping="0.05" friction="0.05"/>
   </joint>
-  <link name="right_engine_link">
+  <link name="right_rear_engine_link">
     <visual>
       <geometry>
         <mesh filename="package://wamv_description/mesh/engine.dae"/>
       </geometry>
     </visual>
-    <collision name="right_engine_vertical_axis_collision">
+    <collision name="right_rear_engine_vertical_axis_collision">
       <origin rpy="0 0 0" xyz="-0.16 0 -0.24"/>
       <geometry>
         <box size="0.2 0.15 0.83"/>
       </geometry>
     </collision>
-    <collision name="right_engine_rear_end_collision">
+    <collision name="right_rear_engine_rear_end_collision">
       <origin rpy="0 0 0" xyz="-0.34 0 0.12"/>
       <geometry>
         <box size="0.12 0.15 0.12"/>
@@ -254,13 +254,13 @@
       <inertia ixx="0.889245" ixy="0.0" ixz="0.0" iyy="0.911125" iyz="0.0" izz="0.078125"/>
     </inertial>
   </link>
-  <link name="right_propeller_link">
+  <link name="right_rear_propeller_link">
     <visual>
       <geometry>
         <mesh filename="package://wamv_description/mesh/propeller.dae"/>
       </geometry>
     </visual>
-    <collision name="right_propeller_collision">
+    <collision name="right_rear_propeller_collision">
       <origin rpy="0 1.57 0" xyz="-0.08 0 0"/>
       <geometry>
         <cylinder length="0.18" radius="0.24"/>
@@ -271,15 +271,121 @@
       <inertia ixx="0.008545" ixy="0.0" ixz="0.0" iyy="0.008545" iyz="0.0" izz="0.0144"/>
     </inertial>
   </link>
-  <joint name="right_chasis_engine_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="-2.373776 -1.027135 0.318237"/>
+  <joint name="right_rear_chasis_engine_joint" type="fixed">
+    <origin rpy="0.0 0.0 -0.785" xyz="-2.373776 -1.027135 0.318237"/>
     <parent link="base_link"/>
-    <child link="right_engine_link"/>
+    <child link="right_rear_engine_link"/>
   </joint>
-  <joint name="right_engine_propeller_joint" type="continuous">
+  <joint name="right_rear_engine_propeller_joint" type="continuous">
     <axis rpy="0 0 0" xyz="1 0 0"/>
-    <parent link="right_engine_link"/>
-    <child link="right_propeller_link"/>
+    <parent link="right_rear_engine_link"/>
+    <child link="right_rear_propeller_link"/>
+    <origin rpy="0 0 0" xyz="-0.278156 0 -0.509371"/>
+    <limit effort="100" velocity="100"/>
+    <dynamics damping="0.05" friction="0.05"/>
+  </joint>
+  <link name="left_front_engine_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wamv_description/mesh/engine.dae"/>
+      </geometry>
+    </visual>
+    <collision name="left_front_engine_vertical_axis_collision">
+      <origin rpy="0 0 0" xyz="-0.16 0 -0.24"/>
+      <geometry>
+        <box size="0.2 0.15 0.83"/>
+      </geometry>
+    </collision>
+    <collision name="left_front_engine_rear_end_collision">
+      <origin rpy="0 0 0" xyz="-0.34 0 0.12"/>
+      <geometry>
+        <box size="0.12 0.15 0.12"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="15"/>
+      <inertia ixx="0.889245" ixy="0.0" ixz="0.0" iyy="0.911125" iyz="0.0" izz="0.078125"/>
+    </inertial>
+  </link>
+  <link name="left_front_propeller_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wamv_description/mesh/propeller.dae"/>
+      </geometry>
+    </visual>
+    <collision name="left_front_propeller_collision">
+      <origin rpy="0 1.57 0" xyz="-0.08 0 0"/>
+      <geometry>
+        <cylinder length="0.18" radius="0.24"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.008545" ixy="0.0" ixz="0.0" iyy="0.008545" iyz="0.0" izz="0.0144"/>
+    </inertial>
+  </link>
+  <joint name="left_front_chasis_engine_joint" type="fixed">
+    <origin rpy="0.0 0.0 -0.785" xyz="1.6 0.7  0.25"/>
+    <parent link="base_link"/>
+    <child link="left_front_engine_link"/>
+  </joint>
+  <joint name="left_front_engine_propeller_joint" type="continuous">
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <parent link="left_front_engine_link"/>
+    <child link="left_front_propeller_link"/>
+    <origin rpy="0 0 0" xyz="-0.278156 0 -0.509371"/>
+    <limit effort="100" velocity="100"/>
+    <dynamics damping="0.05" friction="0.05"/>
+  </joint>
+  <link name="right_front_engine_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wamv_description/mesh/engine.dae"/>
+      </geometry>
+    </visual>
+    <collision name="right_front_engine_vertical_axis_collision">
+      <origin rpy="0 0 0" xyz="-0.16 0 -0.24"/>
+      <geometry>
+        <box size="0.2 0.15 0.83"/>
+      </geometry>
+    </collision>
+    <collision name="right_front_engine_rear_end_collision">
+      <origin rpy="0 0 0" xyz="-0.34 0 0.12"/>
+      <geometry>
+        <box size="0.12 0.15 0.12"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="15"/>
+      <inertia ixx="0.889245" ixy="0.0" ixz="0.0" iyy="0.911125" iyz="0.0" izz="0.078125"/>
+    </inertial>
+  </link>
+  <link name="right_front_propeller_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wamv_description/mesh/propeller.dae"/>
+      </geometry>
+    </visual>
+    <collision name="right_front_propeller_collision">
+      <origin rpy="0 1.57 0" xyz="-0.08 0 0"/>
+      <geometry>
+        <cylinder length="0.18" radius="0.24"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.008545" ixy="0.0" ixz="0.0" iyy="0.008545" iyz="0.0" izz="0.0144"/>
+    </inertial>
+  </link>
+  <joint name="right_front_chasis_engine_joint" type="fixed">
+    <origin rpy="0.0 0.0 +0.785" xyz="1.6 -0.7 0.25"/>
+    <parent link="base_link"/>
+    <child link="right_front_engine_link"/>
+  </joint>
+  <joint name="right_front_engine_propeller_joint" type="continuous">
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <parent link="right_front_engine_link"/>
+    <child link="right_front_propeller_link"/>
     <origin rpy="0 0 0" xyz="-0.278156 0 -0.509371"/>
     <limit effort="100" velocity="100"/>
     <dynamics damping="0.05" friction="0.05"/>
@@ -288,18 +394,36 @@
     <plugin filename="libusv_gazebo_thrust_plugin.so" name="wamv_gazebo_thrust" xmlns:xacro="http://ros.org/wiki/xacro">
       <cmdTimeout>1.0</cmdTimeout>
       <thruster>
-        <linkName>left_propeller_link</linkName>
-        <propJointName>left_engine_propeller_joint</propJointName>
-        <cmdTopic>left_thrust_cmd</cmdTopic>
+        <linkName>left_rear_propeller_link</linkName>
+        <propJointName>left_rear_engine_propeller_joint</propJointName>
+        <cmdTopic>left_rear_thrust_cmd</cmdTopic>
         <mappingType>1</mappingType>
         <maxCmd>1.0</maxCmd>
         <maxForceFwd>250.0</maxForceFwd>
         <maxForceRev>-100.0</maxForceRev>
       </thruster>
       <thruster>
-        <linkName>right_propeller_link</linkName>
-        <propJointName>right_engine_propeller_joint</propJointName>
-        <cmdTopic>right_thrust_cmd</cmdTopic>
+        <linkName>right_rear_propeller_link</linkName>
+        <propJointName>right_rear_engine_propeller_joint</propJointName>
+        <cmdTopic>right_rear_thrust_cmd</cmdTopic>
+        <mappingType>1</mappingType>
+        <maxCmd>1.0</maxCmd>
+        <maxForceFwd>250.0</maxForceFwd>
+        <maxForceRev>-100.0</maxForceRev>
+      </thruster>
+      <thruster>
+        <linkName>left_front_propeller_link</linkName>
+        <propJointName>left_front_engine_propeller_joint</propJointName>
+        <cmdTopic>left_front_thrust_cmd</cmdTopic>
+        <mappingType>1</mappingType>
+        <maxCmd>1.0</maxCmd>
+        <maxForceFwd>250.0</maxForceFwd>
+        <maxForceRev>-100.0</maxForceRev>
+      </thruster>
+      <thruster>
+        <linkName>right_front_propeller_link</linkName>
+        <propJointName>right_front_engine_propeller_joint</propJointName>
+        <cmdTopic>right_front_thrust_cmd</cmdTopic>
         <mappingType>1</mappingType>
         <maxCmd>1.0</maxCmd>
         <maxForceFwd>250.0</maxForceFwd>
