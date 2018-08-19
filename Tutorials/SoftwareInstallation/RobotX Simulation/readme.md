@@ -47,7 +47,6 @@ Clone the VMRC repository:
 ```console
 $ hg clone https://bitbucket.org/osrf/vmrc
 ```
-Build instructions
 Source the ROS setup.bash file:
 ```console
 $ source /opt/ros/kinetic/setup.bash
@@ -69,11 +68,11 @@ There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and '
 The default thruster configuration is the 'H' configuration. To utilize a different configuration a new parameter must be put in the roslaunch command.
 ##### 'T' Configuration
 ```console 
-roslaunch robotx_gazebo sandisland.launch thrust_config:=T 
+$ roslaunch robotx_gazebo sandisland.launch thrust_config:=T 
 ```
 ##### 'X' Configuration
 ```console
-roslaunch robotx_gazebo sandisland.launch thrust_config:=X 
+$ roslaunch robotx_gazebo sandisland.launch thrust_config:=X 
 ```
 ## Sensors
 Creating a URDF file
@@ -90,7 +89,7 @@ $ cp wamv_gazebo_sensors.urdf.xacro my_wamv.urdf.xacro
 This file contains something like this:
 
 ```console
-cat my_wamv.urdf.xacro
+$ cat my_wamv.urdf.xacro
 ```
 ```xacro
 <?xml version="1.0"?>
@@ -118,9 +117,9 @@ After that several macros are added for a GPS, IMU, and ground truth pose. These
 Let's add a stereo camera pair to the robot. Add the following lines after the other sensors:
 
 ```xacro
-  <xacro:property name="stereo_x" value="1.0" />
-  <xacro:wamv_camera name="stereo_left" x="${stereo_x}" y="0.3" z="1.5" P="${radians(15)}" />
-  <xacro:wamv_camera name="stereo_right" x="${stereo_x}" y="-0.3" z="1.5" P="${radians(15)}" />
+<xacro:property name="stereo_x" value="1.0" />
+<xacro:wamv_camera name="stereo_left" x="${stereo_x}" y="0.3" z="1.5" P="${radians(15)}" />
+<xacro:wamv_camera name="stereo_right" x="${stereo_x}" y="-0.3" z="1.5" P="${radians(15)}" />
 ```
 A couple things to notice about this:
 
