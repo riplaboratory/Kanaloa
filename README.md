@@ -6,7 +6,7 @@ Do not commit edits to the master branch **until they have been fully vetted in 
 ## 1. Directory listing
  - `PrimerDocuments`: detailed notes on a topic.
  - `Projects`: files related to a specific project or event.
- - `SurfaceVehicles`: files related to the operation of a specific surfave vehicle.
+ - `SurfaceVehicles`: files related to the operation of a specific surface vehicle.
  - `Tutorials`: detailed notes on the operation, installation, or maintinence of a specific software of hardware.  
  
  The difference between `PrimerDocuments` and `Tutorials` may be difficult to discern at first.  Tutorials should answer the question of "how do I operate this?", primer documents should answer the question of "how does this work?".
