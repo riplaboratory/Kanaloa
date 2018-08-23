@@ -6,10 +6,10 @@ A MOSFET has three leads, the gate, drain, and source.  By changing the voltage 
 
 ![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/MOSFETs/Images/N_P_channelMosfets.png)
 
- - In the N-channel MOSFET (arrow points at the gate), the transistor is doped with more electrons, which results in current flow from the drain to the source.  As a result, with an N-channel MOSFET, you typically want to have the source pin connected to ground, and the drain pin is connected to your load.
- - In the P-channel MOSFET (arrow points away from the gate), the transistor is doped with more holes, which results in current flow from the souce to the drain.  As a result, with a P-channel MOSFET, you typically want to have the source pin connected to the load, and the drain pin connected to ground.
+ - In the N-channel MOSFET (arrow points at the gate), the transistor is doped with more electrons, which results in good electron flow from the source to the drain.  As a result, with an N-channel MOSFET, you typically want to have the source pin connected to ground, and the drain pin is connected to your load.
+ - In the P-channel MOSFET (arrow points away from the gate), the transistor is doped with more holes, which results in good hole flow from the source to the drain (the equivalent of electron flow from the drain to the source).  As a result, with a P-channel MOSFET, you typically want to have the source pin connected to the load, and the drain pin connected to ground.
 
-This might seem backwards, but remember, electrons are negatively charged particles that flow from ground to the higher voltage potential, and holes are gaps in electrons that flow from the higher voltage potential to ground.  
+(if this seems confusing remember that electrons are negatively charged particles that flow from ground to the higher voltage potential, and holes are gaps in electrons that flow from the higher voltage potential to ground.)
 
 In a MOSFET's normal state (0 V applied to the gate), the resistance across the drain to the source is very high, which is almost like an open circuit (no current flow).  When a voltage potential from the gate to the source (gate-to-ground for an N-channel MOSFET, gate-to-load for a P-channel MOSFET), the resistance across the drain to the source is reduced, allowing current to flow.
 
