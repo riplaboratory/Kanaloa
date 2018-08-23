@@ -1,6 +1,6 @@
 # Wire Gauge Calculations (as a function of current)
 
-This is a primer document detailing how to select the proper high-current wire gauge.  There are five important factors in this process:
+This is a primer document detailing how to properly selecte a wire gauge for a high-current application.  There are five important factors in this process:
 
  - Continuous DC (or AC) current that passes through the conductor.
  - Conductor length.
