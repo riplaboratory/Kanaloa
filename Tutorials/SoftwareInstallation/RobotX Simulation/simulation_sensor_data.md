@@ -9,7 +9,26 @@ This tutorial assumes that you already have Ubuntu 16.04 and ROS Kinetic install
 3. ROS Kinetic [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/Kinetic/readme.md)
 4. RobotX Simulation [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/RobotX%20Simulation/readme.md)
 
-## The Data
+##Overview
+These inputs and outputs of this simulation work via ROS topics, which can be Published to (Send data to) or Subscribed (Retrieve data from) to. This document discusses the topics present in this simulation, and the parameters used to manipulate the simulation. The first section talks about the Motor Input Data, which are inpput topics which can be published to in order to control the boat thrusters. The second section discusses the sensor data topics which can be subscribes to in order to retrieve data from the GPS and IMU. 
+
+## The Motor Input Data
+The following is the ROS information for giving commands to the 4 thrusters of the holonomic drive. A python example on how to code input can be found [here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/RobotX%20Simulation/vmrc_ws/src/vmrc/scripts/test_publisher_holonomic.py). Actual force output of motors can be edited in wamv_gazebo/urdf/dynamics/wamv_gazebo_dynamics_plugin.xacro
+
+Thruster  | Topic name | Input range
+------------- | ------------- | -------------
+Left Front Thruster | /left_front_thrust_cmd  | -1.0 to 1.0
+Right Front Thruster | /right_front_thrust_cmd  | -1.0 to 1.0
+Left Rear Thruster | /left_rear_thrust_cmd  | -1.0 to 1.0
+Right Rear Thruster | /right_rear_thrust_cmd  | -1.0 to 1.0
+
+These inputs and outputs of this simulation work via ROS topics, which can be Published to (Send data to) or Subscribed (Retrieve data from) to. 
+```console
+$ rostopic pub --once /right_front_thrust_cmd std_msgs/Float32 "data: 1.0" 
+```
+
+
+## The Output Sensor Data
 The following is the raw data that Published by the corresponding simulation sensors. The two major sensors discussed will be the GPS and IMU. Camera data is also present in the simulation. Most data types for individual topics are either float64 or string 
 
 ### 1) GPS
