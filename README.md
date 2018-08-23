@@ -18,7 +18,7 @@ All directories shall start with a capital letter.  If the directory name has mu
 
 ### 2.2. File naming convention
 
- - **For files requiring manual version control**, the filenames shall start with the date that file was originally created.  This is in the format `YYYYMMDD_name`.  `name` must start with a lowercase letter.  If `name` has multiple words, capitalize the first letter of subsequent words; you may use underscores `_` when necessary, but try to avoid doing this.  No spaces in filenames.  Example: `20180101_sampleFilename.extension`.  Examples of files that require manual version control include: code, notes, work in progress, etc.  You will need to use your judgement when deciding which files need manual version control. 
+ - **For files requiring manual version control**, the filenames shall start with the date that file was originally created.  This is in the format `YYYYMMDD_name`.  `name` must start with a lowercase letter.  If `name` has multiple words, capitalize the first letter of subsequent words; you may use underscores `_` when necessary, but do so sparingly.  No spaces in filenames.  Example: `20180101_sampleFilename.extension`.  Examples of files that require manual version control include: code, notes, work in progress, etc.  You will need to use your judgement when deciding which files need manual version control.  Github automatically handles version control by nature; however, it makes sense to create manual versions of code for minor milestones.  
  - **For files that do not require manual version control**, follow the same naming convention as above, omitting the date.  Example: `sampleFilename.extension`.
 
 **Exceptions**:
