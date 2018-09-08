@@ -20,6 +20,8 @@ There are also Wi-Fi standndards in 3.65 GHz (802.11y), 4.9 GHz (802.11j), 5.9 G
  - **intentional radiator power [dBm]**: the power of the source signal provided by the internal radiator; this must then be fed into an antenna to produce an RF wave.  More radiator power _generally_ results in more range. 
  - **antenna gain [dBi]**: the "power" (gain) of the antenna of an RF wave.  More antenna gain _generally_ results in more range.
  - **equivalent isotropically radiated power (EIRP) [dBm or watt]**: the sum of the intentional radiator power and the antenna gain.  A larger EIRP _generally_ results in more range.  Note that EIRP is not quite the same thing as ERP (effective radiated power), though they are similar terms.  [You may read about the difference here](https://en.wikipedia.org/wiki/Effective_radiated_power)
+ 
+When discussing RF operations, an operator must consider the frequency band their operations will occupy, as well as the EIRP they are sending down their frequency band.  Different frequency bands will have different reguations, regarding EIRP, so careful selection depending on your range requirements is required.  
 
 ## 2.4 GHz
 In north america, there are generally 13 channels, spaced at 5 MHz increments.  This screenshot taken from [this Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 13 channels:
