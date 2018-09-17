@@ -15,9 +15,10 @@ These instructions contain information for building the VMRC environment in Gaze
 
 ### Install all software in your host system
 Because the simulation uses some relatively new (as of summer 2018) features in ROS and Gazebo, it is highly recommended that you upgrade the packages installed on your system:
-```console
+```
 sudo apt update
-$ sudo apt full-upgrade
+
+sudo apt full-upgrade
 ```
 ### Setup and install dependencies:
 ```console
