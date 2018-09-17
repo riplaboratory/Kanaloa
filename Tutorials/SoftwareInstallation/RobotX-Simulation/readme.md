@@ -32,7 +32,7 @@ sudo apt upgrade
 ```
 sudo apt install cmake mercurial gazebo7 git libeigen3-dev libgazebo7-dev pkg-config python ros-kinetic-gazebo-plugins ros-kinetic-gazebo-ros ros-kinetic-hector-gazebo-plugins ros-kinetic-joy ros-kinetic-joy-teleop ros-kinetic-robot-localization ros-kinetic-ros-base ros-kinetic-teleop-tools ros-kinetic-teleop-twist-keyboard ros-kinetic-velodyne-simulator ros-kinetic-xacro ruby wget
 ```
-### Create a catkin workspace for VMRC. 
+### 3. Create a catkin workspace for VMRC. 
 If you are familiar with ROS catkin workspaces, this is a similar concept.  These instructions have you create a new catkin workspace called `vmrc_ws`; however, you can also utilize an existing workspace.  
 
 ```
@@ -55,7 +55,7 @@ You may use `catkin_make` OR `catkin build` to build.  We recommend `catkin buil
 ```
 catkin build
 ```
-### Optional: add source source to your .bashrc
+### 3.1. Optional: add source source to your .bashrc
 This will allow you to use this workspace without the need for sourcing the `devel/setup.bash` file every time you open a new terminal window.
 
 Open your `.bashrc` file.
@@ -67,7 +67,7 @@ Add your catkin workspace directory as a source.  For the example in this tutori
 ```
 source ~/vmrc_ws/devel/setup.bash
 ```
-### Test the software
+### 4. Test the software
 Naviate to your catkin workspace
 ```
 cd ~/vmrc_ws
@@ -80,6 +80,29 @@ Launch the simulation (this will take some time the first time you run).
 ```
 roslaunch robotx_gazebo sandisland.launch
 ```
+### 4.1. Common `protobuf` (protocol buffer runtime library) error
+If your console throws an error similar to:
+```
+[libprotobuf FATAL google/protobuf/stubs/common.cc:61] This program requires version 3.5.0 of the Protocol Buffer runtime library, but the installed version is 2.6.1.  Please update your library.  If you compiled the program yourself, make sure that your headers are from the same version of Protocol Buffers as your link-time library.  (Version verification failed in "google/protobuf/any.pb.cc".) terminate called after throwing an instance of 'google::protobuf::FatalException'
+
+```
+According to [this AskUbuntu link](https://askubuntu.com/questions/800007/upgrade-protobuf-2-6-1-to-3-0-0-b3/1033028), the version of `protobuf` installed on Ubuntu 16.04 is not a current enough version for this simulation.  To solve this issue, we must install protobuf V3.5.0 on our version of Ubuntu. 
+
+Download and unzip
+```
+cd ~/Downloads
+curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.5.0/protoc-3.5.0-linux-x86_64.zip
+unzip protoc-3.5.0-linux-x86_64.zip -d protoc3
+```
+Move protoc to /usr/local/bin/
+```
+sudo mv protoc3/bin/* /usr/local/bin/
+```
+Move protoc3/include to /usr/local/include/
+```
+sudo mv protoc3/include/* /usr/local/include/
+```
+
 ## Thruster Configuration
 There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and 'X'. Each individual thruster has it's own unique ROS topic name and can be manipulated through ROS scripts.
 ![alt text](https://bitbucket-assetroot.s3.amazonaws.com/repository/BgXLzgM/2101300599-Propulsion%20Options.png?Signature=FDYopYvj97CpMN3hCIZX%2Figg%2F2E%3D&Expires=1534632783&AWSAccessKeyId=AKIAIQWXW6WLXMB5QZAQ)
