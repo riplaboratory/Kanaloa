@@ -86,12 +86,21 @@ If your console throws an error similar to:
 [libprotobuf FATAL google/protobuf/stubs/common.cc:61] This program requires version 3.5.0 of the Protocol Buffer runtime library, but the installed version is 2.6.1.  Please update your library.  If you compiled the program yourself, make sure that your headers are from the same version of Protocol Buffers as your link-time library.  (Version verification failed in "google/protobuf/any.pb.cc".) terminate called after throwing an instance of 'google::protobuf::FatalException'
 
 ```
-According to [this AskUbuntu link](https://askubuntu.com/questions/800007/upgrade-protobuf-2-6-1-to-3-0-0-b3/1033028), the version of `protobuf` installed on Ubuntu 16.04 is not a current enough version for this simulation, and it cannot be direclty installed through apt.  Thusly, the easiest method to install is using `pip`.
+According to [this AskUbuntu link](https://askubuntu.com/questions/800007/upgrade-protobuf-2-6-1-to-3-0-0-b3/1033028), the version of `protobuf` installed on Ubuntu 16.04 is not a current enough version for this simulation, and it cannot be direclty installed through apt.
 
+You have two options for built installations: `pip` or `conda`.  If you use the `conda` package installer, then type:
 ```
-cd
+conda install -c anaconda libprotobuf
+```
+Altneratively, you may install using pip
+```
 sudo pip install --upgrade pip
 sudo pip install --upgrade protobuf
+```
+Don't forget to rebuild!
+```
+cd ~/vmrc_ws
+catkin build
 ```
 
 ## Thruster Configuration
