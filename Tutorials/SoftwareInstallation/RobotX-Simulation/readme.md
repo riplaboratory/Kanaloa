@@ -21,7 +21,7 @@ sudo apt update
 sudo apt full-upgrade
 ```
 ### Setup and install dependencies:
-```console
+```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
@@ -40,40 +40,43 @@ sudo apt install cmake mercurial gazebo7 git libeigen3-dev libgazebo7-dev pkg-co
 #### Now build a workspace for VMRC. 
 If you are familiar with ROS catkin workspaces, this is a similar concept. The steps to setup the workspace are:
 
-```console
-$ mkdir -p ~/vmrc_ws/src
-$ cd ~/vmrc_ws/src
+```
+mkdir -p ~/vmrc_ws/src
+cd ~/vmrc_ws/src
 ```
 Clone the VMRC repository:
-```console
-$ hg clone https://bitbucket.org/osrf/vmrc
+```
+hg clone https://bitbucket.org/osrf/vmrc
 ```
 Source the ROS setup.bash file:
-```console
-$ source /opt/ros/kinetic/setup.bash
+```
+source /opt/ros/kinetic/setup.bash
 ```
 Build all the software:
-```console 
-$ cd ~/vmrc_ws
-$ catkin_make
+```
+cd ~/vmrc_ws
+
+catkin_make
 ```
 Test Run
-```console 
-$ cd ~/vmrc_ws
-$ source devel/setup.bash
-$ roslaunch robotx_gazebo sandisland.launch 
+```
+cd ~/vmrc_ws
+
+source devel/setup.bash
+
+roslaunch robotx_gazebo sandisland.launch 
 ```
 ## Thruster Configuration
 There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and 'X'. Each individual thruster has it's own unique ROS topic name and can be manipulated through ROS scripts.
 ![alt text](https://bitbucket-assetroot.s3.amazonaws.com/repository/BgXLzgM/2101300599-Propulsion%20Options.png?Signature=FDYopYvj97CpMN3hCIZX%2Figg%2F2E%3D&Expires=1534632783&AWSAccessKeyId=AKIAIQWXW6WLXMB5QZAQ)
 The default thruster configuration is the 'H' configuration. To utilize a different configuration a new parameter must be put in the roslaunch command.
 ##### 'T' Configuration
-```console 
-$ roslaunch robotx_gazebo sandisland.launch thrust_config:=T 
+``` 
+roslaunch robotx_gazebo sandisland.launch thrust_config:=T 
 ```
 ##### 'X' Configuration
-```console
-$ roslaunch robotx_gazebo sandisland.launch thrust_config:=X 
+```
+roslaunch robotx_gazebo sandisland.launch thrust_config:=X 
 ```
 ## Sensors
 Creating a URDF file
@@ -81,16 +84,16 @@ A URDF file is a format to describe a robot including joints, sensors, inertial 
 
 Let's copy an example locally as a starting point:
 
-```console 
-$ cd /path_to_vmrc_ws/vmrc_ws/src/vmrc/wamv_gazebo/urdf
 ```
-```console
-$ cp wamv_gazebo_sensors.urdf.xacro my_wamv.urdf.xacro
+cd /path_to_vmrc_ws/vmrc_ws/src/vmrc/wamv_gazebo/urdf
+```
+```
+cp wamv_gazebo_sensors.urdf.xacro my_wamv.urdf.xacro
 ```
 This file contains something like this:
 
-```console
-$ cat my_wamv.urdf.xacro
+```
+cat my_wamv.urdf.xacro
 ```
 ```xacro
 <?xml version="1.0"?>
@@ -117,7 +120,7 @@ After that several macros are added for a GPS, IMU, and ground truth pose. These
 
 Let's add a stereo camera pair to the robot. Add the following lines after the other sensors:
 
-```xacro
+```
 <xacro:property name="stereo_x" value="1.0" />
 <xacro:wamv_camera name="stereo_left" x="${stereo_x}" y="0.3" z="1.5" P="${radians(15)}" />
 <xacro:wamv_camera name="stereo_right" x="${stereo_x}" y="-0.3" z="1.5" P="${radians(15)}" />
@@ -132,29 +135,29 @@ Now that you have a custom URDF modeling your WAM-V, let's run the simulation!
 
 First, generate the compiled XML from the xacro file using this or another method:
 
-```console 
-$ rosrun xacro xacro --inorder my_wamv.urdf.xacro > my_wamv.urdf
+```
+rosrun xacro xacro --inorder my_wamv.urdf.xacro > my_wamv.urdf
 ```
 Next, run the simulation with a custom urdf argument:
 
-```console 
-$ roslaunch robotx_gazebo sandisland.launch urdf:=`pwd`/my_wamv.urdf
+```
+roslaunch robotx_gazebo sandisland.launch urdf:=`pwd`/my_wamv.urdf
 ```
 You can use rqt to see your sensor topics
 ## Holonomic Drive and Sensors
 By default when using sensors, the "H" configuration is used in the simulation. So running:
-```console 
-$ roslaunch robotx_gazebo sandisland.launch urdf:=`pwd`/my_wamv.urdf  thrust_config:=X
+```
+roslaunch robotx_gazebo sandisland.launch urdf:=`pwd`/my_wamv.urdf  thrust_config:=X
 ```
 Will run the simulation with the sensors, but the thrust configuration will remain as the default "H" Layout. To change this you must edit the file wamv_gazebo.urdf.xacro. There are two ways of doing this. 
 ##### 1) The "Easy" Way
 You may do it the "easy way" and replace your wamv_gazebo.urdf file with the one posted in the Kanaloa Repository [here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/RobotX%20Simulation/vmrc_ws/src/vmrc/wamv_gazebo/urdf/my_wamv.urdf). Please note that /path_to_vmrc_ws is the location of where you downloaded your simulation on your machine.
  - Remove the wamv_gazebo.urdf file 
-```console
-$ cd /path_to_vmrc_ws/vmrc_ws/src/vmrc/wamv_gazebo/urdf/
 ```
-```console 
-$ rm wamv_gazebo.urdf.xacro
+cd /path_to_vmrc_ws/vmrc_ws/src/vmrc/wamv_gazebo/urdf/
+```
+```
+rm wamv_gazebo.urdf.xacro
 ```
 (or just use the Ubuntu File Manager application and visually delete the file)
  - [Click this link](https://raw.githubusercontent.com/riplaboratory/Kanaloa/master/Tutorials/SoftwareInstallation/RobotX%20Simulation/vmrc_ws/src/vmrc/wamv_gazebo/urdf/my_wamv.urdf)
@@ -168,24 +171,23 @@ This method involved editing the wamv_gazebo.urdf.xacro file. Please note that i
 
  - Open your favorite text editor
  - Edit line 7 so that
-```xacro 
+```
 <xacro:wamv_gazebo thruster_layout="$(find wamv_gazebo)/urdf/thruster_layouts/wamv_aft_thrusters.xacro"/>
 ```
  - instead reads:
-```xacro 
+```
 <xacro:wamv_gazebo thruster_layout="$(find wamv_gazebo)/urdf/thruster_layouts/wamv_x_thrusters.xacro"/>
 ```
  - Convert the XACRO file into a URDF
-```console
-$ rosrun xacro xacro --inorder wamv_gazebo.urdf.xacro > wamv_gazebo.urdf
+```
+rosrun xacro xacro --inorder wamv_gazebo.urdf.xacro > wamv_gazebo.urdf
 ```
  - Run the simulation
-```console 
-$ roslaunch robotx_gazebo sandisland.launch urdf:=`pwd`/my_wamv.urdf  thrust_config:=X
+```
+roslaunch robotx_gazebo sandisland.launch urdf:=`pwd`/my_wamv.urdf  thrust_config:=X
 ```
 
 ** Remeber to source your simulation every time you open a new terminal:
-```console
-$ source /path_to_vmrc_ws/vmrc_ws/devel/setup.bash
 ```
-
+source /path_to_vmrc_ws/vmrc_ws/devel/setup.bash
+```
