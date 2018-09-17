@@ -86,21 +86,12 @@ If your console throws an error similar to:
 [libprotobuf FATAL google/protobuf/stubs/common.cc:61] This program requires version 3.5.0 of the Protocol Buffer runtime library, but the installed version is 2.6.1.  Please update your library.  If you compiled the program yourself, make sure that your headers are from the same version of Protocol Buffers as your link-time library.  (Version verification failed in "google/protobuf/any.pb.cc".) terminate called after throwing an instance of 'google::protobuf::FatalException'
 
 ```
-According to [this AskUbuntu link](https://askubuntu.com/questions/800007/upgrade-protobuf-2-6-1-to-3-0-0-b3/1033028), the version of `protobuf` installed on Ubuntu 16.04 is not a current enough version for this simulation.  To solve this issue, we must install protobuf V3.5.0 on our version of Ubuntu. 
+According to [this AskUbuntu link](https://askubuntu.com/questions/800007/upgrade-protobuf-2-6-1-to-3-0-0-b3/1033028), the version of `protobuf` installed on Ubuntu 16.04 is not a current enough version for this simulation, and it cannot be direclty installed through apt.  Thusly, the easiest method to install is using `pip`.
 
-Download and unzip
 ```
-cd ~/Downloads
-curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.5.0/protoc-3.5.0-linux-x86_64.zip
-unzip protoc-3.5.0-linux-x86_64.zip -d protoc3
-```
-Move protoc to /usr/local/bin/
-```
-sudo mv protoc3/bin/* /usr/local/bin/
-```
-Move protoc3/include to /usr/local/include/
-```
-sudo mv protoc3/include/* /usr/local/include/
+cd
+sudo pip install --upgrade pip
+sudo pip install --upgrade protobuf
 ```
 
 ## Thruster Configuration
