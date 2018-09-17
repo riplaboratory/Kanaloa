@@ -23,15 +23,10 @@ sudo apt full-upgrade
 ### 2. Setup and install dependencies
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-
 sudo apt update
-
 sudo apt upgrade
 ```
 ```
@@ -66,7 +61,6 @@ This will allow you to use this workspace without the need for sourcing the `dev
 Open your `.bashrc` file.
 ```
 cd
-
 sudo gedit .bashrc
 ```
 Add your catkin workspace directory as a source.  For the example in this tutorial, you would add the line:
