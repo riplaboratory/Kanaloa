@@ -1,4 +1,4 @@
-# Installing RobotX Simulation
+# Installing RobotX Simulation (Virtual Maritime RobotX Challenge)
 
 This tutorial assumes that you already have Ubuntu 16.04 and ROS Kinetic installed on your machine. Team Kanaloa takes no credit for this project and should only be used as a reference by it's members. Original Publication credit goes to Brian Bingham, Carlos Aguero, and the RobotX community. There repository can be found here:  https://bitbucket.org/osrf/vmrc
 
@@ -13,14 +13,14 @@ This tutorial will walk you through the setup required to make a computer ready 
 
 These instructions contain information for building the VMRC environment in Gazebo.
 
-### Install all software in your host system
+### 1. Update apt
 Because the simulation uses some relatively new (as of summer 2018) features in ROS and Gazebo, it is highly recommended that you upgrade the packages installed on your system:
 ```
 sudo apt update
 
 sudo apt full-upgrade
 ```
-### Setup and install dependencies:
+### 2. Setup and install dependencies
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
@@ -31,14 +31,14 @@ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `ls
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 
 sudo apt update
+
+sudo apt upgrade
 ```
-    
 ```
 sudo apt install cmake mercurial gazebo7 git libeigen3-dev libgazebo7-dev pkg-config python ros-kinetic-gazebo-plugins ros-kinetic-gazebo-ros ros-kinetic-hector-gazebo-plugins ros-kinetic-joy ros-kinetic-joy-teleop ros-kinetic-robot-localization ros-kinetic-ros-base ros-kinetic-teleop-tools ros-kinetic-teleop-twist-keyboard ros-kinetic-velodyne-simulator ros-kinetic-xacro ruby wget
 ```
-    
-#### Now build a workspace for VMRC. 
-If you are familiar with ROS catkin workspaces, this is a similar concept. The steps to setup the workspace are:
+### Create a catkin workspace for VMRC. 
+If you are familiar with ROS catkin workspaces, this is a similar concept.  These instructions have you create a new catkin workspace called `vmrc_ws`; however, you can also utilize an existing workspace.  
 
 ```
 mkdir -p ~/vmrc_ws/src
@@ -52,19 +52,39 @@ Source the ROS setup.bash file:
 ```
 source /opt/ros/kinetic/setup.bash
 ```
-Build all the software:
+Build the catkin workspace
 ```
 cd ~/vmrc_ws
-
-catkin_make
 ```
-Test Run
+You may use `catkin_make` OR `catkin build` to build.  We recommend `catkin build`.
+```
+catkin build
+```
+### Optional: add source source to your .bashrc
+This will allow you to use this workspace without the need for sourcing the `devel/setup.bash` file every time you open a new terminal window.
+
+Open your `.bashrc` file.
+```
+cd
+
+sudo gedit .bashrc
+```
+Add your catkin workspace directory as a source.  For the example in this tutorial, you would add the line:
+```
+source ~/vmrc_ws/devel/setup.bash
+```
+### Test the software
+Naviate to your catkin workspace
 ```
 cd ~/vmrc_ws
-
+```
+Source (if you did not add this line to your `.bashrc` file.
+```
 source devel/setup.bash
-
-roslaunch robotx_gazebo sandisland.launch 
+```
+Launch the simulation (this will take some time the first time you run).
+```
+roslaunch robotx_gazebo sandisland.launch
 ```
 ## Thruster Configuration
 There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and 'X'. Each individual thruster has it's own unique ROS topic name and can be manipulated through ROS scripts.
