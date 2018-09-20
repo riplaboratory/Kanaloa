@@ -43,10 +43,13 @@ def capture_keystrokes():
 	elif folder_key == "b":
 	    save_location = "buoy"
 	    print "Recording to folder: ", save_location
+	elif folder_key == "m":
+	    save_location = "multiple"
+	    print "Recording to folder: ", save_location
 	elif folder_key == "?":
 	    save_location = "null"
 	    print("Not Recording to Object Folders")
-	    print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t n: no saving images in other folder \n\t ?: repeat this prompt")
+	    print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t m: multiple \n\t n: no objectgs present \n\t ?: repeat this prompt")
 	else:
 		save_location = "null"
 		print "Invalid Key Command, Not Recording to Object Folders"
@@ -124,7 +127,7 @@ def intro():
 			
 	print "\n\nBeginning Recording of image data, Listening to Publisher: ", image_topic, "\n\n"
 	print("All image data will be recorded in folder 'all images', to also save a photo in a particular object folder use the following key commands:\n")
-	print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t n: no saving images in other folder \n\t ?: repeat this prompt")
+	print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t m:multiple \n\t n: no objects present \n\t ?: repeat this prompt")
 
 	return image_topic, image_counter, save_type
 
@@ -169,7 +172,7 @@ def check_keystroke():
 		elif folder_key == "?":
 		    save_location = "null"
 		    print("Not Recording to Object Folders")
-		    print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t n: no saving images in other folder \n\t ?: repeat this prompt")
+		    print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t m: multiple \n\tn: no objects present \n\t ?: repeat this prompt")
 		else:
 			save_location = "null"
 			print("Not Recording to Object Folders")

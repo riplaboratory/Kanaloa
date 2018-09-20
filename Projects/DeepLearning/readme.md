@@ -1,3 +1,3 @@
-#Deep Learning Project
+# Deep Learning Project Directory 
 
-## To be updated...
+#### This Directory contains code for applications that utilize the use of or are to be used with Neural Networks
