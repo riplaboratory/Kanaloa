@@ -17,45 +17,7 @@ from cv_bridge import CvBridge, CvBridgeError
 # OpenCV2 for saving an image
 import cv2
 
-# import curses
-# stdscr = curses.initscr()
-
-# Instantiate CvBridge
 bridge = CvBridge()
-
-def capture_keystrokes():
-	global save_location
-
-	folder_key = raw_input("\n")  # Python 2
-	# print(text)
-	if folder_key == "n":
-	    save_locatoion = "null"
-	    print("Not Recording to Object Folders")
-	elif folder_key == "t":
-	    save_location = "triangle"
-	    print "Recording to folder: ", save_location
-	elif folder_key == "c":
-	    save_location = "cross"
-	    print "Recording to folder: ", save_location
-	elif folder_key == "o":
-	    save_location = "circle"
-	    print "Recording to folder: ", save_location
-	elif folder_key == "b":
-	    save_location = "buoy"
-	    print "Recording to folder: ", save_location
-	elif folder_key == "m":
-	    save_location = "multiple"
-	    print "Recording to folder: ", save_location
-	elif folder_key == "?":
-	    save_location = "null"
-	    print("Not Recording to Object Folders")
-	    print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t m: multiple \n\t n: no objectgs present \n\t ?: repeat this prompt")
-	else:
-		save_location = "null"
-		print "Invalid Key Command, Not Recording to Object Folders"
-
-	
-
 
 def image_callback(msg, args):
 	global image_counter
@@ -89,7 +51,6 @@ def image_callback(msg, args):
 			if save_location != "null":
 				object_images_path = save_location + "/" + str(image_counter) + ".jpg"
 				cv2.imwrite(object_images_path, cv2_img)
-			# else: 
 
 		delay = 0
 
@@ -136,7 +97,6 @@ def save_image():
 	global image_topic
 	global save_type
 	image_counter = 0
-	# image_topic = "stereo_right/image_raw"
 	while not rospy.is_shutdown():
 		# print("Func 1")
 		if save_type == "Image":
@@ -144,16 +104,13 @@ def save_image():
 			rospy.spin()
 		if save_type == "CompressedImage":
 			rospy.Subscriber(image_topic, CompressedImage, image_callback, ("null", image_counter), queue_size = 1)
-			rospy.spin()
-		# time.sleep(1) 
-		# print(save_location)
+			rospy.spin()		# print(save_location)
 
 def check_keystroke():
 	global save_location
 	while not rospy.is_shutdown():
-		# print("Func 2")
 		folder_key = raw_input("\n")  # Python 2
-		# print(text)
+
 		if folder_key == "n":
 		    save_locatoion = "null"
 		    print("Not Recording to Object Folders")
@@ -169,6 +126,9 @@ def check_keystroke():
 		elif folder_key == "b":
 		    save_location = "buoy"
 		    print "Recording to folder: ", save_location
+		elif folder_key == "m":
+		    save_location = "multiple"
+		    print "Recording to folder: ", save_location
 		elif folder_key == "?":
 		    save_location = "null"
 		    print("Not Recording to Object Folders")
@@ -183,13 +143,9 @@ if __name__ == '__main__':
 	global image_topic
 	global delay
 	global save_type
+
 	delay = 0
-	# intro()
-	# main()
-	image_topic, image_counter, save_type = intro()		
-    # main(image_topic, image_counter)
-	
-	# image_counter = 0
+	image_topic, image_counter, save_type = intro()
 	save_location = '/null'
 
 	while not rospy.is_shutdown():
