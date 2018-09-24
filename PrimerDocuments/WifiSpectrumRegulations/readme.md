@@ -28,7 +28,7 @@ The 915 MHz spectrum (902 to 928 MHz) has very little formal regulation.  The bi
 
 Sources:
  - [1] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
- - [2] [FCC 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247)
+ - [2] [FCC 47 CFR 15.247 (Cornell Law)](https://www.law.cornell.edu/cfr/text/47/15.247)
 
 ## 2.4 GHz
 In north america, there are generally 14 channels, spaced at 5 MHz increments.  [This Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 14 channels.  Becuause it is uncommon to use a channel width of 5 MHz (for bandwidth reasons), a single device will typically span multiple channels.  To avoid interference, you ideally want to have each device intelligently transmitting on different channels.  Some 2.4 GHz devices utilize frequency hopping, although this usually not the case.
@@ -39,9 +39,10 @@ Regarding transmission power, the general rule of thumb is a maximum EIRP of 1 w
 From this, you can see that the maximum allowable EIRP is 52 dBm, which can be achieved with a 22 dBm radiator power, and 30 dBi antenna.  A 30 dBi antenna designed for ~2.4 GHz is extremely large and cumbersome; however, so practical considerations need to be made regarding the relationship between radiator power and antenna gain.  
 
 Sources:
- - [1] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
- - [2] [FCC 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247)
- - [3] [Air802.com FCC Rules and Regulations](https://www.air802.com/fcc-rules-and-regulations.html)
+ - [1] [List of WLAN Channels (Wikipedia)](https://en.wikipedia.org/wiki/List_of_WLAN_channels)
+ - [2] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
+ - [3] [FCC 47 CFR 15.247 (Cornell Law)](https://www.law.cornell.edu/cfr/text/47/15.247)
+ - [4] [FCC Rules and Regulations (Air802)](https://www.air802.com/fcc-rules-and-regulations.html)
 
 ## 5 GHz
 In north america, there are genreally 196 channels, spaced at various increments (from 10 MHz all the way to 160 MHz), which means that certain channels will, by definition, overlap with others.  While this may sound like a lot more channels than 2.4 GHz, but not all of the channels are free to use.  Of those that are free to use, the channels are generally divided into four different "bands"
@@ -55,7 +56,11 @@ While there can be some abiguity regarding these generalized bands (see this [Wi
 ![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/fccPart15PowerLimitsForWifi.PNG)
 Note that "PTP" stands for point-to-point, and "PTMP" stands for point-to-multiple-point.  
 
-These regulations come from [FCC Title 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247).
+Sources:
+ - [1] [List of WLAN Channels (Wikipedia)](https://en.wikipedia.org/wiki/List_of_WLAN_channels)
+ - [2] [FCC Part 15 Power Limits for WiFi (24-Apr-2015) (Santa Clara County Amateur Radio Emergency Services/Radio Amateur Civil Emergency Services)](https://www.scc-ares-races.org/mesh/doc/WiFi_Part_15_Power_Limits_v150424.pdf)
+ - [3] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
+ - [4] [FCC 47 CFR 15.247 (Cornell Law)](https://www.law.cornell.edu/cfr/text/47/15.247)
 
 ## Regarding range (for future reading)
  - [Height above average terrain](https://en.wikipedia.org/wiki/Height_above_average_terrain)
