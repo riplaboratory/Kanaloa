@@ -9,7 +9,7 @@ Because RF is very useful for wireless communication, in all countries around th
 The Wi-Fi standard most commonly-used frequency bands are:
  - 915 MHz (specifically 902 to 928 MHz) defined by 802.11ah
  - 2.4 GHz (specifically 2.390 to 2.450 GHz) defined by 802.11b/g/n/ax
- - 5 GHz (specifically 5.15 GHz to 5.35 GHz, and 5.47 GHz to 5.85 GHz(802.11a/h/j/n/ac/ax).
+ - 5 GHz (specifically 5.15 GHz to 5.35 GHz, and 5.47 GHz to 5.85 GHz (802.11a/h/j/n/ac/ax).
 
 There are also Wi-Fi standndards in 3.65 GHz (802.11y), 4.9 GHz (802.11j), 5.9 GHz (802.11p), and 60 GHz (802.11ad/ay); however, the FCC requires special radio licenses to use these frequencies.  The 915 MHz, 2.4 GHz, and 5 GHz frequency bands are "amateur" bands that can be operated on without the need for a license.  In this primer document, we will particularly discuss the regulations imposed on these three frequencies.
 
