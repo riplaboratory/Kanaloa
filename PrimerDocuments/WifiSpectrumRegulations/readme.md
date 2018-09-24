@@ -21,12 +21,17 @@ There are also Wi-Fi standndards in 3.65 GHz (802.11y), 4.9 GHz (802.11j), 5.9 G
  - **antenna gain [dBi]**: the "power" (gain) of the antenna of an RF wave.  More antenna gain _generally_ results in more range.
  - **equivalent isotropically radiated power (EIRP) [dBm or watt]**: the sum of the intentional radiator power and the antenna gain.  A larger EIRP _generally_ results in more range.  Note that EIRP is not quite the same thing as ERP (effective radiated power), though they are similar terms.  [You may read about the difference here](https://en.wikipedia.org/wiki/Effective_radiated_power)
  
-When discussing RF operations, an operator must consider the frequency band their operations will occupy, as well as the EIRP they are sending down their frequency band.  Different frequency bands will have different reguations, regarding EIRP, so careful selection depending on your range requirements is required.  
+**When discussing RF operations, an operator must consider the frequency band their operations will occupy, as well as the EIRP they are sending down their frequency band**.  Different frequency bands will have different reguations, regarding EIRP, so careful selection depending on your range requirements is required.
+
+## 915 MHz
+The 915 MHz spectrum (902 to 928 MHz) has very little formal regulation.  The biggest in place by the FCC requires that operators utilize frequency hopping in this spectrum, and that your maximum EIRP is 1 watt (36 dBm) [2].  
+
+Source:
+ - [1] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
+ - [2] [FCC 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247)
 
 ## 2.4 GHz
-In north america, there are generally 13 channels, spaced at 5 MHz increments.  This screenshot taken from [this Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 13 channels:
-![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/InterferenceConcerns.PNG)
-It is possible to have more than one device occupying a channel at the same time; however, you run a significant risk of interference when doing this.  Ideally, you want to have each device intelligently transmitting on different channels.
+In north america, there are generally 14 channels, spaced at 5 MHz increments.  This screenshot taken from [this Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 14 channels.  Becuause it is uncommon to use a channel width of 5 MHz (for bandwidth reasons), a single device will typically span multiple channels.  To avoid interference, you ideally want to have each device intelligently transmitting on different channels.  
 
 Regarding transmission power, the screenshot taken from [FCC 2.4 GHz BAND RULES (POINT-TO-POINT) (air802.com)](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
 ![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/FCC2.4GHzBANDRULES.PNG)
