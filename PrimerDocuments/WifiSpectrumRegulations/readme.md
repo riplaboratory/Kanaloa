@@ -24,7 +24,7 @@ There are also Wi-Fi standndards in 3.65 GHz (802.11y), 4.9 GHz (802.11j), 5.9 G
 **When discussing RF operations, an operator must consider the frequency band their operations will occupy, as well as the EIRP they are sending down their frequency band**.  Different frequency bands will have different reguations, regarding EIRP, so careful selection depending on your range requirements is required.
 
 ## 915 MHz
-The 915 MHz spectrum (902 to 928 MHz) has very little formal regulation.  The biggest in place by the FCC requires that operators utilize frequency hopping in this spectrum, and that your maximum EIRP is 1 watt (36 dBm) [2].  
+The 915 MHz spectrum (902 to 928 MHz) has very little formal regulation.  The biggest in place by the FCC requires that operators utilize frequency hopping in this spectrum, and that your maximum EIRP is 1 watt (36 dBm).  
 
 Sources:
  - [1] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
@@ -57,7 +57,7 @@ Note that "PTP" stands for point-to-point, and "PTMP" stands for point-to-multip
 
 These regulations come from [FCC Title 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247).
 
-## Regarding range
+## Regarding range (for future reading)
  - [Height above average terrain](https://en.wikipedia.org/wiki/Height_above_average_terrain)
  - [Bandwith, frequency, and distance](https://physics.stackexchange.com/questions/303314/relation-between-data-rate-frequencyrf-and-distance)
  - [Understanding wireless range calculations](http://www.electronicdesign.com/communications/understanding-wireless-range-calculations)
