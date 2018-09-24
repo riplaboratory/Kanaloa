@@ -26,19 +26,22 @@ There are also Wi-Fi standndards in 3.65 GHz (802.11y), 4.9 GHz (802.11j), 5.9 G
 ## 915 MHz
 The 915 MHz spectrum (902 to 928 MHz) has very little formal regulation.  The biggest in place by the FCC requires that operators utilize frequency hopping in this spectrum, and that your maximum EIRP is 1 watt (36 dBm) [2].  
 
-Source:
+Sources:
  - [1] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
  - [2] [FCC 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247)
 
 ## 2.4 GHz
-In north america, there are generally 14 channels, spaced at 5 MHz increments.  This screenshot taken from [this Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 14 channels.  Becuause it is uncommon to use a channel width of 5 MHz (for bandwidth reasons), a single device will typically span multiple channels.  To avoid interference, you ideally want to have each device intelligently transmitting on different channels.  
+In north america, there are generally 14 channels, spaced at 5 MHz increments.  [This Wikipedia page](https://en.wikipedia.org/wiki/List_of_WLAN_channels) describes the center frequency of each of these 14 channels.  Becuause it is uncommon to use a channel width of 5 MHz (for bandwidth reasons), a single device will typically span multiple channels.  To avoid interference, you ideally want to have each device intelligently transmitting on different channels.  Some 2.4 GHz devices utilize frequency hopping, although this usually not the case.
 
-Regarding transmission power, the screenshot taken from [FCC 2.4 GHz BAND RULES (POINT-TO-POINT) (air802.com)](https://www.air802.com/fcc-rules-and-regulations.html) describes the relationship between radiator gain and antenna gain.
+Regarding transmission power, the general rule of thumb is a maximum EIRP of 1 watt (36 dBm); however, if utilizing a fixed point-to-point operation, operators may employ larger EIRPs if higher antenna gains [dBi] are utilized.  The relationship between antenna gain [dBi] and intentional radiator power [dBm] for EIRPs larger than 1 watt is given [at this air802.com link](https://www.air802.com/fcc-rules-and-regulations.html).  The graph is screenshotted below for conventience: 
 ![image](https://github.com/riplaboratory/Kanaloa/blob/master/PrimerDocuments/WifiSpectrumRegulations/Images/FCC2.4GHzBANDRULES.PNG)
 
 From this, you can see that the maximum allowable EIRP is 52 dBm, which can be achieved with a 22 dBm radiator power, and 30 dBi antenna.  A 30 dBi antenna designed for ~2.4 GHz is extremely large and cumbersome; however, so practical considerations need to be made regarding the relationship between radiator power and antenna gain.  
 
-These regulations come from [FCC Title 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247).
+Sources:
+ - [1] [Understanding the FCC regulations for low-power, non-licensed transmitters (FCC)](https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet63/oet63rev.pdf)
+ - [2] [FCC 47 CFR 15.247](https://www.law.cornell.edu/cfr/text/47/15.247)
+ - [3] [Air802.com FCC Rules and Regulations](https://www.air802.com/fcc-rules-and-regulations.html)
 
 ## 5 GHz
 In north america, there are genreally 196 channels, spaced at various increments (from 10 MHz all the way to 160 MHz), which means that certain channels will, by definition, overlap with others.  While this may sound like a lot more channels than 2.4 GHz, but not all of the channels are free to use.  Of those that are free to use, the channels are generally divided into four different "bands"
