@@ -63,7 +63,7 @@ For connecting mainMega to reversing contactor system in high current vox
  7. empty
  8. empty
  
- ### Low Current Box Barrier Strip 5
+### Low Current Box Barrier Strip 5
 For connecting mainMega to DACs in high current box
 
  1. mainMega 5V
@@ -74,8 +74,31 @@ For connecting mainMega to DACs in high current box
  6. empty
  7. empty
  8. empty
+ 
+ ## Wireless Pole
+ 
+### Wireless Pole Barrier Strip 1
+For connecting SBUS decoder to mainMega in low current box
 
+ 1. SBUS decoder channel 1
+ 2. empty
+ 3. empty
+ 4. SBUS decoder channel 4
+ 5. SBUS decoder channel 5
+ 6. SBUS decoder channel 6
+ 7. SBUS decoder channel 7
+ 8. SBUS decoder channel 8
 
+### Wireless Pole Barrier Strip 2
+For connecting SBUS decoder to mainMega in low current box
 
+ 1. ground
+ 2. 5V
+ 3. empty
+ 4. empty
+ 5. empty
+ 6. empty
+ 7. empty
+ 8. empty
  
 
