@@ -15,9 +15,7 @@ Because all barrier strips are used to organize signal the wiring out from RJ45 
 | 7 | stripe brown |
 | 8 | solid brown |
 
-## Low Current Box
-
-### Low Current Box Barrier Strip 1
+## Low Current Box Barrier Strip 1
 For connecting mainMega to wireless pole
 
 | Position (Color) | Description |
@@ -31,7 +29,7 @@ For connecting mainMega to wireless pole
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
  
-### Low Current Box Barrier Strip 2
+## Low Current Box Barrier Strip 2
 For connecting the mainMega to wireless pole
 
 | Position (Color) | Description |
@@ -45,7 +43,7 @@ For connecting the mainMega to wireless pole
 | 7 (stripe brown) | mainMega digital pin 3 |
 | 8 (solid brown) | Low current box barrier strip 3, position 4 |
  
-### Low Current Box Barrier Strip 3
+## Low Current Box Barrier Strip 3
 For connecting the mainMega to the kill switch system in the high current box
 
 | Position (Color) | Description |
@@ -59,7 +57,7 @@ For connecting the mainMega to the kill switch system in the high current box
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
 
-### Low Current Box Barrier Strip 4
+## Low Current Box Barrier Strip 4
 For connecting mainMega to reversing contactor system in high current vox
 
 | Position (Color) | Description |
@@ -73,7 +71,7 @@ For connecting mainMega to reversing contactor system in high current vox
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
  
-### Low Current Box Barrier Strip 5
+## Low Current Box Barrier Strip 5
 For connecting mainMega to DACs in high current box
 
 | Position (Color) | Description |
@@ -87,9 +85,7 @@ For connecting mainMega to DACs in high current box
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
 
-## High Current Box
-
-### High Current Box Barrier Strip 1
+## High Current Box Barrier Strip 1
 For connecting kill switch system to mainMega in low current box
 
 | Position (Color) | Description |
@@ -103,7 +99,7 @@ For connecting kill switch system to mainMega in low current box
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
 
-### High Current Box Barrier Strip 2
+## High Current Box Barrier Strip 2
 For connecting DACs to mainMega in low current box
 
 | Position (Color) | Description |
@@ -117,7 +113,7 @@ For connecting DACs to mainMega in low current box
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
 
-### High Current Box Barrier Strip 3
+## High Current Box Barrier Strip 3
 For connecting killSwitch system to LED light strip on the wireless pole.
 
 | Position (Color) | Description |
@@ -131,9 +127,7 @@ For connecting killSwitch system to LED light strip on the wireless pole.
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
 
-## Wireless Pole
- 
-### Wireless Pole Barrier Strip 1
+## Wireless Pole Barrier Strip 1
 For connecting SBUS decoder to mainMega in low current box
 
 | Position (Color) | Description |
@@ -147,7 +141,7 @@ For connecting SBUS decoder to mainMega in low current box
 | 7 (stripe brown) | SBUS decoder channel 7 |
 | 8 (solid brown) | SBUS decoder channel 8 |
 
-### Wireless Pole Barrier Strip 2
+## Wireless Pole Barrier Strip 2
 For connecting SBUS decoder to mainMega in low current box
 
 | Position (Color) | Description |
