@@ -22,7 +22,7 @@ For connecting mainMega to wireless pole
 
 | Position (Color) | Description |
 | :---: | :---: |
-| 1 (stripe orange) | PRIMARY GND (any component that needs ground should ground here, and only here) |
+| 1 (stripe orange) | PRIMARY GND (all components in low current box should ground here, and only here) |
 | 2 (solid orange) | 5V (from voltage regulator) |
 | 3 (stripe green) | empty |
 | 4 (solid blue) | empty |
@@ -43,7 +43,7 @@ For connecting the mainMega to wireless pole
 | 5 (stripe blue) | empty |
 | 6 (solid green) | mainMega digital pin 6 |
 | 7 (stripe brown) | mainMega digital pin 3 |
-| 8 (solid brown) | Low current box barrier strip 3, position 3 |
+| 8 (solid brown) | Low current box barrier strip 3, position 4 |
  
 ### Low Current Box Barrier Strip 3
 For connecting the mainMega to the kill switch system in the high current box
@@ -53,7 +53,7 @@ For connecting the mainMega to the kill switch system in the high current box
 | 1 (stripe orange) | GND (from low current box barrier strip 1, position 1) |
 | 2 (solid orange) | mainMega digital pin 10 |
 | 3 (stripe green) | empty |
-| 4 (solid blue) | empty |
+| 4 (solid blue) | Low current box barrier strip 2, position 8 |
 | 5 (stripe blue) | empty |
 | 6 (solid green) | empty |
 | 7 (stripe brown) | empty |
@@ -76,7 +76,6 @@ For connecting mainMega to reversing contactor system in high current vox
 ### Low Current Box Barrier Strip 5
 For connecting mainMega to DACs in high current box
 
-
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | mainMega 5V |
@@ -87,8 +86,25 @@ For connecting mainMega to DACs in high current box
 | 6 (solid green) | empty |
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
- 
- ## Wireless Pole
+
+## High Current Box
+
+### Low Current Box Barrier Strip 1
+For connecting kill switch system to mainMega in low current box
+
+| Position (Color) | Description |
+| :---: | :---: |
+| 1 (stripe orange) | PRIMARY GND (all components in high current box should ground here, and only here) |
+| 2 (solid orange) | killSwitchArduino digital pin ??? |
+| 3 (stripe green) | empty |
+| 4 (solid blue) | empty |
+| 5 (stripe blue) | empty |
+| 6 (solid green) | empty |
+| 7 (stripe brown) | empty |
+| 8 (solid brown) | empty |
+
+
+## Wireless Pole
  
 ### Wireless Pole Barrier Strip 1
 For connecting SBUS decoder to mainMega in low current box
