@@ -22,7 +22,7 @@ For connecting mainMega to wireless pole
 
 | Position (Color) | Description |
 | :---: | :---: |
-| 1 (stripe orange) | PRIMARY GROUND (any component that needs ground should ground here, and only here) |
+| 1 (stripe orange) | PRIMARY GND (any component that needs ground should ground here, and only here) |
 | 2 (solid orange) | 5V (from voltage regulator) |
 | 3 (stripe green) | empty |
 | 4 (solid blue) | empty |
@@ -43,14 +43,14 @@ For connecting the mainMega to wireless pole
 | 5 (stripe blue) | empty |
 | 6 (solid green) | mainMega digital pin 6 |
 | 7 (stripe brown) | mainMega digital pin 3 |
-| 8 (solid brown) | Low current box barrier strip 3 position 3 (solid blue) |
+| 8 (solid brown) | Low current box barrier strip 3, position 3 |
  
 ### Low Current Box Barrier Strip 3
 For connecting the mainMega to the kill switch system in the high current box
 
 | Position (Color) | Description |
 | :---: | :---: |
-| 1 (stripe orange) | ground (from low current box barrier strip 1 position 1 (stripe orange)) |
+| 1 (stripe orange) | GND (from low current box barrier strip 1, position 1) |
 | 2 (solid orange) | mainMega digital pin 10 |
 | 3 (stripe green) | empty |
 | 4 (solid blue) | empty |
