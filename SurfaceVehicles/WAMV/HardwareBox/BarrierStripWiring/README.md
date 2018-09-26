@@ -89,20 +89,47 @@ For connecting mainMega to DACs in high current box
 
 ## High Current Box
 
-### Low Current Box Barrier Strip 1
+### High Current Box Barrier Strip 1
 For connecting kill switch system to mainMega in low current box
 
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | PRIMARY GND (all components in high current box should ground here, and only here) |
-| 2 (solid orange) | killSwitchArduino digital pin ??? |
+| 2 (solid orange) | killSwitchArduino digital pin ??? (eventually will be used to send kill switch state back to mainMega |
+| 3 (stripe green) | empty |
+| 4 (solid blue) | killSwitchArduino digital pin 8 |
+| 5 (stripe blue) | empty |
+| 6 (solid green) | empty |
+| 7 (stripe brown) | empty |
+| 8 (solid brown) | empty |
+
+### High Current Box Barrier Strip 2
+For connecting DACs to mainMega in low current box
+
+| Position (Color) | Description |
+| :---: | :---: |
+| 1 (stripe orange) | mainMega 5V |
+| 2 (solid orange) | empty |
+| 3 (stripe green) | DAC SDA pin (green wire) |
+| 4 (solid blue) | DAC SDL pin (yellow wire) |
+| 5 (stripe blue) | main battery HOT |
+| 6 (solid green) | empty |
+| 7 (stripe brown) | empty |
+| 8 (solid brown) | empty |
+
+### High Current Box Barrier Strip 3
+For connecting killSwitch system to LED light strip on the wireless pole.
+
+| Position (Color) | Description |
+| :---: | :---: |
+| 1 (stripe orange) | empty |
+| 2 (solid orange) | empty |
 | 3 (stripe green) | empty |
 | 4 (solid blue) | empty |
 | 5 (stripe blue) | empty |
 | 6 (solid green) | empty |
 | 7 (stripe brown) | empty |
 | 8 (solid brown) | empty |
-
 
 ## Wireless Pole
  
