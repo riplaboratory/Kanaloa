@@ -18,7 +18,7 @@ Because all barrier strips are used to organize signal the wiring out from RJ45 
 ### Low Current Box Barrier Strip 1
 For connecting mainMega to wireless pole
 
- 1. ground
+ 1 (stripe orange): ground
  2. 5V
  3. empty
  4. empty
