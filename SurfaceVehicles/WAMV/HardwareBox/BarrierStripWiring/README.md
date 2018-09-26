@@ -4,6 +4,8 @@ This document describes the barrier strip wiring pats for the WAM-V.
 ## Color Convention
 Because all barrier strips are used to organize signal the wiring out from RJ45 ethernet cables, all barrier strips will follow the EIA/TIA T568B color standard (used in north america); i.e. from top to bottom (or left to right): 
 
+| asdf |
+| --- |
 | Position | Color |
 | :---: | :---: |
 | 1 | stripe orange |
