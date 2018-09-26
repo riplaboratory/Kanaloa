@@ -95,7 +95,7 @@ For connecting kill switch system to mainMega in low current box
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | PRIMARY GND (all components in high current box should ground here, and only here) |
-| 2 (solid orange) | killSwitchArduino digital pin ??? (eventually will be used to send kill switch state back to mainMega |
+| 2 (solid orange) | killSwitchArduino digital pin |
 | 3 (stripe green) | empty |
 | 4 (solid blue) | killSwitchArduino digital pin 8 |
 | 5 (stripe blue) | empty |
