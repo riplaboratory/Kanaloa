@@ -8,7 +8,7 @@ This tutorial assumes that you already have Ubuntu 16.04 and ROS Kinetic install
 2. Standard .bashrc inclusions [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/.bashrc_inclusions/readme.md)
 3. ROS Kinetic [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/Kinetic/readme.md)
 
-## Installing The Simulation
+## Installing the simulation
 This tutorial will walk you through the setup required to make a computer ready to run the VMRC simulations. In order to run VMRC your computer will need a discrete graphics card and will need to satisfy the minimum System Requirements. All updates and official tutorials can be found here: https://bitbucket.org/osrf/vmrc/wiki/tutorials/
 
 These instructions contain information for building the VMRC environment in Gazebo.
@@ -103,19 +103,41 @@ cd ~/vmrc_ws
 catkin build
 ```
 
-## Thruster Configuration
-There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and 'X'. Each individual thruster has it's own unique ROS topic name and can be manipulated through ROS scripts.
-![alt text](https://bitbucket-assetroot.s3.amazonaws.com/repository/BgXLzgM/2101300599-Propulsion%20Options.png?Signature=FDYopYvj97CpMN3hCIZX%2Figg%2F2E%3D&Expires=1534632783&AWSAccessKeyId=AKIAIQWXW6WLXMB5QZAQ)
-The default thruster configuration is the 'H' configuration. To utilize a different configuration a new parameter must be put in the roslaunch command.
-##### 'T' Configuration
+## Using the simulation
+
+### Sample launch files
+
+As a part of testing your installation, you already ran the `sandisland.launch` launch file. 
+
+```
+roslaunch robotx_gazebo sandisland.launch 
+```
+You can run a simulation that is configured simiarly to a typical RobotX "competition-ready" boat with the sample launch file:
+
+```
+roslaunch robotx_gazebo vmrc.launch 
+```
+
+### Thruster Configurations
+There are currently 3 supported Propulsion options for the WAMV. 'H', 'T', and 'X'.  The 'H' configuration is the typical under-actuated, differential-drive thruster configuration; the 'T' configuration is a fully-actuated thruster configuration with two thrusters mounted in the surge direction and one thruster mounted in the sway direction; the 'X' configuration is an over-actuated thruster configuration with one thruster at each corner of the WAM-V frame, mounted at 45 degrees.  Each individual thruster has it's own unique ROS topic name and can be manipulated through ROS scripts.  The default thruster configuration is the 'H' configuration. To utilize a different configuration a new parameter must be put in the roslaunch command.
+
+To launch the simulation with the WAM-V in the 'T' configuration, use:
 ``` 
 roslaunch robotx_gazebo sandisland.launch thrust_config:=T 
 ```
-##### 'X' Configuration
+To launch the simulation with the WAM-V in the 'X' configuration, use:
 ```
 roslaunch robotx_gazebo sandisland.launch thrust_config:=X 
 ```
-## Sensors
+
+### Teleop-keyboard
+To use the keyboard, we use the teleop_twist_keyboard package, along with a custom twist2thrust.py node to convert the Twist messages to two Float32 messages for the left and right thrusters. Forward velocity (twist.linear.x) is mapped to axial thrust (right+left) and rotational velocity (twist.linear.z) is mapped to differential thrust (usvdrive.right-usvdrive.left).
+
+```
+roslaunch robotx_gazebo usv_keydrive.launch
+```
+
+### Sensors
 Creating a URDF file
 A URDF file is a format to describe a robot including joints, sensors, inertial properties, and more. The file is used by Gazebo, rviz, and many other ROS packages. Several example URDF files for representing a WAM-V are included in the VMRC packages.
 
