@@ -137,6 +137,12 @@ To use the keyboard, we use the teleop_twist_keyboard package, along with a cust
 roslaunch robotx_gazebo usv_keydrive.launch
 ```
 
+### RVIZ visualization
+
+```
+roslaunch wamv_gazebo rviz_vmrc.launch
+```
+
 ### Sensors
 Creating a URDF file
 A URDF file is a format to describe a robot including joints, sensors, inertial properties, and more. The file is used by Gazebo, rviz, and many other ROS packages. Several example URDF files for representing a WAM-V are included in the VMRC packages.
