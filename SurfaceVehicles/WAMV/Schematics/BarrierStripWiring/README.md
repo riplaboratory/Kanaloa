@@ -50,7 +50,7 @@ For connecting the mainMega to the kill switch system in the high current box
 | :---: | :---: |
 | 1 (stripe orange) | GND (from low current box barrier strip 1, position 1) |
 | 2 (solid orange) | mainMega digital pin 10 |
-| 3 (stripe green) | empty |
+| 3 (stripe green) | mainMega digital pin 11 |
 | 4 (solid blue) | Low current box barrier strip 2, position 8 |
 | 5 (stripe blue) | empty |
 | 6 (solid green) | empty |
