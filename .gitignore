@@ -1,6 +1,8 @@
+.vscode/
 devel/
 logs/
 build/
+install/
 bin/
 lib/
 msg_gen/
@@ -38,9 +40,6 @@ srv/_*.py
 qtcreator-*
 *.user
 
-/planning/cfg
-/planning/docs
-/planning/src
 
 *~
 
