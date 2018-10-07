@@ -44,6 +44,7 @@ class CommsMessenger:
     def _checksum(string):
         checksum = 0
 
+
         for char in string:
             checksum ^= ord(char)
         return checksum
