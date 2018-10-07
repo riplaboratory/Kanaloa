@@ -46,5 +46,8 @@ class CommsMessenger:
 
         for char in string:
             checksum ^= ord(char)
-        return checksum
+        
+        hex = "{0:02X}".format(checksum)
+        
+        return hex
 
