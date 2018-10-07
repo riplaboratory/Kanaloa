@@ -102,11 +102,9 @@ class CommsMessenger:
         """
         checksum = 0
 
-
         for char in string:
             checksum ^= ord(char)
         
-        hex = "{0:02X}".format(checksum)
-        
-        return hex
+        hex_repr = '{0:02X}'.format(checksum)
+        return hex_repr 
 
