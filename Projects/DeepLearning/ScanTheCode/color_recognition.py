@@ -30,15 +30,24 @@ import cv2
 
 bridge = CvBridge()
 
-lower_red = np.array([0,50,50])
-upper_red = np.array([10,255,255])
+# lower_red = np.array([0,50,50])
+# upper_red = np.array([10,255,255])
 
-lower_blue = np.array([115,50,50])
-upper_blue = np.array([130,255,255])
+# lower_blue = np.array([115,50,50])
+# upper_blue = np.array([130,255,255])
 
 
-lower_yellow = np.array([20,100,100])
-upper_yellow = np.array([30,255,255])
+# lower_yellow = np.array([20,100,100])
+# upper_yellow = np.array([30,255,255])
+
+lower_red = np.array([140,30,30])
+upper_red = np.array([179,255,255])
+
+lower_blue = np.array([108,60,60])
+upper_blue = np.array([113,120,120])
+
+lower_yellow = np.array([12,30,30])
+upper_yellow = np.array([26,255,255])
 
 
 def color_recognition(image):
@@ -103,8 +112,9 @@ class image_converter:
   def callback(self,data):
 	try:
 	  cv_image = self.bridge.compressed_imgmsg_to_cv2(data, "bgr8")
-	  cv_image_hsv = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
-	  cv_image_hsv = cv_image_hsv[100:200, 50:600]
+	  cropped_image = cv_image[100:200, 50:600]
+	  cv_image_hsv = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2HSV)
+	  # cv_image_hsv = cv_image_hsv[100:200, 50:600]
 	except CvBridgeError as e:
 	  print(e)
 
@@ -124,16 +134,16 @@ class image_converter:
 			r = int(radius_dict[color])
 
 			if color == 'red':
-				cv2.circle(cv_image, (x, y), r, (0,0,255))
+				cv2.circle(cv_image, (x+50, y+100), r, (0,0,255))
 
 			elif color == 'blue':
-				cv2.circle(cv_image, (x, y), r, (255))
+				cv2.circle(cv_image, (x+50, y+100), r, (255))
 
 			elif color == 'yellow':
-				cv2.circle(cv_image, (x, y), r, (0,255,255))
+				cv2.circle(cv_image, (x+50, y+100), r, (0,255,255))
 
 			else:
-				cv2.circle(cv_image, (x, y), r, (0,0,0))
+				cv2.circle(cv_image, (x+50, y+100), r, (0,0,0))
 
 
     # mask = np.add(mask_dict["red"], mask_dict["blue"])
@@ -151,11 +161,11 @@ class image_converter:
 	cv2.imshow("Image window", cv_image)
 	cv2.waitKey(3)
 
-	cropped_image = cv_image[100:200, 50:600]
-	cv2.namedWindow('Cropped Image window',cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('Cropped Image window', 1600,1000)
-	cv2.imshow("Cropped Image window", cropped_image)
-	cv2.waitKey(3)
+	# cropped_image = cv_image[100:200, 50:600]
+	# cv2.namedWindow('Cropped Image window',cv2.WINDOW_NORMAL)
+	# cv2.resizeWindow('Cropped Image window', 1000,8000)
+	# cv2.imshow("Cropped Image window", cropped_image)
+	# cv2.waitKey(3)
     # cv2.imshow("Res window", res_blue)
     # cv2.waitKey(10)
     # cv2.imshow("Res window", res)
