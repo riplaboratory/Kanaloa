@@ -5,16 +5,10 @@ import time
 import sys
 import numpy as np
 
-# from Tkinter import *
-
-# master = Tk()
-# w = Scale(master, from_=0, to=42)
-# w.pack()
-# w = Scale(master, from_=0, to=200, orient=HORIZONTAL)
-# w.pack()
-# print(w)
-
-# mainloop()
+from matplotlib import pyplot as plt
+from matplotlib.patches import Circle
+from matplotlib.patches import Rectangle
+import matplotlib.image as mpimg
 
 #Used to multi task
 import threading
@@ -48,6 +42,70 @@ upper_blue = np.array([113,120,120])
 
 lower_yellow = np.array([12,30,30])
 upper_yellow = np.array([26,255,255])
+
+color_codes = {"red": (0,0,255), "blue": (255,0,0), "yellow": (0,255,255)}
+
+classified_colors_list = []
+times = []
+# diff = []
+
+def scan_the_code(colors, times):
+    diff = np.asarray([])
+    colors = np.asarray(colors)
+    times = np.asarray(times)
+    for i in range(len(times)):
+        if i == 0:
+            diff = np.append(diff, 0)
+        else:
+            diff = np.append(diff, times[i] - times[i-1])
+
+    diff_max = np.argmax(diff) #Returns position of highest value
+#     print(diff_max)
+#     print(diff)
+    if len(colors)-3 < diff_max: #If at end of the list, count backwards to find code. 
+        scan = [colors[diff_max], colors[diff_max-1], colors[diff_max-2]]
+    else:
+        scan = [colors[diff_max], colors[diff_max+1], colors[diff_max+2]]
+        
+    return scan
+
+def plot_scan_the_code(scanned):
+	scan_the_code_report_template = cv2.imread('images/scan_the_code_report_template.png')
+
+	# fig, ax = plt.subplots(1,1, figsize=(16,8))
+	# ax.axis('on')
+	# ax.imshow(scan_the_code_report_template)
+
+	# a = Rectangle([40,200], 250, 250, color=scanned[0])
+	# b = Rectangle([360,200], 250, 250, color=scanned[1])
+	# c = Rectangle([680,200], 250, 250, color=scanned[2])
+
+	# plt.text(160, 140, scanned[0], horizontalalignment='center', verticalalignment='center', fontsize=30)
+	# plt.text(490, 140, scanned[1], horizontalalignment='center', verticalalignment='center', fontsize=30)
+	# plt.text(810, 140, scanned[2], horizontalalignment='center', verticalalignment='center', fontsize=30)
+
+	cv2.rectangle(scan_the_code_report_template, (40, 200), (285, 450), color_codes[scanned[0]], thickness = -1)
+	cv2.rectangle(scan_the_code_report_template, (355, 200), (610, 450), color_codes[scanned[1]], thickness = -1)
+	cv2.rectangle(scan_the_code_report_template, (680, 200), (950, 450), color_codes[scanned[2]], thickness = -1)
+
+	cv2.putText(scan_the_code_report_template, scanned[0], (120,150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2);
+	cv2.putText(scan_the_code_report_template, scanned[1], (450,150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2);
+	cv2.putText(scan_the_code_report_template, scanned[2], (780,150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2);
+
+	# cv2.putText(scan_the_code_report_template, (60, 150), scanned[0], fontScale = 5, fontFace = 1, color=(255,255,255))
+	# cv2.putText(scan_the_code_report_template, (380, 150), scanned[0], fontScale = 5, fontFace = 1, color=(255,255,255))
+	# cv2.putText(scan_the_code_report_template, (695, 150), scanned[0], fontScale = 5, fontFace = 1, color=(255,255,255))
+
+	cv2.namedWindow('Scan the Code',cv2.WINDOW_NORMAL)
+	cv2.resizeWindow('Scan the Code', 700,500)
+	cv2.imshow("Scan the Code", scan_the_code_report_template)
+	cv2.waitKey(1)
+
+	# ax.add_patch(a)
+	# ax.add_patch(b)
+	# ax.add_patch(c)
+	        
+	# plt.show()
 
 
 def color_recognition(image):
@@ -107,7 +165,7 @@ class image_converter:
     # self.image_pub = rospy.Publisher("image_topic_2",Image)
     print("Initializing Class")
     self.bridge = CvBridge()
-    self.image_sub = rospy.Subscriber("camera1/usb_cam/image_raw/compressed",CompressedImage,self.callback)
+    self.image_sub = rospy.Subscriber("camera1/usb_cam/image_raw/compressed",CompressedImage,self.callback, queue_size=1)
 
   def callback(self,data):
 	try:
@@ -125,6 +183,51 @@ class image_converter:
 	#   cv2.circle(cv_image, (425,75), 50, 255)
 
 	classified, coordinates, radius_dict, mask_dict, res_dict = color_recognition(cv_image_hsv)
+
+	def generate_scanned_code_list(classified):
+		global classified_colors_list
+		global times
+		if classified.values().count(True) == 1:
+			# for key, value in classified.items():
+			# 	if value == True and classified_colors_list[-1] != key:
+			# 		classified_colors_list.append(key)
+
+			c  = classified.keys()[classified.values().index(True)]
+			if len(classified_colors_list)  == 0:
+				classified_colors_list.append(c)
+				times.append(data.header.stamp.secs)
+				
+			if classified_colors_list[-1] != c:
+				classified_colors_list.append(c)
+				times.append(data.header.stamp.secs)
+		print(classified_colors_list)
+		print(times)
+		if len(classified_colors_list) == 9:
+			print "Identified Color list: ", classified_colors_list
+			print "times: ", times
+			print(scan_the_code(classified_colors_list, times))
+			c = classified_colors_list
+			t = times
+			classified_colors_list.pop(0)
+			times.pop(0)
+
+			scanned = scan_the_code(c, t)
+			plot_scan_the_code(scanned)
+
+
+	generate_scanned_code_list(classified)
+	# if c -== None:
+
+
+
+	# classified_colors_list = ['red', 'blue', 'yellow','red', 'blue', 'yellow','red', 'blue']
+	# times =  [15234, 15235, 15237, 15238, 15239, 15242, 15243, 15244] #Will Produce Code: Yellow Red Blue
+	# times =  [15235, 15237, 15238, 15239, 15242, 15243, 15244, 15247] #Will Produce Code: Blue Yellow Red
+
+	# scanned = scan_the_code(c, t)
+	# plot_scan_the_code(scanned)
+
+
 
     # mask = np.zeros(cv_image.shape[])
 	for color in coordinates.keys():
@@ -159,7 +262,7 @@ class image_converter:
 	cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
 	cv2.resizeWindow('Image window', 1600,1000)
 	cv2.imshow("Image window", cv_image)
-	cv2.waitKey(3)
+	cv2.waitKey(1)
 
 	# cropped_image = cv_image[100:200, 50:600]
 	# cv2.namedWindow('Cropped Image window',cv2.WINDOW_NORMAL)
