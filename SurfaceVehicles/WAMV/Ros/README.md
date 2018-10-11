@@ -22,7 +22,7 @@
 | /wamvAftCam/usb_cam/camera_info	| sensor_msgs/CameraInfo	| Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
 | /wamvAftCam/usb_cam/image_raw	| sensor_msgs/Image	| The image topic for the USB camera. Uncompressed image  |
 | /wamvAftCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage	| Compressed transport subtopic |
-| /wamvDownCam/usb_cam/camera_info	| sensor_msgs/CameraInfo	Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
+| /wamvDownCam/usb_cam/camera_info	| sensor_msgs/CameraInfo  | Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
 | /wamvDownCam/usb_cam/image_raw	| sensor_msgs/Image | The image topic for the USB camera. Uncompressed image  |
 | /wamvDownCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage | Compressed transport subtopic |
 | /wamvFrontCam/usb_cam/camera_info	| sensor_msgs/CameraInfo | Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
