@@ -23,11 +23,11 @@
 | /wamvAftCam/usb_cam/image_raw	| sensor_msgs/Image	| The image topic for the USB camera. Uncompressed image  |
 | /wamvAftCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage	| Compressed transport subtopic |
 | /wamvDownCam/usb_cam/camera_info	| sensor_msgs/CameraInfo	Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
-| /wamvDownCam/usb_cam/image_raw	| sensor_msgs/Image	The image topic for the USB camera. Uncompressed image  |
-| /wamvDownCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage	Compressed transport subtopic |
-| /wamvFrontCam/usb_cam/camera_info	| sensor_msgs/CameraInfo	Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
-| /wamvFrontCam/usb_cam/image_raw	| sensor_msgs/Image	The image topic for the USB camera. Uncompressed image  |
-| /wamvFrontCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage	Compressed transport subtopic |
+| /wamvDownCam/usb_cam/image_raw	| sensor_msgs/Image | The image topic for the USB camera. Uncompressed image  |
+| /wamvDownCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage | Compressed transport subtopic |
+| /wamvFrontCam/usb_cam/camera_info	| sensor_msgs/CameraInfo | Height, width  distortion model; Matricies: D, K, R, P; binning_x, binning_y,  roi parameters |
+| /wamvFrontCam/usb_cam/image_raw	| sensor_msgs/Image | The image topic for the USB camera. Uncompressed image  |
+| /wamvFrontCam/usb_cam/image_raw/compressed	| sensor_msgs/CompressedImage | Compressed transport subtopic |
 | /wamvGps | sensor_msgs/NavSatFix	| GPS Lon Lat Alt and covariance from nmea_navsat_driver package; remapped fromg /gps/fix |
 | /wamvImu/data	| sensor_msgs/Imu	| Filtered orientation, accelerations and angular rotations: orientation is specified as a quaternion. remapped from imu/data. |
 | /wamvImu/mag	| geometry_msgs/Vector3Stamped	| Filtered magnetometer data from sensor. provided as 3D orientation in X,Y,Z. remapped from imu/mag |
