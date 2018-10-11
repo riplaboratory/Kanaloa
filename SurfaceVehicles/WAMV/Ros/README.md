@@ -1,6 +1,6 @@
-# /WAMV/Ros
+# WAM-V ROS Info
 
-# ROS Topics
+## ROS Topics
 
 | Topic Name | Message Type | Description |
 | :---: | :---: | :---: |
