@@ -5,8 +5,6 @@
 | Topic Name | Message Type | Description |
 | :---: | :---: | :---: |
 | /autoQ1	| std_msgs/Float64	| The output desired for autonomous mode for the front right thruster. Set from -100 to 100. | 
-
-
 | /autoQ2	| std_msgs/Float64	| The output desired for autonomous mode for the front left thruster. Set from -100 to 100. | 
 | /autoQ3	| std_msgs/Float64	| The output desired for autonomous mode for the back left thruster. Set from -100 to 100. |
 | /autoQ4	| std_msgs/Float64	| The output desired for autonomous mode for the back right thruster. Set from -100 to 100. |
