@@ -8,7 +8,7 @@
 | /autoQ2	| std_msgs/Float64	| The output desired for autonomous mode for the front left thruster. Set from -100 to 100. | 
 | /autoQ3	| std_msgs/Float64	| The output desired for autonomous mode for the back left thruster. Set from -100 to 100. |
 | /autoQ4	| std_msgs/Float64	| The output desired for autonomous mode for the back right thruster. Set from -100 to 100. |
-| /diagnostics | diagnostic_msgs/DiagnosticArray	collect information from hardware drivers and robot hardware to users and operators for analysis, troubleshooting, and logging.  |
+| /diagnostics | diagnostic_msgs/Diagnostic | Array	collect information from hardware drivers and robot hardware to users and operators for analysis, troubleshooting, and logging.  |
 | /Q1	| std_msgs/UInt16	| The output force of the front right thruster in lbf. Range from -55 to 55. |
 | /Q2	| std_msgs/UInt16	| The output force of the front left thruster in lbf.  Range from -55 to 55. |
 | /Q3	| std_msgs/UInt16	| The output force of the back left thruster in lbf. Range from -55 to 55. |
