@@ -22,6 +22,7 @@ Then open another terminal (or use Ctrl+T) and run the script:
 python2 sort_images.py
 ```
 This will run the script in ther teminal and a series of prompts will begin to appear.
+___
 
 ### On Screen Prompts
 After executing the script there will be a series of onscreen prompts to ensure the script is properly subscribing to image topics and saving them in properly. The first one will look something like this:
@@ -86,6 +87,7 @@ If you come across images which have multiple opjects in them type 'm' and Enter
 m
 Recording to folder: multiple
 ```
+___
 
 ### Using Images From a Live ROS Topic
 Before starting to script you must have ROS core running in a terminal with the command
@@ -105,7 +107,7 @@ Once you have all the information you need for the on screen prompts, you can st
 python2 sort_images.py
 ```
 After finishing the on screen prompts, a window with the image feed from the topic should appear. If it does not, ensure you ROS image topic is still being published to and you put in the information correctly. You may be moved away from the terminal running the script when the image appears, make sure to click back on the terminal to put in your key commands to sort the images.
-
+___
 
 ### Using Images From A Bag File 
 Before starting to script you must have ROS core running in a terminal with the command
@@ -133,6 +135,7 @@ Now you may run the bag file again using:
 rosbag play ~/path_to/bag_file.bag
 ```
 And then select the console with the sort_image.py script running to put in your key commands to correspond to the folder the images are being saved to. When you are done you can exit the script with Ctrl + C. A window with the image feed from the topic should appear. If it does not, ensure you ROS image topic is still being published to and you put in the information correctly. You may be moved away from the terminal running the script when the image appears, make sure to click back on the terminal to put in your key commands to sort the images.
+___
 
 ## Troubleshooting
 Here are some problems that can be run into when trying to run the script
@@ -146,4 +149,4 @@ roscore
 2. Topic name given in wrong format: Generally topics are given starting with a '/', however when rospy checks for topics, it ommits this beginning '/'. So when the propmt asks for the topic name, for example if you put '/camera/image_raw' then it will not find the topic. The topic must be typed such that it does not start with a '/' so for example 'camera/image_raw'
 
 #### Can't stop running script / program crashes
-This is mainly caused due to the Threading operation done in this script (essentially the script is running like 2 seperate python scripts), so sometimes one instance will mnot fully quit. If this occurs use the Ctrl+Z keyboard shortcut which will quit python. The image window may still be not responding, just exit by hitting the 'X' symbol in the top left and select "Force Quit"
+This is mainly caused due to the Threading operation done in this script (essentially the script is running like 2 seperate python scripts), so sometimes one instance will not fully quit. If this occurs use the Ctrl+Z keyboard shortcut which will quit python. The image window may still be not responding, just exit by hitting the 'X' symbol in the top left and select "Force Quit"
