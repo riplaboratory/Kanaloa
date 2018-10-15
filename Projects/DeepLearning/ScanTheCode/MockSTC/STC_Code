@@ -1,0 +1,27 @@
+//Set Pins to use on Arduino
+int redPin= 7; 
+int greenPin = 6;
+int bluePin = 5;
+
+//All pins are outputs to control relay
+void setup() {
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+//Turn on signal to turn off relay to produce color.
+void loop() {
+  setColor(255, 0, 0); 
+  delay(1000);
+  setColor(0, 255, 0); 
+  delay(1000);
+  setColor(0, 0, 255); 
+  delay(1000);
+  setColor(0, 0, 0); //Signals off and all on for relay for no color.
+  delay(2000);
+}
+void setColor(int redValue, int greenValue, int blueValue) {
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin, greenValue);
+  analogWrite(bluePin, blueValue);
+}
