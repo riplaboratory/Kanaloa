@@ -26,11 +26,21 @@ def image_callback(msg, args):
 	global save_type
 	# print("Recieved Image")
 
-	if delay == 25:
+	if save_type == "Image":
+		cv2_img = bridge.imgmsg_to_cv2(msg, "bgr8")
+	else:	
+		cv2_img = bridge.compressed_imgmsg_to_cv2(msg, "bgr8")
+
+	cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
+	cv2.resizeWindow('Image window', 1200,800)
+	cv2.imshow("Image window", cv2_img)
+	cv2.waitKey(1)
+
+	if delay == 18:
 
 		try:
 		    # Convert your ROS Image message to OpenCV2
-			print(save_type)
+			# print(save_type)
 
 			if save_type == "Image":
 				cv2_img = bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -148,7 +158,7 @@ if __name__ == '__main__':
 	image_topic, image_counter, save_type = intro()
 	save_location = '/null'
 
-	while not rospy.is_shutdown():
+	while not rospy.is_shutdown() or KeyboardInterrupt:
 		rospy.init_node('image_listener')
 		Thread(target = save_image).start()
 		Thread(target = check_keystroke).start()
