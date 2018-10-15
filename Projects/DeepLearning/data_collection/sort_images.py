@@ -166,7 +166,3 @@ if __name__ == '__main__':
 		except KeyboardInterrupt:
 			print("Shutting down")
 	cv2.destroyAllWindows()
-		# rospy.init_node('image_listener')
-		# Thread(target = save_image).start()
-		# Thread(target = check_keystroke).start()
-		# rospy.spin()
