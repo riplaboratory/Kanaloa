@@ -4,7 +4,7 @@ This script is used to help sort images that come in via ROS topics. The script 
 /triangle /cross /circle /buoy /multiple /all_images /null
 This can be utilized for live images coming through a topic or images contained in a bag file. This script can be used with images published with the message types Image or CompressedImage. when running the script, a image feed window will automatically appear once it detects images being published to the topic selected. 
 
-![alt text](https://github.com/riplaboratory/Kanaloa/tree/master/Projects/DeepLearning/data_collection/overview.png)
+![alt text](https://github.com/riplaboratory/Kanaloa/blob/master/Projects/DeepLearning/data_collection/overview.png)
 
 ## Prerequisites
 1. Ubuntu 16.04 [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/Ubuntu16.04/readme.md)
