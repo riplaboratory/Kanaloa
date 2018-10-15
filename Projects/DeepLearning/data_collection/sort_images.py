@@ -157,9 +157,16 @@ if __name__ == '__main__':
 	delay = 0
 	image_topic, image_counter, save_type = intro()
 	save_location = '/null'
-
+	rospy.init_node('image_listener')
 	while not rospy.is_shutdown() or KeyboardInterrupt:
-		rospy.init_node('image_listener')
-		Thread(target = save_image).start()
-		Thread(target = check_keystroke).start()
-		rospy.spin()
+		try:
+			Thread(target = save_image).start()
+			Thread(target = check_keystroke).start()
+			rospy.spin()
+		except KeyboardInterrupt:
+			print("Shutting down")
+	cv2.destroyAllWindows()
+		# rospy.init_node('image_listener')
+		# Thread(target = save_image).start()
+		# Thread(target = check_keystroke).start()
+		# rospy.spin()
