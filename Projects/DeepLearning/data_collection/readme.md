@@ -2,10 +2,13 @@
 
 This script is used to help sort images that come in via ROS topics. The script takes in images being published and save it to folders corresponding to common objects found in the 2018 RobotX competition based on keyboard input from the user. The script is currently setup to for the RobotX 2018 competition objects, such the image data can be saved in following folders:
 /triangle /cross /circle /buoy /multiple /all_images /null
-This can be utilized for live images coming through a topic or images contained in a bag file. This script can be used with images published with the message types Image or CompressedImage.
+This can be utilized for live images coming through a topic or images contained in a bag file. This script can be used with images published with the message types Image or CompressedImage. when running the script, a image feed window will automatically appear once it detects images being published to the topic selected. 
+
+![alt text](https://github.com/riplaboratory/Kanaloa/tree/master/Projects/DeepLearning/data_collection/overview.png)
 
 ## Prerequisites
-1. ROS Kinetic [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/Kinetic/readme.md)ROS Kinetic instructions here
+1. Ubuntu 16.04 [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/Ubuntu16.04/readme.md)
+2. ROS Kinetic [instructions here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/Kinetic/readme.md)
 
 ## Running the Script
 Before running the script, ensure that you run the script in a folder which you want all your sorted image data to be saved.
@@ -14,6 +17,7 @@ Use the following commands:
 ```
 roscore
 ```
+Then open another terminal (or use Ctrl+T) and run the script:
 ```
 python2 sort_images.py
 ```
@@ -96,25 +100,14 @@ And check the type of images that are coming in using the command
 ```
 rostopic type /topic_name
 ```
-Once you have all the information you need for the on screen prompts, you can stop running the bag file using Ctrl + C. Run the script and go through the dialogue with 
+Once you have all the information you need for the on screen prompts, you can start the script with
 ```
 python2 sort_images.py
 ```
-To view the images in a seperate window as they are being published by your ROS project you can use the command
-```
-rosrun image_view image_view image:=/camera/image _image_transport:=theora
-```
-if you are not using compressed images in the bag file, instead run 
-```
-rosrun image_view image_view image:=/camera/image
-```
-To begin sorting being published to the ROS topic, run the script and go through the dialogue with :
-```
-python2 sort_images.py
-```
+After finishing the on screen prompts, a window with the image feed from the topic should appear. If it does not, ensure you ROS image topic is still being published to and you put in the information correctly. You may be moved away from the terminal running the script when the image appears, make sure to click back on the terminal to put in your key commands to sort the images.
 
 
-### Using Compressed Images From A Bag File 
+### Using Images From A Bag File 
 Before starting to script you must have ROS core running in a terminal with the command
 ```
 roscore
@@ -135,19 +128,11 @@ Once you have all the information you need for the on screen prompts, you can st
 ```
 python2 sort_images.py
 ```
-To view the images in a seperate window as they are being played in the bag file you can use the command
-```
-rosrun image_view image_view image:=/camera/image _image_transport:=theora
-```
-if you are not using compressed images in the bag file, instead run 
-```
-rosrun image_view image_view image:=/camera/image
-```
-Now you may run the baf file again using:
+Now you may run the bag file again using:
 ```
 rosbag play ~/path_to/bag_file.bag
 ```
-And then select the console with the sort_image.py script running to put in your key commands to correspond to the folder the images are being saved to. When you are done you can exit the script with Ctrl + C.
+And then select the console with the sort_image.py script running to put in your key commands to correspond to the folder the images are being saved to. When you are done you can exit the script with Ctrl + C. A window with the image feed from the topic should appear. If it does not, ensure you ROS image topic is still being published to and you put in the information correctly. You may be moved away from the terminal running the script when the image appears, make sure to click back on the terminal to put in your key commands to sort the images.
 
 ## Troubleshooting
 Here are some problems that can be run into when trying to run the script
@@ -159,3 +144,6 @@ There are generally two reasons why the script will not recieve the images, this
 roscore
 ``` 
 2. Topic name given in wrong format: Generally topics are given starting with a '/', however when rospy checks for topics, it ommits this beginning '/'. So when the propmt asks for the topic name, for example if you put '/camera/image_raw' then it will not find the topic. The topic must be typed such that it does not start with a '/' so for example 'camera/image_raw'
+
+#### Can't stop running script / program crashes
+This is mainly caused due to the Threading operation done in this script (essentially the script is running like 2 seperate python scripts), so sometimes one instance will mnot fully quit. If this occurs use the Ctrl+Z keyboard shortcut which will quit python. The image window may still be not responding, just exit by hitting the 'X' symbol in the top left and select "Force Quit"

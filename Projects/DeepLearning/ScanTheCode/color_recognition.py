@@ -47,7 +47,6 @@ color_codes = {"red": (0,0,255), "blue": (255,0,0), "yellow": (0,255,255)}
 
 classified_colors_list = []
 times = []
-# diff = []
 
 def scan_the_code(colors, times):
     diff = np.asarray([])
@@ -60,8 +59,7 @@ def scan_the_code(colors, times):
             diff = np.append(diff, times[i] - times[i-1])
 
     diff_max = np.argmax(diff) #Returns position of highest value
-#     print(diff_max)
-#     print(diff)
+
     if len(colors)-3 < diff_max: #If at end of the list, count backwards to find code. 
         scan = [colors[diff_max], colors[diff_max-1], colors[diff_max-2]]
     else:
@@ -71,18 +69,6 @@ def scan_the_code(colors, times):
 
 def plot_scan_the_code(scanned):
 	scan_the_code_report_template = cv2.imread('images/scan_the_code_report_template.png')
-
-	# fig, ax = plt.subplots(1,1, figsize=(16,8))
-	# ax.axis('on')
-	# ax.imshow(scan_the_code_report_template)
-
-	# a = Rectangle([40,200], 250, 250, color=scanned[0])
-	# b = Rectangle([360,200], 250, 250, color=scanned[1])
-	# c = Rectangle([680,200], 250, 250, color=scanned[2])
-
-	# plt.text(160, 140, scanned[0], horizontalalignment='center', verticalalignment='center', fontsize=30)
-	# plt.text(490, 140, scanned[1], horizontalalignment='center', verticalalignment='center', fontsize=30)
-	# plt.text(810, 140, scanned[2], horizontalalignment='center', verticalalignment='center', fontsize=30)
 
 	cv2.rectangle(scan_the_code_report_template, (40, 200), (285, 450), color_codes[scanned[0]], thickness = -1)
 	cv2.rectangle(scan_the_code_report_template, (355, 200), (610, 450), color_codes[scanned[1]], thickness = -1)
@@ -142,20 +128,6 @@ def color_recognition(image):
         else: 
             classified[color] = False
 
-     #    red = {'mask': mask, 'res': res, 'coordinates': c }
-     #    if color == "red":
-     #    	mask_red = mask
-     #    	res_red = res
-
-    	# if color == "blue":
-     #    	mask_blue = mask
-     #    	res_blue = res
-
-    	# if color == "yellow":
-     #    	mask_yellow = mask
-     #    	res_yellow = res
-
-
     return classified, coordinates, radius_dict, mask_dict, res_dict
     # return classified, coordinates, radius_dict
 
@@ -172,15 +144,10 @@ class image_converter:
 	  cv_image = self.bridge.compressed_imgmsg_to_cv2(data, "bgr8")
 	  cropped_image = cv_image[100:200, 50:600]
 	  cv_image_hsv = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2HSV)
-	  # cv_image_hsv = cv_image_hsv[100:200, 50:600]
 	except CvBridgeError as e:
 	  print(e)
 
   	print(data.header.stamp.secs)
-
-	# (rows,cols,channels) = cv_image.shape
-	# if cols > 60 and rows > 60 :
-	#   cv2.circle(cv_image, (425,75), 50, 255)
 
 	classified, coordinates, radius_dict, mask_dict, res_dict = color_recognition(cv_image_hsv)
 
@@ -188,10 +155,7 @@ class image_converter:
 		global classified_colors_list
 		global times
 		if classified.values().count(True) == 1:
-			# for key, value in classified.items():
-			# 	if value == True and classified_colors_list[-1] != key:
-			# 		classified_colors_list.append(key)
-
+			
 			c  = classified.keys()[classified.values().index(True)]
 			if len(classified_colors_list)  == 0:
 				classified_colors_list.append(c)
@@ -216,20 +180,7 @@ class image_converter:
 
 
 	generate_scanned_code_list(classified)
-	# if c -== None:
 
-
-
-	# classified_colors_list = ['red', 'blue', 'yellow','red', 'blue', 'yellow','red', 'blue']
-	# times =  [15234, 15235, 15237, 15238, 15239, 15242, 15243, 15244] #Will Produce Code: Yellow Red Blue
-	# times =  [15235, 15237, 15238, 15239, 15242, 15243, 15244, 15247] #Will Produce Code: Blue Yellow Red
-
-	# scanned = scan_the_code(c, t)
-	# plot_scan_the_code(scanned)
-
-
-
-    # mask = np.zeros(cv_image.shape[])
 	for color in coordinates.keys():
 		if classified[color]:
 			x = int(coordinates[color][0])
@@ -248,37 +199,12 @@ class image_converter:
 			else:
 				cv2.circle(cv_image, (x+50, y+100), r, (0,0,0))
 
-
-    # mask = np.add(mask_dict["red"], mask_dict["blue"])
-    # mask = np.add(mask, mask_dict["yellow"])
-
-    # res = np.add(res_dict["red"], res_dict["blue"])
-    # res = np.add(res, res_dict["yellow"])
-    # res = cv2.cvtColor(res, cv2.COLOR_HSV2BGR)
-
 	# cv_image = cv_image[100:200, 50:600]
-	# print(type(cv_image))
-	# print(cv_image.shape)
+
 	cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
 	cv2.resizeWindow('Image window', 1600,1000)
 	cv2.imshow("Image window", cv_image)
 	cv2.waitKey(1)
-
-	# cropped_image = cv_image[100:200, 50:600]
-	# cv2.namedWindow('Cropped Image window',cv2.WINDOW_NORMAL)
-	# cv2.resizeWindow('Cropped Image window', 1000,8000)
-	# cv2.imshow("Cropped Image window", cropped_image)
-	# cv2.waitKey(3)
-    # cv2.imshow("Res window", res_blue)
-    # cv2.waitKey(10)
-    # cv2.imshow("Res window", res)
-    # cv2.waitKey(3)
-    # cv2.imshow("Red Mask window", mask_red)
-    # cv2.waitKey(3)
-    # cv2.imshow("Blue window", mask_blue)
-    # cv2.waitKey(10)
-    # cv2.imshow("Yellow window", mask_yellow)
-    # cv2.waitKey(10)
 
     # try:
     #   self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
