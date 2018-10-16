@@ -34,6 +34,13 @@ bridge = CvBridge()
 # lower_yellow = np.array([12,30,30])
 # upper_yellow = np.array([26,255,255])
 
+x_min = 100
+x_max = 550
+y_min = 100
+y_max = 250
+
+mask_plotting = True
+
 lower_red = np.array([140,120,60])
 upper_red = np.array([176,255,200])
 
@@ -107,9 +114,27 @@ def plot_scan_the_code(scanned):
 	cv2.putText(scan_the_code_report_template, scanned[2], (780,150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2);
 
 	cv2.namedWindow('Scan the Code',cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('Scan the Code', 700,500)
+	cv2.moveWindow('Scan the Code', 40,650)
+	cv2.resizeWindow('Scan the Code', 575,350)
 	cv2.imshow("Scan the Code", scan_the_code_report_template)
 	cv2.waitKey(1)
+
+def plot_mask(mask, color, position):
+	mask_name = str(color)+' Mask'
+	cv2.namedWindow(mask_name,cv2.WINDOW_NORMAL)
+	if position == 0:
+		cv2.moveWindow(mask_name, 1150,30)
+	elif position == 1:
+		cv2.moveWindow(mask_name, 1150,310)
+	elif position == 2:
+		cv2.moveWindow(mask_name, 1150,590)
+	else:
+		cv2.moveWindow(mask_name, 1150,850)
+	
+	cv2.resizeWindow(mask_name, 600,250)
+	cv2.imshow(mask_name, mask)
+	cv2.waitKey(1)
+
 
 def color_recognition(image):
     classified, coordinates, radius_dict, mask_dict, res_dict = {}, {}, {}, {}, {}
@@ -129,6 +154,15 @@ def color_recognition(image):
         cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE)[-2]
         res = cv2.bitwise_and(image, image, mask = mask)
+        res_plot = cv2.cvtColor(res, cv2.COLOR_HSV2BGR)
+
+        if mask_plotting:
+        	if color == "red":
+        		plot_mask(res_plot, "red", 0)
+    		if color == "blue":
+        		plot_mask(res_plot, "blue", 1)
+    		if color == "green":
+        		plot_mask(res_plot, "green", 2)
 
         if len(cnts) > 0:
             c = max(cnts, key=cv2.contourArea)
@@ -156,7 +190,7 @@ class image_converter:
   global image_type
   def __init__(self):
     # self.image_pub = rospy.Publisher("image_topic_2",Image)
-    print("Initializing Class")
+    print("Initializing Color Recognition \nA new window will appear once image are detected ...")
     self.bridge = CvBridge()
     # self.image_sub = rospy.Subscriber("camera1/usb_cam/image_raw/compressed",CompressedImage,self.callback, queue_size=1)
     if image_type == "Image":
@@ -172,12 +206,13 @@ class image_converter:
 		  cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
 	  else:	
 		  cv_image = self.bridge.compressed_imgmsg_to_cv2(data, "bgr8")
-	  cropped_image = cv_image[100:200, 50:600]
+	  # cropped_image = cv_image[100:250, 100:550]
+	  cropped_image = cv_image[y_min:y_max, x_min:x_max]
 	  cv_image_hsv = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2HSV)
 	except CvBridgeError as e:
 	  print(e)
 
-  	print(data.header.stamp.secs)
+  	# print(data.header.stamp.secs)
 
 	classified, coordinates, radius_dict, mask_dict, res_dict = color_recognition(cv_image_hsv)
 
@@ -187,26 +222,32 @@ class image_converter:
 		if classified.values().count(True) == 1:
 			
 			c  = classified.keys()[classified.values().index(True)]
-			if len(classified_colors_list)  == 0:
+			if len(classified_colors_list) == 0 and (c == "red" or c == "green" or c == "blue"):
 				classified_colors_list.append(c)
 				times.append(data.header.stamp.secs)
 				
-			if classified_colors_list[-1] != c:
+			if classified_colors_list[-1] != c and (c == "red" or c == "green" or c == "blue"):
 				classified_colors_list.append(c)
 				times.append(data.header.stamp.secs)
 		print(classified_colors_list)
-		print(times)
-		if len(classified_colors_list) == 9:
-			print "Identified Color list: ", classified_colors_list
-			print "times: ", times
+		if len(times) > 2:
+			if times[-1] < times[-2]:
+				times = []
+				classified_colors_list = []
+				print("ERROR: went back in time")
+		# print(times)
+		if len(classified_colors_list) == 7:
+			# print "Identified Color list: ", classified_colors_list
+			# print "times: ", times
 			print(scan_the_code(classified_colors_list, times))
 			c = classified_colors_list
 			t = times
 			classified_colors_list.pop(0)
 			times.pop(0)
 
-			scanned = scan_the_code(c, t)
-			plot_scan_the_code(scanned)
+			if  c[0] == c[3] and c[1] == c[4] and c[2] == c[5]:
+				scanned = scan_the_code(c, t)
+				plot_scan_the_code(scanned)
 
 
 	generate_scanned_code_list(classified)
@@ -218,21 +259,23 @@ class image_converter:
 			r = int(radius_dict[color])
 
 			if color == 'red':
-				cv2.circle(cv_image, (x+50, y+100), r, (0,0,255))
-
+				cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,0,255))
 			elif color == 'blue':
-				cv2.circle(cv_image, (x+50, y+100), r, (255))
-
+				cv2.circle(cv_image, (x+x_min, y+y_min), r, (255))
 			elif color == 'green':
-				cv2.circle(cv_image, (x+50, y+100), r, (0,255,0))
-
+				cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,255,0))
+			elif color == "yellow":
+				cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,255,255))
+			elif color == "gray":
+				cv2.circle(cv_image, (x+x_min, y+y_min), r, (95,95,95))
 			else:
-				cv2.circle(cv_image, (x+50, y+100), r, (0,0,0))
+				cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,0,0))
 
 	# cv_image = cv_image[100:200, 50:600]
 
 	cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('Image window', 1600,1000)
+	cv2.moveWindow('Image window', 40,30)
+	cv2.resizeWindow('Image window', 1100,700)
 	cv2.imshow("Image window", cv_image)
 	cv2.waitKey(1)
 
