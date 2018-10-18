@@ -1,0 +1,124 @@
+<launch>
+
+<group ns="camera1">
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/wamvFrontCam" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="360" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <param name="framerate" value="100"/>
+ 
+  </node>
+ <!-- <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/cam1/usb_cam1/image_raw"/>
+    <param name="autosize" value="true" />
+     </node>
+-->
+</group>
+
+
+<group ns="camera2">
+  <node name="usb_cam2" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/cam2" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="360" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <param name="framerate" value="100"/>
+    
+  </node>
+<!--  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/cam2/usb_cam2/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+-->
+</group>
+
+
+<group ns="camera3">
+  <node name="usb_cam3" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/cam3" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="360" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <param name="framerate" value="100"/>
+    
+  </node>
+ <!-- <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/cam3/usb_cam3/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+-->
+</group>
+
+
+<group ns="camera4">
+  <node name="usb_cam4" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/cam4" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="360" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <param name="framerate" value="100"/>
+   
+  </node>
+<!--  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/cam4/usb_cam4/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+-->
+</group>
+
+<group ns="camera5">
+  <node name="usb_cam5" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/cam5" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="360" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <param name="framerate" value="100"/>
+
+     </node>
+<!--  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/cam5/usb_cam5/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+-->
+</group>
+
+
+<group ns="camera6">
+  <node name="usb_cam6" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/cam6" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="360" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <param name="framerate" value="100"/>
+  
+  </node>
+<!--  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/cam6/usb_cam6/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+-->
+</group>
+
+</launch>
+
+
+
+
+
+
+
+
+
