@@ -1,0 +1,22 @@
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A907NQQI", SYMLINK+="wamvImu"
+
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A907NR4O", SYMLINK+="wamvGps"
+
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", ATTRS{serial}=="95432313138351E05281", SYMLINK+="wamvMainMega"
+
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", ATTRS{serial}=="55735323036351E0A1C2", SYMLINK+="wamvArmMega"
+
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", ATTRS{serial}=="85438333935351C0B180", SYMLINK+="wamvReelMega"  
+
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="E78775AF", SYMLINK+="wamvFrontCam" 
+
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="FEC2BAAF", SYMLINK+="wamvPortCam"
+
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="866AEDDF", SYMLINK+="wamvStarboardCam"
+
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="F3DDD7EF", SYMLINK+="wamvAftCam"
+
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="7719F2AF", SYMLINK+="wamvMmrCam"
+
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d",  ATTRS{serial}=="B48EF2AF", SYMLINK+="wamvDownCam"
+
