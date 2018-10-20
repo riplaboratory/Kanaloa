@@ -75,6 +75,7 @@ For connecting mainMega to reversing contactor system in high current vox
 For connecting mainMega to HB2 (motor controllers) in high current box
 
 UPDATED:
+
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | low pass filter psuedo-analog Q1 (mainMega pin 6) |
@@ -87,6 +88,7 @@ UPDATED:
 | 8 (solid brown) | empty |
 
 OLD:
+
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | mainMega 5V |
@@ -116,6 +118,7 @@ For connecting kill switch system to mainMega in low current box
 For connecting motor controllers to LB5 (mainMega) in low current box
 
 UPDATED:
+
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | analog to Q1 motor controller |
@@ -128,6 +131,7 @@ UPDATED:
 | 8 (solid brown) | empty |
 
 OLD:
+
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | mainMega 5V |
