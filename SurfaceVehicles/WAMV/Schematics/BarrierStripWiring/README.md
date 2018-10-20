@@ -72,8 +72,21 @@ For connecting mainMega to reversing contactor system in high current vox
 | 8 (solid brown) | empty |
  
 ## Low Current Box Barrier Strip 5
-For connecting mainMega to DACs in high current box
+For connecting mainMega to HB2 (motor controllers) in high current box
 
+UPDATED:
+| Position (Color) | Description |
+| :---: | :---: |
+| 1 (stripe orange) | low pass filter psuedo-analog Q1 (mainMega pin 6) |
+| 2 (solid orange) | low pass filter psuedo-analog Q2 (mainMega pin 8)  |
+| 3 (stripe green) | low pass filter psuedo-analog Q3 (mainMega pin 9)  |
+| 4 (solid blue) | low pass filter psuedo-analog Q4 (mainMega pin 10)  |
+| 5 (stripe blue) | main battery HOT |
+| 6 (solid green) | empty |
+| 7 (stripe brown) | empty |
+| 8 (solid brown) | empty |
+
+OLD:
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | mainMega 5V |
@@ -100,8 +113,21 @@ For connecting kill switch system to mainMega in low current box
 | 8 (solid brown) | empty |
 
 ## High Current Box Barrier Strip 2
-For connecting DACs to mainMega in low current box
+For connecting motor controllers to LB5 (mainMega) in low current box
 
+UPDATED:
+| Position (Color) | Description |
+| :---: | :---: |
+| 1 (stripe orange) | analog to Q1 motor controller |
+| 2 (solid orange) | analog to Q2 motor controller |
+| 3 (stripe green) | analog to Q3 motor controller |
+| 4 (solid blue) | analog to Q4 motor controller |
+| 5 (stripe blue) | main battery HOT |
+| 6 (solid green) | empty |
+| 7 (stripe brown) | empty |
+| 8 (solid brown) | empty |
+
+OLD:
 | Position (Color) | Description |
 | :---: | :---: |
 | 1 (stripe orange) | mainMega 5V |
