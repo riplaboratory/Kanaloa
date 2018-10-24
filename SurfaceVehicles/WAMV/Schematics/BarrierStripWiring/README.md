@@ -2,8 +2,7 @@
 This document describes the barrier strip wiring pats for the WAM-V.  All barrier strips start at the low current box and connect 1:1 to a barrier strip somewhere else in the WAM-V; therefore, all strips are listed based on their relationship with the low current box barrier strip it connects to.
 
 ## LCBS1 to WPBS2/WPBS3
-Low current barrier strip 1 to wireless pole barrier strip 2/3.
-For connecting LC power (GND+5V) and mainMega to the WP power and receiver/SBUS decoder.
+Low current barrier strip 1 to wireless pole barrier strip 2/3.  For connecting LC power (GND+5V) and mainMega to the WP power and receiver/SBUS decoder.
 
 | Position (Color) | LC description | WP description |
 | :---: | :---: | :---: |
@@ -17,8 +16,7 @@ For connecting LC power (GND+5V) and mainMega to the WP power and receiver/SBUS 
 | 8 (solid brown) | empty | empty |
  
 ## LCBS2 to WPBS1
-Low current barrier strip 2 (LCBS2) to wireless pole barrier strip 1 (WPBS1).
-For connecting the LC mainMega to WP recevier/SBUS decoder.
+Low current barrier strip 2 (LCBS2) to wireless pole barrier strip 1 (WPBS1).  For connecting the LC mainMega to WP recevier/SBUS decoder.
 
 | Position (Color) | LC description | WP description |
 | :---: | :---: | :---: |
@@ -32,8 +30,7 @@ For connecting the LC mainMega to WP recevier/SBUS decoder.
 | 8 (solid brown) | mainMega digital pin 2 | SBUS decoder channel 8 |
  
 ## LCBS3 to HCBS1
-Low current barrier strip 3 to high current barrier strip 1.
-For connecting LC mainMega to HC optocoupler motor controller inputs.
+Low current barrier strip 3 to high current barrier strip 1.  For connecting LC mainMega to HC optocoupler motor controller inputs.
 
 | Position (Color) | LC description | HC description |
 | :---: | :---: | :---: |
@@ -47,8 +44,7 @@ For connecting LC mainMega to HC optocoupler motor controller inputs.
 | 8 (solid brown) | empty | empty |
 
 ## LCBS4 to HCBS2
-Low current barrier strip 4 to high current barrier strip 2.
-For connecting LC mainMega to HC optocoupler reversing contactor inputs _and_ LC small kill relay switching contacts to HC big kill relay coil contacts.
+Low current barrier strip 4 to high current barrier strip 2.  For connecting LC mainMega to HC optocoupler reversing contactor inputs _and_ LC small kill relay switching contacts to HC big kill relay coil contacts.
 
 | Position (Color) | LC description | HC description |
 | :---: | :---: | :---: |
@@ -62,8 +58,7 @@ For connecting LC mainMega to HC optocoupler reversing contactor inputs _and_ LC
 | 8 (solid brown) | small kill relay switching contacts normally open | kill relay 1 and 2 coil (right) |
  
 ## LCBS5 to HCBS3
-Low current barrier strip 5 to high current barrier strip 3.
-For connecting LC mainMega to HC optocoupler batteryMega output.
+Low current barrier strip 5 to high current barrier strip 3.  For connecting LC mainMega to HC optocoupler batteryMega output.
 
 | Position (Color) | LC description | HC description |
 | :---: | :---: | :---: |
