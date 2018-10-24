@@ -6,8 +6,8 @@ Low current barrier strip 1 to wireless pole barrier strip 2/3.  For connecting 
 
 | Position (Color) | LCBS1 description | WPBS2/3 description |
 | :---: | :---: | :---: |
-| 1 (stripe orange) | Low current GND | Wireless pole GND (WPBS3-1) | 
-| 2 (solid orange) | Low current 5V | Wireless pole 5V (WPBS3-2) | 
+| 1 (stripe orange) | LC GND | LC GND (WPBS3-1) | 
+| 2 (solid orange) | LC 5V | LC 5V (WPBS3-2) | 
 | 3 (stripe green) | empty | empty (WPBS2-3) |
 | 4 (solid blue) | empty | empty (WPBS2-4) |
 | 5 (stripe blue) | empty | empty (WPBS2-5) |
@@ -34,11 +34,11 @@ Low current barrier strip 3 to high current barrier strip 1.  For connecting LC 
 
 | Position (Color) | LCBS3 description | HCBS1 description |
 | :---: | :---: | :---: |
-| 1 (stripe orange) | mainMega PWM servo sheild ch 0 signal (Q1) | optocoupler motor controller input Q1 |
-| 2 (solid orange) | mainMega PWM servo sheild ch 1 signal (Q2) | optocoupler motor controller input Q2 |
-| 3 (stripe green) | mainMega PWM servo sheild ch 2 signal (Q3) | optocoupler motor controller input Q3 |
-| 4 (solid blue) | mainMega PWM servo sheild ch 3 signal (Q4) | optocoupler motor controller input Q4 |
-| 5 (stripe blue) | empty | empty |
+| 1 (stripe orange) | LC GND (short to LCBS1-1) | optocoupler LC GND |
+| 2 (solid orange) | mainMega PWM servo sheild ch 0 signal (Q2) | optocoupler motor controller input Q1 |
+| 3 (stripe green) | mainMega PWM servo sheild ch 1 signal (Q3) | optocoupler motor controller input Q2 |
+| 4 (solid blue) | mainMega PWM servo sheild ch 2 signal (Q4) | optocoupler motor controller input Q3 |
+| 5 (stripe blue) | mainMega PWM servo sheild ch 3 signal (Q4) | optocoupler motor controller input Q4 |
 | 6 (solid green) | empty | empty |
 | 7 (stripe brown) | empty | empty |
 | 8 (solid brown) | empty | empty |
