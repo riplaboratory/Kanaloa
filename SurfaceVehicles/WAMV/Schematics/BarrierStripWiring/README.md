@@ -35,11 +35,11 @@ Low current barrier strip 3 to high current barrier strip 1.  For connecting LC 
 | Position (Color) | LCBS3 description | HCBS1 description |
 | :---: | :---: | :---: |
 | 1 (stripe orange) | LC GND (short to LCBS1-1) | optocoupler LC GND |
-| 2 (solid orange) | mainMega PWM servo sheild ch 0 signal (Q2) | optocoupler motor controller input Q1 |
-| 3 (stripe green) | mainMega PWM servo sheild ch 1 signal (Q3) | optocoupler motor controller input Q2 |
-| 4 (solid blue) | mainMega PWM servo sheild ch 2 signal (Q4) | optocoupler motor controller input Q3 |
-| 5 (stripe blue) | mainMega PWM servo sheild ch 3 signal (Q4) | optocoupler motor controller input Q4 |
-| 6 (solid green) | empty | empty |
+| 2 (solid orange) | LC 5V (short to LCBS1-2) | octocoupler LC 5V |
+| 3 (stripe green) | mainMega PWM servo shield ch 0 signal (Q1) | optocoupler motor controller input Q1 |
+| 4 (solid blue) | mainMega PWM servo shield ch 1 signal (Q2) | optocoupler motor controller input Q2 |
+| 5 (stripe blue) | mainMega PWM servo shield ch 2 signal (Q3) | optocoupler motor controller input Q3 |
+| 6 (solid green) | mainMega PWM servo shield ch 3 signal (Q4) | optocoupler motor controller input Q4 |
 | 7 (stripe brown) | empty | empty |
 | 8 (solid brown) | empty | empty |
 
