@@ -53,16 +53,16 @@ Low current barrier strip 4 to high current barrier strip 2.  For connecting LC 
 | 3 (stripe green) | mainMega digital pin 26 (Q3) | optocoupler reversing contactor input Q3 |
 | 4 (solid blue) | mainMega digital pin 28 (Q4) | optocoupler reversing contactor input Q4 |
 | 5 (stripe blue) | mainMega digital pin 30 (revConKill) | optocoupler reversing contactor input revConKill |
-| 6 (solid green) | empty | empty |
+| 6 (solid green) | mainMega pin (undetermined( | optocoupler batteryVoltage output |
 | 7 (stripe brown) | small kill relay switching contacts common | kill relay 1 and 2 coil (left) |
 | 8 (solid brown) | small kill relay switching contacts normally open | kill relay 1 and 2 coil (right) |
  
 ## LCBS5 to HCBS3
-Low current barrier strip 5 to high current barrier strip 3.  For connecting LC mainMega to HC optocoupler batteryMega output.
+Currently unassigned.  LCBS5 currently exists in the low current box, but HCBS3 does not exist in the high current box.
 
 | Position (Color) | LCBS5 description | HCBS3 description |
 | :---: | :---: | :---: |
-| 1 (stripe orange) | mainMega pin (UNDETERMINED) | optocoupler batteryVoltage output |
+| 1 (stripe orange) | empty | empty |
 | 2 (solid orange) | empty | empty |
 | 3 (stripe green) | empty | empty |
 | 4 (solid blue) | empty | empty |
