@@ -1,5 +1,29 @@
 # WAM-V ROS Info
 
+## Packages Used
+GPS
+1. nmea_navsat_driver (http://wiki.ros.org/nmea_navsat_driver)
+
+Images/Videos
+1. usb_cam (http://wiki.ros.org/usb_cam)
+1. image_transport (http://wiki.ros.org/image_transport)
+1. compressed_image_transport (https://github.com/ros-perception/image_transport_plugins)
+
+IMU
+1. um7 (http://wiki.ros.org/um7)
+1. razor_imu_9d0f (http://wiki.ros.org/razor_imu_9dof)
+
+Download the packages according to the ros-distro you are currently using with 
+
+git clone
+
+`<git clone (github package url)>`
+
+and 
+
+`<sudo apt install (package name)>`
+
+
 ## ROS Topics
 
 | Topic Name | Message Type | Description |
