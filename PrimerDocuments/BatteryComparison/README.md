@@ -34,4 +34,5 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
     - volume: (0.173m)(0.074m)(0.045m) = 5.7609E-4 m^3 ≈ 576 mL
   - Calculations:
     - $/Wh = (142.74$)/(236.8Wh) = $0.60279 per Wh ≈ __$0.60 per Wh__
+    - mass energy density = (1.290kg)/(236.8Wh) = 0.0054476 kg per Wh ≈ __0.0054476 kg per Wh__
  
