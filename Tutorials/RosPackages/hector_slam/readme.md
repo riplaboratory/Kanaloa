@@ -11,7 +11,7 @@ node with our current setup of our [UST-20LX Hokuyo Lidar](https://www.roscompon
 First, we will need to configure our network settings to be able to communicate with the Hokuyo lidar. The particular 
 lidar we have uses an ethernet connection to send data to our device. 
 
-1. Open the **network connections** menu by clicking on the small ![alt text](https://www.freepik.com/index.php?goto=27&url_download=aHR0cDovL3d3dy5mbGF0aWNvbi5jb20vZnJlZS1pY29uL3dpZmktY29ubmVjdGlvbi1zaWduYWwtc3ltYm9sXzUzNTI0&opciondownload=318&id=aHR0cDovL3d3dy5mbGF0aWNvbi5jb20vZnJlZS1pY29uL3dpZmktY29ubmVjdGlvbi1zaWduYWwtc3ltYm9sXzUzNTI0&fileid=788682 "wi-fi icon") icon.
+1. Open the **network connections** menu by clicking on the small wifi icon.
 2. Click on **edit connections**
 3. Click **add**
 4. For **choose a connection type** select **ethernet**
@@ -109,4 +109,7 @@ see what it looks like in rviz.
 4. Last thing to do is simply launch the **hector_slam** launch file:
 
    ``` roslaunch hector_slam_launch tutorial.launch ```
+   
+   
+
 
