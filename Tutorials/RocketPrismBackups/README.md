@@ -1,4 +1,4 @@
-### Backup Configuration Files for the Rocket Prism 5AC Gen2 
+# Backup Configuration Files for the Rocket Prism 5AC Gen2 
 
 ## How to upload configuration file to Rocket Prism 
 
