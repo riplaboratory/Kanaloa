@@ -65,17 +65,32 @@ classified_colors_list = []
 times = []
 
 def intro():
-	image_topic = raw_input("\n\nName of the topic which the Images are Published (ex: topic_name/sub_topic): \n")
-	image_type = raw_input("\n\nWill you be subscribing to images of message type Image (i) or CompressedImage (c)  (i/c):\n")
-	if image_type == 'c': image_type = 'CompressedImage'
-	else: image_type = 'Image'
-	print(chr(27) + "[2J")
-	print "Images will be subscribed from topic ", image_topic, "\nwith message type: ", image_type, "\n\n... Is this correct? (y/n)"
-	confirmation = raw_input("")
+	print("\nTopics:")
+	topics = rospy.get_published_topics()
+	i = 0
+	topic_list = []
+	type_list = []
+	for topic in topics :
+		topic_name = topic[0]
+		topic_name = topic_name[1:]
+		topic_type = topic[1]
+		topic_type = topic_type.split("/", 1)
+		#Sort Topics by type
+		if topic_type[1] == "CompressedImage" or topic_type == "	Image":
+			print i, ") \t", topic_name
+			topic_list.append(topic_name)
+			type_list.append(topic_type[1])
+			i += 1
 
-	if confirmation != "y":
-		print("Please Restart the script and try entering the information correctly")
-		assert confirmation == "y", "image topic and number not properly specified"
+	#Choosing a topic number
+	a = int(raw_input("\n\nPick A topic number:  "))
+	if a < 0 or a >= i:
+		assert "Invalid Option"
+	else:
+		print topic_list[a], type_list[a] 
+
+	image_topic = topic_list[a]
+	image_type = type_list[a]
 
 	print(chr(27) + "[2J")
 			
@@ -89,7 +104,7 @@ class image_converter:
   global image_type
   def __init__(self):
     # self.image_pub = rospy.Publisher("image_topic_2",Image)
-    print("Initializing Color Recognition \nA new window will appear once image are detected ...")
+    print("A new window will appear once image are detected ...")
     self.bridge = CvBridge()
     # self.image_sub = rospy.Subscriber("camera1/usb_cam/image_raw/compressed",CompressedImage,self.callback, queue_size=1)
     if image_type == "Image":

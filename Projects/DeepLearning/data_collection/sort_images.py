@@ -52,7 +52,7 @@ def image_callback(msg, args):
 		else:
 			# print("Recieved Image")
 			# Save your OpenCV2 image as a jpeg 
-			all_images_path = "all_images/" + str(image_counter) + ".jpg"
+			all_images_path = "sorted_images/all_images/" + str(image_counter) + ".jpg"
 			cv2.imwrite(all_images_path, cv2_img)
 
 			image_counter += 1
@@ -73,14 +73,41 @@ def intro():
 	print("\nEnsure this script is run in the directory which you want to save the images to their respective folders")
 	current_directory = os.getcwd()
 	print "\nFolders will be created in directory: \n", current_directory, " \nif they do not exist"
-	image_topic = raw_input("\n\nName of the topic which the Images are Published (ex: topic_name/sub_topic): \n")
+
+	print("\nTopics:")
+	topics = rospy.get_published_topics()
+	i = 0
+	topic_list = []
+	type_list = []
+	for topic in topics :
+		topic_name = topic[0]
+		topic_name = topic_name[1:]
+		topic_type = topic[1]
+		topic_type = topic_type.split("/", 1)
+		#Sort Topics by type
+		if topic_type[1] == "CompressedImage" or topic_type == "	Image":
+			print i, ") \t", topic_name
+			topic_list.append(topic_name)
+			type_list.append(topic_type[1])
+			i += 1
+
+	#Choosing a topic number
+	a = int(raw_input("\n\nPick A topic number:  "))
+	if a < 0 or a >= i:
+		assert "Invalid Option"
+	else:
+		print topic_list[a], type_list[a] 
+
+	image_topic = topic_list[a]
+	save_type = type_list[a]
+	# image_topic = raw_input("\n\nName of the topic which the Images are Published (ex: topic_name/sub_topic): \n")
 	image_counter = raw_input("\n\nNumber to start naming images (If no image data collected yet just type '0'): ")
 	image_counter = int(image_counter)
-	save_type = raw_input("\n\nWill you be subscribing to images of message type Image (i) or CompressedImage (c)  (i/c):\n")
-	if save_type == 'c': save_type = 'CompressedImage'
-	else: save_type = 'Image'
-	print(chr(27) + "[2J")
-	print "Images will be subscribed from topic ", image_topic, "\nwith message type: ", save_type, " \nStarting at image number ", image_counter, "\n\n... Is this correct? (y/n)"
+	# save_type = raw_input("\n\nWill you be subscribing to images of message type Image (i) or CompressedImage (c)  (i/c):\n")
+	# if save_type == 'c': save_type = 'CompressedImage'
+	# else: save_type = 'Image'
+	# print(chr(27) + "[2J")
+	print "Images will be subscribed from topic: ", image_topic, "\nwith message type: ", save_type, " \nStarting at image number ", image_counter, "\n\n... Is this correct? (y/n)"
 	confirmation = raw_input("")
 
 
@@ -89,7 +116,7 @@ def intro():
 		assert confirmation == "y", "image topic and number not properly specified"
 
 	print(chr(27) + "[2J")
-	object_directories = ["/triangle", "/circle", "/cross", "/buoy", "/null", "/all_images", "/not_circle", "/not_triangle", "/not_cross", "/not_buoy", "/multiple"]
+	object_directories = ["/sorted_images/triangle", "/sorted_images/circle", "/sorted_images/cross", "/sorted_images/buoy", "/sorted_images/null", "/sorted_images/all_images", "/sorted_images/multiple"]
 
 	for directory in object_directories:
 		if not os.path.exists(current_directory+directory):
@@ -122,25 +149,25 @@ def check_keystroke():
 		folder_key = raw_input("\n")  # Python 2
 
 		if folder_key == "n":
-		    save_locatoion = "null"
+		    save_locatoion = "sorted_images/null"
 		    print("Not Recording to Object Folders")
 		elif folder_key == "t":
-		    save_location = "triangle"
+		    save_location = "sorted_images/triangle"
 		    print "Recording to folder: ", save_location
 		elif folder_key == "c":
-		    save_location = "cross"
+		    save_location = "sorted_images/cross"
 		    print "Recording to folder: ", save_location
 		elif folder_key == "o":
-		    save_location = "circle"
+		    save_location = "sorted_images/circle"
 		    print "Recording to folder: ", save_location
 		elif folder_key == "b":
-		    save_location = "buoy"
+		    save_location = "sorted_images/buoy"
 		    print "Recording to folder: ", save_location
 		elif folder_key == "m":
-		    save_location = "multiple"
+		    save_location = "sorted_images/multiple"
 		    print "Recording to folder: ", save_location
 		elif folder_key == "?":
-		    save_location = "null"
+		    save_location = "sorted_images/null"
 		    print("Not Recording to Object Folders")
 		    print("\t t: triangle \n\t c: cross \n\t o: circle \n\t b: buoy \n\t m: multiple \n\tn: no objects present \n\t ?: repeat this prompt")
 		else:
