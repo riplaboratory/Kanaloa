@@ -178,8 +178,8 @@ def color_recognition(image):
         		plot_mask(res_plot, color, 1)
     		if color == "green":
         		plot_mask(res_plot, color, 2)
-    		if color == "yellow":
-        		plot_mask(res_plot, color, 3)
+    		# if color == "yellow":
+      #   		plot_mask(res_plot, color, 3)
 
         if len(cnts) > 0:
             c = max(cnts, key=cv2.contourArea)
@@ -236,14 +236,15 @@ class image_converter:
 	def generate_scanned_code_list(classified):
 		global classified_colors_list
 		global times
-		if classified.values().count(True) == 1:
+		# if classified.values().count(True) == 1:
+		if classified["red"] == True or classified["blue"] or classified["green"]:
 			
 			c  = classified.keys()[classified.values().index(True)]
-			if len(classified_colors_list) == 0 and (c == "red" or c == "green" or c == "blue" or c == "yellow"):
+			if len(classified_colors_list) == 0 and (c == "red" or c == "green" or c == "blue"):
 				classified_colors_list.append(c)
 				times.append(data.header.stamp.secs)
 			
-			if classified_colors_list[-1] != c and (c == "red" or c == "green" or c == "blue" or c == "yellow"):
+			if classified_colors_list[-1] != c and (c == "red" or c == "green" or c == "blue"):
 				classified_colors_list.append(c)
 				times.append(data.header.stamp.secs)
 		if len(times) > 2:
