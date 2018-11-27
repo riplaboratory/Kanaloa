@@ -1,0 +1,8 @@
+prefix=/home/rip-acer-vn7-591g-1/lidar_ws2/devel
+
+Name: cloud_msgs
+Description: Description of cloud_msgs
+Version: 1.0.0
+Cflags: -I/home/rip-acer-vn7-591g-1/lidar_ws2/devel/include
+Libs: -L/home/rip-acer-vn7-591g-1/lidar_ws2/devel/lib 
+Requires: message_runtime message_generation geometry_msgs std_msgs nav_msgs

@@ -1,0 +1,8 @@
+prefix=/home/rip-acer-vn7-591g-1/mp4_to_bag_ws/devel
+
+Name: video_stream_opencv
+Description: Description of video_stream_opencv
+Version: 1.1.4
+Cflags: 
+Libs: -L/home/rip-acer-vn7-591g-1/mp4_to_bag_ws/devel/lib 
+Requires: 
