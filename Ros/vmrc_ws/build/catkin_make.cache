@@ -1,0 +1,2 @@
+nps_robotx:robotx_gazebo:wamv_description
+-DCATKIN_DEVEL_PREFIX=/home/rip-acer-vn7-591g-1/vmrc_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rip-acer-vn7-591g-1/vmrc_ws/install -G Unix Makefiles

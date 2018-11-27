@@ -1,0 +1,8 @@
+prefix=/home/rip-acer-vn7-591g-1/vmrc_ws/devel
+
+Name: robotx_gazebo
+Description: Description of robotx_gazebo
+Version: 0.0.1
+Cflags: -I/home/rip-acer-vn7-591g-1/vmrc_ws/devel/include -I/home/rip-acer-vn7-591g-1/vmrc_ws/src/robotx_gazebo/include
+Libs: -L/home/rip-acer-vn7-591g-1/vmrc_ws/devel/lib 
+Requires: roscpp message_runtime std_msgs geometry_msgs nav_msgs
