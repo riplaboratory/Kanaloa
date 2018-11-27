@@ -1,0 +1,8 @@
+prefix=/home/rip-acer-vn7-591g-1/vmrc_ws/devel
+
+Name: wamv_description
+Description: Description of wamv_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/rip-acer-vn7-591g-1/vmrc_ws/devel/lib 
+Requires: 
