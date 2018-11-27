@@ -1,0 +1,2 @@
+LeGO-LOAM/LeGO-LOAM:LeGO-LOAM/cloud_msgs
+-DCATKIN_DEVEL_PREFIX=/home/rip-acer-vn7-591g-1/lidar_ws2/devel -DCMAKE_INSTALL_PREFIX=/home/rip-acer-vn7-591g-1/lidar_ws2/install -G Unix Makefiles
