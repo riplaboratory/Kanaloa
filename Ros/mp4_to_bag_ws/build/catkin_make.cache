@@ -1,2 +1,0 @@
-video_stream_opencv
--DCATKIN_DEVEL_PREFIX=/home/rip-acer-vn7-591g-1/mp4_to_bag_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rip-acer-vn7-591g-1/mp4_to_bag_ws/install -G Unix Makefiles
