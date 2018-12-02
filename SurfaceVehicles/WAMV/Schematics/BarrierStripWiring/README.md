@@ -36,12 +36,12 @@ Low current barrier strip 3 to high current barrier strip 1.  For connecting LC 
 | :---: | :---: | :---: |
 | 1 (stripe orange) | LC GND (short to LCBS1-1) | optocoupler LC GND |
 | 2 (solid orange) | LC 5V (short to LCBS1-2) | octocoupler LC 5V |
-| 3 (stripe green) | mainMega PWM servo shield ch 0 signal (Q1) | optocoupler motor controller input Q1 |
-| 4 (solid blue) | mainMega PWM servo shield ch 1 signal (Q2) | optocoupler motor controller input Q2 |
-| 5 (stripe blue) | mainMega PWM servo shield ch 2 signal (Q3) | optocoupler motor controller input Q3 |
-| 6 (solid green) | mainMega PWM servo shield ch 3 signal (Q4) | optocoupler motor controller input Q4 |
-| 7 (stripe brown) | empty | empty |
-| 8 (solid brown) | empty | empty |
+| 3 (stripe green) | HC GND | HC GND (from main battery GND) |
+| 4 (solid blue) | HC 5V | HC 5V (from 5V regulator GND) |
+| 5 (stripe blue) | mainMega PWM servo shield ch 0 signal (Q1) | optocoupler motor controller input Q1 |
+| 6 (solid green) | mainMega PWM servo shield ch 1 signal (Q2) | optocoupler motor controller input Q2 |
+| 7 (stripe brown) | mainMega PWM servo shield ch 2 signal (Q3) | optocoupler motor controller input Q3 |
+| 8 (solid brown) | mainMega PWM servo shield ch 3 signal (Q4) | optocoupler motor controller input Q4 |
 
 ## LCBS4 to HCBS2
 Low current barrier strip 4 to high current barrier strip 2.  For connecting LC mainMega to HC optocoupler reversing contactor inputs _and_ LC small kill relay switching contacts to HC big kill relay coil contacts.
