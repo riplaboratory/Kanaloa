@@ -1,5 +1,3 @@
 # ROS topic Image Collection and Sorting
 
 This script is used to help sort images that come in via ROS topics. 
-The script takes in images being published and save it to folders corresponding to common objects found in the 2018 RobotX competition based on keyboard input from the user. 
-The script is currently setup to for the RobotX 2018 competition objects, such the image data can be saved in following folders:
