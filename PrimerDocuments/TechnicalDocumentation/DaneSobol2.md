@@ -7,7 +7,7 @@ Refer to page 9 of the https://www.robotx.org/images/RobotX-2018-Tasks_v2.0.pdf 
 The WAM-V will avoid black buoy obstacles in preparation for this competition.
  
 
-
+https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/1%20Avoid%20Obstacles%20task.png
 Figure 1: Avoid Obstacles task
 
 ### Installation:
@@ -34,6 +34,11 @@ Steps:
 
 6. Wrap black electrical tape around each zip tie to reduce the chance of the zip tie puncturing a hole in the ball.
   
+https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/2%20Axis%20of%20Buoy%20Labeled.png
+Figure 2 (left): Axis of ball labeled
+
+https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/3%20Buoy%20Image.JPG
+Figure 3 (right): Real image of ball with rope around axis
 
 7. Pump the ball to around 75 cm or right before the rope starts to deform the ball. 
 
@@ -45,7 +50,7 @@ https://www.youtube.com/watch?v=3X8drKsdf5E
  https://www.youtube.com/watch?v=n3Xa7wh81Wo
 
  
-
+https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/4%20South%20Pole%20of%20Buoy.JPG
 Figure 4: View of South Pole of ball with slipknot
 
 10. Mark a line at 20’ and 21’ from the South Pole of the ball. The maximum depth of Sand Island, where the test will be conducted, is 20’ deep. 
@@ -58,7 +63,7 @@ Figure 4: View of South Pole of ball with slipknot
  
 
 
- 
+https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/5%20Completed%20Buoy.JPG
 Figure 5: The completed buoy
 ```
 ### Operation:
