@@ -6,11 +6,7 @@ maintenance of black buoys to be used in the 2018 RobotX Competition Avoid Obsta
 Refer to page 9 of the https://www.robotx.org/images/RobotX-2018-Tasks_v2.0.pdf for background information on this task. 
 The WAM-V will avoid black buoy obstacles in preparation for this competition.
  
-https://www.robotx.org/images/RobotX-2018-Tasks_v2.0.pdf
 
-
-
- 
 
 Figure 1: Avoid Obstacles task
 
