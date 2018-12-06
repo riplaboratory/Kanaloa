@@ -1,8 +1,5 @@
-#Scan the Code Light Buoy Mechanical Subsystem
+# ROS topic Image Collection and Sorting
 
-The purpose of this tutorial is to create a light buoy that may be read by scan the
-code color recognition sensors from the WAM-V. One of the 2018 RobotX challenges
-is for the WAM-V to record the location and color of a light source from a floating
-buoy. These colors are red, green, and blue. Two separate projects will be
-considered in the overall light buoy design: How to create a light pole, and how to
-create a floating platform to support this light pole.
+This script is used to help sort images that come in via ROS topics. 
+The script takes in images being published and save it to folders corresponding to common objects found in the 2018 RobotX competition based on keyboard input from the user. 
+The script is currently setup to for the RobotX 2018 competition objects, such the image data can be saved in following folders:
