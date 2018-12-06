@@ -1,6 +1,6 @@
-## Light Buoy
+# Light Buoy
 
-# References
+### References
 RobotX
 Light Buoy Preliminary Specifications, 
 Task Descriptions and Specifications, 
