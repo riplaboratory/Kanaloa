@@ -1,4 +1,4 @@
-# Light Buoy
+## Light Buoy
 
 # References
 RobotX
