@@ -19,9 +19,9 @@ considered in the overall light buoy design: How to create a light pole, and how
 create a floating platform to support this light pole.
 
 Figure 1: Final Design of Light Buoy
-# Create a Light Pole
+### Create a Light Pole
 How to construct wooden triangular frame:
-
+```
 1. Buy three ¼ inch thick plywood of 15” x 20”.
 Figure 2: Dimensions for Wooden triangular panel
 2. Use a power drill to create a hole in the middle of the wood.
@@ -43,43 +43,63 @@ long zinc screw for each block. This gives the triangle covers a base to connect
 the three rectangular plywood panels.
 Figure 4: Ground-up perspective inside triangular wooden frame. Shows cut circle
 with triangle cover supported by 1 inch thick blocks of wood to act as a base.
-# PVC Pole:
+```
+
+### PVC Pole:
+```
 9. Buy a 1.5 inch outer diameter PVC pole 6 feet tall. The PVC pole is 6 feet tall
 because RobotX specifies the top edge of wooden panel is no more than 9.8 feet
 above the water surface.
-# Holding PVC Pole:
+```
+
+### Holding PVC Pole:
+```
 10. Model in Solid Works a design to hold a 1.5 inch outer diameter PVC pole. The
 model and dimensions for this design can be found in the uploaded file. See figure 5.
 11. Use a ¼” zinc fastener (no washer or nut required) and twist into 3D shape to
 secure 1.5” PVC pole to 3D printed shape.
+
 Figure 5: Solid Works Model to hold PVC pole and Cylinder
-# Construct Cylinder:
+```
+### Construct Cylinder:
+```
 12. Using a polyethylene plastic sheet cut a 25” by 19.5” rectangle. The
 circumference of the cylinder will be 25” and the height will be 19.5”.
 13. Apply super glue on outer edge of 3D printed model shown in figure 6.
 14. Wrap the plastic sheet around the outer edge of this model in figure 6.
 15. Use duct tape to hold plastic together while super glue dries.
+
 Figure 6: Explanation for how to secure PVC and cylinder to 3D part
-# Electronics:
+```
+### Electronics:
+```
 16. Attach approximately 90 feet of LED lights to plastic cylinder using a spray
 adhesive. Be sure to leave no gaps between each strip of LED to maximize
 brightness.
 17. Run wires that power LED lights through PVC pole and through wooden
 plywood as seen in figure 7.
 Figure 7: Head on view of light pole showing where wires run on pole
-# Storing electrical components:
+```
+### Storing electrical components:
+```
 18. Use a husky box to fit electrical components. See Yong’s technical documentation
 for what electrical components go inside husky box. The box will rest on the
 platform of the buoy for easier assembly.
 Figure 8: Electrical components inside husky box to power LED lights on light pole
-# Shade the LED lights:
+```
+### Shade the LED lights:
+```
 19. Use a black umbrella and place handle inside of PVC pole from the top of the
 light pole. Tape the umbrella to the PVC with duct tape. The purpose of using an
 umbrella is to provide shade for the light buoy to brighten LED colors.
-# Create a floating platform for light pole
+```
+### Create a floating platform for light pole
+```
 Figure 9: Finished floating platform
 The purpose of this floating platform is to allow the light pole to float in the water.
-# Materials for floating platform:
+```
+### Materials for floating platform:
+```
 • Four 5 gallon buckets with black screw top bucket lid
 • Wooden platform
 • 5 lb weights attached to bottom of platform. 35 – 40lb total weight
@@ -96,7 +116,9 @@ Figure 11: Dimensions for diameter of circle to be cut from floating platform
 Figure 12: Zoomed out view of where four buckets fit on the floating 50”x50”
 platform.
 3. Use a jigsaw to cut a circular hole and place a 5-gallon bucket inside each hole.
-# Calculate amount of buoyant force:
+```
+### Calculate amount of buoyant force:
+```
 Approximately 3 gallons will be under water. There is 8 lbs of upward force acting
 on an object per gallon, and 4 buckets total. (8lbs/gal)*(3gal)*4 = 96 lbs. of buoyant
 force.
@@ -107,3 +129,4 @@ fasteners to attach to pole and platform.
 buckets.
 Figure 13: Assembly of floating platform. Securing buckets with ratchet straps
 6. Add 5 lb weights attached to bottom of platform. A total of 35 – 40lb total weight.
+```
