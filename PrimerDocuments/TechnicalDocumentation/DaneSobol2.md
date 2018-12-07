@@ -7,7 +7,7 @@ Refer to page 9 of the https://www.robotx.org/images/RobotX-2018-Tasks_v2.0.pdf 
 The WAM-V will avoid black buoy obstacles in preparation for this competition.
  
 
-https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/1%20Avoid%20Obstacles%20task.png
+![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/1%20Avoid%20Obstacles%20task.png)
 Figure 1: Avoid Obstacles task
 
 ### Installation:
@@ -19,7 +19,6 @@ Components (per buoy)
 •	Black electrical tape (buy waterproof tape)
 •	25 – 30 pound Kettle Bell
 •	About 20 black zip ties
-```
 ```
 Steps:
 1. Pump ball up to about 60 cm diameter. This should take about 5 minutes if pumped by hand.
@@ -33,11 +32,11 @@ Steps:
 5. Use black zip ties to permanently connect rope together. Be sure the top of the zip tie is facing away from the ball. Clip the ENTIRE extra zip tie line to ensure the top of the zip tie is smooth.
 
 6. Wrap black electrical tape around each zip tie to reduce the chance of the zip tie puncturing a hole in the ball.
-  
-https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/2%20Axis%20of%20Buoy%20Labeled.png
+ 
+![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/2%20Axis%20of%20Buoy%20Labeled.png)
 Figure 2 (left): Axis of ball labeled
 
-https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/3%20Buoy%20Image.JPG
+![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/3%20Buoy%20Image.JPG)
 Figure 3 (right): Real image of ball with rope around axis
 
 7. Pump the ball to around 75 cm or right before the rope starts to deform the ball. 
@@ -47,10 +46,10 @@ Bowline Knot: 3:07 – 4:07
 https://www.youtube.com/watch?v=3X8drKsdf5E
 
 9. At South Pole of ball, use a SEPARATE rope to tie 23 feet of rope to the ball. Tie using a Slip Knot. The purpose of this knot is to be able to quickly adjust the length of available rope, hence the name, “Slip Knot”. Refer to video below for instructions on this knot. 
- https://www.youtube.com/watch?v=n3Xa7wh81Wo
+https://www.youtube.com/watch?v=n3Xa7wh81Wo
 
  
-https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/4%20South%20Pole%20of%20Buoy.JPG
+![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/4%20South%20Pole%20of%20Buoy.JPG)
 Figure 4: View of South Pole of ball with slipknot
 
 10. Mark a line at 20’ and 21’ from the South Pole of the ball. The maximum depth of Sand Island, where the test will be conducted, is 20’ deep. 
@@ -60,14 +59,14 @@ Figure 4: View of South Pole of ball with slipknot
 12. *ONLY if not using a kettle bell weight: Using a SEPARATE length of rope, tie another bowline knot to the weight to create a handle. Run the rope through a 2-inch PVC pipe to make it more comfortable to hold the weight. 
 
 13. To store ball, deflate and reflate when needed. The rope remains fixed.
- 
 
 
-https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/5%20Completed%20Buoy.JPG
+
+![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/5%20Completed%20Buoy.JPG)
 Figure 5: The completed buoy
-```
+
 ### Operation:
-```
+
 Steps:
 1. Start by inflating the black ball until RIGHT before the rope deforms the ball.
  
@@ -78,14 +77,14 @@ Example: The depth of water is 15 feet. The length of rope is 18 feet. Therefore
 3. A person may either walk the weight into the ocean, or drop the weight from a boat.
 
  IMPORTANT: Do not hold the South Pole rope that connects the weight to the ball when you drop it into the ocean. Doing so may result in rope burn. Hold the rope from the North Pole.
-```
+
 
 ### Maintenance:
-```
+
 Some electrical tape may peel off after being used in the water. Replace the tape on the rope if this happens.
 
 Periodically inspect ball for holes, especially where the zip ties are located.
-```
+
 ### References:
 
 https://vvvv.org/blog/polar-spherical-and-geographic-coordinates
