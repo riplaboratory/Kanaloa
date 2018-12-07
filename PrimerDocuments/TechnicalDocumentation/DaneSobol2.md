@@ -8,10 +8,11 @@ The WAM-V will avoid black buoy obstacles in preparation for this competition.
  
 
 ![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/1%20Avoid%20Obstacles%20task.png)
-Figure 1: Avoid Obstacles task
-
-### Installation:
 ```
+Figure 1: Avoid Obstacles task
+```
+### Installation:
+
 Components (per buoy)
 •	Black SPRI 75 cm diameter weighted exercise ball
 •	¼” x 100’ Utility Line Polypropylene Invincible Marine 
@@ -19,7 +20,7 @@ Components (per buoy)
 •	Black electrical tape (buy waterproof tape)
 •	25 – 30 pound Kettle Bell
 •	About 20 black zip ties
-```
+
 Steps:
 1. Pump ball up to about 60 cm diameter. This should take about 5 minutes if pumped by hand.
 
@@ -34,11 +35,13 @@ Steps:
 6. Wrap black electrical tape around each zip tie to reduce the chance of the zip tie puncturing a hole in the ball.
  
 ![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/2%20Axis%20of%20Buoy%20Labeled.png)
+```
 Figure 2 (left): Axis of ball labeled
-
+```
 ![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/3%20Buoy%20Image.JPG)
+```
 Figure 3 (right): Real image of ball with rope around axis
-
+```
 7. Pump the ball to around 75 cm or right before the rope starts to deform the ball. 
 
 8. At the North Pole of ball, tie off remaining rope using a Bowline knot. Refer to video below for instructions on this knot.
@@ -50,8 +53,9 @@ https://www.youtube.com/watch?v=n3Xa7wh81Wo
 
  
 ![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/4%20South%20Pole%20of%20Buoy.JPG)
+```
 Figure 4: View of South Pole of ball with slipknot
-
+```
 10. Mark a line at 20’ and 21’ from the South Pole of the ball. The maximum depth of Sand Island, where the test will be conducted, is 20’ deep. 
 
 11. Attach the 25 – 30 pound weight to the opposite end of this rope using a bowline knot.  
@@ -63,8 +67,9 @@ Figure 4: View of South Pole of ball with slipknot
 
 
 ![alt text](https://github.com/riplaboratory/Kanaloa/blob/technical-documentation/Projects/ObstacleAvoidance/BlackBuoy/5%20Completed%20Buoy.JPG)
+```
 Figure 5: The completed buoy
-
+```
 ### Operation:
 
 Steps:
