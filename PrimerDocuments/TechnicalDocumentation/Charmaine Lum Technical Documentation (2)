@@ -1,0 +1,58 @@
+Peer Reviewed: Danny Hong				Charmaine Lum
+										December 7, 2018
+Technical Documentation
+Cooling System Vents/Radiator Mount:
+The purpose of this tutorial is to create a 3-D printed mount made of any type of plastic material. Usually we strive for a translucent green 3-D printer filament because that kind of material is meant to sustain more temperature sensitive components of the WAM-V (which was what we used for the high current box). But due to limited resources of the translucent green 3-D printer filament, we opted to use a white one for our second radiator mount for the low current box. The material serves the same function but not as temperature sensitive as the green colored.
+Materials Required:
+•	Translucent Green 3-D Printer Filament (or any available color you can find)
+•	3-D Printer big enough to print a 16 in. mount in length
+•	5/16 Fasteners, 5/16 Washers (approximately 50 EA), 5/16 Plated Nuts (7 EA)
+o	Two 4 in. 5/16 fasteners and three 6 in. 5/16 fasteners 
+•	Phillips screws (These should come with the radiator when you purchase the box)
+•	Steel Piping for covering of
+•	13mm Wrench
+•	Drill with drill bit “Q” for 5/16 fasteners and ½ space needle to cut out a hole for cooling tubes
+•	Coils to connect the cooling tubes to the radiator
+Specifications:
+Schematics for the radiator mount: (See pdf for images)
+ 
+Installation Process:
+1.	Collect all your materials stated in the requirements above
+2.	Start off by marking your dimensions on your designated box
+a.	In our case, we used an empty plastic box as the low current box to attach the radiator mount
+b.	The placement of the radiator on the low current box should be an exact mirror (opposite sides of each other) to the high current box
+c.	The reasoning behind this is because there is a triangular beam on the WAM-V in the middle of the two boxes 
+3.	The dimensions for where the holes should be cut are:
+a.	On the left side of whichever short end face, you are using of the box:
+i.	 The 1st mark should be 1 and 14/16 inches coming from the top
+ii.	From Mark 1, measure Mark 2 up to 2.5 inches 
+iii.	From Mark 2, measure Mark 3 up to 3 and ¾ inches
+iv.	Then from there, measure Mark 4 up to 4 and 14/16 inches
+b.	In the center of the box:
+i.	Coming from the left side, the 5th mark should be ¾ inches horizontally and 1.5 inches vertically
+1.	The 7th mark should line up with the dimensions above and land on the angled part of the box
+ii.	The 6th mark is marked: 2.85 inches vertically and 2.25 inches horizontally
+4.	Use Drill bit “Q” for Marks 1,4,5,6,7 and drill a hole straight through
+5.	Use space needle “1/2” for Marks 2 & 3 and drill a hole straight through
+6.	To assemble the radiator to the mount:
+a.	Place the 4 in. fasteners should be at holes 1 & 4 and the 6 in. fasteners should be at holes 5,6,7
+b.	Then use Philips screws and screw them at the holes of the radiator (should use all 10)
+7.	Create 3 aluminum shafts for each of the three 6 in. fasteners. Each length should be approximately 4 inches long
+a.	The shaft that will be covering the fastener in hole 7 should be sanded to the angle of degree of the box (roughly 45 degrees)
+b.	Place them onto the three 6 in. fasteners before officially attaching the entire mount onto the low current box
+8.	Attach the entire mount to the designated holes
+a.	Apply a plated nut on both sides of each of the 4 in. fasteners and a washer on the inside area of the box
+b.	For the remaining three 6 in fasteners, apply roughly 8-10 washers on each fastener and tighten it with a plated nut
+c.	It should look like this: (See pdf for images)
+ 
+The product should look like this: (See pdf for images)
+ 			 
+
+ 
+ 
+
+ 			 
+
+ 
+ 
+
