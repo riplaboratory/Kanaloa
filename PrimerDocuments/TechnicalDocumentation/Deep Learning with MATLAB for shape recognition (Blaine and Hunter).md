@@ -8,7 +8,7 @@ Due to the fact that we tried TensorFlow and its results were clunky and hard to
 ## Prerequisites:
 To start, you need to have MATLAB R2018b installed with these software packages/plugins:
 
-![image](https://drive.google.com/uc?export=view&id=/1pAN9HlcGDwSl51Yc6nFHeShjdoYBohmc/view?usp=sharing)
+![image](https://github.com/k16blfurm/Kanaloa/blob/master/Projects/Shape%20Recognition/pasted%20image%200.png)
 
 Also, to get the USB Webcam working in in MATLAB, you need the Webcam hardware package add-on from MATLAB.
 https://www.mathworks.com/help/supportpkg/usbwebcams/ug/acquire-images-from-webcams.html
