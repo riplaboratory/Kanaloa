@@ -7,6 +7,7 @@ Due to the fact that we tried TensorFlow and its results were clunky and hard to
 # Design Process:
 ## Prerequisites:
 To start, you need to have MATLAB R2018b installed with these software packages/plugins:
+![alt text](https://drive.google.com/open?id=1pAN9HlcGDwSl51Yc6nFHeShjdoYBohmc)
 
 Also, to get the USB Webcam working in in MATLAB, you need the Webcam hardware package add-on from MATLAB.
 https://www.mathworks.com/help/supportpkg/usbwebcams/ug/acquire-images-from-webcams.html
