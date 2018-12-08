@@ -116,5 +116,5 @@ Shown above is what the script will poop out after the validations are checked. 
 ## Authors
 
 * **Blaine Furman** 
-* **Hunter Garrette** 
+* **Hunter Garrett** 
 
