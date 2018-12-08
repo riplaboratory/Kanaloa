@@ -29,9 +29,11 @@ https://www.mathworks.com/help/images/ref/imresize.html
 We need to collect as much image data as possible in order to maximize the accuracy of the network model, which means that thousands of images must be obtained.  These images must be taken with different backgrounds in different configurations, lighting conditions, depths, and angles. (In our case, we managed to come up with a little over 3000 images from Campus, Coconut Island, and a couple more. 
 
 So in this certain case, we were feeding in a 16:9 file and not cropping it at all, 
+
 ![image](https://github.com/k16blfurm/Kanaloa/blob/master/Projects/Shape%20Recognition/Pictures%20for%20Final%20Report/pasted%20image%200%20(1).png)
 
 After you convert your images, you need to go to the Apps tab in Matlab and open the Image Labeler app to begin image labelling or add to our existing image labelling session.
+
 ![image](https://github.com/k16blfurm/Kanaloa/blob/master/Projects/Shape%20Recognition/Pictures%20for%20Final%20Report/unnamed.png)
 
 Here is an image from our labelling session.
@@ -57,6 +59,7 @@ Also, you need to declare your labels “{'circle','cruciform','triangle'}”
 From here we can just run the script in MATLAB after this and it will produce a trained RCNN model which we will use to validate the network with. Make sure to save your workspace to save the RCNN since we will be using this later on for validation.
 
 Now, we need to open the TrainingWork.m script to validate our images and test out the network. We first load the RCNN network using this command:
+
 ![image](https://github.com/k16blfurm/Kanaloa/blob/master/Projects/Shape%20Recognition/Pictures%20for%20Final%20Report/pasted%20image%200%20(6).png)
 
 We will load in the data with the load command.
@@ -64,9 +67,11 @@ We will load in the data with the load command.
 ## Validation:
 
 Going from here, we can use our code to change our height and width, as shown below.
+
 ![image](https://github.com/k16blfurm/Kanaloa/blob/master/Projects/Shape%20Recognition/Pictures%20for%20Final%20Report/pasted%20image%200%20(3).png)
 
 Also, we can load our images by using the imread command or load images from the webcam by referencing the webcam in our code (as shown below).
+
 ![image](https://github.com/k16blfurm/Kanaloa/blob/master/Projects/Shape%20Recognition/Pictures%20for%20Final%20Report/unnamed%20(1).png)
 
 Here is the line of code which processes and classifies an image one at a time.  To use this, you would need to load in all of your validation images into your working directory and type in the name of the image you want to test out within the parenthesis in the imread function.  All you would need to do is replace the purple text with the image name.  Then you would run the script.
