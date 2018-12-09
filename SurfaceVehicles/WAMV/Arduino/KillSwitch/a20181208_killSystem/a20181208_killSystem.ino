@@ -65,19 +65,20 @@ void loop() {
 
   // Read PWM coming in from channel 8 of receiver and set remote kill state 
   ch8PulseLength = pulseIn(ch8Pin, HIGH, 25000); 
+  Serial.println(ch8PulseLength);
 
   // Determine kill switch (ch8) state
-  if(ch8PulseLength + tolerance > 2068 && ch8PulseLength - tolerance < 2068){
+  if(ch8PulseLength + tolerance > 1824 && ch8PulseLength - tolerance < 1824){
     // SD switch on transmitter is in the up position (unkill)
     remoteKillStatus = false;
     digitalWrite(remoteKillOutPin, LOW); 
   }
-  else if (ch8PulseLength + tolerance > 1532 && ch8PulseLength - tolerance < 1532) {
+  else if (ch8PulseLength + tolerance > 1360 && ch8PulseLength - tolerance < 1360) {
     // SD switch on transmitter is in the middle position (kill)
     remoteKillStatus = true; 
     digitalWrite(remoteKillOutPin, HIGH); 
   }
-  else if (ch8PulseLength + tolerance > 1032 && ch8PulseLength - tolerance < 1032) {
+  else if (ch8PulseLength + tolerance > 894 && ch8PulseLength - tolerance < 894) {
     // SD switch on transmitter is in the down position (kill)
     remoteKillStatus = true; 
     digitalWrite(remoteKillOutPin, HIGH);
