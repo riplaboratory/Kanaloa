@@ -43,6 +43,26 @@ with message type:  Image
 ```
 Entering 'y' will begin the color recognition script. Once the script detects images being published to the specified topic it will open a seperate window showing the image feed and begin circling the specific colors it identifies. 
 
+## Adjusting HSV Thresholds for REd Blue Green color recognition:
+The GUI to adjust the threshold values of the color recognition can be run through the following command in a seperate window:
+```
+python2 rgb_threshold_adjuster.py
+```
+When run, three windows with sliders will appear, one for Red, Blue, and Green. The top 3 sliders denote the lower range HSV value amd the lower 3 sliders denote the upper range HSV values. These values can be changed using the sliders and then hitting the "Show" button to submit the changes to the scan_the_code.py script. Some default value use for the compeition are as follows:
+```
+lower_red = np.array([0,90,120])
+upper_red = np.array([5,230,200])
+
+lower_blue = np.array([100,60,60])
+upper_blue = np.array([112,255,190])
+
+lower_green = np.array([40,50,50])
+upper_green = np.array([72,210,210])
+``` 
+Where the three values represent Hue, Saturation, and Value respectively. The value for Hue is run on a scale of 0-180 and the Saturation and Value values are on a scale of 0-255.
+
+To exit the rgb_threshold_adjuster.py script, go to the terminal it is running in and  hit "Ctrl + C", this will kill the backend of the script. However you must then close all three slider windows to finish closing the graphical portion of it. If this is not done the slider GUI may remain stuck on your screen and can only be removed by restarting the computer or using the xkill command in terminal. 
+
 ### Using Images From A Bag File 
 Before starting to script you must have ROS core running in a terminal with the command
 ```
