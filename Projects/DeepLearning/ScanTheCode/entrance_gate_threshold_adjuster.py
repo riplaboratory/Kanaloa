@@ -50,48 +50,63 @@ class ros_class:
 
 		master = Tk()
 		master3 = Tk()
+
+		w = 180
+		h = 425
+		x1 = 1400
+		y = 550
+		# y1 = 500
+		x2 = x1 + w
+		# y2 = 500
+		x3 = x2 + w
+		# y3 = 500
+
+		master.geometry('%dx%d+%d+%d' % (w, h, x1, y))
+		master3.geometry('%dx%d+%d+%d' % (w, h, x2, y))
+
+
 		w = Label(master, text="Red", bg="red", fg="white")
 		w.pack(fill=X)
 		
 		w = Label(master, text="Lower Hue", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_r_l_h = Scale(master, from_=0, to=180, orient=HORIZONTAL)
+		w_r_l_h = Scale(master, from_=0, to=180, length= 175, orient=HORIZONTAL)
 		w_r_l_h.set(140)
 		w_r_l_h.pack()
 
 		w = Label(master, text="Lower Saturation", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_r_l_s = Scale(master, from_=0, to=255, orient=HORIZONTAL)
+		w_r_l_s = Scale(master, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_r_l_s.set(120)
 		w_r_l_s.pack()
 
 		w = Label(master, text="Lower Value", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_r_l_v = Scale(master, from_=0, to=255, orient=HORIZONTAL)
+		w_r_l_v = Scale(master, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_r_l_v.set(60)
 		w_r_l_v.pack()
 
 		w = Label(master, text="Upper Hue", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_r_u_h = Scale(master, from_=0, to=180, orient=HORIZONTAL)
+		w_r_u_h = Scale(master, from_=0, to=180, length= 175, orient=HORIZONTAL)
 		w_r_u_h.set(176)
 		w_r_u_h.pack()
 
 		w = Label(master, text="Upper Saturation", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_r_u_s = Scale(master, from_=0, to=255, orient=HORIZONTAL)
+		w_r_u_s = Scale(master, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_r_u_s.set(255)
 		w_r_u_s.pack()
 
 		w = Label(master, text="Upper Value", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_r_u_v = Scale(master, from_=0, to=255, orient=HORIZONTAL)
+		w_r_u_v = Scale(master, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_r_u_v.set(200)
 		w_r_u_v.pack()
 
@@ -105,42 +120,42 @@ class ros_class:
 		w = Label(master3, text="Lower Hue", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_g_l_h = Scale(master3, from_=0, to=180, orient=HORIZONTAL)
+		w_g_l_h = Scale(master3, from_=0, to=180, length= 175, orient=HORIZONTAL)
 		w_g_l_h.set(74)
 		w_g_l_h.pack()
 
 		w = Label(master3, text="Lower Saturation", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_g_l_s = Scale(master3, from_=0, to=255, orient=HORIZONTAL)
+		w_g_l_s = Scale(master3, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_g_l_s.set(30)
 		w_g_l_s.pack()
 
 		w = Label(master3, text="Lower Value", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_g_l_v = Scale(master3, from_=0, to=255, orient=HORIZONTAL)
+		w_g_l_v = Scale(master3, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_g_l_v.set(30)
 		w_g_l_v.pack()
 
 		w = Label(master3, text="Upper Hue", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_g_u_h = Scale(master3, from_=0, to=180, orient=HORIZONTAL)
+		w_g_u_h = Scale(master3, from_=0, to=180, length= 175, orient=HORIZONTAL)
 		w_g_u_h.set(85)
 		w_g_u_h.pack()
 
 		w = Label(master3, text="Upper Saturation", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_g_u_s = Scale(master3, from_=0, to=255, orient=HORIZONTAL)
+		w_g_u_s = Scale(master3, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_g_u_s.set(240)
 		w_g_u_s.pack()
 
 		w = Label(master3, text="Upper Value", bg="white", fg="black")
 		w.pack(fill=X)
 
-		w_g_u_v = Scale(master3, from_=0, to=255, orient=HORIZONTAL)
+		w_g_u_v = Scale(master3, from_=0, to=255, length= 175, orient=HORIZONTAL)
 		w_g_u_v.set(220)
 		w_g_u_v.pack()
 

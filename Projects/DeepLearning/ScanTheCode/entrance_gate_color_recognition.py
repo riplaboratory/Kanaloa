@@ -27,21 +27,21 @@ import cv2
 
 bridge = CvBridge()
 
-x_min = 400
-x_max = 1000
-y_min = 200
-y_max = 450
+x_min = 15
+x_max = 85
+y_min = 10
+y_max = 60
 
 min_radius = 10
 
 mask_plotting = True
 
 
-lower_red = np.array([0,90,120])
-upper_red = np.array([5,230,200])
+lower_red = np.array([156,48,100])
+upper_red = np.array([170,250,230])
 
-lower_green = np.array([40,50,50])
-upper_green = np.array([72,210,210])
+lower_green = np.array([90,20,50])
+upper_green = np.array([98,250,250])
 
 lower_threshold = {"red": lower_red, "green": lower_green}
 upper_threshold = {"red": upper_red, "green": upper_green}
@@ -49,7 +49,12 @@ upper_threshold = {"red": upper_red, "green": upper_green}
 color_codes = {"red": (0,0,255), "green": (0, 255, 0)}
 
 toss_images = 0
-toss_images_threshold = 1
+toss_images_threshold = 2
+
+blur = 7
+
+double_checker = 0
+double_check_limit = 20
 
 
 classified_colors_list = []
@@ -128,16 +133,18 @@ def plot_scan_the_code(scanned):
 def plot_mask(mask, color, position):
 	mask_name = str(color)+' Mask'
 	cv2.namedWindow(mask_name,cv2.WINDOW_NORMAL)
+	cv2.resizeWindow(mask_name, 250,250)
 	if position == 0:
-		cv2.moveWindow(mask_name, 1150,30)
+		cv2.moveWindow(mask_name, 1400,310)
 	elif position == 1:
-		cv2.moveWindow(mask_name, 1150,310)
+		cv2.moveWindow(mask_name, 1650,310)
 	elif position == 2:
-		cv2.moveWindow(mask_name, 1150,590)
+		cv2.moveWindow(mask_name, 1400,590)
+		cv2.resizeWindow(mask_name, 500,400)
 	else:
 		cv2.moveWindow(mask_name, 1150,850)
 	
-	cv2.resizeWindow(mask_name, 600,250)
+	
 	cv2.imshow(mask_name, mask)
 	cv2.waitKey(1)
 
@@ -147,7 +154,7 @@ def color_recognition(image):
     
     global lower_threshold
     global upper_threshold
-    
+    all_masks = 0
     for color in lower_threshold.keys():
         lower_color = lower_threshold[color]
         upper_color = upper_threshold[color]
@@ -159,6 +166,7 @@ def color_recognition(image):
         res_plot = cv2.cvtColor(res, cv2.COLOR_HSV2BGR)
 
         if mask_plotting:
+        	plot_mask(res_plot, "Entrance Gate", 0)
         	if color == "red":
         		plot_mask(res_plot, color, 0)
     		if color == "green":
@@ -180,6 +188,8 @@ def color_recognition(image):
                 classified[color] = False
         else: 
             classified[color] = False
+
+    plot_mask(all_masks, "Entrance Gate", 0)
 
     return classified, coordinates, radius_dict, mask_dict, res_dict
     # return classified, coordinates, radius_dict
@@ -212,6 +222,14 @@ class image_converter:
     self.sub_upper_g_h = rospy.Subscriber("entrance_gate/upper_threshold_g/hue", Int16, self.callback17, queue_size=1)
     self.sub_upper_g_s = rospy.Subscriber("entrance_gate/upper_threshold_g/saturation", Int16, self.callback18, queue_size=1)
     self.sub_upper_g_v = rospy.Subscriber("entrance_gate/upper_threshold_g/value", Int16, self.callback19, queue_size=1)
+
+    self.sub_image_x_min = rospy.Subscriber("image_adjuster/x_min", Int16, self.callback20, queue_size=1)
+    self.sub_image_x_max = rospy.Subscriber("image_adjuster/x_max", Int16, self.callback21, queue_size=1)
+    self.sub_image_y_min = rospy.Subscriber("image_adjuster/y_min", Int16, self.callback22, queue_size=1)
+    self.sub_image_y_max = rospy.Subscriber("image_adjuster/y_max", Int16, self.callback23, queue_size=1)
+    self.sub_image_blur = rospy.Subscriber("image_adjuster/blur", Int16, self.callback24, queue_size=1)
+    self.sub_image_toss_images = rospy.Subscriber("image_adjuster/toss_images", Int16, self.callback25, queue_size=1)
+
 
 
   def callback2(self, data):
@@ -263,10 +281,39 @@ class image_converter:
   	global upper_threshold
 	upper_threshold["green"][2] = data.data 
 
+  def callback20(self, data):
+  	global x_min
+	x_min = data.data 
+	
+  def callback21(self, data):
+  	global x_max
+	x_max = data.data 
+
+  def callback22(self, data):
+  	global y_min
+	y_min = data.data 
+
+  def callback23(self, data):
+  	global y_max
+	y_max = data.data 
+
+  def callback24(self, data):
+  	global blur
+	blur = data.data 
+
+  def callback25(self, data):
+  	global toss_images_threshold
+	toss_images_threshold = data.data 
+
   def callback(self,data):
   	global image_type
   	global toss_images
-  	global lower_threshold
+  	global lower_threshold	
+  	global blur
+  	global x_min
+  	global x_max 
+  	global y_min
+  	global y_max
   	if toss_images <= toss_images_threshold:
   		toss_images += 1
 	else:
@@ -281,14 +328,14 @@ class image_converter:
 		  # cropped_image = cv_image[100:250, 100:550]
 		  y = cv_image.shape[0]
 		  x = cv_image.shape[1]
-		  x_min = int(x * 0.25)
-		  x_max = int(x * 0.75)
-		  y_min = int(y * 0.35)
-		  y_max = int(y * 0.75)
+		  x_min_crop = int(x * x_min/100)
+		  x_max_crop = int(x * x_max/100)
+		  y_min_crop = int(y * y_min/100)
+		  y_max_crop = int(y * y_max/100)
 
-		  cropped_image = cv_image[y_min:y_max, x_min:x_max]
-		  cropped_image = cv2.blur(cropped_image,(7,7))
-		  plot_mask(cropped_image, "Cropped Image", 3)
+		  cropped_image = cv_image[y_min_crop:y_max_crop, x_min_crop:x_max_crop]
+		  cropped_image = cv2.blur(cropped_image,(blur,blur))
+		  # plot_mask(cropped_image, "Cropped Image", 2)
 		  cv_image_hsv = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2HSV)
 		except CvBridgeError as e:
 		  print(e)
@@ -298,16 +345,29 @@ class image_converter:
 		classified, coordinates, radius_dict, mask_dict, res_dict = color_recognition(cv_image_hsv)
 
 		def entrance_gate_indicator(classified, coordinates, x_pixels):
+			global double_checker
+			global double_check_limit
 
 			if classified["red"] and classified["green"]:
 
 				# Check to see if red buoy to left of green buoy by a margin of 10% of image width
 				if (int(coordinates["red"][0]) + x_pixels * 0.1) < int(coordinates["green"][0]):
-					return "True"
+					
+					double_checker += 1
+
+					if double_checker >= double_check_limit:
+
+						return "True"
+				else:
+					double_checker = 0
+
+			else:
+				double_checker = 0
 			
 			return "False"
 
-		self.pub_entrance_gate.publish(entrance_gate_indicator(classified, coordinates, x))
+		entrance_gate_indicator_value = entrance_gate_indicator(classified, coordinates, x)
+		self.pub_entrance_gate.publish(entrance_gate_indicator_value)
 
 		for color in coordinates.keys():
 			if classified[color]:
@@ -328,11 +388,52 @@ class image_converter:
 				else:
 					cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,0,0))
 
-		cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
-		cv2.moveWindow('Image window', 40,30)
-		cv2.resizeWindow('Image window', 1100,700)
-		cv2.imshow("Image window", cv_image)
-		cv2.waitKey(1)
+		# cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
+		# cv2.moveWindow('Image window', 40,30)
+		# cv2.resizeWindow('Image window', 1100,700)
+		# cv2.imshow("Image window", cv_image)
+		# cv2.waitKey(1)
+
+		def plot_entrance_gate_text(entrance_gate):
+			img = np.zeros((100,400,3), np.uint8) + 255
+
+			# Write some Text
+
+			font                   = cv2.FONT_HERSHEY_SIMPLEX
+			bottomLeftCornerOfText = (20,int(img.shape[0]/2))
+			fontScale              = 1
+			fontColor              = (0,0,0)
+			lineType               = 4
+			indicator_location     = (270,int(img.shape[0]/2))
+			red             	   = (0,0,175)
+			green            	   = (0,175,0)
+
+			if entrance_gate == 'True':
+				word_color = green
+			else:
+				word_color = red
+
+			cv2.putText(img,'Entrance Gate:', 
+			    bottomLeftCornerOfText, 
+			    font, 
+			    fontScale,
+			    fontColor,
+			    lineType)
+
+			cv2.putText(img, entrance_gate, 
+			    indicator_location, 
+			    font, 
+			    fontScale,
+			    word_color,
+			    lineType)
+
+			#Display the image
+			cv2.moveWindow('Entrance Gate Indicator', 1400,75)
+			cv2.imshow("Entrance Gate Indicator",img)
+
+			cv2.waitKey(1)
+
+		plot_entrance_gate_text(entrance_gate_indicator_value)
 
 
 def main(args):
