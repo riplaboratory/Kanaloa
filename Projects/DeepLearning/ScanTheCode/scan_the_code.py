@@ -27,57 +27,23 @@ import cv2
 
 bridge = CvBridge()
 
-# lower_red = np.array([140,30,30])
-# upper_red = np.array([179,255,255])
-
-# lower_blue = np.array([108,60,60])
-# upper_blue = np.array([113,120,120])
-
-# lower_yellow = np.array([12,30,30])
-# upper_yellow = np.array([26,255,255])
-
-# x_min = 100
-# x_max = 550
-# y_min = 100
-# y_max = 250
-
-x_min = 400
-x_max = 1000
-y_min = 200
-y_max = 450
+x_min = 15
+x_max = 85
+y_min = 10
+y_max = 60
 
 min_radius = 10
 
 mask_plotting = True
 
-# lower_red = np.array([140,120,60])
-# upper_red = np.array([176,255,200])
+lower_red = np.array([156,48,100])
+upper_red = np.array([170,250,230])
 
-# lower_blue = np.array([107,170,60])
-# upper_blue = np.array([115,220,225])
+lower_blue = np.array([107,219,210])
+upper_blue = np.array([110,220,225])
 
-# lower_yellow = np.array([12,30,30])
-# upper_yellow = np.array([26,255,255])
-
-# lower_green = np.array([74,30,30])
-# upper_green = np.array([85,255,255])
-
-# lower_gray = np.array([108,60,60])
-# upper_gray = np.array([113,120,120])
-
-# lower_threshold = {"red": lower_red,"blue": lower_blue, "yellow": lower_yellow, "green": lower_green, "gray": lower_gray}
-# upper_threshold = {"red": upper_red,"blue": upper_blue, "yellow": upper_yellow, "green": upper_green, "gray": upper_gray}
-
-# color_codes = {"red": (0,0,255), "blue": (255,0,0), "yellow": (0,255,255), "green": (0, 255, 0), "gray": (192,192,192)}
-
-lower_red = np.array([0,90,120])
-upper_red = np.array([5,230,200])
-
-lower_blue = np.array([100,60,60])
-upper_blue = np.array([112,255,190])
-
-lower_green = np.array([40,50,50])
-upper_green = np.array([72,210,210])
+lower_green = np.array([90,46,112])
+upper_green = np.array([98,250,250])
 
 lower_threshold = {"red": lower_red,"blue": lower_blue, "green": lower_green}
 upper_threshold = {"red": upper_red,"blue": upper_blue, "green": upper_green}
@@ -87,6 +53,7 @@ color_codes = {"red": (0,0,255), "blue": (255,0,0), "green": (0, 255, 0)}
 toss_images = 0
 toss_images_threshold = 1
 
+blur = 7
 
 classified_colors_list = []
 times = []
@@ -165,15 +132,15 @@ def plot_mask(mask, color, position):
 	mask_name = str(color)+' Mask'
 	cv2.namedWindow(mask_name,cv2.WINDOW_NORMAL)
 	if position == 0:
-		cv2.moveWindow(mask_name, 1150,30)
+		cv2.moveWindow(mask_name, 830,30)
 	elif position == 1:
-		cv2.moveWindow(mask_name, 1150,310)
+		cv2.moveWindow(mask_name, 830,270)
 	elif position == 2:
-		cv2.moveWindow(mask_name, 1150,590)
+		cv2.moveWindow(mask_name, 830,500)
 	else:
-		cv2.moveWindow(mask_name, 1150,850)
+		cv2.moveWindow(mask_name, 830,740)
 	
-	cv2.resizeWindow(mask_name, 600,250)
+	cv2.resizeWindow(mask_name, 550,250)
 	cv2.imshow(mask_name, mask)
 	cv2.waitKey(1)
 
@@ -260,6 +227,12 @@ class image_converter:
     self.sub_upper_g_h = rospy.Subscriber("upper_threshold_g/hue", Int16, self.callback17, queue_size=1)
     self.sub_upper_g_s = rospy.Subscriber("upper_threshold_g/saturation", Int16, self.callback18, queue_size=1)
     self.sub_upper_g_v = rospy.Subscriber("upper_threshold_g/value", Int16, self.callback19, queue_size=1)
+    self.sub_image_x_min = rospy.Subscriber("image_adjuster/x_min", Int16, self.callback20, queue_size=1)
+    self.sub_image_x_max = rospy.Subscriber("image_adjuster/x_max", Int16, self.callback21, queue_size=1)
+    self.sub_image_y_min = rospy.Subscriber("image_adjuster/y_min", Int16, self.callback22, queue_size=1)
+    self.sub_image_y_max = rospy.Subscriber("image_adjuster/y_max", Int16, self.callback23, queue_size=1)
+    self.sub_image_blur = rospy.Subscriber("image_adjuster/blur", Int16, self.callback24, queue_size=1)
+    self.sub_image_toss_images = rospy.Subscriber("image_adjuster/toss_images", Int16, self.callback25, queue_size=1)
 
 
   def callback2(self, data):
@@ -334,10 +307,39 @@ class image_converter:
   	global upper_threshold
 	upper_threshold["green"][2] = data.data 
 
+  def callback20(self, data):
+  	global x_min
+	x_min = data.data 
+	
+  def callback21(self, data):
+  	global x_max
+	x_max = data.data 
+
+  def callback22(self, data):
+  	global y_min
+	y_min = data.data 
+
+  def callback23(self, data):
+  	global y_max
+	y_max = data.data 
+
+  def callback24(self, data):
+  	global blur
+	blur = data.data 
+
+  def callback25(self, data):
+  	global toss_images_threshold
+	toss_images_threshold = data.data 
+
   def callback(self,data):
   	global image_type
   	global toss_images
   	global lower_threshold
+  	global blur
+  	global x_min
+  	global x_max 
+  	global y_min
+  	global y_max
   	if toss_images <= toss_images_threshold:
   		toss_images += 1
 	else:
@@ -352,13 +354,14 @@ class image_converter:
 		  # cropped_image = cv_image[100:250, 100:550]
 		  y = cv_image.shape[0]
 		  x = cv_image.shape[1]
-		  x_min = int(x * 0.25)
-		  x_max = int(x * 0.75)
-		  y_min = int(y * 0.35)
-		  y_max = int(y * 0.75)
 
-		  cropped_image = cv_image[y_min:y_max, x_min:x_max]
-		  cropped_image = cv2.blur(cropped_image,(7,7))
+		  x_min_crop = int(x * x_min/100)
+		  x_max_crop = int(x * x_max/100)
+		  y_min_crop = int(y * y_min/100)
+		  y_max_crop = int(y * y_max/100)
+
+		  cropped_image = cv_image[y_min_crop:y_max_crop, x_min_crop:x_max_crop]
+		  cropped_image = cv2.blur(cropped_image,(blur,blur))
 		  plot_mask(cropped_image, "Cropped Image", 3)
 		  cv_image_hsv = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2HSV)
 		except CvBridgeError as e:
@@ -367,6 +370,7 @@ class image_converter:
 	  	# print(data.header.stamp.secs)
 
 		classified, coordinates, radius_dict, mask_dict, res_dict = color_recognition(cv_image_hsv)
+		# print(classified)
 
 		def generate_scanned_code_list(classified):
 			global classified_colors_list
@@ -379,9 +383,11 @@ class image_converter:
 					classified_colors_list.append(c)
 					times.append(data.header.stamp.secs)
 				
-				if classified_colors_list[-1] != c and (c == "red" or c == "green" or c == "blue"):
+				# if classified_colors_list[-1] != c and (c == "red" or c == "green" or c == "blue"):
+				if classified_colors_list[-1] != c or data.header.stamp.secs > times[-1] + 1.5:
 					classified_colors_list.append(c)
 					times.append(data.header.stamp.secs)
+				print(classified_colors_list)
 			if len(times) > 2:
 				if times[-1] < times[-2]:
 					times = []
@@ -398,8 +404,9 @@ class image_converter:
 				times.pop(0)
 
 				if  c[0] == c[3] and c[1] == c[4] and c[2] == c[5]:
-					scanned = scan_the_code(c, t)
-					plot_scan_the_code(scanned)
+					if c[0] != c[1] and c[1] != c[2]:
+						scanned = scan_the_code(c, t)
+						plot_scan_the_code(scanned)
 
 
 		generate_scanned_code_list(classified)
@@ -411,23 +418,23 @@ class image_converter:
 				r = int(radius_dict[color])
 
 				if color == 'red':
-					cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,0,255))
+					cv2.circle(cv_image, (x+x_min_crop, y+y_min_crop), r, (0,0,255))
 				elif color == 'blue':
-					cv2.circle(cv_image, (x+x_min, y+y_min), r, (255))
+					cv2.circle(cv_image, (x+x_min_crop, y+y_min_crop), r, (255))
 				elif color == 'green':
-					cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,255,0))
+					cv2.circle(cv_image, (x+x_min_crop, y+y_min_crop), r, (0,255,0))
 				elif color == "yellow":
-					cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,255,255))
+					cv2.circle(cv_image, (x+x_min_crop, y+y_min_crop), r, (0,255,255))
 				elif color == "gray":
-					cv2.circle(cv_image, (x+x_min, y+y_min), r, (95,95,95))
+					cv2.circle(cv_image, (x+x_min_crop, y+y_min_crop), r, (95,95,95))
 				else:
-					cv2.circle(cv_image, (x+x_min, y+y_min), r, (0,0,0))
+					cv2.circle(cv_image, (x+x_min_crop, y+y_min_crop), r, (0,0,0))
 
 		# cv_image = cv_image[100:200, 50:600]
 
 		cv2.namedWindow('Image window',cv2.WINDOW_NORMAL)
 		cv2.moveWindow('Image window', 40,30)
-		cv2.resizeWindow('Image window', 1100,700)
+		cv2.resizeWindow('Image window', 800,480)
 		cv2.imshow("Image window", cv_image)
 		cv2.waitKey(1)
 
