@@ -11,6 +11,10 @@ There are generally four different classes of rechargeable battery:
 
 It is generally well understood that NiMh and Li-Ion batteries provide the best performance in energy density, this document will explore the difference between these two technologies.
 
+Note that significant linear approximations were made in these battery calculations.  
+
+## Battery Calculations
+
  __Lead Acid: [WestMarine AGM 105](https://www.westmarine.com/buy/west-marine--group-31-dual-purpose-agm-battery-105-amp-hours--15020258)__
  
   - Battery Specifications
