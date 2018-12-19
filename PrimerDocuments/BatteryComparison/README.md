@@ -44,11 +44,11 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
     - capacity: 16 Ah or 236.8 Wh
     - max discharge: 12C or 192 A
     - mass: 1290 g
-    - volume: (0.173m)(0.074m)(0.045m) = 5.7609E-4 m^3 ≈ 576 mL
+    - volume: (0.173m)(0.074m)(0.045m) = 576.09E-6 m^3 ≈ 576 mL
   - Calculations:
     - $/Wh = (142.74$)/(236.8Wh) = $0.60279 per Wh ≈ __$0.60 per Wh__ (lower is better)
     - mass energy density = (236.8Wh)/(1.290kg) = 183.57 Wh per kg ≈ __180 Wh per kg__ (higher is better)
-    - volumetric energy density = (236.8Wh)/(5.7609E-4 m^3) = 411050 Wh per m^3 ≈ __410 kWh per m^3__ (higher is better)
+    - volumetric energy density = (236.8Wh)/(576.09E-6m^3) = 411050 Wh per m^3 ≈ __410 kWh per m^3__ (higher is better)
     
  __Li-Ion: [Samsung High Drain INR18650-35E 4 Pcs](https://www.amazon.com/Samsung-INR18650-35E-Rechargeable-BD-Electronics/dp/B0762LDVF8/)__
  
@@ -62,7 +62,7 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
      - $/Wh = (26.49$)/(12.95Wh) = $2.0455 per Wh ≈ __$2.05 per Wh__ (lower is better)
      - mass energy density = (12.95Wh)/(0.05kg) = 259 Wh per kg ≈ __260 Wh per kg__ (higher is better)
      - volumetric energy density = (12.95Wh)/(69.845E-6m^3) = 185410 Wh per m^3 ≈ __185 kWh per m^3__ (higher is better)
-     
+          
  ## Compiled Results
  
 | Battery Type | Price/Capacity [$/Wh] | Mass Energy Density [Wh/kg] | Volumetric Energy Density [kWh/m^3] |
