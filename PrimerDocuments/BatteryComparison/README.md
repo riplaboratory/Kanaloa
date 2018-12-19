@@ -76,3 +76,20 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
 | NiMh Example | 0.82 | 93 | 190 |
 | LiPo Example | 0.60 | 180 | 410 |
 | Li-Ion Example | 2.05 | 260 | 185 |
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+## Realistic Alternatives
+
+__NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://www.amazon.com/AmazonBasics-High-Capacity-Rechargeable-Batteries-Pre-charged/dp/B00HZV9WTM/)__
+
+Using a 10 slot holder [like this one](https://www.ebay.com/itm/2x-10-AA-Battery-Slot-Spring-Clip-Holder-Case-Plastic-Storage-Box-Flat-15V-DC/172767943184), we can hold 10 AA batteries in series, giving us effectively a single battery at (1.2V)(10) = 12V nominal.  Putting three of these packs in series will then give us a 36V nominal battery; we will refer to three of these 10x AA holders in series as a single "pack".  A single "pack" requires 30 AA batteries, and it can deliver around 6A continuous (because all of the batteries in a single pack are in series, it can only deliver the current of a single AA battery.  To achieve the 240A required by our WAMV, this then means that we need at least (240A)/(6A) = 40 "packs" total.  This requires (40 ["packs"])(30 [batteries/"pack"]) 1200 batteries in total.  At a price of $18.99 for 8 batteries, this will cost $2848.50 for all 1200 of the batteries that we will need for a single pack.  Factoring in the additional cost for 40 holders ($199), this brings us up to $3047.5
