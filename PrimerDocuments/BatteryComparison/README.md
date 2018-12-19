@@ -65,8 +65,7 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
      
  ## Compiled Results
  
-| Battery Type | Price/Capacity | Mass Energy Density | Volumetric Energy Density |
-|  | (lower is better) | (higher is better) | (higher is better) |
+| Battery Type | Price/Capacity (lower is better) | Mass Energy Density (higher is better) | Volumetric Energy Density (higher is better) |
 | :---: | :---: | :---: | :---: |
 | Lead Acid Example | 0.27 [$/Wh] | 40 [Wh/kg] | 93 [kWh/m^3] |
 | NiMh Example | 0.82 [$/Wh] | 93 [Wh/kg] | 190 [kWh/m^3] |
