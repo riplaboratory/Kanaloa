@@ -50,7 +50,7 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
     - mass energy density = (236.8Wh)/(1.290kg) = 183.57 Wh per kg ≈ __180 Wh per kg__ (higher is better)
     - volumetric energy density = (236.8Wh)/(5.7609E-4 m^3) = 411050 Wh per m^3 ≈ __410 kWh per m^3__ (higher is better)
     
- __Li-Ion: [Samsung High Drain INR18650-35E 4 Pcs](https://www.amazon.com/Samsung-INR18650-35E-Rechargeable-BD-Electronics/dp/B0762LDVF8/)
+ __Li-Ion: [Samsung High Drain INR18650-35E 4 Pcs](https://www.amazon.com/Samsung-INR18650-35E-Rechargeable-BD-Electronics/dp/B0762LDVF8/)__
  
    - Battery Specifications
      - price: $26.49 ($6.62 per battery)
@@ -64,3 +64,10 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
      - volumetric energy density = (12.95Wh)/(69.845E-6m^3) = 185410 Wh per m^3 ≈ __185 kWh per m^3__ (higher is better)
      
  ## Compiled Results
+ 
+| Battery Type | Price/Capacity | Mass Energy Density | Volumetric Energy Density |
+| :---: | :---: | :---: | :---: |
+| Lead Acid Example | 0.27 [$/Wh] | 40 [Wh/kg] | 93 [kWh/m^3] |
+| NiMh Example | 0.82 [$/Wh] | 93 [Wh/kg] | 190 [kWh/m^3] |
+| LiPo Example | 0.60 [$/Wh] | 180 [Wh/kg] | 410 [kWh/m^3] |
+| Li-Ion Example | 2.05 [$/Wh] | 260 [Wh/kg] | 185 [kWh/m^3] |
