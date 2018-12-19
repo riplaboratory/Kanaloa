@@ -11,6 +11,19 @@ There are generally four different classes of rechargeable battery:
 
 It is generally well understood that NiMh and Li-Ion batteries provide the best performance in energy density, this document will explore the difference between these two technologies.
 
+ __Lead Acid: [WestMarine AGM 105](https://www.westmarine.com/buy/west-marine--group-31-dual-purpose-agm-battery-105-amp-hours--15020258)__
+ 
+  - Battery Specifications
+    - price: $339.99
+    - capacity: 105 Ah or 1260 Wh per battery
+    - max discharge: 800 A (cold), 1000 A ("marine")
+    - mass: 31.3 kg per battery
+    - volume: (0.32861m)(0.17145m)(0.23813m) = 0.013416 m^3 ≈ 13416 mL
+  - Calculations:
+    - $/Wh = (339.99$)/(1260Wh) = $0.26983 per Wh ≈ __$0.27 per Wh__ (lower is better)
+    - mass energy density = (1260Wh)/(31.3kg) = 40.256 Wh per kg ≈ __40 Wh per kg__ (higher is better)
+    - volumetric energy density = (1260Wh)/(0.013416m^3) = 93918 Wh per m^3 ≈ __93 kWh per m^3__ (higher is better)
+
 __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://www.amazon.com/AmazonBasics-High-Capacity-Rechargeable-Batteries-Pre-charged/dp/B00HZV9WTM/)__
 
  - Battery Specifications:
@@ -20,12 +33,12 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
    - mass: 31 g per battery
    - volume: (0.05m)*2*pi*(0.007m)^2 = 15.393E-6 m^3 ≈ 15.4 mL
  - Calculations:
-   - $/Wh = (2.37$)/(2.88Wh) = $0.82291 per Wh ≈ __$0.82 per Wh__
-   - mass energy density = (0.031kg)/(2.88Wh) = 0.010764 kg per Wh ≈ __0.011 kg per Wh__
-   - volumetric energy density = (15.393E-6m^3)/(2.88Wh) = 5.3448 m^3 per Wh ≈ __5.3 mL per Wh__
+   - $/Wh = (2.37$)/(2.88Wh) = $0.82291 per Wh ≈ __$0.82 per Wh__ (lower is better)
+   - mass energy density = (2.88Wh)/(0.031kg) = 92.903 Wh per kg ≈ __93 Wh per kg__ (higher is better)
+   - volumetric energy density = (2.88Wh)/(15.393E-6m^3) = 187100 Wh per m^3 ≈ __190 kWh per m^3__ (higher is better)
    
  __LiPo: [Multistar High Capacity 16000mAh 4S 12C Multi-Rotor Lipo Pack w/XT90](https://hobbyking.com/en_us/multistar-high-capacity-16000mah-4s-12c-multi-rotor-lipo-pack-w-xt90.html?___store=en_us)__
- 
+
   - Battery Specifications
     - price: $142.74 (on sale for $74.94 on 2018.11.11)
     - capacity: 16 Ah or 236.8 Wh
@@ -33,6 +46,21 @@ __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://w
     - mass: 1290 g
     - volume: (0.173m)(0.074m)(0.045m) = 5.7609E-4 m^3 ≈ 576 mL
   - Calculations:
-    - $/Wh = (142.74$)/(236.8Wh) = $0.60279 per Wh ≈ __$0.60 per Wh__
-    - mass energy density = (1.290kg)/(236.8Wh) = 0.0054476 kg per Wh ≈ __0.0054476 kg per Wh__
+    - $/Wh = (142.74$)/(236.8Wh) = $0.60279 per Wh ≈ __$0.60 per Wh__ (lower is better)
+    - mass energy density = (236.8Wh)/(1.290kg) = 183.57 Wh per kg ≈ __180 Wh per kg__ (higher is better)
+    - volumetric energy density = (236.8Wh)/(5.7609E-4 m^3) = 411050 Wh per m^3 ≈ __410 kWh per m^3__ (higher is better)
+    
+ __Li-Ion: [Samsung High Drain INR18650-35E 4 Pcs](https://www.amazon.com/Samsung-INR18650-35E-Rechargeable-BD-Electronics/dp/B0762LDVF8/)
  
+   - Battery Specifications
+     - price: $26.49 ($6.62 per battery)
+     - capacity: 3.5 Ah or 12.95 Wh
+     - max discharge: 8A
+     - mass: 50 g
+     - volume: (0.0651m)*pi*(0.01848m)^2 = 69.845E-6 m^3 ≈ 69.8 mL
+   - Calculations:
+     - $/Wh = (26.49$)/(12.95Wh) = $2.0455 per Wh ≈ __$2.05 per Wh__ (lower is better)
+     - mass energy density = (12.95Wh)/(0.05kg) = 259 Wh per kg ≈ __260 Wh per kg__ (higher is better)
+     - volumetric energy density = (12.95Wh)/(69.845E-6m^3) = 185410 Wh per m^3 ≈ __185 kWh per m^3__ (higher is better)
+     
+ ## Compiled Results
