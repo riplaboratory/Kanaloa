@@ -77,17 +77,6 @@ __NiMh (AA): [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](http
 | LiPo Example | 0.60 | 180 | 410 |
 | Li-Ion Example | 2.05 | 260 | 185 |
 
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-
 ## Realistic Alternatives
 
 __NiMh: [AmazonBasics AA High-Capacity Rechargable Batteries (8-Pack)](https://www.amazon.com/AmazonBasics-High-Capacity-Rechargeable-Batteries-Pre-charged/dp/B00HZV9WTM/)__
