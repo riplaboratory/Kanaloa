@@ -4,3 +4,4 @@ This is a technical documentation to explain concepts about networking. [Here](h
 1. IP Address
 2. Subnet Mask 
 3. DHCP 
+4. Static and Reserved IP Addresses
