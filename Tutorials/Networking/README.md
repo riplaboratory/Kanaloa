@@ -3,4 +3,4 @@ This is a technical documentation to explain concepts about networking. [Here](h
 # Table of Contents
 1. IP Address
 2. Subnet Mask 
-3. 
+3. DHCP 
