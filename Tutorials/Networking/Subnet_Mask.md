@@ -14,7 +14,7 @@ subnet through a gateway, but I actually do not know enough about gatways to exp
 Device A has an IP of 10.10.10.21 while Device B has an IP of 20.20.20.21. Device A is a member of the 10.10.10.0 subnet while 
 device B is a member of the 20.20.20.0 subnet. This means they are not able to communicate with each other since they are in 
 different subnets. Device A can only communicate with devices in the IP range of 10.10.10.1-10.10.10.254 (**NOTE: The first and
-last IP addresses, 10.10.10.0 and 10.10.10.255, is typically reserved for the network and broadcast addresses.**) Likewise, device can only communicate with devices in the IP range of 20.20.20.1-20.20.20.254. 
+last IP addresses, 10.10.10.0 and 10.10.10.255, is typically reserved for the network and broadcast addresses.**) Likewise, Device B can only communicate with devices in the IP range of 20.20.20.1-20.20.20.254. 
 
 
 
