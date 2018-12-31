@@ -5,3 +5,4 @@ This is a technical documentation to explain concepts about networking. [Here](h
 2. [Subnet Mask](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/Networking/Subnet_Mask.md)
 3. [DHCP](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/Networking/DHCP.md) 
 4. [Static and Reserved IP Addresses](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/Networking/Static_and_Reserved_IP.md)
+5. Network Diagrams
