@@ -12,5 +12,5 @@ Here are two diagrams to illustrate the *idea* of what we wanted our network to 
 
 ## WAMV Network Overview
 
-![Overview of WAMV Network](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/Networking/Images/Ground%20Station%20Network%20Diagram.jpg)
+![Overview of WAMV Network](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/Networking/Images/Wamv%20Network%20Diagram.jpg)
 
