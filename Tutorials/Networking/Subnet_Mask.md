@@ -20,10 +20,7 @@ last IP addresses, 10.10.10.0 and 10.10.10.255, is typically reserved for the ne
 
 ## What is a subnet mask?
 
-A subnet mask gives information to how large a network is. A subnet mask of 255.255.255.0 means there 254 available host
-addresses in the network. A subnet mask of 255.255.255.128 means there are 126 host addresses available in the network. For the 
-most part, you should use 255.255.255.0. When creating a subnet mask, 255.255.255.0 is also interchangable with 24 (I don't 
-know the details on why, but it's so common it kinda just stuck to memory). 
+A subnet mask provides information on how large a network is. Each octet of a subnet mask can range from 0-255 (8 bits). Whatever number is in the octet refers to how many numbers are not available as hosts. For example, a subnet mask of 255.255.255.0 means there 254 available host addresses in the network because the first three octets are all filled (255 means full). A subnet mask of 255.255.255.128 means there are 126 host addresses available in the network because there are only 126 left from 255 in the last octet. When creating a subnet mask, 255.255.255.0 is also interchangable with 24 (I don't know the details on why, but it's so common it kinda just stuck to memory). 
 
 ### Example
 
