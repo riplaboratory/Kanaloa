@@ -399,18 +399,18 @@ classdef usvSim
                         gpsUpdate = false;                      % set GPS update flag to false
                         gpsDt = ddest.dt;                       % set time step in plant to estimator time step
                         sen.gps.dt = sen.gps.dt + ddest.dt;     % increment GPS time step tracker
-                        measCov(1:2,:) = [...                   % distrust GPS linear position measurement noise covariance (set it large)
+                        measCov(1:2) = [...                     % distrust GPS measurement noise covariance (set it large)
                             1 0 0 0 0 0 0 0 0;...
                             0 1 0 0 0 0 0 0 0]*1E6;
                     
                     else
                         
                         % GPS update
-                        gpsUpdate = true;                       % set GPS update flag to true
-                        gpsDt = sen.gps.dt;                     % set time step in plant to gps time step tracker
-                        sen.gps.dt = 0;                         % reset gps time step tracker
-                        meas(1:2,:) = sen.gps.xm(1:2,k+1);      % add GPS positions to measurement matrix
-                        measCov(1:2,:) = ddest.R(1:2,:);        % trust GPS linear position measurement noise covariance (set it to user default)
+                        gpsUpdate = true;                   % set GPS update flag to true
+                        gpsDt = sen.gps.dt;                 % set time step in plant to gps time step tracker
+                        sen.gps.dt = 0;                     % reset gps time step tracker
+                        meas(1:2) = sen.gps.xm(1:2,k+1);    % add GPS positions to measurement matrix
+                        measCov(1:2) = ddest.R;             % trust measurement noise covariance (set it to user default)
                     
                     end
                     
@@ -421,13 +421,11 @@ classdef usvSim
                         imuUpdate = false;                      % set IMU update flag to false
                         imuDt = ddest.dt;                       % set time step in plant to estimator time step
                         sen.imu.dt = sen.imu.dt + ddest.dt;     % increment imu time step tracker
-                        measCov(3,:) = [...                     % distrust IMU anglar position measurement noise covariance (set it large)
+                        measCov(3) = [...                       % distrust IMU measurement noise covariance (set it large)
                             0 0 1 0 0 0 0 0 0]*1E6;
-                        measCov(6,:) = [...                     % distrust IMU anglar position measurement noise covariance (set it large)
-                            0 0 0 0 0 1 0 0 0]*1E6;
-                        measCov(7:8,:) = [...                   % distrust IMU linear acceleartion measurement noise covariance (set it large)
+                        measCov(6:8) = [...
+                            0 0 0 0 0 1 0 0 0;...
                             0 0 0 0 0 0 1 0 0;...
-                            0 0 0 0 0 0 0 1 0]*1E6;
                         
                     else
                         
@@ -435,33 +433,19 @@ classdef usvSim
                         imuUpdate = true;                       % set IMU update flag to true
                         imuDt = sen.imu.dt;                     % set time step in plant to gps time step tracker
                         sen.imu.dt = 0;                         % reset gps time step tracker
-                        meas(3,:) = sen.imu.xm(3,k+1);          % add IMU angular position to measurement matrix
-                        meas(6,:) = sen.imu.xm(6,k+1);          % add IMU angular velocity to measurement matrix
-                        meas(7:8,:) = sen.imu.xm(7:8,k+1);      % add IMU linear accelerations to measurement matrix
-                        measCov(3,:) = ddest.R(3,:);            % trust IMU angular position measurement noise covariance (set it to user default)
-                        measCov(6,:) = ddest.R(6,:);            % trust IMU angular veloicty measurement noise covariance (set it to user default)
-                        measCov(7:8,:) = ddest.R(7:8,:);        % trust IMU linear acceleration measurement noise covariance (set it to user default)
+                        meas(3) = sen.imu.xm(3,k+1);     % add IMU angular position to measurement matrix
+                        meas(6:8) = sen.imu.xm(6:8,k+1); % add IMU linear accelerations to measurement matrix
                                                 
                     end
                     
                     % Define state estimator plant
-%                     A = [...
-%                         1 0 0 ddest.dt 0 0 0 0 0;...
-%                         0 1 0 0 ddest.dt 0 0 0 0;...
-%                         0 0 1 0 0 ddest.dt 0 0 0;...
-%                         0 0 0 0 0 0 0 0 0;...
-%                         0 0 0 0 0 0 0 0 0;...
-%                         0 0 0 0 0 1 0 0 ddest.dt;...
-%                         0 0 0 0 0 0 1 0 0;...
-%                         0 0 0 0 0 0 0 1 0;...
-%                         0 0 0 0 0 0 0 0 1];
                     A = [...
-                        1 0 0 0 0 0 0 0 0;...
-                        0 1 0 0 0 0 0 0 0;...
-                        0 0 1 0 0 0 0 0 0;...
+                        1 0 0 ddest.dt 0 0 0 0 0;...
+                        0 1 0 0 ddest.dt 0 0 0 0;...
+                        0 0 1 0 0 ddest.dt 0 0 0;...
                         0 0 0 0 0 0 0 0 0;...
                         0 0 0 0 0 0 0 0 0;...
-                        0 0 0 0 0 1 0 0 0;...
+                        0 0 0 0 0 1 0 0 ddest.dt;...
                         0 0 0 0 0 0 1 0 0;...
                         0 0 0 0 0 0 0 1 0;...
                         0 0 0 0 0 0 0 0 1];
@@ -513,9 +497,9 @@ classdef usvSim
                     output.x2 = ddest.xm(:,k);              % last estimate (from state estimate)
                     output.P = ddest.Px(:,:,k+1);           % last covariance matrix
                     output.Q = ddest.Q;                     % noise covariance (process)
-                    output.R = measCov;                     % noise covariance (measurement)
+                    output.R = ddest.R;                     % noise covariance (measurement)
                     output.H = ddest.H;                     % observation matrix
-                    output.z = meas;                        % measurement matrix
+                    output.z = meas;                 % measurement matrix
                     output.u = [0;0;0];                     % control input (don't give kalman filter knowledge about thruster inputs)
 
                     % Discrete Kalman filter

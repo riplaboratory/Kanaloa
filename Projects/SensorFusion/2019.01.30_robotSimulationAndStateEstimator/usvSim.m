@@ -17,7 +17,7 @@ classdef usvSim
             lp.byr = 300;   % drag in the sway (robot frame along y) direction [N*s/m]
             lp.btzr = 300;  % rotational drag in the yaw (robot frame about z) direction [N*s/m]
 
-            % USER INPUT: initial conditions in the map frame
+            % USER INPUT: initial conditions IN THE ROBOT FRAME!
             ic.x0 = 0;      % initial position (robot frame along x) [m] 
             ic.y0 = 0;      % initial position (robot frame along y) [m]
             ic.tz0 = 0;     % initial angle (robot frame about z) [rad]
@@ -88,8 +88,8 @@ classdef usvSim
             
             % USER INPUT: process noise covariance
             ddest.Q = [...
-                0.001 0 0 0 0 0 0 0 0;...    % [m]
-                0 0.001 0 0 0 0 0 0 0;...    % [m]
+                0.01 0 0 0 0 0 0 0 0;...    % [m]
+                0 0.01 0 0 0 0 0 0 0;...    % [m]
                 0 0 0.01 0 0 0 0 0 0;...    % [rad]
                 0 0 0 1 0 0 0 0 0;...       % [m/s] (not measured)
                 0 0 0 0 1 0 0 0 0;...       % [m/s] (not measured)
@@ -388,29 +388,20 @@ classdef usvSim
                 % Determine whether estimator should update
                 if mod(k*t.dt,ddest.dt) == 0
                     
-                    % Instantiate Kalman matrices
-                    meas = zeros(9,1);      % measurements
-                    measCov = eye(9,9);     % measurement noise covariance
-                    
-                    % Determine if GPS sensor updated
+                    % Determine time step for GPS sensor
                     if sen.gps.xm(1,k+1) == sen.gps.xm(1,k)
-                    
-                        % No update on GPS sensor
+                        
+                        % No update on GPS sensor, inrement time step
                         gpsUpdate = false;                      % set GPS update flag to false
                         gpsDt = ddest.dt;                       % set time step in plant to estimator time step
-                        sen.gps.dt = sen.gps.dt + ddest.dt;     % increment GPS time step tracker
-                        measCov(1:2,:) = [...                   % distrust GPS linear position measurement noise covariance (set it large)
-                            1 0 0 0 0 0 0 0 0;...
-                            0 1 0 0 0 0 0 0 0]*1E6;
+                        sen.gps.dt = sen.gps.dt + ddest.dt;     % increment gps time step tracker
                     
                     else
                         
-                        % GPS update
+                        % GPS update, save time step
                         gpsUpdate = true;                       % set GPS update flag to true
                         gpsDt = sen.gps.dt;                     % set time step in plant to gps time step tracker
                         sen.gps.dt = 0;                         % reset gps time step tracker
-                        meas(1:2,:) = sen.gps.xm(1:2,k+1);      % add GPS positions to measurement matrix
-                        measCov(1:2,:) = ddest.R(1:2,:);        % trust GPS linear position measurement noise covariance (set it to user default)
                     
                     end
                     
@@ -421,47 +412,24 @@ classdef usvSim
                         imuUpdate = false;                      % set IMU update flag to false
                         imuDt = ddest.dt;                       % set time step in plant to estimator time step
                         sen.imu.dt = sen.imu.dt + ddest.dt;     % increment imu time step tracker
-                        measCov(3,:) = [...                     % distrust IMU anglar position measurement noise covariance (set it large)
-                            0 0 1 0 0 0 0 0 0]*1E6;
-                        measCov(6,:) = [...                     % distrust IMU anglar position measurement noise covariance (set it large)
-                            0 0 0 0 0 1 0 0 0]*1E6;
-                        measCov(7:8,:) = [...                   % distrust IMU linear acceleartion measurement noise covariance (set it large)
-                            0 0 0 0 0 0 1 0 0;...
-                            0 0 0 0 0 0 0 1 0]*1E6;
                         
                     else
                         
-                        % IMU update, save time step, add measurements
+                        % IMU update, save time step
                         imuUpdate = true;                       % set IMU update flag to true
                         imuDt = sen.imu.dt;                     % set time step in plant to gps time step tracker
                         sen.imu.dt = 0;                         % reset gps time step tracker
-                        meas(3,:) = sen.imu.xm(3,k+1);          % add IMU angular position to measurement matrix
-                        meas(6,:) = sen.imu.xm(6,k+1);          % add IMU angular velocity to measurement matrix
-                        meas(7:8,:) = sen.imu.xm(7:8,k+1);      % add IMU linear accelerations to measurement matrix
-                        measCov(3,:) = ddest.R(3,:);            % trust IMU angular position measurement noise covariance (set it to user default)
-                        measCov(6,:) = ddest.R(6,:);            % trust IMU angular veloicty measurement noise covariance (set it to user default)
-                        measCov(7:8,:) = ddest.R(7:8,:);        % trust IMU linear acceleration measurement noise covariance (set it to user default)
-                                                
+                        
                     end
                     
                     % Define state estimator plant
-%                     A = [...
-%                         1 0 0 ddest.dt 0 0 0 0 0;...
-%                         0 1 0 0 ddest.dt 0 0 0 0;...
-%                         0 0 1 0 0 ddest.dt 0 0 0;...
-%                         0 0 0 0 0 0 0 0 0;...
-%                         0 0 0 0 0 0 0 0 0;...
-%                         0 0 0 0 0 1 0 0 ddest.dt;...
-%                         0 0 0 0 0 0 1 0 0;...
-%                         0 0 0 0 0 0 0 1 0;...
-%                         0 0 0 0 0 0 0 0 1];
                     A = [...
-                        1 0 0 0 0 0 0 0 0;...
-                        0 1 0 0 0 0 0 0 0;...
-                        0 0 1 0 0 0 0 0 0;...
+                        1 0 0 ddest.dt 0 0 0 0 0;...
+                        0 1 0 0 ddest.dt 0 0 0 0;...
+                        0 0 1 0 0 ddest.dt 0 0 0;...
                         0 0 0 0 0 0 0 0 0;...
                         0 0 0 0 0 0 0 0 0;...
-                        0 0 0 0 0 1 0 0 0;...
+                        0 0 0 0 0 1 0 0 ddest.dt;...
                         0 0 0 0 0 0 1 0 0;...
                         0 0 0 0 0 0 0 1 0;...
                         0 0 0 0 0 0 0 0 1];
@@ -489,13 +457,17 @@ classdef usvSim
                     D = [zeros(9,3)];
 
                     % State estimator setup
-                    state.x = ddest.ym(:,k);        % last estimate
-                    state.P = ddest.Py(:,:,k);      % last covariance matrix
-                    state.Q = ddest.Q;              % process noise covariance
-                    state.R = measCov;              % measurement noise covariance
-                    state.H = ddest.H;              % observation matrix
-                    state.z = meas;                 % meausrement matrix
-                    state.u = [0;0;0];              % control input (don't give kalman filter knowledge about thruster inputs)
+                    state.x = ddest.ym(:,k);                % last estimate
+                    state.P = ddest.Py(:,:,k);              % last covariance matrix
+                    state.Q = ddest.Q;                      % noise covariance (process)
+                    state.R = ddest.R;                      % noise covariance (measurement)
+                    state.H = ddest.H;                      % observation matrix
+                    state.z = [sen.gps.xm(1:2,k+1);...      % measurement
+                        sen.imu.xm(3,k+1);...
+                        zeros(2,1);...
+                        sen.imu.xm(6:8,k+1);...
+                        zeros(1,1)];
+                    state.u = [0;0;0];                      % control input (don't give kalman filter knowledge about thruster inputs)
 
                     % Discrete Kalman filter
                     state.A = A;
@@ -509,14 +481,18 @@ classdef usvSim
                     ddest.Lx(:,:,k+1) = state.K;
 
                     % State estimator + observer setup
-                    output.x1 = ddest.xm(:,k+1);            % last estimate (from state estimate)
-                    output.x2 = ddest.xm(:,k);              % last estimate (from state estimate)
-                    output.P = ddest.Px(:,:,k+1);           % last covariance matrix
-                    output.Q = ddest.Q;                     % noise covariance (process)
-                    output.R = measCov;                     % noise covariance (measurement)
-                    output.H = ddest.H;                     % observation matrix
-                    output.z = meas;                        % measurement matrix
-                    output.u = [0;0;0];                     % control input (don't give kalman filter knowledge about thruster inputs)
+                    output.x1 = ddest.xm(:,k+1);             % last estimate (from state estimate)
+                    output.x2 = ddest.xm(:,k);               % last estimate (from state estimate)
+                    output.P = ddest.Px(:,:,k+1);            % last covariance matrix
+                    output.Q = ddest.Q;                      % noise covariance (process)
+                    output.R = ddest.R;                      % noise covariance (measurement)
+                    output.H = ddest.H;                      % observation matrix
+                    output.z = [sen.gps.xm(1:2,k+1);...      % measurement
+                        sen.imu.xm(3,k+1);...
+                        zeros(2,1);...
+                        sen.imu.xm(6:8,k+1);...
+                        zeros(1,1)];
+                    output.u = [0;0;0];                      % control input (don't give kalman filter knowledge about thruster inputs)
 
                     % Discrete Kalman filter
                     output.A1 = C1;
