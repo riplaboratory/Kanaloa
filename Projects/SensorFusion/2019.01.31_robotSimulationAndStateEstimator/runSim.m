@@ -55,6 +55,7 @@ function runSim()
     senPlot = true;
     caEstPlot = false;
     ddEstPlot = true;
+    close all;
     
     % Robot x vs y
     figure(1);
