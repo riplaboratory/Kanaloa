@@ -208,14 +208,14 @@ void setpoint2Output() {
 
   // Output to thrusters
   const float servoRes = 4095;
-  float q1ServoOut = abs(q1Out * servoRes / 100);   // calculate the bit output to Q1 DAC
-  pwm.setPWM(servoQ1Pin,0,q1ServoOut);              // set q1 bit command to servo shield
-  float q2ServoOut = abs(q2Out * servoRes / 100);   // calculate the bit output to Q2 DAC
-  pwm.setPWM(servoQ2Pin,0,q2ServoOut);              // set q2 bit command to servo shield
-  float q3ServoOut = abs(q3Out * servoRes / 100);   // calculate the bit output to Q3 DAC
-  pwm.setPWM(servoQ3Pin,0,q3ServoOut);              // set q3 bit command to servo shield
-  float q4ServoOut = abs(q4Out * servoRes / 100);   // calculate the bit output to Q4 DAC
-  pwm.setPWM(servoQ4Pin,0,q4ServoOut);              // set q4 bit command to servo shield
+  float q1ServoOut = abs(q1Out * servoRes / 1000);  // calculate the bit output to Q1 DAC
+  pwm.setPWM(servoQ1Pin,0,q1ServoOut);            // set q1 bit command to servo shield
+  float q2ServoOut = abs(q2Out * servoRes / 1000);  // calculate the bit output to Q2 DAC
+  pwm.setPWM(servoQ2Pin,0,q2ServoOut);            // set q2 bit command to servo shield
+  float q3ServoOut = abs(q3Out * servoRes / 1000);  // calculate the bit output to Q3 DAC
+  pwm.setPWM(servoQ3Pin,0,q3ServoOut);            // set q3 bit command to servo shield
+  float q4ServoOut = abs(q4Out * servoRes / 1000);  // calculate the bit output to Q4 DAC
+  pwm.setPWM(servoQ4Pin,0,q4ServoOut);            // set q4 bit command to servo shield
   
 }
 
