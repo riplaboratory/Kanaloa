@@ -209,16 +209,16 @@ void loop() {
       // Short delay to prevent errors
       delay(5);
 
-      // Print debug info
-      Serial.print("MANUAL MODE: Q1 (");
-      Serial.print(q1Out);
-      Serial.print(")  Q2 (");
-      Serial.print(q2Out);
-      Serial.print(")  Q3 (");
-      Serial.print(q3Out);
-      Serial.print(")  Q4 (");
-      Serial.print(q4Out);
-      Serial.println(")");
+//      // Print debug info
+//      Serial.print("MANUAL MODE: Q1 (");
+//      Serial.print(q1Out);
+//      Serial.print(")  Q2 (");
+//      Serial.print(q2Out);
+//      Serial.print(")  Q3 (");
+//      Serial.print(q3Out);
+//      Serial.print(")  Q4 (");
+//      Serial.print(q4Out);
+//      Serial.println(")");
       
     }
 
