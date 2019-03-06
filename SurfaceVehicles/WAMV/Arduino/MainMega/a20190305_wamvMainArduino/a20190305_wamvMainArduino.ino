@@ -33,7 +33,6 @@ const byte servoQ1Pin = 4;          // q1 channel on servo shield (note: not the
 const byte servoQ2Pin = 5;          // q2 channel on servo shield (note: not the same as a digital pin!)
 const byte servoQ3Pin = 6;          // q3 channel on servo shield (note: not the same as a digital pin!)
 const byte servoQ4Pin = 7;          // q4 channel on servo shield (note: not the same as a digital pin!)
-const byte revConKillPin = 30;      // digital out to reversing contactor (HIGH for kill, LOW for unkill)
 const byte revConQ1Pin = 22;        // digital out to Q1 reversing contactor (HIGH for motor to spin forward, LOW to spin in reverse)
 const byte revConQ2Pin = 24;        // digital out to Q2 reversing contactor (HIGH for motor to spin forward, LOW to spin in reverse)
 const byte revConQ3Pin = 26;        // digital out to Q3 reversing contactor (HIGH for motor to spin forward, LOW to spin in reverse)
@@ -154,7 +153,6 @@ void setup() {
   pinMode(modeCommPin,INPUT_PULLUP);
   pinMode(revConKillCommPin,INPUT_PULLUP);
   pinMode(killCommPin,INPUT_PULLUP);
-  pinMode(revConKillPin,OUTPUT);
   pinMode(revConQ1Pin,OUTPUT);
   pinMode(revConQ2Pin,OUTPUT);
   pinMode(revConQ3Pin,OUTPUT);

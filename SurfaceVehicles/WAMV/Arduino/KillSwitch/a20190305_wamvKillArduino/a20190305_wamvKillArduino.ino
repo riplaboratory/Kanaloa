@@ -13,17 +13,18 @@
 #include "QuickMedianLib.h"             // Quick median libarary inclusions
 
 // Pin definitions
-const byte ch5Pin = 2;             // PWM in from receiver channel 5 (auto/manual mode switch)
-const byte ch7Pin = 18;            // PWM in from receiver channel 7 (reverse contactor kill switch)
-const byte ch8Pin = 19;            // PWM in from receiver channel 8 (remote kill switch)
-const byte physicalKillPin = 3;    // digital in from physical kill switch
-const byte killRelayPin = 6;       // digital out to kill relay
-const byte modeCommPin = 7;        // digital out to main arduino communicating auto/manual mode
-const byte revConKillCommPin = 8;  // digital out to main arduino communicating reverse contactor kill stats
-const byte killCommPin = 9;        // digital out to main arduino communicating kill state
-const byte blueLightPin = 11;      // digital out to blue light relay
-const byte greenLightPin = 12;     // digital out to green light relay
-const byte redLightPin = 13;       // digital out to red light relay
+const byte ch5Pin = 2;              // PWM in from receiver channel 5 (auto/manual mode switch)
+const byte ch7Pin = 18;             // PWM in from receiver channel 7 (reverse contactor kill switch)
+const byte ch8Pin = 19;             // PWM in from receiver channel 8 (remote kill switch)
+const byte physicalKillPin = 3;     // digital in from physical kill switch
+const byte killRelayPin = 6;        // digital out to kill relay
+const byte revConKillPin = 4;       // digital out to reverse contactor
+const byte modeCommPin = 7;         // digital out to main arduino communicating auto/manual mode
+const byte revConKillCommPin = 8;   // digital out to main arduino communicating reverse contactor kill stats
+const byte killCommPin = 9;         // digital out to main arduino communicating kill state
+const byte blueLightPin = 11;       // digital out to blue light relay
+const byte greenLightPin = 12;      // digital out to green light relay
+const byte redLightPin = 13;        // digital out to red light relay
 
 // Global system (constant) variables
 const int nMedian = 8;            // number of readings to take to calculate median from controller inputs
