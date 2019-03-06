@@ -151,6 +151,20 @@ void switch2Status() {
     digitalWrite(killRelayPin,HIGH);   // pull HIGH to unkill
     
   }
+
+  // Statement to kill or unkill reverse contactor
+  if (revConKillStatus == 0) {
+
+    digitalWrite(revConKillPin,LOW);  // pull LOW to unkill
+    
+  }
+  else {
+
+    digitalWrite(revConKillPin,HIGH);
+    
+  }
+
+  
 }
 
 // Communicate status variables to main Arduino
