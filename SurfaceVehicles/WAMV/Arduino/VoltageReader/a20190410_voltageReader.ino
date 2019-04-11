@@ -14,7 +14,7 @@ const int voltagePin = A1;
 const int voltageOutPin = 3; 
 
 // System Variables
-float voltageBytes; 
+float voltageBits; 
 float voltage;
 int   voltageOutput; 
 
@@ -25,12 +25,12 @@ void setup() {
 }
 
 void loop() {
-  voltageBytes = analogRead(voltagePin);
-  voltage = 0.0401*voltageBytes + 0.0591; 
+  voltageBits = analogRead(voltagePin);
+  voltage = 0.0401*voltageBits + 0.0591; 
   Serial.print("Voltage: ");
   Serial.println(voltage);
   delay(100); 
   
-  voltageOutput = map(voltage, 0.0, 1024.0, 0, 255);
+  voltageOutput = map(voltage, 0.00, 40.00, 0, 255);
   analogWrite(voltageOutPin, voltageOutput); 
 }
