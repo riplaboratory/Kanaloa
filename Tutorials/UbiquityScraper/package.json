@@ -1,0 +1,14 @@
+{
+  "name": "ubiquityscraper",
+  "version": "1.0.0",
+  "description": "This script takes data from the Ubiquity prism dashboard and relays key data back with a timestamp. The main purpose of this script is to log connection info so that it can in turn be paired with a GPS sensor data to see the correlation between distance between communications relays and their signal strength.",
+  "main": "gpsScraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raymond Andrade",
+  "license": "ISC",
+  "dependencies": {
+    "rosnodejs": "^3.0.0"
+  }
+}
