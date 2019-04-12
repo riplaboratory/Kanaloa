@@ -11,8 +11,10 @@ This script takes data from the Ubiquity prism dashboard and relays key data bac
 - Ensure the computer is connected to that Ethernet connection
 - Power on second Ubiquity prism
 - Ensure the two prisms connect to each other by checking the indicator lights
+- Start roscore on host computer
+- Run ROS Launch files to publish GPS data
 
-## Running the Script
+## Running the Ubiquity Scraper Script
 
 1) Open a web browser on the computer and type in IP of Ubiquity prism (e.g.: `10.10.10.2` for workstation 1)
 
@@ -34,7 +36,24 @@ This script takes data from the Ubiquity prism dashboard and relays key data bac
 
 10) Export results by right clicking on the console output and selecting either Copy All or Save As (depending on your browser)
 
-## Code
+
+## Running the GPS Scraper Script
+
+1) Ensure the GPS' are publishing data over ROS
+
+2) Run the `gpsScraper.js` script in terminal
+
+```bash
+cd path/to/Kanaloa/Tutorials/UbiquityScrapper/
+nodejs ubiquityScrapper.js
+```
+
+3) To stop the script hit Ctrl + C in terminal.
+
+4) View data in `gps_log.csv`
+
+
+## Code for ubiquityScrapper
 
 ```javascript
 function ray_func(){
@@ -80,4 +99,4 @@ function ray_func(){
 
 - When you copy or save the output from the console, note it will also copy the code you set in the beginning. Make sure to delete these first couple lines to ensure your file only contains Ubiquity data.
 
-- The output is formatted to work as a CSV file. When saving the output, just use the file extension `.csv`, and it will be able to be imported into most spreadsheet software. 
+- The output is formatted to work as a CSV file. When saving the output, just use the file extension `.csv`, and it will be able to be imported into most spreadsheet software.
