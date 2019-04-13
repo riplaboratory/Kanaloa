@@ -9,7 +9,7 @@ let gps1_long;
 let gps2_lat;
 let gps2_long;
 
-var data_csv_labels = "Time Stamp, GPS1 latitude, GPS1 longitude, GPS2 latitude, GPS2 longitude"
+var data_csv_labels = "Time Stamp, GPS1 latitude, GPS1 longitude, GPS2 latitude, GPS2 longitude \n"
 
 fs.appendFile('gps_log.csv', data_csv_labels, function (err) {
   if (err) throw err;
