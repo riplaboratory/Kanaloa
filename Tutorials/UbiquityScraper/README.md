@@ -22,6 +22,8 @@ This script takes data from the Ubiquity prism dashboard and relays key data bac
 
 3) In the top right corner, click the orange drop down button, and ensure status table is displaying at bottom of web page.
 
+![~~](images/ubuity_dashboard.png)
+
 4) Open the inspector console of the browser (Ctrl + Shift + I)
 
 5) Click on the console tab
@@ -32,9 +34,15 @@ This script takes data from the Ubiquity prism dashboard and relays key data bac
 
 8) Then type in `ray_func()`, the results should begin printing to the screen
 
+![~~](images/ubiquity_with_console_code.png)
+
 9) To stop the function set the global_indicator variable to any other value but 0. `global_indicator = 1;`
 
 10) Export results by right clicking on the console output and selecting either Copy All or Save As (depending on your browser)
+
+![~~](images/ubiquity_console_output.png)
+
+
 
 
 ## Running the GPS Scraper Script
@@ -100,3 +108,28 @@ function ray_func(){
 - When you copy or save the output from the console, note it will also copy the code you set in the beginning. Make sure to delete these first couple lines to ensure your file only contains Ubiquity data.
 
 - The output is formatted to work as a CSV file. When saving the output, just use the file extension `.csv`, and it will be able to be imported into most spreadsheet software.
+
+- The GPS Scraper is set to log the topics `/mruhGps` and `/fix`. To change this, go into the `gpsScraper.js` script and change the names in the following code
+
+```javascript
+sub = rosNode.subscribe('/mruhGps', sensor_msgs.NavSatFix,
+  (data) => { // define callback execution
+    gps1_lat = data.latitude
+    gps1_long = data.longitude
+  }
+);
+
+sub2 = rosNode.subscribe('/fix', sensor_msgs.NavSatFix,
+  (data) => { // define callback execution
+    gps2_lat = data.latitude
+    gps2_long = data.longitude
+  }
+);
+```
+
+- The GPS Scraper rate at which it save GPS coordinates is set to 2000 milliseconds, this can be changed in the following portion of code
+
+```javascript
+function log_gps_data(){
+  setTimeout(log_gps_data, 2000);  //repeat function every 2 seconds
+```
