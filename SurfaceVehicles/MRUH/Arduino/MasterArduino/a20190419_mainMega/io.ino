@@ -192,7 +192,7 @@ void output2Thruster() {
 // Changes color of light
 void changeLight(int lightColor) {
  
-  // light color variable (0 = off, 1 = white, 2 = red, 3 = green, 4 = blue, 5 = yellow)
+  // light color variable (0 = off, 1 = white, 2 = red, 3 = green, 4 = blue, 5 = yellow, 6 = light blue)
 
   if (lightColor == 0) {
     digitalWrite(redPin,HIGH);
@@ -222,6 +222,11 @@ void changeLight(int lightColor) {
   else if (lightColor == 5) {
     digitalWrite(redPin,LOW);
     digitalWrite(bluePin,HIGH);
+    digitalWrite(greenPin,LOW);
+  }
+  else if (lightColor == 6) {
+    digitalWrite(redPin,HIGH);
+    digitalWrite(bluePin,LOW);
     digitalWrite(greenPin,LOW);
   }  
 }
@@ -360,7 +365,7 @@ void batteryLight(int battLevel) {
   }
   else if (battLevel == 4) {
     changeLight(3);
-    delay(1000);
+    delay(2000);
   }
   else {
     changeLight(1);
