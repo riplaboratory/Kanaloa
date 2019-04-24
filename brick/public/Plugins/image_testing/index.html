@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Quick Start - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>	
+    <!-- <script src="leaflet.rotatedMarker.js"></script> -->
+</head>
+<body>
+
+
+
+<div id="mapid" style="width: 100%; height: 400px;"></div>
+<button id="Refresh IPC">Refresh IPC</button>
+
+<ul>
+
+</ul>
+<script>
+
+	let i = 0;
+	//21.3407/-157.9034
+	var mymap = L.map('mapid').setView([21.3114616667, -157.889675], 16);
+
+	// 			L.tileLayer('oahu/{z}/{x}/{y}.png',
+	// 			{    maxZoom: 16  }).addTo(mymap);
+
+	// var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+	// L.tileLayer('oahu.mbtiles', {
+	// 	maxZoom: 18,
+	// 	id: 'mapbox.streets'
+	// }).addTo(mymap);
+
+	L.tileLayer('', {
+		maxZoom: 18,
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	// 	maxZoom: 18,
+	// 	id: 'mapbox.streets'
+	// }).addTo(mymap);
+
+	L.tileLayer('http://localhost:8082/styles/klokantech-basic/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	// var marker = L.marker([21.3114616667, -157.889675]).addTo(mymap);
+
+	var greenIcon = L.icon({
+    iconUrl: 'wamv_drawing2.png',
+
+    iconSize:     [32, 45], // size of the icon
+    iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
+	});
+
+	var marker = L.marker([21.3114616667, -157.889675], {icon: greenIcon}).addTo(mymap);
+
+// 	var circle = L.circle([51.508, -0.11], {
+//     color: 'red',
+//     fillColor: '#f03',
+//     fillOpacity: 0.5,
+//     radius: 500
+// }).addTo(mymap);
+
+// 	var polygon = L.polygon([
+//     [51.509, -0.08],
+//     [51.503, -0.06],
+//     [51.51, -0.047]
+// ]).addTo(mymap);
+
+	const electron = require('electron');
+	const { ipcRenderer } = electron;
+	const topic_div = document.getElementById('html-topic-div');
+	const todo_list = document.querySelector('ul');
+	// //Init IPC connection
+	ipcRenderer.send('ipc_init', 'IPC Started');
+	document.getElementById("Refresh IPC").onclick = function(){
+		ipcRenderer.send('ipc_init', 'IPC Refreshed');
+		console.log("IPC Refreshed");
+	};
+	// document.getElementById('Refresh IPC').click();
+	
+	ipcRenderer.on('wamvGps', (event, received_info) => {  
+		console.log("Wamv gPS event recieved");
+		// const p = document.createElement('p');
+		// const text = document.createTextNode(received_info);
+		const li = document.createElement('p');
+		const li2 = document.createElement('p');
+    	const text = document.createTextNode('Lattitude: '+received_info.latitude);
+    	const text2 = document.createTextNode('Longitude: ' + received_info.longitude);
+    	// console.log(received_info);
+    	// console.log(received_info.latitude);
+    	todo_list.innerHTML = '';
+    	li.appendChild(text);
+    	li2.appendChild(text2);
+    	
+    	todo_list.appendChild(li);
+    	todo_list.appendChild(li2);
+
+
+    	mymap.removeLayer(marker);
+    	// marker = L.marker([received_info.latitude, received_info.longitude]).addTo(mymap);
+    	marker = L.marker([received_info.latitude, received_info.longitude], {icon: greenIcon}).addTo(mymap);
+    	// i += 0.5
+    	// console.log(i);
+
+ });
+
+
+</script>
+
+
+
+</body>
