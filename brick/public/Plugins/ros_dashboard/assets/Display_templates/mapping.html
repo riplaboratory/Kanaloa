@@ -1,0 +1,338 @@
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<script src="../../../../../node_modules/leaflet-rotatedmarker/leaflet.rotatedMarker.js"></script>
+
+	<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+	<link rel="stylesheet" href="../../../../CSS/semantic/src/semantic.min.css">
+	<script src="../../../../CSS/semantic/src/jquery-3.3.1.min.js"></script>
+	<!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+	<script src="../../../../JS/require.js"></script>
+	<script>
+		// Fix jQuery not being defined
+		// See https://github.com/Semantic-Org/Semantic-UI/issues/5201#issuecomment-359112270
+		// https://electronjs.org/docs/faq#i-can-not-use-jqueryrequirejsmeteorangularjs-in-electron
+
+		try {
+			$ = jQuery = module.exports;
+			// If you want module.exports to be empty, uncomment:
+			// module.exports = {};
+		} catch (e) {}
+
+	</script>
+	<script src="../../../../CSS/semantic/src/semantic.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="mapid" style="width: 100%; height: 400px;"></div>
+	<div id="map_message_div"></div>
+	<button class="ui button" id="Refresh IPC">Refresh IPC</button>
+	<button class="ui button" id="start map server">Start Map Server</button>
+	<button class="ui button" id="stop map server">Stop Map Server</button>
+	<button class="ui button" id="refresh map">Refresh Map</button>
+
+	<div>
+		<img style="float:left; height:24px; padding-right: 10px;" src="../images/wamv_drawing4.png" />
+		<select class="ui dropdown" id="gps_topic_dropdown1">
+			<option>Select a GPS topic ...</option>
+		</select>
+		<ul id="topic list 2">
+		</ul>
+		<label>Rotation: <input id="rotate degrees" type="number" value="0"></label>
+	</div>
+
+	<div>
+		<br><br>
+		<img style="float:left; height:24px; padding-right: 10px;" src="../images/wamv_drawing3.png" />
+		<select class="ui dropdown" id="gps_topic_dropdown2">
+			<option>Select a GPS topic ...</option>
+		</select>
+		<ul id="topic list 2">
+		</ul>
+	</div>
+	<div>
+		<br><br>
+		<img style="float:left; height:24px; padding-right: 10px;" src="../images/pc.png" />
+		<select class="ui dropdown" id="gps_topic_dropdown3">
+			<option>Select a GPS topic ...</option>
+		</select>
+		<ul id="topic list 3">
+		</ul>
+	</div>
+
+	<!--
+	 <img src="../images/wamv_drawing2.png" />
+	 <select id="gps_topic_dropdown2">
+	 	<option>Select a GPS topic ...</option>
+	 </select>
+-->
+
+	<!--
+	 <ul>
+	 </ul>
+-->
+
+	<ul id="topic list 1">
+	</ul>
+
+
+
+
+	<script>
+		require = parent.require;
+		$('.ui.dropdown').dropdown();
+		// let i = 0;
+		//21.3407/-157.9034
+		var mymap = L.map('mapid').setView([21.3114616667, -157.889675], 16);
+
+		// 			L.tileLayer('oahu/{z}/{x}/{y}.png',
+		// 			{    maxZoom: 16  }).addTo(mymap);
+
+		// var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+		// L.tileLayer('oahu.mbtiles', {
+		// 	maxZoom: 18,
+		// 	id: 'mapbox.streets'
+		// }).addTo(mymap);
+
+		// L.tileLayer('', {
+		// 	maxZoom: 18,
+		// 	id: 'mapbox.streets'
+		// }).addTo(mymap);
+
+		// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		// 	maxZoom: 18,
+		// 	id: 'mapbox.streets'
+		// }).addTo(mymap);
+
+		L.tileLayer('http://localhost:8082/styles/klokantech-basic/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			id: 'mapbox.streets'
+		}).addTo(mymap);
+
+		// var marker = L.marker([21.3114616667, -157.889675]).addTo(mymap);
+
+		var greenIcon = L.icon({
+			iconUrl: '../images/wamv_drawing4.png',
+
+			iconSize: [32, 45], // size of the icon
+			iconAnchor: [16, 16], // point of the icon which will correspond to marker's location
+		});
+
+		var marker = L.marker([21.3114616667, -157.889675], {
+			icon: greenIcon,
+			rotationOrigin: "center"
+		}).addTo(mymap);
+
+		var greyIcon = L.icon({
+			iconUrl: '../images/wamv_drawing3.png',
+
+			iconSize: [32, 45], // size of the icon
+			iconAnchor: [16, 16], // point of the icon which will correspond to marker's location
+		});
+
+		var marker2 = L.marker([21.31, -157.88898], {
+			icon: greyIcon
+		}).addTo(mymap);
+
+		var computerIcon = L.icon({
+			iconUrl: '../images/pc.png',
+
+			iconSize: [24, 24], // size of the icon
+			iconAnchor: [16, 16], // point of the icon which will correspond to marker's location
+		});
+
+		var marker3 = L.marker([21.3116, -157.889], {
+			icon: computerIcon
+		}).addTo(mymap);
+
+		// 	var circle = L.circle([51.508, -0.11], {
+		//     color: 'red',
+		//     fillColor: '#f03',
+		//     fillOpacity: 0.5,
+		//     radius: 500
+		// }).addTo(mymap);
+
+		// 	var polygon = L.polygon([
+		//     [51.509, -0.08],
+		//     [51.503, -0.06],
+		//     [51.51, -0.047]
+		// ]).addTo(mymap);
+
+		const electron = require('electron');
+		const {
+			ipcRenderer
+		} = electron;
+		const topic_div = document.getElementById('html-topic-div');
+		// const todo_list = document.querySelector('ul');
+		todo_list = document.getElementById('topic list 1');
+		todo_list2 = document.getElementById('topic list 2');
+		todo_list3 = document.getElementById('topic list 3');
+		// //Init IPC connection
+		ipcRenderer.send('ipc_init', 'IPC Started');
+		document.getElementById("Refresh IPC").onclick = function() {
+			ipcRenderer.send('ipc_init', 'IPC Refreshed');
+			console.log("IPC Refreshed");
+		};
+		// document.getElementById('Refresh IPC').click();
+
+		ipcRenderer.on('wamvGps', (event, received_info) => {
+			console.log("Wamv gPS event recieved: wamvGps");
+			// const p = document.createElement('p');
+			// const text = document.createTextNode(received_info);
+
+			if (received_info != 'undefined') {
+
+				const li = document.createElement('p');
+				const li2 = document.createElement('p');
+				const text = document.createTextNode('Lattitude: ' + received_info.latitude);
+				const text2 = document.createTextNode('Longitude: ' + received_info.longitude);
+				// console.log(received_info);
+				// console.log(received_info.latitude);
+				todo_list.innerHTML = '';
+				li.appendChild(text);
+				li2.appendChild(text2);
+
+				todo_list.appendChild(li);
+				todo_list.appendChild(li2);
+
+
+				mymap.removeLayer(marker);
+				// marker = L.marker([received_info.latitude, received_info.longitude]).addTo(mymap);
+				marker = L.marker([received_info.latitude, received_info.longitude], {
+					icon: greenIcon
+				}).addTo(mymap);
+				// i += 0.5
+				// console.log(i);
+			}
+
+		});
+
+		ipcRenderer.on('mruhGps', (event, received_info) => {
+			console.log("Wamv gPS event recieved: mruhGps");
+			// const p = document.createElement('p');
+			// const text = document.createTextNode(received_info);
+			if (received_info != 'undefined') {
+				const li3 = document.createElement('p');
+				const li4 = document.createElement('p');
+				const text3 = document.createTextNode('Lattitude: ' + received_info.latitude);
+				const text4 = document.createTextNode('Longitude: ' + received_info.longitude);
+				// console.log(received_info);
+				// console.log(received_info.latitude);
+				todo_list2.innerHTML = '';
+				li3.appendChild(text3);
+				li4.appendChild(text4);
+
+				todo_list2.appendChild(li3);
+				todo_list2.appendChild(li4);
+
+
+				mymap.removeLayer(marker2);
+				// marker = L.marker([received_info.latitude, received_info.longitude]).addTo(mymap);
+				marker2 = L.marker([received_info.latitude, received_info.longitude], {
+					icon: greyIcon
+				}).addTo(mymap);
+				// i += 0.5
+				// console.log(i);
+			}
+		});
+
+		ipcRenderer.on('fix', (event, received_info) => {
+			console.log("Wamv gPS event recieved: fix");
+			// const p = document.createElement('p');
+			// const text = document.createTextNode(received_info);
+			if (received_info != 'undefined') {
+				const li5 = document.createElement('p');
+				const li6 = document.createElement('p');
+				const text5 = document.createTextNode('Lattitude: ' + received_info.latitude);
+				const text6 = document.createTextNode('Longitude: ' + received_info.longitude);
+				// console.log(received_info);
+				// console.log(received_info.latitude);
+				todo_list3.innerHTML = '';
+				li5.appendChild(text5);
+				li6.appendChild(text6);
+
+				todo_list3.appendChild(li5);
+				todo_list3.appendChild(li6);
+
+
+				mymap.removeLayer(marker3);
+				// marker = L.marker([received_info.latitude, received_info.longitude]).addTo(mymap);
+				marker3 = L.marker([received_info.latitude, received_info.longitude], {
+					icon: computerIcon
+				}).addTo(mymap);
+				// i += 0.5
+				// console.log(i);
+			}
+		});
+
+
+		document.getElementById("start map server").onclick = function() {
+			document.getElementById("map_message_div").innerHTML = "Enter Your Password in the terminal you started the app in (if prompted)";
+			ipcRenderer.send('map_server_start', 'start map server');
+			console.log("map server start requested");
+		};
+		document.getElementById("stop map server").onclick = function() {
+			ipcRenderer.send('map_server_stop', 'stop map server');
+			console.log("map server stop requested");
+		};
+
+		document.getElementById("refresh map").onclick = function() {
+			// ipcRenderer.send("refresh_map", 'refresh map');
+			console.log('refreshing map div');
+
+			L.tileLayer('http://localhost:8082/styles/klokantech-basic/{z}/{x}/{y}.png', {
+				maxZoom: 18,
+				id: 'mapbox.streets'
+			}).addTo(mymap);
+		};
+
+		document.getElementById("rotate degrees").oninput = function() {
+			let angle = document.getElementById("rotate degrees").value;
+			console.log(`Rotating to ${angle} degrees`);
+			marker.setRotationAngle(angle);
+		}
+
+		ipcRenderer.send('gps_topics', 'Get Gps Topics');
+
+		ipcRenderer.on('gps_topics', (event, received_info) => {
+			console.log("Recieved GPS Topics")
+			rostopic_dropdown_element = document.getElementById('gps_topic_dropdown1');
+			rostopic_dropdown_element.options.length = 0
+			for (var i = 0; i < received_info.length; i++) {
+				var topic_name = received_info[i];
+				var el = document.createElement("option");
+				el.textContent = topic_name;
+				el.value = topic_name;
+				rostopic_dropdown_element.appendChild(el);
+			}
+			rostopic_dropdown_element = document.getElementById('gps_topic_dropdown2');
+			rostopic_dropdown_element.options.length = 0
+			for (var i = 0; i < received_info.length; i++) {
+				var topic_name = received_info[i];
+				var el = document.createElement("option");
+				el.textContent = topic_name;
+				el.value = topic_name;
+				rostopic_dropdown_element.appendChild(el);
+			}
+			rostopic_dropdown_element = document.getElementById('gps_topic_dropdown3');
+			rostopic_dropdown_element.options.length = 0
+			for (var i = 0; i < received_info.length; i++) {
+				var topic_name = received_info[i];
+				var el = document.createElement("option");
+				el.textContent = topic_name;
+				el.value = topic_name;
+				rostopic_dropdown_element.appendChild(el);
+			}
+		})
+
+	</script>
+
+</body>
