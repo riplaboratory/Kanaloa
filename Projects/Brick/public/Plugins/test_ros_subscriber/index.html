@@ -1,0 +1,137 @@
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+<link rel="stylesheet" href="index.css">
+<link rel="javascript" href="dropdown_options.js">
+<script>
+	// Fix jQuery not being defined
+	// See https://github.com/Semantic-Org/Semantic-UI/issues/5201#issuecomment-359112270
+	// https://electronjs.org/docs/faq#i-can-not-use-jqueryrequirejsmeteorangularjs-in-electron
+	// 
+	// delete window.exports;
+	// delete window.module;
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	// Fix jQuery not being defined
+	// See https://github.com/Semantic-Org/Semantic-UI/issues/5201#issuecomment-359112270
+	// https://electronjs.org/docs/faq#i-can-not-use-jqueryrequirejsmeteorangularjs-in-electron
+
+	try {
+		$ = jQuery = module.exports;
+		// If you want module.exports to be empty, uncomment:
+		// module.exports = {};
+	} catch(e) {}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+</head>
+
+<body>
+  <div style="width: 100vw, height: 100vh">
+
+  <h1 style="margin: 10px"> Test Application ROS </h1><br><br>
+  <h3 style="margin: 10px"> Test Ros Subscriber</h3>
+  <div id="html-topic-div"></div>
+  <div id="test_image_div"></div>
+
+  <br><br>
+
+<ul></ul>
+  <button id="Refresh IPC" class="ui button" style="margin: 10px">Refresh IPC</button>
+
+  <br>
+
+  <div class="view-row">
+  	<div class="view">
+  		<select id="topicList"></select>
+    </div>
+
+  	<div class="view">
+
+  		<iframe style="width: 100%; height: 400px" src="http://localhost:8080/stream?topic=/usb_cam/image_raw&type=ros_compressed"></iframe>
+
+  	</div>
+
+  </div>
+
+  <div class="view-row">
+  	<div class="view">
+
+  		<div class="ui fluid selection dropdown">
+		  <input type="hidden" name="topic">
+		  <i class="dropdown icon"></i>
+		  <div class="default text">Select Topic</div>
+		  <div class="menu">
+		    <div class="item">Topic 1</div>
+		    <div class="item">Topic 2</div>
+		    <div class="item">Topic 3</div>
+		    <div class="item">Topic 4</div>
+		  </div>
+		</div>
+
+  		<iframe style="width: 100%; height: 400px" src="http://localhost:8080/stream?topic=/usb_cam/image_raw&type=ros_compressed"></iframe>
+
+    </div>
+
+  	<div class="view">
+
+		<div class="ui fluid selection dropdown">
+		  <input type="hidden" name="topic">
+		  <i class="dropdown icon"></i>
+		  <div class="default text">Select Topic</div>
+		  <div class="menu">
+		    <div class="item">Topic 1</div>
+		    <div class="item">Topic 2</div>
+		    <div class="item">Topic 3</div>
+		    <div class="item">Topic 4</div>
+		  </div>
+		</div>
+
+  		<iframe style="width: 100%; height: 400px" src="http://localhost:8080/stream?topic=/usb_cam/image_raw&type=ros_compressed"></iframe>
+
+  	</div>
+
+  </div>
+
+</div>
+
+
+</body>
+
+
+
+<script>
+	// Initialize dropdown in JQuery DO NOT GET RID OF THIS OR I SWEAR TO GOD RAYMOND
+	$('.ui.dropdown').dropdown();
+
+	const electron = require('electron');
+	const { ipcRenderer } = electron;
+	// var cv = require('opencv4nodejs');
+ //  	// var path = require('path');
+ //  	var fs = require('fs');
+  	// console.log(path.resolve('public/images', '256_logo.png'));
+  	// var selectedImgBGR = cv.imread(path.resolve('public/images', '256_logo.png')).resizeToMax(500);
+  	// renderImage(selectedImgBGR, document.getElementById('test_image_div'));
+	const topic_div = document.getElementById('html-topic-div');
+	const todo_list = document.querySelector('ul');
+	//Init IPC connection
+	ipcRenderer.send('ipc_init', 'IPC Started');
+	document.getElementById("Refresh IPC").onclick = function(){
+		ipcRenderer.send('ipc_init', 'IPC Refreshed');
+		console.log("IPC Refreshed");
+	};
+	// document.getElementById('Refresh IPC').click();
+	
+	ipcRenderer.on('test_ros_topic', (event, received_info) => {  
+		// const p = document.createElement('p');
+		// const text = document.createTextNode(received_info);
+		const li = document.createElement('p');
+    	const text = document.createTextNode(received_info);
+    	todo_list.innerHTML = '';
+    	li.appendChild(text);
+    	todo_list.appendChild(li);
+    	// todo_list.innerHTML = li;
+		// p.appendChild(text);
+		// topic_div.appendChild(p);
+		
+	});
+</script>

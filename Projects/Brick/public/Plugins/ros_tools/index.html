@@ -1,0 +1,318 @@
+<head>
+</head>
+<body>
+  <h1> Test Application ROS </h1>  <br><br>
+  <h3> Test Ros Subscriber</h3>
+  <div id="html-topic-div"></div>
+  <div id="test_image_div"></div>
+<ul id="ul1">
+
+</ul>
+
+  <br><br>
+  <button id="Refresh IPC">Refresh IPC</button>
+  <br>
+<!--   <iframe style="width:100%; height:400px;"  src="http://localhost:8080/stream?topic=/usb_cam/image_raw&type=ros_compressed"></iframe>
+  <iframe style="width:100%; height:400px;"  src="http://localhost:8080/stream?topic=/usb_cam/image_raw&type=ros_compressed"></iframe> -->
+
+  <button id="rostopic button">ROS topic list</button>
+  <button id="roscore button">Start roscore</button>
+  <button id="roscore stop">Stop roscore</button>
+  <button id="start map server">Start Map Server</button>
+  <button id="stop map server">Stop Map Server</button>
+  <button id="ros launch">ROS Launch</button>
+  <button id="ros launch debug">ROS Launch Debug</button>
+  <button id="ros node kill">Kill all ROS Nodes</button>
+  <button id="start video server">Start ROS Video Server</button>
+  <button id="stop video server">Stop ROS Video Server</button>
+  <!-- <button id="roslaunch list">ROS Launch List</button> -->
+  <button id="ros source">Source ROS</button>
+
+  <div id="div1"></div>
+
+
+  <input type="file" id="input" onchange="handleFiles(this.files)" />
+
+  <br/><hr>
+  <p id="launch_file_upload_p_tag" >Choose Launch File: </p>
+  <img id="file_upload" src="./images/folder.png"/>
+
+  <br/><br/>
+  <button id="roslaunch list">ROS Launch List</button>
+  <p>Select A Launch File from Dropdown: </p>
+  <select id="launch_file_dropdown">
+    <option>Hit Ros Launch List Button ...</option>
+  </select>
+  <button id="ros launch dropdown button">Launch</button>
+
+  <br/> <br/><hr>
+  <p>ROS Bag record</p>
+  <p id="bag_file_save_p_tag" >Choose Save Location: </p>
+  <img id="bag_directory" src="./images/folder.png"/>
+
+  <p id="add_topic_p_tag">Add a topic to Record: </p>
+  <select id="rosbag_topic_dropdown">
+    <option>Hit Ros topic List Button ...</option>
+  </select>
+  <!-- <img id="add_topic" src="/images/folder.png"/> -->
+  <button id="add_topic">+</button>
+  <button id="remove_topic">-</button>
+  <br/>
+  <button id="clear_topics">clear topics</button>
+  <br/>
+  
+  <br/>
+  <input type="number" id="bag_file_size" value=200 style="width:70px;">
+  <label>Max size of each bagfile (in MB) </label>
+  <br/><br/>
+  <button id="reocord_bag">Record</button>
+  <button id="stop_recording_bag">Stop Recording</button>
+  
+
+  <br/><hr>
+  <p>ROS Bag Play</p>
+  <p id="bag_folder_save_p_tag" >Choose Bag File: </p>
+  <img id="bag_folder_select" src="./images/folder.png"/>
+  <img id="play_bag" src="./images/play-button.png"/>
+
+  <br/>
+  
+  <label class="switch">
+  <input type="checkbox">
+  <span class="slider"></span>
+</label>
+<label> Repeat Playback</label>
+<br/>
+<input type="number" id="bag_file_size" value=1 style="width:30px;">
+<label>Playback speed</label>
+
+<br/><hr><br/>
+<webview id="communication_dashboard_webview" src="10.10.10.5" style="display:inline-flex; width:640px; height:480px"></webview>
+  
+
+
+
+  <ul id="ul2">
+
+</ul>
+
+
+
+</body>
+
+
+
+<script>
+	const electron = require('electron');
+	const { ipcRenderer } = electron;
+
+	const topic_div = document.getElementById('html-topic-div');
+	// const todo_list = document.querySelector('ul');
+	ul1 = document.getElementById('ul1');
+	ul2 = document.getElementById('ul2');
+	div1 = document.getElementById('div1');
+	//Init IPC connection
+	ipcRenderer.send('ipc_init', 'IPC Started');
+	document.getElementById("Refresh IPC").onclick = function(){
+		ipcRenderer.send('ipc_init', 'IPC Refreshed');
+		console.log("IPC Refreshed");
+	};
+		document.getElementById("rostopic button").onclick = function(){
+		ipcRenderer.send('rostopic_list', 'send_rostopics');
+		console.log("ROS topics requested");
+	};
+
+	document.getElementById("roscore button").onclick = function(){
+		ipcRenderer.send('roscore', 'start roscore');
+		console.log("roscore start requested");
+	};
+	document.getElementById("roscore stop").onclick = function(){
+		ipcRenderer.send('roscore_stop', 'start roscore');
+		console.log("roscore stop requested");
+	};
+	document.getElementById("start map server").onclick = function(){
+		ipcRenderer.send('map_server_start', 'start map server');
+		console.log("map server start requested");
+	};
+	document.getElementById("stop map server").onclick = function(){
+		ipcRenderer.send('map_server_stop', 'stop map server');
+		console.log("map server stop requested");
+	};
+	document.getElementById("ros launch").onclick = function(){
+		ipcRenderer.send('ros_launch', 'roslaunch file name');
+		console.log("requesting to launch");
+	};
+	document.getElementById("ros launch debug").onclick = function(){
+		ipcRenderer.send('ros_launch_debug', 'roslaunch file name debug');
+		console.log("requesting to launch in debug mode");
+	};
+	document.getElementById("ros node kill").onclick = function(){
+		ipcRenderer.send('ros_node_kill', 'kill all nodes');
+		console.log("requesting to kill all ros nodes");
+	};
+	document.getElementById("start video server").onclick = function(){
+		ipcRenderer.send('start_video_server', 'start video server');
+		console.log("starting video server");
+	};
+	document.getElementById("stop video server").onclick = function(){
+		ipcRenderer.send('stop_video_server', 'stop video server');
+		console.log("stopping video server");
+	};
+	document.getElementById("roslaunch list").onclick = function(){
+		ipcRenderer.send('roslaunch_list', 'list all launch files');
+		console.log("requestign roslaunch list");
+	};
+	document.getElementById("ros source").onclick = function(){
+		ipcRenderer.send('ros_source', 'source file');
+		console.log("Sourcing Ros file: ____");
+	};
+	// document.getElementById('Refresh IPC').click();
+
+	// const inputElement = document.getElementById("input");
+	// inputElement.addEventListener("change", handleFiles, false);
+	// function handleFiles() {
+	//   const fileList = this.files; /* now you can work with the file list */
+	//   console.log(fileList);
+	// }
+
+	var communication_dashboard = document.getElementById("communication_dashboard_webview")
+	communication_dashboard.addEventListener('did-stop-loading', function() {
+    	communication_dashboard.setZoomFactor(0.75);
+  	}, false);
+
+	let rosbag_record_save_location = '~/';
+	let rosbag_play_file = '';
+	let topics_to_record = [];
+
+	document.getElementById("input").disabled = true;
+	document.getElementById("launch_file_dropdown").disabled = true;
+	document.getElementById("ros launch dropdown button").disabled = true;
+	document.getElementById("play_bag").disabled = true;
+
+	document.getElementById('rosbag_topic_dropdown').disabled = true;
+	document.getElementById("add_topic").disabled = true;
+	document.getElementById("remove_topic").disabled = true;
+	document.getElementById("clear_topics").disabled = true;
+	document.getElementById("reocord_bag").disabled = true;
+	document.getElementById("stop_recording_bag").disabled = true;
+
+
+	document.getElementById("file_upload").onclick = function (){
+		ipcRenderer.send('launch_file_upload', 'launch file');
+		console.log("Request to launch file ...");
+	}
+	document.getElementById("ros launch dropdown button").onclick = function (){
+		var dropdown_option = document.getElementById("launch_file_dropdown")
+		var value = dropdown_option.options[dropdown_option.selectedIndex].value
+		ipcRenderer.send('launch_file_from_dropdown', value);
+		console.log("Request to launch file ..." + value);
+	}
+
+	document.getElementById("bag_directory").onclick = function(){
+		ipcRenderer.send('bag_file_save_folder', 'save bag file');
+		document.getElementById("reocord_bag").disabled = false;
+		// document.getElementById("stop_recording_bag").disabled = false;
+		console.log("Selecting bag file save location ...");
+
+	};
+
+	document.getElementById("add_topic").onclick = function(){
+		var dropdown_option = document.getElementById("rosbag_topic_dropdown")
+		var value = dropdown_option.options[dropdown_option.selectedIndex].value
+		topics_to_record.push(value)
+		console.log("adding topic ..." + value);
+		document.getElementById('add_topic_p_tag').innerHTML = "Add a topic to Record: " + topics_to_record.toString();
+	};
+
+	document.getElementById("remove_topic").onclick = function(){
+		console.log("Removing Last topic ...");
+		topics_to_record.pop();
+		document.getElementById('add_topic_p_tag').innerHTML = "Add a topic to Record: " + topics_to_record.toString();
+
+	};
+
+	document.getElementById("reocord_bag").onclick = function(){
+		document.getElementById("reocord_bag").disabled = true;
+		document.getElementById("stop_recording_bag").disabled = false;
+		console.log("Recording bag file ...");
+		var size = document.getElementById("bag_file_size").value
+		record_parameters = [size, topics_to_record, rosbag_record_save_location];
+		ipcRenderer.send('record_bag', record_parameters);
+
+	};
+
+	document.getElementById("stop_recording_bag").onclick = function(){
+		document.getElementById("reocord_bag").disabled = false;
+		document.getElementById("stop_recording_bag").disabled = true;
+		console.log("Stopping bag file recording ...");
+		ipcRenderer.send('stop_bag_recording', 'stop recording bag file');
+
+	};
+
+
+	document.getElementById("play_bag").onclick = function(){	
+		if (document.getElementById("play_bag").disabled == false){
+			console.log("Playing ROS bag file ...");
+			// ipcRenderer.send('bag_file_save_folder', 'save bag file');
+		}	
+	};
+
+	// document.getElementById("pause_bag").onclick = function(){	
+	// 	if (document.getElementById("pause_bag").disabled == false){
+	// 		console.log("Pausing ROS bag file ...");
+	// 		// ipcRenderer.send('bag_file_save_folder', 'save bag file');
+	// 	}	
+	// };
+
+	ipcRenderer.on('rostopic_list', (event, received_info) => {
+    	div1.innerHTML = received_info;
+
+    	topics_to_record = [];
+
+    	rostopic_dropdown_element = document.getElementById('rosbag_topic_dropdown');
+    	rostopic_dropdown_element.disabled = false;
+    	document.getElementById("remove_topic").disabled = false;
+		document.getElementById("clear_topics").disabled = false;
+    	document.getElementById("add_topic").disabled = false;
+    	rostopic_dropdown_element.options.length = 0
+		for(var i = 0; i < received_info.length; i++) {
+			var topic_name = received_info[i];
+		    var el = document.createElement("option");
+		    el.textContent = topic_name;
+		    el.value = topic_name;
+		    rostopic_dropdown_element.appendChild(el);
+	    }
+	});
+
+	ipcRenderer.on('launch_file_upload', (event, received_info) => {
+    	launch_file_upload_p_tag.innerHTML = "Choose Launch File: \t" + received_info;
+	});
+
+	ipcRenderer.on('roslaunch_list', (event, received_info) => {
+    	launch_file_dropdown_element = document.getElementById('launch_file_dropdown');
+    	launch_file_dropdown_element.disabled = false;
+    	document.getElementById("ros launch dropdown button").disabled = false;
+    	launch_file_dropdown_element.remove(0)
+		for(var i = 0; i < received_info.length; i++) {
+			var package_name = received_info[i][0];
+			var launch_file_name = received_info[i][1]
+		    var el = document.createElement("option");
+		    el.textContent = package_name + " : " + launch_file_name;
+		    el.value = package_name + " " + launch_file_name;
+		    launch_file_dropdown_element.appendChild(el);
+		}
+	});
+
+	ipcRenderer.on('bag_file_save_folder', (event, received_info) => {
+    	bag_file_save_p_tag.innerHTML = "Choose Save Location: \t" + received_info;
+    	rosbag_record_save_location = received_info;
+	});
+
+	ipcRenderer.on('bag_file_play_location', (event, received_info) => {
+    	rosbag_play_file = received_info;
+	});
+	
+	ipcRenderer.on('test_ros_topic', (event, received_info) => {  
+		ul1.innerHTML = received_info;
+	});
+</script>
