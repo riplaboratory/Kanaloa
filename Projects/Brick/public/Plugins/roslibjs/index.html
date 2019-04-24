@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<!-- <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script> -->
+
+<script type="text/javascript" src="../../JS/eventemitter2.min.js"></script>
+<script type="text/javascript" src="../../JS/roslib.min.js"></script>
+</head>
+<body>
+
+  <h1>roslibjs test</h1>
+
+  <div id="test_div"></div>
+  <div id="test_div2"></div>
+
+  <select class="ui dropdown" id="topic_dropdown1">
+    <option>Click the "Refresh ROS topics" button ...</option>
+  </select>
+  <button id="add_new_subscriber_button">Create New Subscriber</button>
+  <button id="refresh_ros_topics_button">Refresh ROS topics</button>
+  <br/><br/>
+  <button id="unsubscribe_button">Unsubscribe Selected</button>
+  <button id="unsubscribe_all_button">Unsubscribe All</button>
+
+</body>
+
+<script type="text/javascript" type="text/javascript">
+  // Connecting to ROS
+  // -----------------
+
+  var ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+  });
+
+  ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+  });
+
+  ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+  });
+
+  ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+  });
+
+
+  // Document Stuff
+  const test_div = document.getElementById('test_div');
+
+
+
+  // Subscribing to a Topic
+  // ----------------------
+
+  // var listener = new ROSLIB.Topic({
+  //   ros : ros,
+  //   name : '/chatter',
+  //   messageType : 'std_msgs/String'
+  // });
+  //
+  // listener.subscribe(function(message) {
+  //   console.log('Received message on ' + listener.name + ': ' + message.data);
+  //   // listener.unsubscribe();
+  //   test_div.innerHTML = message.data;
+  //
+  // });
+
+  // var listener2 = new ROSLIB.Topic({
+  //   ros : ros,
+  //   name : '/chatter',
+  //   messageType : 'std_msgs/String'
+  // });
+  //
+  // listener2.subscribe(function(message) {
+  //   console.log('Received message on ' + listener.name + ': ' + message.data);
+  //   // listener.unsubscribe();
+  //   test_div2.innerHTML = message.data;
+  //
+  // });
+
+  let ros_topics_global = {};
+
+
+  // ros_class = ROSLIB.Ros({url : 'ws://localhost:9090'})
+  // a = ros_class.getTopics();
+  //
+  // console.log("This is a")
+  // console.log(a);
+  function getMethods(obj) {
+    var result = [];
+    for (var id in obj) {
+      try {
+        if (typeof(obj[id]) == "function") {
+          result.push(id + ": " + obj[id].toString());
+        }
+      } catch (err) {
+        result.push(id + ": inaccessible");
+      }
+    }
+    return result;
+  }
+
+  // console.log(getMethods(ros))
+
+  function populate_dropdown(dropdown_id, array_data){
+    dropdown = document.getElementById(dropdown_id);
+    dropdown.length = 0;
+    for (var i = 0; i < array_data.length; i++) {
+      var topic_name = array_data[i];
+      var el = document.createElement("option");
+      el.textContent = topic_name;
+      el.value = topic_name;
+      dropdown.appendChild(el);
+    }
+  }
+
+  function ros_topic_populate_dropdown(dropdown_id){
+    ros.getTopics(function(params) {
+        // console.log(params)
+         populate_dropdown(dropdown_id, params["topics"]);
+         update_ros_topics_global(params["topics"], params["types"]);
+       });
+  };
+
+  function create_new_subscriber(topic_name, callback){
+
+    console.log("test")
+    var listener = new ROSLIB.Topic({
+      ros : ros,
+      name : topic_name,
+      // messageType : 'std_msgs/String'
+      messageType : ros_topics_global[topic_name]
+    });
+
+    // listener.subscribe(function(message){ callback(message) });
+    listener.subscribe(function(message) {
+      // console.log(message)
+      callback(message)
+    });
+  }
+
+  function update_ros_topics_global(topics_array, types_array){
+    ros_topics_global = {};
+    for (var i = 0; i < topics_array.length; i++) {
+      ros_topics_global[topics_array[i]] = types_array[i];
+    }
+    // console.log(ros_topics_global);
+  }
+
+  document.getElementById("refresh_ros_topics_button").onclick = function() {
+      ros_topic_populate_dropdown("topic_dropdown1")
+    }
+
+  document.getElementById("add_new_subscriber_button").onclick = function() {
+    var dropdown_option = document.getElementById("topic_dropdown1")
+    var value = dropdown_option.options[dropdown_option.selectedIndex].value
+    create_new_subscriber(value, function(message){
+      console.log("This is a message: " + message.data);
+      const test_div = document.getElementById('test_div');
+      test_div.innerHTML = message.data;})
+  }
+
+
+  // ros_topic_populate_dropdown("topic_dropdown1");
+
+  // create_new_subscriber("/chatter", function(message){console.log("This is a message: " + message.data);})
+
+// populate_dropdown("topic_dropdown1", ["cat", "dog", "cow"]);
+
+
+</script>
