@@ -31,6 +31,7 @@ function ray_func(){
   console.log(comp_time , "," , signal, "," , remote_signal, "," , distance, "," ,download_upload, ",", noise, ",", conn_time);
     
   if(global_indicator == 0){
+    var refresh = $("#_refresh").click()
     setTimeout(ray_func, 2000);
   }
 }
