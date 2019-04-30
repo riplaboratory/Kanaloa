@@ -14,6 +14,8 @@ function ray_func(){
   indexes.push(b[7].length);
   //indexes.push(b[7].indexOf(">")+1);
   //indexes.push(b[7].indexOf("<span"));
+  indexes.push(b[4].indexOf(">")+1);
+  indexes.push(b[4].length);
   indexes.push(b[9].indexOf(">")+1);
   indexes.push(b[9].length);
   var signal = b[2].slice(indexes[0], indexes[1]);
@@ -21,11 +23,12 @@ function ray_func(){
   var distance = b[6].slice(indexes[4], indexes[5]);
   var download_upload = b[7].slice(indexes[6], indexes[7]);
   //var upload = b[7].slice(indexes[8], indexes[9]);
-  var conn_time = b[9].slice(indexes[8], indexes[9]);
+  var noise = b[4].slice(indexes[8], indexes[9]);
+  var conn_time = b[9].slice(indexes[10], indexes[11]);
   var today = new Date();
   var comp_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   
-  console.log(comp_time , "," , signal, "," , remote_signal, "," , distance, "," ,download_upload, ",",conn_time);
+  console.log(comp_time , "," , signal, "," , remote_signal, "," , distance, "," ,download_upload, ",", noise, ",", conn_time);
     
   if(global_indicator == 0){
     setTimeout(ray_func, 2000);
