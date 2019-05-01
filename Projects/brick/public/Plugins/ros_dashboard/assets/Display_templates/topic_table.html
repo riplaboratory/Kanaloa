@@ -1,0 +1,204 @@
+<html>
+	<head>
+		<script type="text/javascript" src="../../../../JS/eventemitter2.min.js"></script>
+		<script type="text/javascript" src="../../../../JS/roslib.min.js"></script>
+
+		<link rel="stylesheet" href="../../../../CSS/semantic/src/semantic.min.css">
+		<script src="../../../../CSS/semantic/src/jquery-3.3.1.min.js"></script>
+		<!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+		<script src="../../../../JS/require.js"></script>
+
+		<script>
+			// Fix jQuery not being defined
+			// See https://github.com/Semantic-Org/Semantic-UI/issues/5201#issuecomment-359112270
+			// https://electronjs.org/docs/faq#i-can-not-use-jqueryrequirejsmeteorangularjs-in-electron
+
+			try {
+				$ = jQuery = module.exports;
+				// If you want module.exports to be empty, uncomment:
+				// module.exports = {};
+			} catch (e) {}
+
+		</script>
+		<script src="../../../../CSS/semantic/src/semantic.min.js"></script>
+	</head>
+
+	<body>
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>Topic</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody id="topic-table">
+				<!-- <tr>
+ 					<td data-label="Topic">Velocity</td>
+					<td data-label="Value">nyoom mph</td>
+				</tr>
+ 				<tr>
+					<td data-label="Topic">GPS</td>
+					<td data-label="Value">(345, 54, 8897)</td>
+				</tr>
+				<tr>
+					<td data-label="Topic">Direction</td>
+					<td data-label="Value">13 degrees</td>
+				</tr> -->
+			</tbody>
+		</table>
+
+
+		<button class="ui teal left attached button" onclick="addRow()" style="margin: 10px 0px 10px 10px;">Add Topic</button>
+		<select id="add_topic_dropdown" style="margin: 10px, 0px 10px 0px; float: right;">
+			<option selected>-- Select Topic --</option>
+		</select>
+
+		<button class="ui teal basic button" style="float: right; margin: 10px 10px 10px 0px;" onclick="deleteRow()">Delete Topic</button>
+			
+		<button id="refresh_topics_button" class="ui labeled icon button" style="margin: 10px 0px 10px 10px;">
+				<i class="sync alternate icon"></i>
+				Refresh Topics
+		</button>
+
+
+		<script>
+			// Use the correct require function
+			require = parent.require;
+			// Initialize dropdown in JQuery DO NOT GET RID OF THIS OR I SWEAR TO GOD RAYMOND
+			$('select').dropdown();
+
+			let rowCount = 0;
+			// Add rows to the table
+			function addRow() {
+				var table = document.getElementById("topic-table");
+				var row = table.insertRow(rowCount);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				rowCount++;
+				var dropdown_option = document.getElementById("add_topic_dropdown")
+				var value = dropdown_option.options[dropdown_option.selectedIndex].value
+				cell1.innerHTML = value;
+				create_new_subscriber(value, function(message) {
+					cell2.innerHTML = message.data;
+				});
+				// cell2.innerHTML = "NEW CELL2";
+			}
+			// Delete rows from the table
+			function deleteRow() {
+				if (rowCount > 0) {
+					document.getElementById("topic-table").deleteRow(rowCount - 1);
+					rowCount--;
+				}
+			}
+
+			const electron = require('electron');
+			const {
+				ipcRenderer
+			} = electron;
+
+			ipcRenderer.on('rostopic_list', (event, received_info) => {
+				// div1.innerHTML = received_info;
+
+				// topics_to_record = [];
+
+				topic_list = received_info;
+
+				rostopic_dropdown_element = document.getElementById('add_topic_dropdown');
+				// 	rostopic_dropdown_element.disabled = false;
+				// 	document.getElementById("remove_topic").disabled = false;
+				// document.getElementById("clear_topics").disabled = false;
+				// 	document.getElementById("add_topic").disabled = false;
+				rostopic_dropdown_element.options.length = 0
+				for (var i = 0; i < received_info.length; i++) {
+					var topic_name = received_info[i];
+					var el = document.createElement("option");
+					el.textContent = topic_name;
+					el.value = topic_name;
+					rostopic_dropdown_element.appendChild(el);
+				}
+			});
+
+			// ROSSSSSSSSS dress for less
+
+			// Connecting to ROS
+			// -----------------
+
+			let ros_topics_global = {};
+
+			var ros = new ROSLIB.Ros({
+				url : 'ws://localhost:9090'
+			});
+
+			ros.on('connection', function() {
+				console.log('Connected to websocket server.');
+			});
+
+			ros.on('error', function(error) {
+				console.log('Error connecting to websocket server: ', error);
+			});
+
+			ros.on('close', function() {
+				console.log('Connection to websocket server closed.');
+			});
+
+			function populate_dropdown(dropdown_id, array_data){
+				dropdown = document.getElementById(dropdown_id);
+				dropdown.length = 0;
+				for (var i = 0; i < array_data.length; i++) {
+					var topic_name = array_data[i];
+					var el = document.createElement("option");
+					el.textContent = topic_name;
+					el.value = topic_name;
+					dropdown.appendChild(el);
+				}
+			}
+
+			function ros_topic_populate_dropdown(dropdown_id){
+				ros.getTopics(function(params) {
+						// console.log(params)
+						 populate_dropdown(dropdown_id, params["topics"]);
+						 update_ros_topics_global(params["topics"], params["types"]);
+					 });
+			};
+
+			function create_new_subscriber(topic_name, callback){
+				var listener = new ROSLIB.Topic({
+					ros : ros,
+					name : topic_name,
+					// messageType : 'std_msgs/String'
+					messageType : ros_topics_global[topic_name]
+				});
+
+				// listener.subscribe(function(message){ callback(message) });
+				listener.subscribe(function(message) {
+					// console.log(message)
+					callback(message)
+				});
+			}
+
+			function update_ros_topics_global(topics_array, types_array){
+				ros_topics_global = {};
+				for (var i = 0; i < topics_array.length; i++) {
+					ros_topics_global[topics_array[i]] = types_array[i];
+				}
+				// console.log(ros_topics_global);
+			}
+
+			document.getElementById("refresh_topics_button").onclick = function() {
+					ros_topic_populate_dropdown("add_topic_dropdown")
+					console.log("You pressed the button");
+				}
+
+				// document.getElementById("add_new_subscriber_button").onclick = function() {
+				// 	var dropdown_option = document.getElementById("topic_dropdown1")
+				// 	var value = dropdown_option.options[dropdown_option.selectedIndex].value
+				// 	create_new_subscriber(value, function(message){
+				// 		console.log("This is a message: " + message.data);
+				// 		const test_div = document.getElementById('test_div');
+				// 		test_div.innerHTML = message.data;})
+				// }
+
+
+		</script>
+	</body>
+</html>
