@@ -1,0 +1,25 @@
+{
+  "name": "electron_ros",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "gnome-terminal -- roscore & rosrun web_video_server web_video_server & nodejs talker.js & rosbag play -l -q ./public/Plugins/test_ros_subscriber/test_bag.bag & electron .",
+    "electron": "electron .",
+    "launch-test": "gnome-terminal -- roscore && gnome-terminal -- nodejs talker.js && gnome-terminal -- electron .",
+    "launch-test-2": "gnome-terminal -- roscore & rosrun web_video_server web_video_server & nodejs talker.js & rosbag play -l -q ./public/Plugins/test_ros_subscriber/test_bag.bag & electron .",
+    "gui": "npm run electron & rosrun web_video_server web_video_server & roslaunch rosbridge_server rosbridge_websocket.launch",
+    "initialize": "npm install && sudo apt-get install ros-melodic-rosbridge-suite  && sudo apt-get install ros-melodic-web-video-server",
+    "initialize16": "npm install && sudo apt-get install ros-kinetic-rosbridge-suite  && sudo apt-get install ros-kinetic-web-video-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.0.4",
+    "leaflet-rotatedmarker": "^0.2.0",
+    "path": "^0.12.7",
+    "rosnodejs": "^3.0.0",
+    "semantic-ui": "^2.4.2"
+  }
+}
