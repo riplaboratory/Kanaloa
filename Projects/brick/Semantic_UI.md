@@ -3,12 +3,17 @@ Notes for using Semantic UI, a development framework that helps to design aesthe
 
 
 ## Prerequisites
-1. Install NodeJS
+*Readers are expected to have a basic understanding of html and the command line.*
+1. Install NodeJS 
+	- Get started with this link here: (https://blog.teamtreehouse.com/install-node-js-npm-windows)
 2. Install Gulp (optional) *Semantic UI uses Gulp to provide command line tools for building themed versions of the library with just the components you need.*
+	- Get started with this link here: (https://gulpjs.com/docs/en/getting-started/quick-start)
 
 (For these prerequisites, you can follow the [instructions here](https://semantic-ui.com/introduction/getting-started.html))
 
 Additional notes: If you are a student, you are applicable to get a free version of IntelliJ Idea [here](http://courses.ics.hawaii.edu/ics314f18/morea/development-environments/experience-install-intellij-idea.html). IntelliJ Idea has a lot of cool features and tools for software engineering, and is a nice option if you don't mind waiting a bit for it to start up.
+
+Semantic UI does not need Linux for installation. However, if you don't have Linux but are more familiar with the syntax, [Cygwin](https://www.cygwin.com/) provides a Linux-esque environment that might be helpful for some.
 <hr>
 
 ## Installing Semantic UI
