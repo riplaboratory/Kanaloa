@@ -64,14 +64,7 @@ nodejs ubiquityScrapper.js
 ## Code for ubiquityScrapper
 
 ```javascript
-global_indicator = 0
-
-p = function(){
-  if(global_indicator == 0){ global_indicator = 1}
-  else{
-    global_indicator = 0
-    ray_func()}
-}
+global_indicator = 1
 
 function ray_func(){
  if(global_indicator == 0){
@@ -106,6 +99,13 @@ function ray_func(){
   if(global_indicator == 0){
     setTimeout(ray_func, 2000);
   }
+}
+
+p = function(){
+  if(global_indicator == 0){ global_indicator = 1}
+  else{
+    global_indicator = 0
+    ray_func()}
 }
 ```
 
