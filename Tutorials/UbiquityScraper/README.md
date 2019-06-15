@@ -64,7 +64,17 @@ nodejs ubiquityScrapper.js
 ## Code for ubiquityScrapper
 
 ```javascript
+global_indicator = 0
+
+p = function(){
+  if(global_indicator == 0){ global_indicator = 1}
+  else{
+    global_indicator = 0
+    ray_func()}
+}
+
 function ray_func(){
+ if(global_indicator == 0){
   var a = $("#station_list_table_row_FCECDADCCE8E")[0].innerHTML;
   var b = a.split("</td>");
   var indexes = [];
@@ -92,7 +102,7 @@ function ray_func(){
   var comp_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
   console.log(comp_time , "," , signal, "," , remote_signal, "," , distance, "," ,download, ",", upload, ",",conn_time);
-
+ }
   if(global_indicator == 0){
     setTimeout(ray_func, 2000);
   }
