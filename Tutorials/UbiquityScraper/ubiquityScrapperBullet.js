@@ -32,6 +32,6 @@ function ray_func(){
     
   if(global_indicator == 0){
     var refresh = $("#_refresh").click()
-    setTimeout(ray_func, 2000);
+    setTimeout(ray_func, 1000);
   }
 }

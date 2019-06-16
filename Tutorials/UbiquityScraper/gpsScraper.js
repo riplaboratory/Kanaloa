@@ -17,7 +17,7 @@ fs.appendFile('gps_log.csv', data_csv_labels, function (err) {
 });
 
 function log_gps_data(){
-  setTimeout(log_gps_data, 2000);  //repeat function every 2 seconds
+  setTimeout(log_gps_data, 500);  //repeat function every 2 seconds
 
     var today = new Date();
     var comp_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
