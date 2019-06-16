@@ -28,6 +28,6 @@ function ray_func(){
   console.log(comp_time , "," , signal, "," , remote_signal, "," , distance, "," ,download, ",", upload, ",",conn_time);
 
   if(global_indicator == 0){
-    setTimeout(ray_func, 2000);
+    setTimeout(ray_func, 1000);
   }
 }
