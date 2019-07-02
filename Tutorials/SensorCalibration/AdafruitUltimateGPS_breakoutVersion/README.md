@@ -21,3 +21,7 @@ Original tutorial from here: https://learn.adafruit.com/adafruit-ultimate-gps?vi
  This will bring up the list of connected devices in Linux.  If you have no other USB devices plugged in, this will probably be listed in `ttyUSB0`.  If you're having trouble figuring it out, unplug the device, type `ls /dev`, then plug it in, type `ls /dev` again, and look at the difference.  
  
  3. Open the Arduino IDE (or whichever serial monitor software you want).  Open the port you found in the previous step.  You may also have to set the baud rate.  
+ 
+ 4. For a list of commands you can send via serial, see this document: https://cdn-shop.adafruit.com/datasheets/PMTK_A11.pdf
+ 
+ 5. The GPS is now ready to integrate with a ROS package like `nmea_navsat_driver`
