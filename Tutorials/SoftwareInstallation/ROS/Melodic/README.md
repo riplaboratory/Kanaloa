@@ -15,4 +15,8 @@
  
  These instructions came from this tutorial: https://catkin-tools.readthedocs.io/en/latest/installing.html
  
+ 3. Next, if you have not done so already, install Git.  
+ 
+ ```sudo apt install git```
+ 
  
