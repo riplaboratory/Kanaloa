@@ -56,12 +56,12 @@ This will open a gedit window.  In file, you can add new symbolic links by addin
 __If the device you're interested in is a `tty` serial device, use this format to create a symbolic link:__
 
 ```
-SUBSYSTEM=="tty", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]",MODE="666"
 ```
 __If the device you're interested in is a `video` serial device, use this format to create a symbolic link:__
 
 ```
-KERNEL=="video*", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]"
+KERNEL=="video*", ATTRS{idVendor}=="[VENDOR_ID]", ATTRS{idProduct}=="[PRODUCT_ID]", ATTRS{serial}=="[SERIAL_NUMBER]", SYMLINK+="[DESIRED_SYMBOLIC_NAME]",MODE="666"
 ```
 
 Note that you must change the bracketed fields as appropriate to your device:
@@ -74,8 +74,8 @@ Note that you must change the bracketed fields as appropriate to your device:
 An example for two video devices given the names 'cameraLeft' and 'cameraRight' is:
 
 ```
-KERNEL=="video*", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft"
-KERNEL=="video*", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight"
+KERNEL=="video*", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="1234ABCD", SYMLINK+="cameraLeft",MODE="666"
+KERNEL=="video*", ATTRS{idVendor}=="12ab", ATTRS{idProduct}=="34cd", ATTRS{serial}=="5678EFGH", SYMLINK+="cameraRight",MODE="666"
 ```
 
 Save and close your file.  To commit your changes, go back to your terminal and type:
