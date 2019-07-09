@@ -10,7 +10,9 @@ There are three methods of isntalling a ROS package.  You should follow this ord
 
 If the package author has made an apt-get build avaialble, this is the most preferred method.  It will be something to the effect of:
 
-```sudo apt-get install package-name```
+```
+sudo apt-get install package-name
+```
 
 Then clone the git repository to your catkin workspace in the `src` directory.  
 
@@ -25,6 +27,8 @@ git clone git-repository-url
 
 Then
 
-```cd ~/catkin_ws && rosdep install -r --ignore-src --from-paths src```
+```
+cd ~/catkin_ws && rosdep install -r --ignore-src --from-paths src
+```
 
 `rosdep` will search for the necessary dependencies.
