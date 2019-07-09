@@ -18,8 +18,10 @@ Then clone the git repository to your catkin workspace in the `src` directory.
 
 Create your catkin workspace.  Navigate to the `src` directory of your catkin workspace.  Then clone the repository to your `src` directory.  It will be something to the effect of:
 
-```cd ~/catkin_ws/src
-git clone git-repository-url```
+```
+cd ~/catkin_ws/src
+git clone git-repository-url
+```
 
 Then
 
