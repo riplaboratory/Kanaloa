@@ -17,3 +17,4 @@ If you need a refresher on how to install packages, see our tutorial: https://gi
 
 ## Coordinate Systems (THIS IS SUPER IMPORTANT)
 
+The RSX-UM7 sensor internally employs a x-forward, y-right, z-down coordinate system.  This is the coordinate system printed on top of the sensor.    Using the Redshift Serial Interface software, we have confirmed
