@@ -11,9 +11,10 @@ To calibrate the RSX-UM7 IMU, [read through this calibration procedure here](htt
 ## ROS Node
 
 To install the ROS `um7` package, [see the package wiki here](http://wiki.ros.org/um7)
+
 [The Github repository can be found here](https://github.com/ros-drivers/um7)
 
-If you need a refresher on how to install packages, [see our tutorial here] (https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/InstallingPackages/README.md)
+If you need a refresher on how to install packages, [see our tutorial here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/InstallingPackages/README.md)
 
 ## Coordinate Systems (THIS IS SUPER IMPORTANT)
 
