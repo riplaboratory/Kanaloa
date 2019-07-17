@@ -24,4 +24,8 @@ The RSX-UM7 sensor internally employs a x-forward, y-right, z-down coordinate sy
 
 Using the Redshift Serial Interface software, we have confirmed that this coordinate system is consistent for the accelerometer, rate gyroscope, and fused output.  
 
-Unfortunately, at the time of writing (2019/07/16), the [`um7` ROS package](http://wiki.ros.org/um7) adopts a different coordinate system, and does so in an inconsistent manner.  
+Unfortunately, at the time of writing (2019/07/16), the [`um7` ROS package](http://wiki.ros.org/um7) adopts a different coordinate system, and does so in an inconsistent manner.  Testing the direct outputs of the ros node,
+
+Orientation: 
+angular_velocity: x-forward, y-left, z-up
+linear_acceleration: x-forward, y
