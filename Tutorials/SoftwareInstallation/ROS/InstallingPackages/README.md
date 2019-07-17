@@ -32,3 +32,7 @@ cd ~/catkin_ws && rosdep install -r --ignore-src --from-paths src
 ```
 
 `rosdep` will search for the necessary dependencies.
+
+# Installing package and dependencies manually (not recommended)
+
+Clone the github repository to your catkin workspace.  Then copy this repository to your ROS installation directory (usually in `/opt/ros/[ROS VERSION]/share`).  You will then need to look up all of the package dependencies (typically they are listed on the ROS wiki for that repective package) and install them using the same process.  
