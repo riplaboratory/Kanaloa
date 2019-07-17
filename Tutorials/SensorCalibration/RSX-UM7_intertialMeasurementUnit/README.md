@@ -15,5 +15,5 @@ The Github repository can be found here: https://github.com/ros-drivers/um7
 
 If you need a refresher on how to install packages, see our tutorial: https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/InstallingPackages/README.md
 
-## Coordinate Systems
+## Coordinate Systems (THIS IS SUPER IMPORTANT)
 
