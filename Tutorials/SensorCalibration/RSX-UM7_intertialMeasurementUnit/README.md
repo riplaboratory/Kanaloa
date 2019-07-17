@@ -26,8 +26,8 @@ Using the Redshift Serial Interface software, we have confirmed that this coordi
 
 Unfortunately, at the time of writing (2019/07/16), the [`um7` ROS package](http://wiki.ros.org/um7) adopts a different coordinate system, and does so in an inconsistent manner.  Testing the direct outputs of the ros node, we noted the following coordinate systems
 
- -orientation quaternion converted to Euler angles assuming ZYX rotation order: x-left, y-forward, z-down
- -angular_velocity: x-forward, y-left, z-up
- -linear_acceleration: x-forward, y-left, z-up
- -rpy (roll,pitch,yaw): x-right, y-forward, z-up
+ - orientation quaternion converted to Euler angles assuming ZYX rotation order: x-left, y-forward, z-down
+ - angular_velocity: x-forward, y-left, z-up
+ - linear_acceleration: x-forward, y-left, z-up
+ - rpy (roll,pitch,yaw): x-right, y-forward, z-up
 
