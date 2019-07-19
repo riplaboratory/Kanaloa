@@ -16,7 +16,7 @@ To install the ROS `um7` package, [see the package wiki here](http://wiki.ros.or
 
 If you need a refresher on how to install ROS packages, [see our tutorial here](https://github.com/riplaboratory/Kanaloa/blob/master/Tutorials/SoftwareInstallation/ROS/InstallingPackages/README.md)
 
-## Coordinate Systems (THIS IS SUPER IMPORTANT)
+## Coordinate Systems (THIS IS IMPORTANT)
 
 The RSX-UM7 sensor internally employs a x-forward, y-right, z-down coordinate system.  This is the coordinate system printed on top of the sensor.  It looks something like this: 
 
