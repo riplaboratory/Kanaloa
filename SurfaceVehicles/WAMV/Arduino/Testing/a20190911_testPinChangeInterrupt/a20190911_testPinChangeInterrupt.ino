@@ -136,6 +136,13 @@ void loop() {
 
 }
 
+
+
+
+
+
+
+
 void ch1Change() {
 
   // Check the current state of the pin
