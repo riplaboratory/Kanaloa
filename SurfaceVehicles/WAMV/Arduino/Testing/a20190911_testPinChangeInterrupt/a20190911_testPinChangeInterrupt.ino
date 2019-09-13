@@ -22,25 +22,25 @@
 // Pin definitions
 const byte ch1Pin = 10;   // PWM/PPM in from handheld RC receiver channel 1 (surge)
 const byte ch2Pin = 11;   // PWM/PPM in from handheld RC receiver channel 2 (sway)
-const byte ch3Pin = 12;   // PWM/PPM in from handheld RC receiver channel 3 (yaw)
-const byte ch4Pin = 13;   // PWM/PPM in from handheld RC receiver channel 4 (LC batt)
-const byte ch5Pin = 50;   // PWM/PPM in from handheld RC receiver channel 5 (HC batt)
-const byte ch7Pin = 52;   // PWM/PPM in from handheld RC receiver channel 7 (rem kill)
+const byte ch3Pin = 12;   // PWM/PPM in from handheld RC receiver channel 3 (mode)
+const byte ch4Pin = 13;   // PWM/PPM in from handheld RC receiver channel 4 (kill)
+const byte ch5Pin = 50;   // PWM/PPM in from handheld RC receiver channel 5 (LC batt)
+const byte ch6Pin = 52;   // PWM/PPM in from handheld RC receiver channel 7 (HC batt)
 
 // Constant global variables
 const int nMedian = 8;          // number of readings to take to calculate median from controller inputs (don't make this too large, or else it will slow down the interrupt service routines)
-const int ch1PulseMin = 1024;     // minimum expected pulse width of ch1 [us] (this should be individually tested for each channel)
-const int ch1PulseMax = 2048;     // maximum expected pulse width of ch1 [us] (this should be individually tested for each channel)
-const int ch2PulseMin = 1024;     // minimum expected pulse width of ch2 [us] (this should be individually tested for each channel)
-const int ch2PulseMax = 2048;     // maximum expected pulse width of ch2 [us] (this should be individually tested for each channel)
-const int ch3PulseMin = 1024;     // minimum expected pulse width of ch3 [us] (this should be individually tested for each channel)
-const int ch3PulseMax = 2048;     // maximum expected pulse width of ch3 [us] (this should be individually tested for each channel)
-const int ch4PulseMin = 1152;     // minimum expected pulse width of ch4 [us] (this should be individually tested for each channel)
-const int ch4PulseMax = 2176;     // maximum expected pulse width of ch4 [us] (this should be individually tested for each channel)
-const int ch5PulseMin = 1152;     // minimum expected pulse width of ch5 [us] (this should be individually tested for each channel)
-const int ch5PulseMax = 2176;     // maximum expected pulse width of ch5 [us] (this should be individually tested for each channel)
-const int ch7PulseMin = 1152;     // minimum expected pulse width of ch7 [us] (this should be individually tested for each channel)
-const int ch7PulseMax = 2176;     // maximum expected pulse width of ch7 [us] (this should be individually tested for each channel)
+const int ch1PulseMin = 1032;     // minimum expected pulse width of ch1 [us] (this should be individually tested for each channel)
+const int ch1PulseMax = 2032;     // maximum expected pulse width of ch1 [us] (this should be individually tested for each channel)
+const int ch2PulseMin = 1072;     // minimum expected pulse width of ch2 [us] (this should be individually tested for each channel)
+const int ch2PulseMax = 2072;     // maximum expected pulse width of ch2 [us] (this should be individually tested for each channel)
+const int ch3PulseMin = 1160;     // minimum expected pulse width of ch3 [us] (this should be individually tested for each channel)
+const int ch3PulseMax = 2160;     // maximum expected pulse width of ch3 [us] (this should be individually tested for each channel)
+const int ch4PulseMin = 1200;     // minimum expected pulse width of ch4 [us] (this should be individually tested for each channel)
+const int ch4PulseMax = 2192;     // maximum expected pulse width of ch4 [us] (this should be individually tested for each channel)
+const int ch5PulseMin = 1248;     // minimum expected pulse width of ch5 [us] (this should be individually tested for each channel)
+const int ch5PulseMax = 2208;     // maximum expected pulse width of ch5 [us] (this should be individually tested for each channel)
+const int ch6PulseMin = 1120;     // minimum expected pulse width of ch7 [us] (this should be individually tested for each channel)
+const int ch6PulseMax = 2128;     // maximum expected pulse width of ch7 [us] (this should be individually tested for each channel)
 const int pulseTolerance = 200;   // tolerance range on minimum and maximum expected pulse widths [us]
 
 // Volatile global variables
@@ -64,10 +64,10 @@ volatile bool ch5State = 0;               // channel 5 digital state
 volatile int ch5PulseRaw = 0;             // channel 5 pulse width direct reading
 volatile int ch5PulseArray[nMedian] = {}; // channel 5 pulse width circular buffer array
 volatile float ch5Timer = 0;              // channel 5 pulse width timer
-volatile bool ch7State = 0;               // channel 7 digital state
-volatile int ch7PulseRaw = 0;             // channel 7 pulse width direct reading
-volatile int ch7PulseArray[nMedian] = {}; // channel 7 pulse width circular buffer array
-volatile float ch7Timer = 0;              // channel 7 pulse width timer
+volatile bool ch6State = 0;               // channel 6 digital state
+volatile int ch6PulseRaw = 0;             // channel 6 pulse width direct reading
+volatile int ch6PulseArray[nMedian] = {}; // channel 6 pulse width circular buffer array
+volatile float ch6Timer = 0;              // channel 6 pulse width timer
 
 void setup() {
 
@@ -77,7 +77,7 @@ void setup() {
   pinMode(ch3Pin, INPUT_PULLUP);
   pinMode(ch4Pin, INPUT_PULLUP);
   pinMode(ch5Pin, INPUT_PULLUP);
-  pinMode(ch7Pin, INPUT_PULLUP);
+  pinMode(ch6Pin, INPUT_PULLUP);
 
   // Attach pin change interrupt
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ch1Pin), ch1Change, CHANGE);
@@ -85,7 +85,7 @@ void setup() {
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ch3Pin), ch3Change, CHANGE);
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ch4Pin), ch4Change, CHANGE);
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ch5Pin), ch5Change, CHANGE);
-  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ch7Pin), ch7Change, CHANGE);
+  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ch6Pin), ch6Change, CHANGE);
 
   // Set serial baud rate
   Serial.begin(57600);
@@ -105,8 +105,8 @@ void loop() {
   memcpy(ch4PulseFilt, ch4PulseArray, nMedian * 2);
   int ch5PulseFilt[nMedian] = {};
   memcpy(ch5PulseFilt, ch5PulseArray, nMedian * 2);
-  int ch7PulseFilt[nMedian] = {};
-  memcpy(ch7PulseFilt, ch7PulseArray, nMedian * 2);
+  int ch6PulseFilt[nMedian] = {};
+  memcpy(ch6PulseFilt, ch6PulseArray, nMedian * 2);
 
   // Take median of pulse width arrays
   int ch1PulseMed = QuickMedian<int>::GetMedian(ch1PulseFilt, nMedian);
@@ -114,7 +114,7 @@ void loop() {
   int ch3PulseMed = QuickMedian<int>::GetMedian(ch3PulseFilt, nMedian);
   int ch4PulseMed = QuickMedian<int>::GetMedian(ch4PulseFilt, nMedian);
   int ch5PulseMed = QuickMedian<int>::GetMedian(ch5PulseFilt, nMedian);
-  int ch7PulseMed = QuickMedian<int>::GetMedian(ch7PulseFilt, nMedian);
+  int ch6PulseMed = QuickMedian<int>::GetMedian(ch6PulseFilt, nMedian);
 
   // Print pulse widths
   Serial.print("Ch1 (");
@@ -127,8 +127,8 @@ void loop() {
   Serial.print(ch4PulseMed);
   Serial.print("); Ch5 (");
   Serial.print(ch5PulseMed);
-  Serial.print("); Ch7 (");
-  Serial.print(ch7PulseMed);
+  Serial.print("); Ch6 (");
+  Serial.print(ch6PulseMed);
   Serial.println(");");
 
   // Short delay
@@ -296,16 +296,16 @@ void ch5Change() {
 
 }
 
-void ch7Change() {
+void ch6Change() {
 
   // Check the current state of the pin
-  ch7State = digitalRead(ch7Pin);
+  ch6State = digitalRead(ch6Pin);
 
-  if (ch7State == 1) {
+  if (ch6State == 1) {
     // Pin is high, this was probably a rise event
 
     // Save current time to timer
-    ch7Timer = micros();
+    ch6Timer = micros();
 
   }
 
@@ -313,14 +313,14 @@ void ch7Change() {
     // Pin is low, this was probably a fall event
 
     // Subtract ch1Time from current time
-    ch7PulseRaw = micros() - ch7Timer;
+    ch6PulseRaw = micros() - ch6Timer;
 
     // Only commit reading to global variable if it's within expected range
-    if (ch7PulseRaw >= ch7PulseMin - pulseTolerance && ch7PulseRaw <= ch7PulseMax + pulseTolerance) {
+    if (ch6PulseRaw >= ch6PulseMin - pulseTolerance && ch6PulseRaw <= ch6PulseMax + pulseTolerance) {
 
       // Move new measurement into circular buffer array
-      memcpy(ch7PulseArray, &ch7PulseArray[1], sizeof(ch7PulseArray) - sizeof(int));
-      ch7PulseArray[nMedian - 1] = ch7PulseRaw;
+      memcpy(ch6PulseArray, &ch6PulseArray[1], sizeof(ch6PulseArray) - sizeof(int));
+      ch6PulseArray[nMedian - 1] = ch6PulseRaw;
 
     }
 
