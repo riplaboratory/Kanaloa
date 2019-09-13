@@ -22,7 +22,7 @@
 // Pin definitions
 // Note: the Arduino Mega 2560 can use pin change interrupts on pins 10,11,12,13,50,51,52,53,A8(62),A9(63),A10(64),A11(65),A12(66),A13(67),A14(68),A15(69).
 const byte ch1Pin = 10;   // PWM/PPM in from handheld RC receiver channel 1 (surge)
-const byte ch2Pin = 11;   // PWM/PPM in from handheld RC receiver channel 2 (sway)
+const byte ch2Pin = 11;   // PWM/PPM in from handheld RC receiver channel 2 (yaw)
 const byte ch3Pin = 12;   // PWM/PPM in from handheld RC receiver channel 3 (mode)
 const byte ch4Pin = 13;   // PWM/PPM in from handheld RC receiver channel 4 (kill)
 const byte ch5Pin = 50;   // PWM/PPM in from handheld RC receiver channel 5 (LC batt)
