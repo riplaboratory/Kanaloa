@@ -303,6 +303,80 @@ void setSpd(int vel, byte fwdpin, byte revpin) {
     Serial.println(fwdpin);
     Serial.print("REV: ");
     Serial.println(revpin);
-    
-    
   }
+
+String commandToMsg(int motor){
+  /***
+   *  Converts motor commands into serial messages. Checks to see if
+   *  the motor command is greater/less than neutral point to determine
+   *  whether F/R character should be used. 
+   *  
+   *  Inputs:
+   *   - motor <int>: motor command
+   *   
+   *  Return:
+   *   - msg <String>: motor magnitude and direction as a String
+   */
+  String msg; 
+  if (motor<1000){
+    msg = "0" + String(motor);
+  }
+  else{
+    msg = String(motor);
+  }
+  
+  if (motor < neutral){
+    dir = 'R';
+    return msg += dir;
+  }
+  if (motor > neutral && motor <= 4096){
+    dir = 'F';
+    return msg += dir;
+  }
+  else{
+    dir = 'N';
+    return msg += dir;
+  }
+}
+
+void msgReset(){
+  /***
+   * Function to reset the serial messages after each loop. 
+   */
+  q1Msg = "Q1";
+  q2Msg = "Q2";
+  q3Msg = "Q3";
+  q4Msg = "Q4";
+}
+
+void sendMsgs(){
+  /***
+   * Function to send serial messages for all four motor commands.
+   * It iterates over the serial message Strings because Serial.write
+   * cannot take Strings as input.
+   */
+
+  Wire.beginTransmission(SLAVE_ADDR);
+  // Send Q1 messages
+  for(int i=0; i<=7; i++){
+    Wire.write(q1Msg[i]);
+    Serial.print(q1Msg[i]);
+  }
+  // Send Q2 messages
+  for(int i=0; i<=7; i++){
+    Wire.write(q2Msg[i]);
+    Serial.print(q2Msg[i]);
+  }  
+  // Send Q3 messages
+  for(int i=0; i<=7; i++){
+    Wire.write(q3Msg[i]);
+    Serial.print(q3Msg[i]);
+  }
+  // Send Q4 messages
+  for(int i=0; i<=7; i++){
+    Wire.write(q4Msg[i]);
+    Serial.print(q4Msg[i]);
+  }
+  Wire.endTransmission();
+  Serial.println();
+}
