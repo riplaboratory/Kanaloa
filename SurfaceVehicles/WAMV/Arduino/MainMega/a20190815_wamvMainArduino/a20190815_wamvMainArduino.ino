@@ -20,10 +20,15 @@
 #include <std_msgs/Float64.h>
 #include <Adafruit_PWMServoDriver.h>
 #include <QuickMedianLib.h>
-//#include <ros.h>
+#include <ros.h>
+#include <Wire.h>
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
+// Definitions
+#define SLAVE_ADDR 9  // arbitrary address to identify slave device
+
 // Pin definitions
+// pins 20 and 21 are used for I2C communication
 const int voltMainPin = A1;         // analog in from voltage divider pin for reading main battery voltage
 const int tempPin = A2;             // analog in from temperature probe pin for reading temperature (optional)
 const byte ch1Pin = 18;             // PWM in from remote control receiver channel 1 (right stick left-to-right yaw/rotation)
@@ -91,6 +96,14 @@ float autoQ1 = 0;           // autonomous command signal from ROS for Q1 thruste
 float autoQ2 = 0;           // autonomous command signal from ROS for Q2 thruster (via ROS)
 float autoQ3 = 0;           // autonomous command signal from ROS for Q3 thruster (via ROS)
 float autoQ4 = 0;           // autonomous command signal from ROS for Q4 thruster (via ROS)
+
+// Message variables for I2C Communication
+int neutral = 2048;   // From 0-4096, 2048 is neutral
+char dir = 'N';       // variable for direction
+String q1Msg = "Q1";  // Q1 Serial message
+String q2Msg = "Q2";  // Q2 Serial message
+String q3Msg = "Q3";  // Q3 Serial message
+String q4Msg = "Q4";  // Q4 Serial message
 
 // ROS node handle (allows program to create publishers and subscribers)
 ros::NodeHandle nh;         // ROS node handle (allows program to create publishers and subscribers)
@@ -231,6 +244,9 @@ void setup() {
   
   // Set serial baud rate
   Serial.begin(57600); 
+
+  // I2C Communication
+  Wire.begin();  // join the I2C bus as a master (master device has no paramter)
 
   //New ROS Code ANTX
 
