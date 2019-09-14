@@ -42,21 +42,21 @@ void readLowCurrentBatteryVoltage() {
 }
 
 void readMainBatteryVoltage() {
+
+  String voltageMsg = "";
+
   // Get voltage measurement as a String
   for(int j=1; j<5; j++){
-    voltageMsg += message[j];
+    voltageMsg += incoming[j];
   }
 
   // Convert voltage message to float
-  voltage = voltageMsg.toFloat();
+  voltMainBatt = voltageMsg.toFloat();
 
   // Update voltage only when voltage measured changes
-  if (voltage != previousVoltage && voltage > 11.0){
-    previousVoltage = voltage; 
+  if (voltMainBatt != previousVoltage && voltMainBatt > 11.0){
+    previousVoltage = voltMainBatt; 
   }
-
-  // Reset voltageMsg
-  voltageMsg = ""; 
 }
 
 void determineMode() {
@@ -317,11 +317,11 @@ String commandToMsg(int motor){
     msg = String(motor);
   }
   
-  if (motor < neutral && motor >= -1000){
+  if (motor < 0 && motor >= -1000){
     dir = 'R';
     return msg += dir;
   }
-  if (motor > neutral && motor <= 1000){
+  if (motor > 0 && motor <= 1000){
     dir = 'F';
     return msg += dir;
   }
@@ -331,9 +331,20 @@ String commandToMsg(int motor){
   }
 }
 
+void msgReset(){
+  /***
+   * Function to reset the serial messages after each loop. 
+   */
+  q1Msg = "Q1";
+  q2Msg = "Q2";
+  q3Msg = "Q3";
+  q4Msg = "Q4";
+  temp = "";
+}
+
 void getMsgs(){
-  q1Msg += commandToMsg(leftServoOut);   // Q1 will act as rightServoOut
-  q2Msg += commandToMsg(rightServoOut);  // Q2 will act as leftServoOut
+  q1Msg += commandToMsg(leftThrusterSetpoint);   // Q1 will act as rightServoOut
+  q2Msg += commandToMsg(rightThrusterSetpoint);  // Q2 will act as leftServoOut
 //  q3Msg += commandToMsg(q3Out);  
 //  q4Msg += commandToMsg(q4Out); 
   
@@ -344,6 +355,6 @@ void getMsgs(){
 
   // Ensure message being sent is correct size
   if(sizeof(temp) == 6){
-    message = temp;
+    motorCmds = temp;
   }
 }

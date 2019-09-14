@@ -19,6 +19,7 @@
 #include <PinChangeInterruptBoards.h>
 #include <PinChangeInterruptPins.h>
 #include <PinChangeInterruptSettings.h>
+#include <ros.h>
 
 
 // Definitions
@@ -26,18 +27,17 @@
 #define ANSWERSIZE  14   // size of message to send to master Arduino
 #define MESSAGESIZE 5    // size of message received from master Arduino
 
-// I2C Communications
-char dir = 'N';                       // variable to hold direction
-String q1Msg = "Q1";                  // String to hold Serial message for Q1
-String q2Msg = "Q2";                  // String to hold Serial message for Q2
-String q3Msg = "Q3";                  // String to hold Serial message for Q3
-String q4Msg = "Q4";                  // String to hold Serial message for Q4
-String temp = "";                     // temporary message variable for sending motor commands
-String voltageMsg;                    // String to store voltage measurement
-volatile String message = "";         // String message to send to master Arduino
-volatile char message[MESSAGESIZE];   // character array to store incoming message from master Arduino
-int counter = 0;                      // counter used for reading message coming in from master Arduino 
-float previousVoltage = 0.0;          // temporary variable to store voltage measured
+// I2C Communications 
+char dir = 'N';                         // variable to hold direction
+String q1Msg = "Q1";                    // String to hold Serial message for Q1
+String q2Msg = "Q2";                    // String to hold Serial message for Q2
+String q3Msg = "Q3";                    // String to hold Serial message for Q3
+String q4Msg = "Q4";                    // String to hold Serial message for Q4
+String temp = "";                       // temporary message variable for sending motor commands
+volatile String motorCmds = "";         // String message to send to master Arduino
+volatile char incoming[MESSAGESIZE];    // character array to store incoming message from master Arduino
+int counter = 0;                        // counter used for reading message coming in from master Arduino 
+float previousVoltage = 0.0;            // temporary variable to store voltage measured
   
 
 // Pin definitions
@@ -137,8 +137,8 @@ int rightThrusterSetpoint = 0;  // setpoint command for right thruster
 
 // ROS node handle (allows program to create publishers and subscribers)
 ros::NodeHandle nh;         // ROS node handle (allows program to create publishers and subscribers)
-std_msgs::Int32 int_msg;
-std_msgs::String str_msg;
+//std_msgs::Int32 int_msg;
+//std_msgs::String str_msg;
 
 // ROS variables
 int q1_thrust = 0;
@@ -151,27 +151,27 @@ int q4_thrust = 0;
 //int q4_thrust_pwm;
 
 // ROS subscribers
-void thrust_input_q1( const std_msgs::Int32& input_msg) {
-  q1_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-}
-
-void thrust_input_q2(const std_msgs::Int32& input_msg) {
-  q2_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-}
-
-void thrust_input_q3( const std_msgs::Int32& input_msg) {
-  q3_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-}
-
-void thrust_input_q4( const std_msgs::Int32& input_msg) {
-  q4_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-}
+//void thrust_input_q1( const std_msgs::Int32& input_msg) {
+//  q1_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+//}
+//
+//void thrust_input_q2(const std_msgs::Int32& input_msg) {
+//  q2_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+//}
+//
+//void thrust_input_q3( const std_msgs::Int32& input_msg) {
+//  q3_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+//}
+//
+//void thrust_input_q4( const std_msgs::Int32& input_msg) {
+//  q4_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+//}
 
 // ROS publishers
-ros::Subscriber<std_msgs::Int32> q1_sub("q1_thruster_input", &thrust_input_q1 );      //sub to number_topic
-ros::Subscriber<std_msgs::Int32> q2_sub("q2_thruster_input", &thrust_input_q2 );      //sub to number_topic
-ros::Subscriber<std_msgs::Int32> q3_sub("q3_thruster_input", &thrust_input_q3 );      //sub to number_topic
-ros::Subscriber<std_msgs::Int32> q4_sub("q4_thruster_input", &thrust_input_q4 );      //sub to number_topic
+//ros::Subscriber<std_msgs::Int32> q1_sub("q1_thruster_input", &thrust_input_q1 );      //sub to number_topic
+//ros::Subscriber<std_msgs::Int32> q2_sub("q2_thruster_input", &thrust_input_q2 );      //sub to number_topic
+//ros::Subscriber<std_msgs::Int32> q3_sub("q3_thruster_input", &thrust_input_q3 );      //sub to number_topic
+//ros::Subscriber<std_msgs::Int32> q4_sub("q4_thruster_input", &thrust_input_q4 );      //sub to number_topic
 
 void setup() {
 
@@ -206,10 +206,10 @@ void setup() {
   nh.initNode();
 
   // Initialize ROS subscibers
-  nh.subscribe(q1_sub);      //initialize ros subscriber
-  nh.subscribe(q2_sub);      //initialize ros subscriber
-  nh.subscribe(q3_sub);      //initialize ros subscriber
-  nh.subscribe(q4_sub);      //initialize ros subscriber
+//  nh.subscribe(q1_sub);      //initialize ros subscriber
+//  nh.subscribe(q2_sub);      //initialize ros subscriber
+//  nh.subscribe(q3_sub);      //initialize ros subscriber
+//  nh.subscribe(q4_sub);      //initialize ros subscriber
 
 }
 
