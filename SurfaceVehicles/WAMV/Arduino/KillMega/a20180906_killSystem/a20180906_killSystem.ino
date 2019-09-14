@@ -5,21 +5,23 @@
  * is killed. 
  * 
  * Created by: Kai Jones
- * Revisions by: Brennan Yamamoto
- * Date: 2018.07.25
+ * Revisions by: Kai Jones
+ * Date: 2018.09.06
  * 
  * Update Notes:
- * - Included section of code to control red LED on safety light. 
- * - Verified in hardware.  Note that relay board is reverse logic, i.e. the board sits at 5V in normal state, and requires pull down to LOW on signal pin to change system out of normal state.  This sounds unsafe, but is OK, because if arduino dies, signal pin gets naturally pulled up to 5V and relay board reverts to normal (killed) state.  If 5V dies, relay board loses power altogether, and relay reverts to normal (killed) state.  
+ * - Implemented code to control all safety lights (green, yellow, and red safety lights) 
+ * 
  */
 
 //-----------------
 // Pin Definitions
 //-----------------
 const int physicalKill1Pin = 2;     // Physical kill switch number 1 that reads whether switch is KILLED (OPEN/LOW) or UNKILLED (CLOSED/HIGH) 
-const int physicalKill2Pin = 3;     // Physical kill switch number 2 that reads whether switch is KILLED (OPEN/LOW) or UNKILLED (CLOSED/HIGH)
-const int relayPin = 6;             // Pin which Arduino sends a HIGH/LOW signal to relay
+const int physicalKill2Pin = 3;     // Physical kill switch number 2 that reads whether switch is KILLED (OPEN/LOW) or UNKILLED (CLOSED/HIGH)  
+const int safetyRelayPin = 6;       // Pin which Arduino sends a HIGH/LOW signal to relay
+const int manualControlPin = 7;     // Pin which Arduino reads a HIGH/LOW signal to determine whether WAM-V is either in autonomous or manual control state. Signal is sent from Arduino within low current box.  
 const int ch8Pin = 8;               // PWM signal from the 8th channel of the R9 receiver in the wireless pole; this is the remote kill switch signal
+const int greenLightPin = 12;       // Pin which Arduino sends a HIGH/LOW signal to relay for green safety light
 const int redLightPin = 13;         // Red LED light on safety pole (HIGH to turn light ON, LOW to turn light OFF)
 
 //-----------------
@@ -36,8 +38,9 @@ bool kill = true;                   // master kill status variable.  true will K
 bool physicalKill1Status = true;    // physical kill 1 status variable. true means KILL is detected, false means UNKILL is detected.
 bool physicalKill2Status = true;    // physical kill 2 status variable. true means KILL is detected, false means UNKILL is detected.
 bool ch8KillStatus = true;          // ch8 (remote) kill status variable. true means KILL is detected, false means UNKILL is detected.
+bool manualControlSignal = HIGH;    // Variable is either HIGH/LOW which correlates to whether WAM-V is in autonomous or manual control state.
 bool physicalKill1PinState = LOW;
-bool physicalKill2PinState = LOW;
+bool physicalKill2PinState = LOW; 
 int ch8PulseLength = 0;
 
 //-------------
@@ -51,9 +54,11 @@ bool verbose_mode = false;          // setting verbose_mode to true will print d
 void setup() {
   pinMode(physicalKill1Pin, INPUT);     // Reads whether physical killswitch 1 is KILLED (LOW) or UNKILLED (HIGH)
   pinMode(physicalKill2Pin, INPUT);     // Reads whether physical killswitch 2 is KILLED (LOW) or UNKILLED (HIGH)
-  pinMode(relayPin, OUTPUT);            // Arduino sends a HIGH/LOW signal to relay depending on killswitches's states
+  pinMode(safetyRelayPin, OUTPUT);            // Arduino sends a HIGH/LOW signal to relay depending on killswitches's states
   pinMode(ch8Pin, INPUT_PULLUP);        // Arduino reads incoming PWM signal for remote kill switch
   pinMode(redLightPin, OUTPUT);         // Arduino sends signal out to red safety light
+  pinMode(greenLightPin, OUTPUT);       // Arduino sends HIGH/LOW signal to green safety light
+  pinMode(manualControlPin, INPUT);  // Arduino reads HIGH/LOW signal to determine if WAM-V's state is in autonomous or manual control. 
   Serial.begin(9600);
 }
 
@@ -76,6 +81,7 @@ void main_function() {
   // Check pin states
   physicalKill1PinState = digitalRead(physicalKill1Pin);  // check physical kill 1 pin state
   physicalKill2PinState = digitalRead(physicalKill2Pin);  // check physical kill 2 pin state
+  manualControlSignal = digitalRead(manualControlPin);    // check if WAM-V is in autonomous or manual control state
   ch8PulseLength = pulseIn(ch8Pin,HIGH,250000);           // check ch8 from transmitter (remote kill channel), 0.25s timeout
 
   // Low-level logic
@@ -109,13 +115,28 @@ void main_function() {
   // Send kill or unkill signal
   // Note that relay board is reverse logic, so KILLING (normal state) requires that you pull the signal HIGH, and UNKILLING requires that you pull the signal LOW.  This seems unsafe, but is protexted by reverse logic.
    if(kill == true) {
-    digitalWrite(relayPin,HIGH);        // KILLING system is desired, pull relay signal HIGH
+    digitalWrite(safetyRelayPin,HIGH);        // KILLING system is desired, pull relay signal HIGH
     digitalWrite(redLightPin, LOW);     // Turn red saftey light ON to indicate system is KILLED
+    digitalWrite(greenLightPin, HIGH);  // Ensure green safety light is OFF
    }
    else{
-    digitalWrite(relayPin,LOW);         // UNKILLING system is desired, pull relay signal HIGH
+    digitalWrite(safetyRelayPin,LOW);         // UNKILLING system is desired, pull relay signal HIGH
     digitalWrite(redLightPin, HIGH);    // Turn red safety light OFF to indicate system is LIVE
-   }  
+    digitalWrite(greenLightPin, HIGH);  // Ensure green safety light is OFF
+   }
+
+   // Check WAM-V Control State and indicate state with safety lights
+   // Green means "WAM-V is in autonomous state" and yellow means "WAM-V is in manual control state"
+   if(manualControlSignal == HIGH && kill != true){
+      digitalWrite(redLightPin, LOW);     // Turns RED light ON. LED lights only have Red, Blue, and Green so to create Yellow, we combine Red and Green.
+      digitalWrite(greenLightPin, LOW);   // Turns GREEN light ON. 
+    }
+    
+   else if(manualControlSignal == LOW && kill != true){
+      digitalWrite(redLightPin, HIGH);    // Turns RED light OFF. 
+      digitalWrite(greenLightPin, HIGH);  // Turns GREEN light ON. GREEN light inidicates WAM-V is in autonomous state. 
+    }
+
 }
 
 void verbose_function(){
@@ -128,13 +149,14 @@ void verbose_function(){
     Serial.println("UNKILLED");
   }
   Serial.print("Physical kill 2 status: ");
-  if(physicalKill2Status == true) {
-    Serial.println("KILLED");
-  }
+  if(physicalKill2Status ==
+    true) {
+      Serial.println("KILLED");
+    }
   else {
     Serial.println("UNKILLED");
   }
-Serial.print("ch8 (remote kill) status: ");
+  Serial.print("ch8 (remote kill) status: ");
   Serial.print(ch8PulseLength);
   Serial.print("us -> ");
   if(ch8KillStatus == true) {
@@ -154,4 +176,3 @@ Serial.print("ch8 (remote kill) status: ");
   Serial.println(" ");
    
 }
-

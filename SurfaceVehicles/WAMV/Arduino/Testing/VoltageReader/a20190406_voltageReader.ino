@@ -1,4 +1,4 @@
-int voltagePin = A1; 
+int voltagePin = A0; 
 float voltageBytes; 
 float voltage;
 
@@ -9,7 +9,7 @@ void setup() {
 
 void loop() {
   voltageBytes = analogRead(voltagePin);
-  voltage = 0.0401*voltageBytes + 0.0591; 
+  voltage = 0.0427*voltageBytes + 0.117; 
   Serial.print("Voltage: ");
   Serial.println(voltage);
   delay(100); 
