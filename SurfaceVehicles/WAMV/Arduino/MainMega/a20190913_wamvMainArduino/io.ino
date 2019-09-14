@@ -1,0 +1,285 @@
+// Read in information from the kill Arduino, and assign mode of operation accordingly.  Note that the mainMega cannot actually kill the system, since the actual kill is handled by the killMega. 
+void readKillArduino() {
+  
+  if (digitalRead(killCommPin) == LOW) {
+    killStatus = 0;       // killMega sending LOW (UNKILL)
+  }
+  else {
+    killStatus = 1;       // killMega sending HIGH (KILL)
+  }
+  
+}
+
+void readHandheldReceiver() {
+
+  // Create local, non-volatile copy of pulse widths (QuickMedian does not like volatile arrays)
+  int ch1PulseFilt[nMedian] = {};
+  memcpy(ch1PulseFilt, ch1PulseArray, nMedian * 2);
+  int ch2PulseFilt[nMedian] = {};
+  memcpy(ch2PulseFilt, ch2PulseArray, nMedian * 2);
+  int ch3PulseFilt[nMedian] = {};
+  memcpy(ch3PulseFilt, ch3PulseArray, nMedian * 2);
+  int ch5PulseFilt[nMedian] = {};
+  memcpy(ch5PulseFilt, ch5PulseArray, nMedian * 2);
+  int ch6PulseFilt[nMedian] = {};
+  memcpy(ch6PulseFilt, ch6PulseArray, nMedian * 2);
+
+  // Take median of pulse width arrays
+  ch1PulseMedian = QuickMedian<int>::GetMedian(ch1PulseFilt, nMedian);
+  ch2PulseMedian = QuickMedian<int>::GetMedian(ch2PulseFilt, nMedian);
+  ch3PulseMedian = QuickMedian<int>::GetMedian(ch3PulseFilt, nMedian);
+  ch5PulseMedian = QuickMedian<int>::GetMedian(ch5PulseFilt, nMedian);
+  ch6PulseMedian = QuickMedian<int>::GetMedian(ch6PulseFilt, nMedian);
+  
+}
+
+void readLowCurrentBatteryVoltage() {
+
+  // read voltage here
+
+  voltLowCurrentBatt = 16;    // placeholder for now
+  
+}
+
+void readMainBatteryVoltage() {
+
+  // read voltage here
+
+  voltMainBatt = 28;          // placeholder for now
+  
+}
+
+void determineMode() {
+  
+  // Determine mode from handheld receiver channel 3
+  int switchUp = ch3PulseMin;
+  int switchMid = round((ch3PulseMax+ch3PulseMin)/2);
+  int switchDown = ch3PulseMax; 
+  if (ch3PulseMedian + pulseTolerance > switchUp && ch3PulseMedian - pulseTolerance < switchUp) {
+    // Channel 3 switch is in the up position (autonomous)
+    mode = 2;
+  }
+  else if (ch3PulseMedian + pulseTolerance > switchMid && ch3PulseMedian - pulseTolerance < switchMid) {
+    // Channel 3 switch is in the middle position (manual)
+    mode = 1;
+  }
+  else if (ch3PulseMedian + pulseTolerance > switchDown && ch3PulseMedian - pulseTolerance < switchDown) {
+    // Channel 3 switch is in the down position (manual)
+    mode = 1;
+  }
+  else {
+    // Invalid input from channel 3
+    Serial.println("Mode switch (channel 3) reporting invalid input; check transmitter connection...");
+    mode = 0;
+  }
+
+  // Determine main battery check mode from receiver channel 5
+  switchUp = ch5PulseMin;
+  switchMid = round((ch5PulseMax+ch5PulseMin)/2);
+  switchDown = ch5PulseMax; 
+  if (ch5PulseMedian + pulseTolerance > switchUp && ch5PulseMedian - pulseTolerance < switchUp) {
+    // Channel 5 switch is in the up position (yes to main battery check)
+    mainBattCheck = 1;
+  }
+  else if (ch5PulseMedian + pulseTolerance > switchMid && ch5PulseMedian - pulseTolerance < switchMid) {
+    // Channel 5 switch is in the middle position (no to main battery check)
+    mainBattCheck = 2;
+  }
+  else if (ch5PulseMedian + pulseTolerance > switchDown && ch5PulseMedian - pulseTolerance < switchDown) {
+    // Channel 5 switch is in the down position (no to main battery check)
+    mainBattCheck = 2;
+  }
+  else {
+    // Invalid input from channel 5
+    Serial.println("Main battery check switch (channel 5) reporting invalid input; check transmitter connection...");
+    mainBattCheck = 0;
+  }
+
+  // Determine main battery check mode from receiver channel 6
+  switchUp = ch6PulseMin;
+  switchMid = round((ch6PulseMax+ch6PulseMin)/2);
+  switchDown = ch6PulseMax; 
+  if (ch6PulseMedian + pulseTolerance > switchUp && ch6PulseMedian - pulseTolerance < switchUp) {
+    // Channel 6 switch is in the up position (yes to low current battery check)
+    lowCurrentBattCheck = 1;
+  }
+  else if (ch6PulseMedian + pulseTolerance > switchMid && ch6PulseMedian - pulseTolerance < switchMid) {
+    // Channel 6 switch is in the middle position (no to low current battery check)
+    lowCurrentBattCheck = 2;
+  }
+  else if (ch6PulseMedian + pulseTolerance > switchDown && ch6PulseMedian - pulseTolerance < switchDown) {
+    // Channel 6 switch is in the down position (no to low current battery check)
+    lowCurrentBattCheck = 2;
+  }
+  else {
+    // Invalid input from channel 6
+    Serial.println("Low current battery check switch (channel 6) reporting invalid input; check transmitter connection...");
+    lowCurrentBattCheck = 0;
+  }
+  
+}
+
+void controlLight() {
+
+  if (killStatus == 1) {
+    changeLight(2);
+  }
+  else {
+    if (mainBattCheck == 1) {
+      if (lowCurrentBattCheck == 1) {
+        Serial.println("yes to main battery check AND low current battery check, FLASH WHITE");
+        changeLight(1);
+        delay(50);
+        changeLight(0);
+        delay(50);
+      }
+      else if (lowCurrentBattCheck == 2) {
+        if (voltMainBatt > 27.76) {
+          Serial.println("main battery check, main battery is full, FLASH GREEN");
+          changeLight(3);
+          delay(50);
+          changeLight(0);
+          delay(50);
+        }
+        else if (voltMainBatt <= 27.76 && voltMainBatt > 26.13) {
+          Serial.println("main battery check, main battery is medium, FLASH BLUE");
+          changeLight(4);
+          delay(50);
+          changeLight(0);
+          delay(50);
+        }
+        else {
+          Serial.println("main battery check, main battery is low, FLASH RED");
+          changeLight(2);
+          delay(50);
+          changeLight(0);
+          delay(50);
+        }
+      }
+      else {
+        Serial.println("low current battery check error, WHITE");
+        changeLight(1);
+      }
+    }
+    else if (mainBattCheck == 2) {
+      if (lowCurrentBattCheck == 1) {
+        if (voltLowCurrentBatt > 15.86) {
+          Serial.println("low current battery check, low current battery is full, FLASH GREEN");
+          changeLight(3);
+          delay(50);
+          changeLight(0);
+          delay(50);
+        }
+        else if (voltLowCurrentBatt <= 15.86 && voltLowCurrentBatt > 14.93) {
+          Serial.println("low current battery check, low current battery is medium, FLASH BLUE");
+          changeLight(4);
+          delay(50);
+          changeLight(0);
+          delay(50);
+        }
+        else {
+          Serial.println("low current battery check, low current battery is low, FLASH RED");
+          changeLight(2);
+          delay(50);
+          changeLight(0);
+          delay(50);
+        }
+      }
+      else if (lowCurrentBattCheck == 2) {
+        if (mode == 1) {
+          changeLight(5);
+        }
+        else if (mode == 2) {
+          changeLight(4);
+        }
+        else {
+          changeLight(1);
+        }
+      }
+      else {
+        Serial.println("low current battery check error, WHITE");
+        changeLight(1);
+      }
+    }
+    else {
+      Serial.println("main battery check error, WHITE");
+      changeLight(1);
+    }
+  }  
+}
+
+void changeLight(int lightColor) {
+  
+  // light color variable (0 = off, 1 = white, 2 = red, 3 = green, 4 = blue, 5 = yellow, 6 = light blue)
+  
+  if (lightColor == 0) {
+    digitalWrite(redPin,HIGH);
+    digitalWrite(bluePin,HIGH);
+    digitalWrite(greenPin,HIGH);
+  }
+  else if (lightColor == 1) {
+    digitalWrite(redPin,LOW);
+    digitalWrite(bluePin,LOW);
+    digitalWrite(greenPin,LOW);
+  }
+  else if (lightColor == 2) {
+    digitalWrite(redPin,LOW);
+    digitalWrite(bluePin,HIGH);
+    digitalWrite(greenPin,HIGH);
+  }
+  else if (lightColor == 3) {
+    digitalWrite(redPin,HIGH);
+    digitalWrite(bluePin,HIGH);
+    digitalWrite(greenPin,LOW);
+  }
+  else if (lightColor == 4) {
+    digitalWrite(redPin,HIGH);
+    digitalWrite(bluePin,LOW);
+    digitalWrite(greenPin,HIGH);
+  }  
+  else if (lightColor == 5) {
+    digitalWrite(redPin,LOW);
+    digitalWrite(bluePin,HIGH);
+    digitalWrite(greenPin,LOW);
+  }
+  else if (lightColor == 6) {
+    digitalWrite(redPin,HIGH);
+    digitalWrite(bluePin,LOW);
+    digitalWrite(greenPin,LOW);
+  }    
+}
+
+// Take joystick readings, and convert to setpoint thrust values
+void joy2Setpoint() {
+
+  // Grab ch1, ch4, and ch6 from filtering function
+  int ch1Pulse = ch1PulseMedian;    // yaw (right stick left-right)
+  int ch2Pulse = ch2PulseMedian;    // sway (left stick left-right)
+
+  // Pulse width variables
+  int ch1PulseNeutral = round((ch1PulseMax - ch1PulseMin) / 2) + ch1PulseMin;
+  int ch2PulseNeutral = round((ch2PulseMax - ch2PulseMin) / 2) + ch2PulseMin;
+
+  // Remove the deadzone
+  if (ch1Pulse < ch1PulseNeutral + round(pulseDeadzone/2) && ch1Pulse > ch1PulseNeutral - round(pulseDeadzone/2)) {
+    ch1Pulse = ch1PulseNeutral;
+  }
+  if (ch2Pulse < ch2PulseNeutral + round(pulseDeadzone/2) && ch2Pulse > ch2PulseNeutral - round(pulseDeadzone/2)) {
+    ch2Pulse = ch2PulseNeutral;
+  }
+
+  // Map joystick inputs from -1000 to 1000
+  int ch1Map = map(ch1Pulse,ch1PulseMin,ch1PulseMax,-1000,1000);  // surge (positive forward, negative backward)
+  int ch2Map = map(ch2Pulse,ch2PulseMin,ch2PulseMax,1000,-1000);  // yaw (positive CCW, negative CW)
+
+  // Calculate surge sway and yaw components
+  int surgeLeft = ch1Map;     // surge (forward positive)
+  int surgeRight = ch1Map;
+  int yawLeft = -ch2Map;       // yaw (CCW positive)
+  int yawRight = ch2Map;
+
+  // Map thruster components from -1000 to 1000
+  leftThrusterSetpoint = constrain(surgeLeft + yawLeft,-1000,1000);
+  rightThrusterSetpoint = constrain(surgeRight + yawRight,-1000,1000);
+  
+}
