@@ -163,3 +163,28 @@ void ch6Change() {
   }
 
 }
+
+void sendMsgs(){
+  /***
+   * Function to send serial messages for motor commands.
+   * It iterates over the serial message Strings because Serial.write
+   * cannot take Strings as input.
+   */
+  byte response[ANSWERSIZE];
+
+  for (byte i=0; i<ANSWERSIZE; i++){
+    response[i] = (byte)message.charAt(i);
+  }
+
+  Wire.write(response, ANSWERSIZE);
+}
+
+void readVoltageMsg(int byteCount) {
+  //Read while data received
+  while(0 < Wire.available()) { 
+    char c = Wire.read();     // Read byte as a character and save to variable c
+    message[i] = c;           // Append character to character array 
+    i++;                      // Increment i counter variable
+  }
+  i = 0; // Reset the counter variable
+}

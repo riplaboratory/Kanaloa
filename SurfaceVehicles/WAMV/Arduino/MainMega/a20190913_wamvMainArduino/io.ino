@@ -42,11 +42,21 @@ void readLowCurrentBatteryVoltage() {
 }
 
 void readMainBatteryVoltage() {
+  // Get voltage measurement as a String
+  for(int j=1; j<5; j++){
+    voltageMsg += message[j];
+  }
 
-  // read voltage here
+  // Convert voltage message to float
+  voltage = voltageMsg.toFloat();
 
-  voltMainBatt = 28;          // placeholder for now
-  
+  // Update voltage only when voltage measured changes
+  if (voltage != previousVoltage && voltage > 11.0){
+    previousVoltage = voltage; 
+  }
+
+  // Reset voltageMsg
+  voltageMsg = ""; 
 }
 
 void determineMode() {
@@ -281,5 +291,59 @@ void joy2Setpoint() {
   // Map thruster components from -1000 to 1000
   leftThrusterSetpoint = constrain(surgeLeft + yawLeft,-1000,1000);
   rightThrusterSetpoint = constrain(surgeRight + yawRight,-1000,1000);
+
+  // Create messages for I2C comms
+  getMsgs();
+  msgReset();
+}
+
+String commandToMsg(int motor){
+  /***
+   *  Converts motor commands into serial messages. Checks to see if
+   *  the motor command is greater/less than neutral point to determine
+   *  whether F/R (forward/reverse) direction character should be used. 
+   *  
+   *  Inputs:
+   *   - motor <int>: motor command
+   *   
+   *  Return:
+   *   - msg <String>: motor magnitude and direction as a String
+   */
+  String msg; 
+  if (abs(motor)<0){
+    msg = "0" + String(motor);
+  }
+  else{
+    msg = String(motor);
+  }
   
+  if (motor < neutral && motor >= -1000){
+    dir = 'R';
+    return msg += dir;
+  }
+  if (motor > neutral && motor <= 1000){
+    dir = 'F';
+    return msg += dir;
+  }
+  else{
+    dir = 'N';
+    return msg += dir;
+  }
+}
+
+void getMsgs(){
+  q1Msg += commandToMsg(leftServoOut);   // Q1 will act as rightServoOut
+  q2Msg += commandToMsg(rightServoOut);  // Q2 will act as leftServoOut
+//  q3Msg += commandToMsg(q3Out);  
+//  q4Msg += commandToMsg(q4Out); 
+  
+  temp += q1Msg; 
+  temp += q2Msg; 
+//  temp += q3Msg;
+//  temp += q4Msg;
+
+  // Ensure message being sent is correct size
+  if(sizeof(temp) == 6){
+    message = temp;
+  }
 }
