@@ -173,7 +173,7 @@ void sendMsgs(){
   byte response[ANSWERSIZE];
 
   for (byte i=0; i<ANSWERSIZE; i++){
-    response[i] = (byte)message.charAt(i);
+    response[i] = (byte)motorCmds.charAt(i);
   }
 
   Wire.write(response, ANSWERSIZE);
@@ -183,8 +183,8 @@ void readVoltageMsg(int byteCount) {
   //Read while data received
   while(0 < Wire.available()) { 
     char c = Wire.read();     // Read byte as a character and save to variable c
-    message[i] = c;           // Append character to character array 
-    i++;                      // Increment i counter variable
+    incoming[counter] = c;          // Append character to character array 
+    counter++;                      // Increment i counter variable
   }
-  i = 0; // Reset the counter variable
+  counter = 0; // Reset the counter variable
 }
