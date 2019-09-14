@@ -35,10 +35,16 @@ void readHandheldReceiver() {
 
 void readLowCurrentBatteryVoltage() {
 
-  // read voltage here
+  // Save low current battery read pin raw input (in bits)
+  float voltLowCurrentBattBit = analogRead(voltLowCurrentPin);
 
-  voltLowCurrentBatt = 16;    // placeholder for now
-  
+  // Convert bits to voltage
+  float lowCurrentVoltDivider = voltLowCurrentBattBit*5.06/1024;   // voltage at the voltage divider
+  voltLowCurrentBatt = lowCurrentVoltDivider*4.1;                 // low current battery voltage
+
+//  Serial.println(lowCurrentVoltDivider);
+//  Serial.println(voltLowCurrentBatt);
+   
 }
 
 void readMainBatteryVoltage() {
@@ -51,11 +57,11 @@ void readMainBatteryVoltage() {
   }
 
   // Convert voltage message to float
-  voltMainBatt = voltageMsg.toFloat();
+  previousVoltage = voltageMsg.toFloat();
 
   // Update voltage only when voltage measured changes
-  if (voltMainBatt != previousVoltage && voltMainBatt > 11.0){
-    previousVoltage = voltMainBatt; 
+  if (voltMainBatt != previousVoltage && previousVoltage > 11.0){
+    voltMainBatt = previousVoltage; 
   }
 }
 
@@ -137,33 +143,47 @@ void controlLight() {
   else {
     if (mainBattCheck == 1) {
       if (lowCurrentBattCheck == 1) {
-        Serial.println("yes to main battery check AND low current battery check, FLASH WHITE");
+        // Flash white
         changeLight(1);
-        delay(50);
+        delay(100);
         changeLight(0);
-        delay(50);
+        delay(100);
       }
       else if (lowCurrentBattCheck == 2) {
-        if (voltMainBatt > 27.76) {
-          Serial.println("main battery check, main battery is full, FLASH GREEN");
+        if (voltMainBatt > 29.4) {
+          // Flash green
           changeLight(3);
-          delay(50);
+          delay(100);
           changeLight(0);
-          delay(50);
+          delay(100);
         }
-        else if (voltMainBatt <= 27.76 && voltMainBatt > 26.13) {
-          Serial.println("main battery check, main battery is medium, FLASH BLUE");
+        else if (voltMainBatt <= 28.42 && voltMainBatt > 27.44) {
+          // Flash blue then green
+          changeLight(3);
+          delay(100);
           changeLight(4);
-          delay(50);
+          delay(100);
+        }
+        else if (voltMainBatt <= 27.44 && voltMainBatt > 26.46) {
+          // Flash blue
+          changeLight(4);
+          delay(100);
           changeLight(0);
-          delay(50);
+          delay(100);
+        }
+        else if (voltMainBatt <= 26.46 && voltMainBatt > 25.48) {
+          // Flash blue then red
+          changeLight(4);
+          delay(100);
+          changeLight(2);
+          delay(100);
         }
         else {
-          Serial.println("main battery check, main battery is low, FLASH RED");
+          // Flash red
           changeLight(2);
-          delay(50);
+          delay(100);
           changeLight(0);
-          delay(50);
+          delay(100);
         }
       }
       else {
@@ -173,26 +193,40 @@ void controlLight() {
     }
     else if (mainBattCheck == 2) {
       if (lowCurrentBattCheck == 1) {
-        if (voltLowCurrentBatt > 15.86) {
-          Serial.println("low current battery check, low current battery is full, FLASH GREEN");
+        if (voltLowCurrentBatt > 16.24) {
+          // Flash green
           changeLight(3);
-          delay(50);
+          delay(100);
           changeLight(0);
-          delay(50);
+          delay(100);
         }
-        else if (voltLowCurrentBatt <= 15.86 && voltLowCurrentBatt > 14.93) {
-          Serial.println("low current battery check, low current battery is medium, FLASH BLUE");
+        else if (voltLowCurrentBatt <= 16.24 && voltLowCurrentBatt > 15.56) {
+          // Flash blue then green
+          changeLight(3);
+          delay(100);
           changeLight(4);
-          delay(50);
+          delay(100);
+        }
+        else if (voltLowCurrentBatt <= 15.68 && voltLowCurrentBatt > 15.12) {
+          // Flash blue
+          changeLight(4);
+          delay(100);
           changeLight(0);
-          delay(50);
+          delay(100);
+        }
+        else if (voltLowCurrentBatt <= 15.12 && voltLowCurrentBatt > 14.56) {
+          // Flash blue then red
+          changeLight(4);
+          delay(100);
+          changeLight(2);
+          delay(100);
         }
         else {
-          Serial.println("low current battery check, low current battery is low, FLASH RED");
+          // Flash red
           changeLight(2);
-          delay(50);
+          delay(100);
           changeLight(0);
-          delay(50);
+          delay(100);
         }
       }
       else if (lowCurrentBattCheck == 2) {
@@ -295,6 +329,7 @@ void joy2Setpoint() {
   // Create messages for I2C comms
   getMsgs();
   msgReset();
+  
 }
 
 String commandToMsg(int motor){
@@ -310,13 +345,15 @@ String commandToMsg(int motor){
    *   - msg <String>: motor magnitude and direction as a String
    */
   String msg; 
-  if (abs(motor)<0){
-    msg = "0" + String(motor);
+  if (abs(motor) < 1000 && abs(motor) >= 100){
+    msg = "0" + String(abs(motor));
   }
-  else{
-    msg = String(motor);
+  else if(abs(motor) < 100 && abs(motor) >=10){
+    msg = "00" + String(abs(motor));
   }
-  
+  else if(abs(motor) < 10){
+    msg = "000" + String(abs(motor));
+  }
   if (motor < 0 && motor >= -1000){
     dir = 'R';
     return msg += dir;
@@ -332,9 +369,7 @@ String commandToMsg(int motor){
 }
 
 void msgReset(){
-  /***
-   * Function to reset the serial messages after each loop. 
-   */
+  //Function to reset the serial messages after each loop.  
   q1Msg = "Q1";
   q2Msg = "Q2";
   q3Msg = "Q3";
@@ -352,7 +387,7 @@ void getMsgs(){
   temp += q2Msg; 
 //  temp += q3Msg;
 //  temp += q4Msg;
-
+  
   // Ensure message being sent is correct size
   if(sizeof(temp) == 6){
     motorCmds = temp;
