@@ -19,33 +19,23 @@
 #include <PinChangeInterruptBoards.h>
 #include <PinChangeInterruptPins.h>
 #include <PinChangeInterruptSettings.h>
-#include <ros.h>
-
+#include <ros.h>                        // ROS inclusions
+#include <std_msgs/Bool.h>
+#include <std_msgs/UInt16.h>
+#include <std_msgs/Float64.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/String.h>
 
 // Definitions
 #define SLAVE_ADDR  9    // arbitrary address number to identify slave Arduino
 #define ANSWERSIZE  14   // size of message to send to master Arduino
 #define MESSAGESIZE 5    // size of message received from master Arduino
 
-// I2C Communications 
-char dir = 'N';                         // variable to hold direction
-String q1Msg = "Q1";                    // String to hold Serial message for Q1
-String q2Msg = "Q2";                    // String to hold Serial message for Q2
-String q3Msg = "Q3";                    // String to hold Serial message for Q3
-String q4Msg = "Q4";                    // String to hold Serial message for Q4
-String temp = "";                       // temporary message variable for sending motor commands
-volatile String motorCmds = "";         // String message to send to master Arduino
-volatile char incoming[MESSAGESIZE];    // character array to store incoming message from master Arduino
-int counter = 0;                        // counter used for reading message coming in from master Arduino 
-float previousVoltage = 0.0;            // temporary variable to store voltage measured
-  
-
 // Pin definitions
 const byte killCommPin = 7;         // digital in from kill arduino for communicating kill status
 const byte ch1Pin = 10;             // PWM/PPM in from handheld RC receiver channel 1 (surge)
 const byte ch2Pin = 11;             // PWM/PPM in from handheld RC receiver channel 2 (yaw)
 const byte ch3Pin = 12;             // PWM/PPM in from handheld RC receiver channel 3 (mode)
-//const byte ch4Pin = 13;             // (this is on the kill arduino) PWM/PPM in from handheld RC receiver channel 4 (kill)
 const byte ch5Pin = 50;             // PWM/PPM in from handheld RC receiver channel 5 (main batt)
 const byte ch6Pin = 52;             // PWM/PPM in from handheld RC receiver channel 7 (LC batt)
 const int voltLowCurrentPin = A1;   // analog in from voltage divider pin for reading low current battery voltage
@@ -106,34 +96,17 @@ int proceedPastColor = 0;       // reflects whether code can proceed past light 
 int leftThrusterSetpoint = 0;   // setpoint command for left thruster
 int rightThrusterSetpoint = 0;  // setpoint command for right thruster
 
-//int revConKillStatus = 1;   // status of reverse contactor kill switch from kill Arduino
-//int modeStatus = 1;         // auto/manual status from kill Arduino
-//int ch1Filtered = 0;        // filtered output from ch1
-//int ch4Filtered = 0;        // filtered output from ch4
-//int ch6Filtered = 0;        // filtered output from ch6
-//int q1Setpoint = 0;         // Q1 setpoint from -1000 to 1000 (no acceleration limit)
-//int q2Setpoint = 0;         // Q2 setpoint from -1000 to 1000 (no acceleration limit)
-//int q3Setpoint = 0;         // Q3 setpoint from -1000 to 1000 (no acceleration limit)
-//int q4Setpoint = 0;         // Q4 setpoint from -1000 to 1000 (no acceleration limit)
-//float timeNow = 0;          // time of current iteration (for acceleration limit calculations)
-//float timeLast = 0;         // time of last iteration (for acceleration limit calculations)
-//int q1Out = 0;              // Q1 output from -1000 to 1000 (with acceleration limits)
-//int q2Out = 0;              // Q2 output from -1000 to 1000 (with acceleration limits)
-//int q3Out = 0;              // Q3 output from -1000 to 1000 (with acceleration limits)
-//int q4Out = 0;              // Q4 output from -1000 to 1000 (with acceleration limits)
-//int q1Last = 0;             // Q1 output for last iteration (for acceleration limit calculations)
-//int q2Last = 0;             // Q2 output for last iteration (for acceleration limit calculations)
-//int q3Last = 0;             // Q3 output for last iteration (for acceleration limit calculations)
-//int q4Last = 0;             // Q4 output for last iteration (for acceleration limit calculations)
-//int q1Dir = 0;              // Q1 direction (0 = forward, 1 = reverse)
-//int q2Dir = 0;              // Q2 direction (0 = forward, 1 = reverse)
-//int q3Dir = 0;              // Q3 direction (0 = forward, 1 = reverse)
-//int q4Dir = 0;              // Q4 direction (0 = forward, 1 = reverse)
-//float voltMult = 1;      // voltage multiplier to scale output to thrusters (based on battery voltage)
-//float autoQ1 = 0;           // autonomous command signal from ROS for Q1 thruster (via ROS)
-//float autoQ2 = 0;           // autonomous command signal from ROS for Q2 thruster (via ROS)
-//float autoQ3 = 0;           // autonomous command signal from ROS for Q3 thruster (via ROS)
-//float autoQ4 = 0;           // autonomous command signal from ROS for Q4 thruster (via ROS)
+// I2C communication variables
+char dir = 'N';                         // variable to hold direction
+String q1Msg = "Q1";                    // String to hold Serial message for Q1
+String q2Msg = "Q2";                    // String to hold Serial message for Q2
+String q3Msg = "Q3";                    // String to hold Serial message for Q3
+String q4Msg = "Q4";                    // String to hold Serial message for Q4
+String temp = "";                       // temporary message variable for sending motor commands
+volatile String motorCmds = "";         // String message to send to master Arduino
+volatile char incoming[MESSAGESIZE];    // character array to store incoming message from master Arduino
+int counter = 0;                        // counter used for reading message coming in from master Arduino 
+float previousVoltage = 0.0;            // temporary variable to store voltage measured
 
 // ROS node handle (allows program to create publishers and subscribers)
 ros::NodeHandle nh;         // ROS node handle (allows program to create publishers and subscribers)
@@ -145,33 +118,33 @@ int q1_thrust = 0;
 int q2_thrust = 0;
 int q3_thrust = 0;
 int q4_thrust = 0;
-//int q1_thrust_pwm;
-//int q2_thrust_pwm;
-//int q3_thrust_pwm;
-//int q4_thrust_pwm;
+int q1_thrust_pwm;
+int q2_thrust_pwm;
+int q3_thrust_pwm;
+int q4_thrust_pwm;
 
 // ROS subscribers
-//void thrust_input_q1( const std_msgs::Int32& input_msg) {
-//  q1_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-//}
-//
-//void thrust_input_q2(const std_msgs::Int32& input_msg) {
-//  q2_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-//}
-//
-//void thrust_input_q3( const std_msgs::Int32& input_msg) {
-//  q3_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-//}
-//
-//void thrust_input_q4( const std_msgs::Int32& input_msg) {
-//  q4_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
-//}
+void thrust_input_q1( const std_msgs::Int32& input_msg) {
+  q1_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+}
+
+void thrust_input_q2(const std_msgs::Int32& input_msg) {
+  q2_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+}
+
+void thrust_input_q3( const std_msgs::Int32& input_msg) {
+  q3_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+}
+
+void thrust_input_q4( const std_msgs::Int32& input_msg) {
+  q4_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+}
 
 // ROS publishers
-//ros::Subscriber<std_msgs::Int32> q1_sub("q1_thruster_input", &thrust_input_q1 );      //sub to number_topic
-//ros::Subscriber<std_msgs::Int32> q2_sub("q2_thruster_input", &thrust_input_q2 );      //sub to number_topic
-//ros::Subscriber<std_msgs::Int32> q3_sub("q3_thruster_input", &thrust_input_q3 );      //sub to number_topic
-//ros::Subscriber<std_msgs::Int32> q4_sub("q4_thruster_input", &thrust_input_q4 );      //sub to number_topic
+ros::Subscriber<std_msgs::Int32> q1_sub("q1_thruster_input", &thrust_input_q1 );      //sub to number_topic
+ros::Subscriber<std_msgs::Int32> q2_sub("q2_thruster_input", &thrust_input_q2 );      //sub to number_topic
+ros::Subscriber<std_msgs::Int32> q3_sub("q3_thruster_input", &thrust_input_q3 );      //sub to number_topic
+ros::Subscriber<std_msgs::Int32> q4_sub("q4_thruster_input", &thrust_input_q4 );      //sub to number_topic
 
 void setup() {
 
@@ -220,10 +193,6 @@ void loop() {
   readHandheldReceiver();           // read inputs from handheld receiver
   readLowCurrentBatteryVoltage();   // read low current battery voltage
   readMainBatteryVoltage();         // read main battery voltage
-  
-  // FOR DEBUG PURPOSES ONLY:
-  killStatus = 0;
-
   // Determine mode
   determineMode();
 
@@ -231,46 +200,32 @@ void loop() {
   controlLight();
 
   if (killStatus == 0) {
-
+    
     // Manual code goes here
     if (mode == 1) {
-
+      
       // Take joystick readings, and convert to setpoint thrust values
       joy2Setpoint();
       
-
-//      Serial.print("LEFT (");
-//      Serial.print(leftThrusterSetpoint);
-//      Serial.print("); RIGHT (");
-//      Serial.print(rightThrusterSetpoint);
-//      Serial.println(");");
-  
     }
-
+    
     // Autonomous code goes here
     else if (mode == 2) {
-  
+      
       Serial.println("AUTONOMOUS MODE: One day, I shall achieve autonomy! OM NOM NOM NOM!");
       
     }
-
     else {
       
       Serial.println("Error in mode selection. Check transmitter connection.");
       
     }
   } 
-  
   else {
-    
     Serial.println("System is killed, waiting for the unkill command");
-    
   }
-
   // Small delay to prevent errors
   delay(5);
-
   // Spin ROS
   nh.spinOnce();
-
 }

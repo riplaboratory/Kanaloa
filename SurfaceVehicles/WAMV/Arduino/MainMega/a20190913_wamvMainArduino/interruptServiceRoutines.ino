@@ -175,7 +175,6 @@ void sendMsgs(){
   for (byte i=0; i<ANSWERSIZE; i++){
     response[i] = (byte)motorCmds.charAt(i);
   }
-
   Wire.write(response, ANSWERSIZE);
 }
 
