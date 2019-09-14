@@ -14,10 +14,31 @@
 // Library inclusions
 #include <Arduino.h>                    // Arduino inclusions
 #include <QuickMedianLib.h>             // Quickmedianlib inclusions
+#include <Wire.h>                       // I2C library inclusions
 #include <PinChangeInterrupt.h>         // Pin change interrupt inclusions
 #include <PinChangeInterruptBoards.h>
 #include <PinChangeInterruptPins.h>
 #include <PinChangeInterruptSettings.h>
+
+
+// Definitions
+#define SLAVE_ADDR  9    // arbitrary address number to identify slave Arduino
+#define ANSWERSIZE  14   // size of message to send to master Arduino
+#define MESSAGESIZE 5    // size of message received from master Arduino
+
+// I2C Communications
+char dir = 'N';                       // variable to hold direction
+String q1Msg = "Q1";                  // String to hold Serial message for Q1
+String q2Msg = "Q2";                  // String to hold Serial message for Q2
+String q3Msg = "Q3";                  // String to hold Serial message for Q3
+String q4Msg = "Q4";                  // String to hold Serial message for Q4
+String temp = "";                     // temporary message variable for sending motor commands
+String voltageMsg;                    // String to store voltage measurement
+volatile String message = "";         // String message to send to master Arduino
+volatile char message[MESSAGESIZE];   // character array to store incoming message from master Arduino
+int counter = 0;                      // counter used for reading message coming in from master Arduino 
+float previousVoltage = 0.0;          // temporary variable to store voltage measured
+  
 
 // Pin definitions
 const byte killCommPin = 7;         // digital in from kill arduino for communicating kill status
@@ -176,6 +197,11 @@ void setup() {
   // Set serial baud rate
   Serial.begin(57600);
 
+  
+  Wire.begin(SLAVE_ADDR);         // Join I2C bus as slave
+  Wire.onRequest(sendMsgs);       // send motor command message when master (high current Arduino) requests
+  Wire.onReceive(readVoltageMsg); // read incoming voltage message when master sends it
+
   // Initialize ROS node handle
   nh.initNode();
 
@@ -194,7 +220,7 @@ void loop() {
   readHandheldReceiver();           // read inputs from handheld receiver
   readLowCurrentBatteryVoltage();   // read low current battery voltage
   readMainBatteryVoltage();         // read main battery voltage
-
+  
   // FOR DEBUG PURPOSES ONLY:
   killStatus = 0;
 
@@ -211,6 +237,7 @@ void loop() {
 
       // Take joystick readings, and convert to setpoint thrust values
       joy2Setpoint();
+      
 
 //      Serial.print("LEFT (");
 //      Serial.print(leftThrusterSetpoint);
