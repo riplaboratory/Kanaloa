@@ -45,16 +45,6 @@ const byte bluePin = 39;            // digital out to blue light relay
 
 // Constant global variables
 const int nMedian = 8;          // number of readings to take to calculate median from controller inputs (don't make this too large, or else it will slow down the interrupt service routines)
-const int ch1PulseMin = 1032;     // minimum expected pulse width of ch1 [us] (this should be individually tested for each channel)
-const int ch1PulseMax = 2032;     // maximum expected pulse width of ch1 [us] (this should be individually tested for each channel)
-const int ch2PulseMin = 1072;     // minimum expected pulse width of ch2 [us] (this should be individually tested for each channel)
-const int ch2PulseMax = 2072;     // maximum expected pulse width of ch2 [us] (this should be individually tested for each channel)
-const int ch3PulseMin = 1160;     // minimum expected pulse width of ch3 [us] (this should be individually tested for each channel)
-const int ch3PulseMax = 2160;     // maximum expected pulse width of ch3 [us] (this should be individually tested for each channel)
-const int ch5PulseMin = 1248;     // minimum expected pulse width of ch5 [us] (this should be individually tested for each channel)
-const int ch5PulseMax = 2208;     // maximum expected pulse width of ch5 [us] (this should be individually tested for each channel)
-const int ch6PulseMin = 1120;     // minimum expected pulse width of ch7 [us] (this should be individually tested for each channel)
-const int ch6PulseMax = 2128;     // maximum expected pulse width of ch7 [us] (this should be individually tested for each channel)
 const int pulseTolerance = 200;   // tolerance range on minimum and maximum expected pulse widths [us]
 const int pulseDeadzone = 125;    // deadzone range at the center of each joystick [us]
 
@@ -95,6 +85,30 @@ int lowCurrentBattCheck = 0;    // reflects low current battery check mode (yes 
 int proceedPastColor = 0;       // reflects whether code can proceed past light color assignment
 int leftThrusterSetpoint = 0;   // setpoint command for left thruster
 int rightThrusterSetpoint = 0;  // setpoint command for right thruster
+
+// FrSky R9m transmitter-receiver pulse widths
+//const int ch1PulseMin = 1032;     // minimum expected pulse width of ch1 [us] (this should be individually tested for each channel)
+//const int ch1PulseMax = 2032;     // maximum expected pulse width of ch1 [us] (this should be individually tested for each channel)
+//const int ch2PulseMin = 1072;     // minimum expected pulse width of ch2 [us] (this should be individually tested for each channel)
+//const int ch2PulseMax = 2072;     // maximum expected pulse width of ch2 [us] (this should be individually tested for each channel)
+//const int ch3PulseMin = 1160;     // minimum expected pulse width of ch3 [us] (this should be individually tested for each channel)
+//const int ch3PulseMax = 2160;     // maximum expected pulse width of ch3 [us] (this should be individually tested for each channel)
+//const int ch5PulseMin = 1248;     // minimum expected pulse width of ch5 [us] (this should be individually tested for each channel)
+//const int ch5PulseMax = 2208;     // maximum expected pulse width of ch5 [us] (this should be individually tested for each channel)
+//const int ch6PulseMin = 1120;     // minimum expected pulse width of ch7 [us] (this should be individually tested for each channel)
+//const int ch6PulseMax = 2128;     // maximum expected pulse width of ch7 [us] (this should be individually tested for each channel)
+
+// ImmersionRC EzUHF transmitter-receiver pulse widths
+const int ch1PulseMin = 1008;     // minimum expected pulse width of ch1 [us] (this should be individually tested for each channel)
+const int ch1PulseMax = 2016;     // maximum expected pulse width of ch1 [us] (this should be individually tested for each channel)
+const int ch2PulseMin = 960;      // minimum expected pulse width of ch2 [us] (this should be individually tested for each channel)
+const int ch2PulseMax = 1968;     // maximum expected pulse width of ch2 [us] (this should be individually tested for each channel)
+const int ch3PulseMin = 960;      // minimum expected pulse width of ch3 [us] (this should be individually tested for each channel)
+const int ch3PulseMax = 1968;     // maximum expected pulse width of ch3 [us] (this should be individually tested for each channel)
+const int ch5PulseMin = 1004;     // minimum expected pulse width of ch5 [us] (this should be individually tested for each channel)
+const int ch5PulseMax = 2012;     // maximum expected pulse width of ch5 [us] (this should be individually tested for each channel)
+const int ch6PulseMin = 960;      // minimum expected pulse width of ch7 [us] (this should be individually tested for each channel)
+const int ch6PulseMax = 1968;     // maximum expected pulse width of ch7 [us] (this should be individually tested for each channel)
 
 // I2C communication variables
 char dir = 'N';                         // variable to hold direction
@@ -193,11 +207,25 @@ void loop() {
   readHandheldReceiver();           // read inputs from handheld receiver
   readLowCurrentBatteryVoltage();   // read low current battery voltage
   readMainBatteryVoltage();         // read main battery voltage
+  
   // Determine mode
   determineMode();
 
   // Control light
   controlLight();
+
+//  // Debug print
+//  Serial.print("Ch1 (");
+//  Serial.print(ch1PulseMedian);
+//  Serial.print("); Ch2 (");
+//  Serial.print(ch2PulseMedian);
+//  Serial.print("); Ch3 (");
+//  Serial.print(ch3PulseMedian);
+//  Serial.print("); Ch5 (");
+//  Serial.print(ch5PulseMedian);
+//  Serial.print("); Ch6 (");
+//  Serial.print(ch6PulseMedian);
+//  Serial.println(");");
 
   if (killStatus == 0) {
     
