@@ -35,8 +35,6 @@ const byte q4KillPin = 25;          // digital out to Q4 kill relay
 
 // Constant global variables
 const int nMedian = 8;              // number of readings to take to calculate median from controller inputs
-const int ch4PulseMin = 1052;       // minimum expected pulse width of ch4 [us]
-const int ch4PulseMax = 2052;       // maximum expected pulse width of ch4 [us]
 const int pulseTolerance = 150;     // tolerance range on minimum and maximum expected pulse widths [us]
 
 // Volatile global variables
@@ -50,6 +48,14 @@ int remoteKillStatus = 1;       // status of the remote kill switch
 int physicalKillStatus = 1;     // status of the physical kill switch
 int killStatus = 1;             // status of the kill switch from kill Arduino (kill = 1, unkill = 0)
 int ch4PulseMedian;             // median of channel 4 pulse width measurements from handheld receiver
+
+//// FrSky R9m transmitter-receiver pulse widths
+//const int ch4PulseMin = 1052;       // minimum expected pulse width of ch4 [us]
+//const int ch4PulseMax = 2052;       // maximum expected pulse width of ch4 [us]
+
+// ImmersionRC EzUHF transmitter-receiver pulse 
+const int ch4PulseMin = 1012;       // minimum expected pulse width of ch4 [us]
+const int ch4PulseMax = 2016;       // maximum expected pulse width of ch4 [us]
 
 void setup() {
 
@@ -86,6 +92,11 @@ void loop() {
 
   // Determine kill state
   setKillStatus();        // set kill status, unkill thrusters, and send unkill command to main arduino
+
+//  // Debug print
+//  Serial.print("Ch4 (");
+//  Serial.print(ch4PulseMedian);
+//  Serial.println(");");
 
   // Short delay to prevent errors
   delay(5);

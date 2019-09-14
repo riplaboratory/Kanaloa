@@ -354,6 +354,9 @@ String commandToMsg(int motor){
   else if(abs(motor) < 10){
     msg = "000" + String(abs(motor));
   }
+  else{
+    msg = String(abs(motor));
+  }
   if (motor < 0 && motor >= -1000){
     dir = 'R';
     return msg += dir;
@@ -382,6 +385,11 @@ void getMsgs(){
   q2Msg += commandToMsg(rightThrusterSetpoint);  // Q2 will act as leftServoOut
 //  q3Msg += commandToMsg(q3Out);  
 //  q4Msg += commandToMsg(q4Out); 
+
+//  Serial.print("q1Msg: ");
+//  Serial.println(q1Msg);
+//  Serial.print("q2Msg: ");
+//  Serial.println(q2Msg);
   
   temp += q1Msg; 
   temp += q2Msg; 
