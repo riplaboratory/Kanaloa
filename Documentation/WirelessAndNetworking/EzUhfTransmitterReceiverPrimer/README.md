@@ -1,4 +1,4 @@
-# EzUHF JR Module Transmitter and 8 CH Receiver Operating and Pairing
+# EzUHF JR Module Transmitter and 8 CH Receiver Primer
 
 The ImmersionRC EzUHF [JR Module Transmitter](https://www.immersionrc.com/fpv-products/ezuhf-jr-module/) and [8 Channel Diversity Receiver](https://www.immersionrc.com/fpv-products/ezuhf-8-channel-diversity-receiver/) are 431 to 450 MHz transmitter receiver modules that are compatible with the FrSky Taranis handheld remote controllers that we use in the lab.  The full operation manuals for each module can be found in their respective links.  
 
