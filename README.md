@@ -11,12 +11,12 @@ Do not commit edits to the master branch **until they have been fully vetted in 
 ## 2. Directory and filename convention
 
 ### 2.1. Directory naming convention
-All directories shall start with a capital letter.  If the directory name has multiple words, capitalize the first letter of subsequent words; you may use underscores `_` when necessary, but do so sparingly.  No spaces in directory names.  Example: `SampleDirectory`.
+All directories shall start with a capital letter.  Utilize [camel case](https://en.wikipedia.org/wiki/Camel_case) for multiple words (capitalize the first letter of subsequent words with no spaces; you may use underscores `_`, but do so sparingly).  Example: `SampleDirectory`.
 
 ### 2.2. File naming convention
 
- - **For files requiring manual version control**, the filenames shall start with the date that file was originally created.  This is in the format `YYYYMMDD_name`.  `name` must start with a lowercase letter.  If `name` has multiple words, capitalize the first letter of subsequent words; you may use underscores `_` when necessary, but do so sparingly.  No spaces in filenames.  Example: `20180101_sampleFilename.extension`.  Examples of files that require manual version control include: code, notes, work in progress, etc.  You will need to use your judgement when deciding which files need manual version control.  Github automatically handles version control by nature; however, it makes sense to create manual versions of code for minor milestones.  
- - **For files that do not require manual version control**, follow the same naming convention as above, omitting the date.  Example: `sampleFilename.extension`.
+ - **For files requiring manual version control**, the filenames shall start with the date that file was originally created.  This is in the format `YYYYMMDD_name`.  `name` must start with a lowercase letter.  Utilize [camel case](https://en.wikipedia.org/wiki/Camel_case) for multiple words capitalize the first letter of subsequent words with no spaces; you may use underscores `_`, but do so sparingly).  Example: `20180101_sampleFilename.extension`.  Examples of files that require manual version control include: code reflecting major hardware revisions, notes, work in progress, etc.  You will need to use your judgement when deciding which files need manual version control.  Github automatically handles version control by nature; however, it makes sense for manual version control in some cases.  
+ - **For files that do not require manual version control**, follow the same naming convention as above, omitting the date and underscore.  Example: `sampleFilename.extension`.
 
 **Exceptions**:
  - Matlab (in Linux) dislikes filenames that start with numbers.  For this reason, Matlab script `.m` filenames should begin with the letter `m`.  Other than this, the naming convention remains the same.  Example: `m20180101_sampleMatlabFilename.m`
