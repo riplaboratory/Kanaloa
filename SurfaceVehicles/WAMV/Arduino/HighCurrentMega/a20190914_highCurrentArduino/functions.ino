@@ -54,7 +54,7 @@ void sendVoltageMsg(){
 }
 
 void parseMotorCmds(){
-    // Get all the motor commands as a string from the I2C message array
+  // Get all the motor commands as a string from the I2C message array
   for(int j=2; j<6; j++){
     q1Msg += message[j];    // Since the motor command message comes in
     q2Msg += message[j+7];  // from the master as one long string with 
@@ -99,22 +99,14 @@ void parseMotorCmds(){
   
   // For debugging purposes, prints the motor command messages
   if(debug == true){
-    Serial.print("q1Motor: ");
-    Serial.println(q1Motor);
-    Serial.print("q2Motor: ");
-    Serial.println(q2Motor);
-//    Serial.print("q3Motor: ");
-//    Serial.println(q3Motor);
-//    Serial.print("q4Motor: ");
-//    Serial.println(q4Motor); 
-    Serial.print("q1Dir: ");
-    Serial.println(q1Dir);
-    Serial.print("q2Dir: ");
-    Serial.println(q2Dir);
-//    Serial.print("q3Dir: ");
-//    Serial.println(q3Dir);
-//    Serial.print("q4Dir: ");
-//    Serial.println(q4Dir); 
+    Serial.print("q1Motor: "); Serial.println(q1Motor);
+    Serial.print("q2Motor: "); Serial.println(q2Motor);
+//    Serial.print("q3Motor: "); Serial.println(q3Motor);
+//    Serial.print("q4Motor: "); Serial.println(q4Motor); 
+    Serial.print("q1Dir: "); Serial.println(q1Dir);
+    Serial.print("q2Dir: "); Serial.println(q2Dir);
+//    Serial.print("q3Dir: "); Serial.println(q3Dir);
+//    Serial.print("q4Dir: "); Serial.println(q4Dir); 
 
   Serial.print("VLc: "); Serial.print(voltageSetpoint_left);
   Serial.print(" V, VL: "); Serial.print(motorVoltage_left);
