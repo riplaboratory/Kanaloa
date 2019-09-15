@@ -30,4 +30,20 @@ The devices connect as serial COM devices in Windows.  The softare interface is 
 
 To update the firmware, you need to download the firmware from the product website; this is a .fw file.  Then you need to put the device in "program mode" before connecting it to the computer.  Do this by holding down the bind button before plugging it into the computer.  Once connected to the computer, navigate to the device family, click on the "Program" tab, and click on the "Update Firmware" button.  This will open another window, where you should browse to where the .fw firmware file is stored on your computer.  Click OK and wait until the software tells you that the firmware update was successful.  __Note that the firmware version number for the transmitter module and the receiver module must match if you want to pair the two devices together__.
 
+In addition to firmware update, we make two changes to the default settings.  First, we set the RF Channel Count to 8CH (from 12CH); this setting is under the "EzUHF Advanced" tab.  It is possible to get as many as 12 channels from the PPM receiver mode; however, this requires some amount of hardware modification, as receiver module only has 8 physical outputs.  If you require more than 8 channels on your handheld remote controller, we recommend using a system based on serial communication, like SBUS or DSM2 (read more on this topic [here](https://oscarliang.com/pwm-ppm-sbus-dsm2-dsmx-sumd-difference/)).  Second, we set the Frequency band to 
+
 ## Pairing Process
+
+As previously mentioned, the pairing process can be quite inconsistent for this particular system, so this process can be challenging to perform in the field.  The TX1 transmitter should already be paired to the RX1 receiver, and the TX2 transmitter should already be paired to the RX2 receiver.  The systems should not become unpaired under normal circumstances.  
+
+If you do need to pair the two devices, the process that works for us is as follows:
+ 1. Ensure both the transmitter and receiver module are powered off.
+ 2. Plug the transmitter module into the socket in the back of your Taranis handheld remote controller.  Ensure the transmitter module is set to "LO" power (physical switch on the rear of the transmitter module).
+ 3. Hold down the "Fail Safe Bind" button on the rear of the transmitter module, and then power on the Taranis handheld remote controller while continuing to hold down the "Fail Safe Bind" button.  As soon as the transmitter module begins beeping, let go of the "Fail Safe Bind" button.
+ 4. Within 10s, power on the receiver module, and then hold down the "BIND" button on the receiver module for at least 15 seconds.
+
+__If you are having problems pairing, note the following:__ 
+ - On a fresh transmitter-receiver combo, it took us 5-10 tries to pair successfully.  So keep trying!
+ - It is actually difficult to tell if the pairing process was successful.  According to the manual, the receiver should blink 3 times of the pairing was successful and 6 times if it was not; however, we did not ever find this to be the case.  Your best method of ensuring pairing is to look at the channel outputs on an osciloscope and see if they respond accordingly to inputs to the handheld remote controller.  In addition, a paired receiver has a distinct LED flash pattern, which dims between on and off, as opposed to pulsing on an off; however, it will often not demonstrate this pattern until the power to the receiver is cycled after a sucessful pairing.  
+ - The transmitter and receiver must be updated to the same firmware version number (e.g. 1.53).  You can update this in the ImmersionRC Tools software.
+ - The transmitter and receiver should both be set to "430-450MHz Extreme Hopping" frequency band setting.  You can configure this in the ImmersionRC Tools software; however, the devices should already be configured to this setting.  You can try other configurations; however, we had the most success with this setting.  
