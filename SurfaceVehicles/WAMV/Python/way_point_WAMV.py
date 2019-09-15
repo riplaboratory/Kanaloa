@@ -22,7 +22,6 @@ import time
 #Change base off IMU performance
 imu_degree_offset_bias = 0
 
-
 publishers = []
 subscribers = []
 
@@ -30,6 +29,16 @@ desired_coordinates = []
 current_coordinates = []
 degree_offset = 0
 distance = 0
+
+max_thrust = 1000
+
+# Reverse Multiplier, either == 1 of -1
+q1_rm = 1
+q2_rm = 1
+q3_rm = 1
+q4_rm = 1
+
+
 
 def create_publisher_object(pub_name, pub_type):
     rospy_publisher = rospy.Publisher(pub_name, pub_type, queue_size=10)
@@ -130,26 +139,30 @@ def distance_manager(gps_data):
 
     if degree_offset > 30:
         #Left and right pins are switched on arduino
-        q3["publisher"].publish(-750)
-        q4["publisher"].publish(750)
+        # q3["publisher"].publish(-750)
+        # q4["publisher"].publish(750)
+        q3["publisher"].publish(-0.75*max_thrust)
+        q4["publisher"].publish(0.75*max_thrust)
     elif degree_offset < -30:
-        q3["publisher"].publish(750)
-        q4["publisher"].publish(-750)
+        # q3["publisher"].publish(750)
+        # q4["publisher"].publish(-750)
+        q3["publisher"].publish(0.75*max_thrust)
+        q4["publisher"].publish(-0.75*max_thrust)
 
     elif distance > 20:
-        left_thrust = 750 - degree_offset / 2
-        right_thrust = 750 + degree_offset / 2
+        left_thrust = 0.75*max_thrust - degree_offset / 2
+        right_thrust = 0.75*max_thrust + degree_offset / 2
 
-        if left_thrust >= 900: left_thrust = 900
-        if left_thrust <= -900: left_thrust = -900
-        if right_thrust >= 900: right_thrust = 900
-        if right_thrust <= -900: right_thrust = -900
+        if left_thrust >= 0.90*max_thrust: left_thrust = 0.90*max_thrust
+        if left_thrust <= -0.90*max_thrust: left_thrust = -0.90*max_thrust
+        if right_thrust >= 0.90*max_thrust: right_thrust = 0.90*max_thrust
+        if right_thrust <= -0.90*max_thrust: right_thrust = -0.90*max_thrust
 
         q3["publisher"].publish(left_thrust)
         q4["publisher"].publish(right_thrust)
     elif distance > 10:
-        q3["publisher"].publish(400 - degree_offset / 2)
-        q4["publisher"].publish(400 + degree_offset / 2)
+        q3["publisher"].publish(0.4 * max_thrust - degree_offset / 2)
+        q4["publisher"].publish(0.4 * max_thrust + degree_offset / 2)
     elif distance <= 10:
         q3["publisher"].publish(0)
         q4["publisher"].publish(0)
