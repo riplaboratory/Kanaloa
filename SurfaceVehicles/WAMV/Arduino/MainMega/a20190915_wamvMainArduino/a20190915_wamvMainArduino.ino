@@ -251,7 +251,7 @@ void loop() {
       leftThrusterSetpoint = q3_thrust;
       rightThrusterSetpoint = q4_thrust;
 
-      // Create messages for I2C comms
+      // Write setpoint thruster values to I2C
       createI2cMsg();
 
     }

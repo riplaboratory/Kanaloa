@@ -10,10 +10,10 @@ void readRemoteKill() {
   // Take median of pulse width arrays
   ch4PulseMedian = QuickMedian<int>::GetMedian(ch4PulseFilt, nMedian);
 
-  //  // Debug print
-  //  Serial.print("Ch4 (");
-  //  Serial.print(ch4PulseMedian);
-  //  Serial.println(");");
+//    // Print debug statements
+//    Serial.print("Ch4 (");
+//    Serial.print(ch4PulseMedian);
+//    Serial.println(");");
 
   // Determine mode from handheld receiver channel 4
   int switchUp = ch4PulseMax;

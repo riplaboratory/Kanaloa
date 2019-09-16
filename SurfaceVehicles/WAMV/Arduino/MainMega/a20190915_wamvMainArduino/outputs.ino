@@ -269,7 +269,7 @@ void joy2Setpoint() {
      Take readings fromt receiver joystick channels, and convert to setpoint thruster values from -1000 to 1000.
   */
 
-  // Grab ch1, ch4, and ch6 from filtering function
+  // Grab ch1 and ch2 from filtering function
   int ch1Pulse = ch1PulseMedian;    // yaw (right stick left-right)
   int ch2Pulse = ch2PulseMedian;    // sway (left stick left-right)
 
@@ -292,7 +292,7 @@ void joy2Setpoint() {
   // Calculate surge sway and yaw components
   int surgeLeft = ch1Map;     // surge (forward positive)
   int surgeRight = ch1Map;
-  int yawLeft = -ch2Map;       // yaw (CCW positive)
+  int yawLeft = -ch2Map;      // yaw (CCW positive)
   int yawRight = ch2Map;
 
   // Map thruster components from -1000 to 1000
