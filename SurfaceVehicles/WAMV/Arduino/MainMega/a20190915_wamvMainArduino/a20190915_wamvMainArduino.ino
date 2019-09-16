@@ -223,7 +223,7 @@ void loop() {
       // Print debug statement
       Serial.println("AUTONOMOUS MODE: One day, I shall achieve autonomy! OM NOM NOM NOM!");
 
-        // Takes ROS topics and convert to setpoint values
+        // Checks ROS topics and convert to setpoint values
         leftThrusterSetpoint = q3_thrust;
         rightThrusterSetpoint = q4_thrust;
 
