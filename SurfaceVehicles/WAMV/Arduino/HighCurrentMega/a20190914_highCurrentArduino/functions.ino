@@ -115,3 +115,8 @@ void parseMotorCmds(){
 
   }
 }
+
+void getVoltage(){
+  sensorValue = analogRead(voltagePin);
+  voltage = 0.0292 * sensorValue + 0.022;
+}
