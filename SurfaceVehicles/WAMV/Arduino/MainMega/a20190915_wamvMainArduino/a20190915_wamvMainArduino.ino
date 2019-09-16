@@ -122,17 +122,25 @@ volatile char incoming[MESSAGESIZE];    // character array to store incoming mes
 int counter = 0;                        // counter used for reading message coming in from master Arduino
 float previousVoltage = 0.0;            // temporary variable to store voltage measured
 
-//ROS Verification Publishers
+//ROS Verification Publisher Messages
 std_msgs::Int32 q1_ver_pub;
 std_msgs::Int32 q2_ver_pub;
 std_msgs::Int32 q3_ver_pub;
 std_msgs::Int32 q4_ver_pub;
 
-//ros::Publisher chatter("chatter", &str_msg);
+//ROS Battery Messages
+std_msgs::Float64 lc_bat_msg;
+std_msgs::Float64 hc_bat_msg;
+
+
+// ROS Thruster Verification Publishers
 ros::Publisher q1_pub("q1_ver_pub", &q1_ver_pub);
 ros::Publisher q2_pub("q2_ver_pub", &q2_ver_pub);
 ros::Publisher q3_pub("q3_ver_pub", &q3_ver_pub);
 ros::Publisher q4_pub("q4_ver_pub", &q4_ver_pub);
+
+ros::Publisher lc_bat_pub("lowCurrentBatteryVoltage", &lc_bat_msg);
+ros::Publisher hc_bat_pub("highCurrentBatteryVoltage", &hc_bat_msg);
 
 // ROS communication variables
 int q1_thrust = 0;
@@ -203,18 +211,26 @@ void setup() {
   // Setup ROS node handle
   nh.initNode();
 
-  // Set ROS Advertisers And Subscribers
+  // Init ROS Thruster Verification And Battery Publishers
   nh.advertise(q1_pub);
   nh.advertise(q2_pub);
   nh.advertise(q3_pub);
   nh.advertise(q4_pub);
 
-  nh.subscribe(q1_sub);      //initialize ros subscriber
-  nh.subscribe(q2_sub);      //initialize ros subscriber
-  nh.subscribe(q3_sub);      //initialize ros subscriber
-  nh.subscribe(q4_sub);      //initialize ros subscriber
+  nh.advertise(lc_bat_pub);
+  nh.advertise(hc_bat_pub);
+
+  // Init ROS Thruster Subscribers
+  nh.subscribe(q1_sub);      
+  nh.subscribe(q2_sub);     
+  nh.subscribe(q3_sub);   
+  nh.subscribe(q4_sub);     
 
 }
+
+// Counter to limit publishing of battery voltage
+int battery_publisher_counter = 0;
+int battery_publisher_counter_max = 100;
 
 void loop() {
 
@@ -281,5 +297,20 @@ void loop() {
 
   // Spin ROS
   nh.spinOnce();
+
+  if (battery_publisher_counter > battery_publisher_counter_max){
+    lc_bat_msg.data = voltLowCurrentBatt;
+    lc_bat_pub.publish(&lc_bat_msg);
+
+    hc_bat_msg.data = voltMainBatt;
+    hc_bat_pub.publish(&hc_bat_msg);
+
+    battery_publisher_counter = 0;
+
+    
+   
+  }
+
+  battery_publisher_counter ++;
 
 }
