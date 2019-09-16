@@ -88,4 +88,7 @@ void readMainBatteryVoltage() {
   if (voltMainBatt != previousVoltage && previousVoltage > 11.0) {
     voltMainBatt = previousVoltage;
   }
+
+  // Uncomment Serial.print below to see if mainBatteryVoltage is being received correctly
+  //Serial.print("Main Batt Voltage: "); Serial.println(voltMainBatt);
 }
