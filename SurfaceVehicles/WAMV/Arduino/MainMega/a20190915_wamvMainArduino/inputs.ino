@@ -63,9 +63,9 @@ void readLowCurrentBatteryVoltage() {
   float lowCurrentVoltDivider = voltLowCurrentBattBit * 5.06 / 1024; // voltage at the voltage divider
   voltLowCurrentBatt = lowCurrentVoltDivider * 4.1;               // low current battery voltage
 
-  // // Print debug statement
-  //  Serial.println(lowCurrentVoltDivider);
-  //  Serial.println(voltLowCurrentBatt);
+//  // Print debug statement
+//  Serial.println(lowCurrentVoltDivider);
+//  Serial.println(voltLowCurrentBatt);
 
 }
 
