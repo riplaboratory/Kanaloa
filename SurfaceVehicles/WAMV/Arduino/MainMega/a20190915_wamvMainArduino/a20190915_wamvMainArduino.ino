@@ -220,25 +220,22 @@ void loop() {
     // Autonomous code goes here
     else if (mode == 2) {
 
-      // Print debug statement
-      Serial.println("AUTONOMOUS MODE: One day, I shall achieve autonomy! OM NOM NOM NOM!");
+      // Checks ROS topics and convert to setpoint values
+      leftThrusterSetpoint = q3_thrust;
+      rightThrusterSetpoint = q4_thrust;
 
-        // Checks ROS topics and convert to setpoint values
-        leftThrusterSetpoint = q3_thrust;
-        rightThrusterSetpoint = q4_thrust;
-
-        // Create messages for I2C comms
-        createI2cMsg();
+      // Create messages for I2C comms
+      createI2cMsg();
 
     }
 
-    // Error in mode determination
+    // Error in mode determination, zero the thrusters (note that this is not necessarily a kill)
     else {
 
       // Print debug statement
-      Serial.println("Error in mode selection. Check transmitter connection.");
+      Serial.println("Error in mode determination; check transmitter connection...");
 
-      // Set thruster setpoints to zero to prevent high current arduino controller from going crazy while system is killed
+      // Set thruster setpoints to zero
       zeroSetpoints();
 
     }
@@ -246,10 +243,7 @@ void loop() {
 
   // Kill code goes here
   else {
-
-    // Print debug statement
-    Serial.println("System is killed, waiting for the unkill command");
-
+    
     // Set thruster setpoints to zero to prevent high current arduino controller from going crazy while system is killed
     zeroSetpoints();
 
