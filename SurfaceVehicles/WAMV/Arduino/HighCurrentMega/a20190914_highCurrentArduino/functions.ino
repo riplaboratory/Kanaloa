@@ -118,5 +118,7 @@ void parseMotorCmds(){
 
 void getVoltage(){
   sensorValue = analogRead(voltagePin);
-  voltage = 0.0292 * sensorValue + 0.022;
+  voltage = 0.0302 * sensorValue + 0.0258;
+  
+//  Serial.print("Main Battery: "); Serial.println(voltage);
 }
