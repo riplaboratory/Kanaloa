@@ -134,7 +134,6 @@ ros::Publisher q2_pub("q2_ver_pub", &q2_ver_pub);
 ros::Publisher q3_pub("q3_ver_pub", &q3_ver_pub);
 ros::Publisher q4_pub("q4_ver_pub", &q4_ver_pub);
 
-
 // ROS communication variables
 int q1_thrust = 0;
 int q2_thrust = 0;
