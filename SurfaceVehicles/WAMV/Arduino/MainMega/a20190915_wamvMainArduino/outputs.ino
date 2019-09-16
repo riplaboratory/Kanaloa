@@ -96,135 +96,135 @@ void controlLight() {
       changeLight(1);
     }
   }
-  
 
 
 
 
-    
-    if (mainBattCheck == 1) {
-      if (lowCurrentBattCheck == 1) {
-        // Main battery check and low battery check mode simultaneously. Flash white to indicate battery check mode error.
-        changeLight(1);
+
+
+  if (mainBattCheck == 1) {
+    if (lowCurrentBattCheck == 1) {
+      // Main battery check and low battery check mode simultaneously. Flash white to indicate battery check mode error.
+      changeLight(1);
+      delay(100);
+      changeLight(0);
+      delay(100);
+    }
+    else if (lowCurrentBattCheck == 2) {
+      // Main battery check mode, flash light as appropriate to main battery level.
+      if (voltMainBatt > 29.4) {
+        // Flash green.
+        changeLight(3);
         delay(100);
         changeLight(0);
         delay(100);
       }
-      else if (lowCurrentBattCheck == 2) {
-        // Main battery check mode, flash light as appropriate to main battery level.
-        if (voltMainBatt > 29.4) {
-          // Flash green.
-          changeLight(3);
-          delay(100);
-          changeLight(0);
-          delay(100);
-        }
-        else if (voltMainBatt <= 28.42 && voltMainBatt > 27.44) {
-          // Flash blue then green.
-          changeLight(3);
-          delay(100);
-          changeLight(4);
-          delay(100);
-        }
-        else if (voltMainBatt <= 27.44 && voltMainBatt > 26.46) {
-          // Flash blue.
-          changeLight(4);
-          delay(100);
-          changeLight(0);
-          delay(100);
-        }
-        else if (voltMainBatt <= 26.46 && voltMainBatt > 25.48) {
-          // Flash blue then red.
-          changeLight(4);
-          delay(100);
-          changeLight(2);
-          delay(100);
-        }
-        else {
-          // Flash red.
-          changeLight(2);
-          delay(100);
-          changeLight(0);
-          delay(100);
-        }
+      else if (voltMainBatt <= 28.42 && voltMainBatt > 27.44) {
+        // Flash blue then green.
+        changeLight(3);
+        delay(100);
+        changeLight(4);
+        delay(100);
+      }
+      else if (voltMainBatt <= 27.44 && voltMainBatt > 26.46) {
+        // Flash blue.
+        changeLight(4);
+        delay(100);
+        changeLight(0);
+        delay(100);
+      }
+      else if (voltMainBatt <= 26.46 && voltMainBatt > 25.48) {
+        // Flash blue then red.
+        changeLight(4);
+        delay(100);
+        changeLight(2);
+        delay(100);
       }
       else {
-        // Low current battery check mode error, flash white to indicate this.
-        Serial.println("Low current battery check error!");
-        changeLight(1);
-      }
-    }
-    else if (mainBattCheck == 2) {
-      if (lowCurrentBattCheck == 1) {
-        // Low current battery check mode, flash light as appropriate to low current battery level.
-        if (voltLowCurrentBatt > 16.24) {
-          // Flash green.
-          changeLight(3);
-          delay(100);
-          changeLight(0);
-          delay(100);
-        }
-        else if (voltLowCurrentBatt <= 16.24 && voltLowCurrentBatt > 15.56) {
-          // Flash blue then green.
-          changeLight(3);
-          delay(100);
-          changeLight(4);
-          delay(100);
-        }
-        else if (voltLowCurrentBatt <= 15.68 && voltLowCurrentBatt > 15.12) {
-          // Flash blue.
-          changeLight(4);
-          delay(100);
-          changeLight(0);
-          delay(100);
-        }
-        else if (voltLowCurrentBatt <= 15.12 && voltLowCurrentBatt > 14.56) {
-          // Flash blue then red.
-          changeLight(4);
-          delay(100);
-          changeLight(2);
-          delay(100);
-        }
-        else {
-          // Flash red.
-          changeLight(2);
-          delay(100);
-          changeLight(0);
-          delay(100);
-        }
-      }
-      else if (lowCurrentBattCheck == 2) {
-        // Neither of the battery check modes are engaged, proceed to normal operation.
-        if (mode == 1) {
-          // Manual mode engaged, solid yellow.
-          changeLight(5);
-        }
-        else if (mode == 2) {
-          // Autonomous mode engaged, solid red.
-          changeLight(4);
-        }
-        else {
-          // Something else, error, solid white.
-          Serial.println("Mode error!  Check trasnmitter connection!");
-          changeLight(1);
-        }
-      }
-      else {
-        // Low current battery check mode error, flash white to indicate this.
-        Serial.println("Low current battery check error!");
+        // Flash red.
+        changeLight(2);
+        delay(100);
+        changeLight(0);
+        delay(100);
       }
     }
     else {
-      // Main battery check mode error, flash white to indicate this.
-      Serial.println("Main battery check error!");
+      // Low current battery check mode error, flash white to indicate this.
+      Serial.println("Low current battery check error!");
+      changeLight(1);
     }
   }
+  else if (mainBattCheck == 2) {
+    if (lowCurrentBattCheck == 1) {
+      // Low current battery check mode, flash light as appropriate to low current battery level.
+      if (voltLowCurrentBatt > 16.24) {
+        // Flash green.
+        changeLight(3);
+        delay(100);
+        changeLight(0);
+        delay(100);
+      }
+      else if (voltLowCurrentBatt <= 16.24 && voltLowCurrentBatt > 15.56) {
+        // Flash blue then green.
+        changeLight(3);
+        delay(100);
+        changeLight(4);
+        delay(100);
+      }
+      else if (voltLowCurrentBatt <= 15.68 && voltLowCurrentBatt > 15.12) {
+        // Flash blue.
+        changeLight(4);
+        delay(100);
+        changeLight(0);
+        delay(100);
+      }
+      else if (voltLowCurrentBatt <= 15.12 && voltLowCurrentBatt > 14.56) {
+        // Flash blue then red.
+        changeLight(4);
+        delay(100);
+        changeLight(2);
+        delay(100);
+      }
+      else {
+        // Flash red.
+        changeLight(2);
+        delay(100);
+        changeLight(0);
+        delay(100);
+      }
+    }
+    else if (lowCurrentBattCheck == 2) {
+      // Neither of the battery check modes are engaged, proceed to normal operation.
+      if (mode == 1) {
+        // Manual mode engaged, solid yellow.
+        changeLight(5);
+      }
+      else if (mode == 2) {
+        // Autonomous mode engaged, solid red.
+        changeLight(4);
+      }
+      else {
+        // Something else, error, solid white.
+        Serial.println("Mode error!  Check trasnmitter connection!");
+        changeLight(1);
+      }
+    }
+    else {
+      // Low current battery check mode error, flash white to indicate this.
+      Serial.println("Low current battery check error!");
+    }
+  }
+  else {
+    // Main battery check mode error, flash white to indicate this.
+    Serial.println("Main battery check error!");
+  }
+}
 
 //  if (killStatus == 1) {
 //    // System is killed, solid red.
 //    changeLight(2);
 //  }
-//  else {  
+//  else {
 //    if (mainBattCheck == 1) {
 //      if (lowCurrentBattCheck == 1) {
 //        // Main battery check and low battery check mode simultaneously. Flash white to indicate battery check mode error.
@@ -342,7 +342,7 @@ void controlLight() {
 //      Serial.println("Main battery check error!");
 //    }
 //  }
-}
+//}
 
 void changeLight(int lightColor) {
   /*

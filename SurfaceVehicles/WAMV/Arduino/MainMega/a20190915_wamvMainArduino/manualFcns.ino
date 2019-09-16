@@ -33,7 +33,4 @@ void joy2Setpoint() {
   leftThrusterSetpoint = constrain(surgeLeft + yawLeft, -1000, 1000);
   rightThrusterSetpoint = constrain(surgeRight + yawRight, -1000, 1000);
 
-  // Create messages for I2C comms
-  createI2cMsg();
-
 }
