@@ -122,6 +122,19 @@ volatile char incoming[MESSAGESIZE];    // character array to store incoming mes
 int counter = 0;                        // counter used for reading message coming in from master Arduino
 float previousVoltage = 0.0;            // temporary variable to store voltage measured
 
+//ROS Verification Publishers
+std_msgs::Int32 q1_ver_pub;
+std_msgs::Int32 q2_ver_pub;
+std_msgs::Int32 q3_ver_pub;
+std_msgs::Int32 q4_ver_pub;
+
+//ros::Publisher chatter("chatter", &str_msg);
+ros::Publisher q1_pub("q1_ver_pub", &q1_ver_pub);
+ros::Publisher q2_pub("q2_ver_pub", &q2_ver_pub);
+ros::Publisher q3_pub("q3_ver_pub", &q3_ver_pub);
+ros::Publisher q4_pub("q4_ver_pub", &q4_ver_pub);
+
+
 // ROS communication variables
 int q1_thrust = 0;
 int q2_thrust = 0;
@@ -143,10 +156,14 @@ void thrust_input_q2(const std_msgs::Int32& input_msg) {
   q2_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
 }
 void thrust_input_q3( const std_msgs::Int32& input_msg) {
-  q3_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+  q3_thrust = input_msg.data; 
+  q3_ver_pub.data = q3_thrust;
+  q3_pub.publish(&q3_ver_pub);
 }
 void thrust_input_q4( const std_msgs::Int32& input_msg) {
-  q4_thrust = input_msg.data;     //assign subscribed message to variable digitalIn
+  q4_thrust = input_msg.data;  
+  q4_ver_pub.data = q4_thrust;
+  q4_pub.publish(&q4_ver_pub);
 }
 
 // ROS publishers
@@ -186,6 +203,17 @@ void setup() {
 
   // Setup ROS node handle
   nh.initNode();
+
+  // Set ROS Advertisers And Subscribers
+  nh.advertise(q1_pub);
+  nh.advertise(q2_pub);
+  nh.advertise(q3_pub);
+  nh.advertise(q4_pub);
+
+  nh.subscribe(q1_sub);      //initialize ros subscriber
+  nh.subscribe(q2_sub);      //initialize ros subscriber
+  nh.subscribe(q3_sub);      //initialize ros subscriber
+  nh.subscribe(q4_sub);      //initialize ros subscriber
 
 }
 
