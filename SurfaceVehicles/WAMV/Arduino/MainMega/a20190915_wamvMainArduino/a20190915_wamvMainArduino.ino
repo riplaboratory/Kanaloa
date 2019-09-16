@@ -212,6 +212,9 @@ void loop() {
       // Take joystick readings, and convert to setpoint thrust values
       joy2Setpoint();
 
+      // Write setpoint thruster values to I2C
+      createI2cMsg();
+
     }
 
     // Autonomous code goes here
@@ -219,6 +222,13 @@ void loop() {
 
       // Print debug statement
       Serial.println("AUTONOMOUS MODE: One day, I shall achieve autonomy! OM NOM NOM NOM!");
+
+        // Takes ROS topics and convert to setpoint values
+        leftThrusterSetpoint = q3_thrust;
+        rightThrusterSetpoint = q4_thrust;
+
+        // Create messages for I2C comms
+        createI2cMsg();
 
     }
 
