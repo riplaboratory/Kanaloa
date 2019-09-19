@@ -169,6 +169,9 @@ class WAMV_Way_Point:
 		    q3 = self.get_publisher_topic("q3_thruster_input")
 		    q4 = self.get_publisher_topic("q4_thruster_input")
 
+		    thrust_values["q3"] = 0
+	        thrust_values["q4"] = 0	
+
 
 
 		    if 90 > self.degree_offset > 30 or -90 < self.degree_offset < -180:
@@ -206,12 +209,15 @@ class WAMV_Way_Point:
 
 		    elif self.distance <= 10:
 
-		        thrust_values["q3"] = 0.75*max_thrust
-		        thrust_values["q4"] = -0.75*max_thrust
+		        thrust_values["q3"] = 0
+		        thrust_values["q4"] = 0
 
 
+		    print(thrust_values)
 	        q3["publisher"].publish(thrust_values["q3"])
 	        q4["publisher"].publish(thrust_values["q4"])
+
+	        self.print_progress()
 
 
 
@@ -219,7 +225,7 @@ class WAMV_Way_Point:
 
 		self.check_station_keep_timer()
 
-		if self.navigation_indicator == True:
+		if self.navigation_indicator == True and len(self.current_coordinates)==2:
 
 		    q = imu_data.orientation
 
@@ -251,6 +257,8 @@ class WAMV_Way_Point:
 		        self.degree_offset = theta_offset
 		        # print(degree_offset)
 
+	    	self.print_progress()
+
 
 
     ##################################################
@@ -270,6 +278,8 @@ class WAMV_Way_Point:
 			print("\t" + "Time: " + str(self.queued_station_keep_times[i]) + " minutes")
 			print("\n")
 
+		self.set_next_waypoint()
+
 
 	def stop_navigation(self):
 		self.navigation_indicator = False
@@ -288,19 +298,31 @@ class WAMV_Way_Point:
 	def set_next_waypoint(self):
 
 		if len(self.queued_coordinates) > 0:
-			self.desired_coordinates = queued_coordinates[0]
-			self.set_station_keep_timer(queued_station_keep_times[0])
+			self.desired_coordinates = self.queued_coordinates[0]
+			self.set_station_keep_timer(self.queued_station_keep_times[0])
 
-			queued_coordinates.pop(0)
-			queued_station_keep_times.pop(0)
+			self.queued_coordinates.pop(0)
+			self.queued_station_keep_times.pop(0)
 
 		else:
 			self.stop_navigation()
 
+	def print_progress(self):
+		print("Current Coordinates: " + str(self.current_coordinates))
+		print("Desired Coordinates: " + str(self.desired_coordinates))
+		print("\nDistance: " + str(self.distance))
+		print("Angle Offset: " + str(self.degree_offset))
+		print("\n --------------------------------------------------------- \n\n")
 
 
 
-# wamv1 = WAMV_Way_Point()
 
-# wamv1.add_way_point([0,0], 5)
-# wamv1.start_navigation()
+rospy.init_node("wamv_class")
+
+wamv1 = WAMV_Way_Point()
+
+wamv1.add_way_point([0,0], 5)
+wamv1.start_navigation()
+wamv1.print_progress()
+
+rospy.spin()

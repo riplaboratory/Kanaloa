@@ -1,0 +1,17 @@
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target _way_point_wamv_generate_messages_check_deps_add_way_point
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[ 28%] Built target way_point_wamv_generate_messages_eus
+[ 57%] Built target way_point_wamv_generate_messages_py
+[ 71%] Built target way_point_wamv_generate_messages_lisp
+[ 85%] Built target way_point_wamv_generate_messages_nodejs
+[100%] Built target way_point_wamv_generate_messages_cpp
+[100%] Built target way_point_wamv_generate_messages

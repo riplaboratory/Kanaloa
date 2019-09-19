@@ -1,0 +1,23 @@
+Warning: Cannot symlink from /home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.sh to existing file /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh
+Warning: Source hash: b6ecbadcf674d9a42efaca0d2488f607
+Warning: Dest hash: 0686fe64ea6a75374ca809f9f83be1d3
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/__init__.py
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/__init__.py
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/_add_way_point.py
+Linked: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/pkgconfig/way_point_wamv.pc, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/way_point_wamv.pc)
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_point.h
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointRequest.h
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointResponse.h
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package.lisp
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/way_point_wamv-srv.asd
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/manifest.l
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/srv/add_way_point.l
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/_index.js
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/_index.js
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-paths.cmake
+Linked: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamvConfig.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig.cmake)
+Linked: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake)
+Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-extras.cmake

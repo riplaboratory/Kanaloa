@@ -1,0 +1,1 @@
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/pkgconfig/way_point_wamv.pc

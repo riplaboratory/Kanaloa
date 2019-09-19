@@ -1,0 +1,4 @@
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh 11
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh 11
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock 11
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash 11

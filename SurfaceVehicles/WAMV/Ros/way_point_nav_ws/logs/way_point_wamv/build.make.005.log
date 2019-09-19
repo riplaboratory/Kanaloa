@@ -1,0 +1,23 @@
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target _way_point_wamv_generate_messages_check_deps_add_way_point
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[ 14%] [34m[1mGenerating Python code from SRV way_point_wamv/add_way_point[0m
+[ 28%] [34m[1mGenerating EusLisp code from way_point_wamv/add_way_point.srv[0m
+[ 42%] [34m[1mGenerating Lisp code from way_point_wamv/add_way_point.srv[0m
+[ 57%] [34m[1mGenerating Javascript code from way_point_wamv/add_way_point.srv[0m
+[ 57%] Built target way_point_wamv_generate_messages_nodejs
+[ 57%] Built target way_point_wamv_generate_messages_lisp
+[ 71%] Built target way_point_wamv_generate_messages_eus
+[ 85%] [34m[1mGenerating C++ code from way_point_wamv/add_way_point.srv[0m
+[100%] [34m[1mGenerating Python srv __init__.py for way_point_wamv[0m
+[100%] Built target way_point_wamv_generate_messages_py
+[100%] Built target way_point_wamv_generate_messages_cpp
+[100%] Built target way_point_wamv_generate_messages
