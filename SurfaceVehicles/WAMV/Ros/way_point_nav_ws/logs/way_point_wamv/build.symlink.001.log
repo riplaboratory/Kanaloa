@@ -1,0 +1,6 @@
+Warning: Cannot symlink from /home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.sh to existing file /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh
+Warning: Source hash: b6ecbadcf674d9a42efaca0d2488f607
+Warning: Dest hash: 0686fe64ea6a75374ca809f9f83be1d3
+Linked: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/pkgconfig/way_point_wamv.pc, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/way_point_wamv.pc)
+Linked: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamvConfig.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig.cmake)
+Linked: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake)

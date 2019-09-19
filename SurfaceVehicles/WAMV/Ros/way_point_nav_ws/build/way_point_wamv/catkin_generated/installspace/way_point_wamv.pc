@@ -1,0 +1,8 @@
+prefix=/home/raymond/ros_workspaces/way_point_nav_ws/install
+
+Name: way_point_wamv
+Description: Description of way_point_wamv
+Version: 0.0.0
+Cflags: -I/home/raymond/ros_workspaces/way_point_nav_ws/install/include
+Libs: -L/home/raymond/ros_workspaces/way_point_nav_ws/install/lib 
+Requires: 

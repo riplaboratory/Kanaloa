@@ -1,0 +1,1 @@
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/srv/_add_way_point.py
