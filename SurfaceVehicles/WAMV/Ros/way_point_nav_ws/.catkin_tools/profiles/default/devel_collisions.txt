@@ -1,4 +1,5 @@
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh 11
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh 11
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock 11
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash 11
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh 9
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh 9
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock 9
+/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./cmake.lock 3
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash 9

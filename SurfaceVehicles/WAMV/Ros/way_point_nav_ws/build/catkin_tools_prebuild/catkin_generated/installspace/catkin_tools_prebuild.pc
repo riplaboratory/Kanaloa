@@ -1,8 +1,8 @@
-prefix=/home/raymond/ros_workspaces/way_point_nav_ws/install
+prefix=/home/rip-acer-2/Workspaces/way_point_nav_ws/install
 
 Name: catkin_tools_prebuild
 Description: Description of catkin_tools_prebuild
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/raymond/ros_workspaces/way_point_nav_ws/install/lib 
+Libs: -L/home/rip-acer-2/Workspaces/way_point_nav_ws/install/lib 
 Requires: 

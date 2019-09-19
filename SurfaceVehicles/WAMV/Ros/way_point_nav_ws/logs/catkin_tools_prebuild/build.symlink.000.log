@@ -1,12 +1,40 @@
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./_setup_util.py
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.zsh
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.bash
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.sh
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/./env.sh
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./setup.bash
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./local_setup.sh
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./env.sh
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./setup.zsh
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./local_setup.bash
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./cmake.lock
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./setup.sh
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./local_setup.zsh
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./_setup_util.py
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/_setup_util.py, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./_setup_util.py)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/local_setup.zsh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/setup.zsh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.zsh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/local_setup.sh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/setup.bash, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.bash)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/setup.sh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.sh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/local_setup.bash, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/cmake.lock, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/env.sh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./env.sh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/lib/pkgconfig/catkin_tools_prebuild.pc, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake)
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/./_setup_util.py
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.zsh
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.bash
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/./setup.sh
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/./env.sh
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Already unlinked: {}

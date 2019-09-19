@@ -1,6 +1,6 @@
-devel_space: /home/raymond/ros_workspaces/way_point_nav_ws/devel
+devel_space: /home/rip-acer-2/Workspaces/way_point_nav_ws/devel
 install: false
-install_space: /home/raymond/ros_workspaces/way_point_nav_ws/install
+install_space: /home/rip-acer-2/Workspaces/way_point_nav_ws/install
 profile: default
-source_space: /home/raymond/ros_workspaces/way_point_nav_ws/src
-workspace: /home/raymond/ros_workspaces/way_point_nav_ws
+source_space: /home/rip-acer-2/Workspaces/way_point_nav_ws/src
+workspace: /home/rip-acer-2/Workspaces/way_point_nav_ws

@@ -7,9 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PWD="/home/raymond/ros_workspaces/way_point_nav_ws/build/way_point_wamv"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/raymond/ros_workspaces/way_point_nav_ws/src/way_point_wamv:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv:$CMAKE_PREFIX_PATH"
+export PWD="/home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv:$ROS_PACKAGE_PATH"

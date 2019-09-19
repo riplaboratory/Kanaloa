@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/usr/src/googletest")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/raymond/ros_workspaces/way_point_nav_ws/build/way_point_wamv")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)
