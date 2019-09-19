@@ -1,1 +1,1 @@
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/_index.js
+/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/_index.js

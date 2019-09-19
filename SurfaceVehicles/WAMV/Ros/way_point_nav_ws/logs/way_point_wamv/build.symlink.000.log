@@ -1,6 +1,84 @@
-Warning: Cannot symlink from /home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.sh to existing file /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh
-Warning: Source hash: b6ecbadcf674d9a42efaca0d2488f607
-Warning: Dest hash: 0686fe64ea6a75374ca809f9f83be1d3
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/way_point_wamv.pc
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig.cmake
-Symlinking /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/__init__.py
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/_add_way_point.py
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/__init__.py
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/lib/pkgconfig/way_point_wamv.pc
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-extras.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-paths.cmake
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package.lisp
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/way_point_wamv-srv.asd
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/_index.js
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/_index.js
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/manifest.l
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/srv/add_way_point.l
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_point.h
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointResponse.h
+Symlinking /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointRequest.h
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.zsh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.sh, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.bash, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/cmake.lock, /home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/__init__.py, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/__init__.py)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/srv/__init__.py, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/__init__.py)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/srv/_add_way_point.py, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/_add_way_point.py)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/pkgconfig/way_point_wamv.pc, /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/way_point_wamv.pc)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_point.h, /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_point.h)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_pointRequest.h, /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointRequest.h)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_pointResponse.h, /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointResponse.h)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/_package.lisp, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package.lisp)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/way_point_wamv-srv.asd, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/way_point_wamv-srv.asd)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/roseus/ros/way_point_wamv/manifest.l, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/manifest.l)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/roseus/ros/way_point_wamv/srv/add_way_point.l, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/srv/add_way_point.l)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/_index.js, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/_index.js)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/_index.js, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/_index.js)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamv-msg-paths.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-paths.cmake)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamvConfig.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig.cmake)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake)
+Cleaning: (/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/way_point_wamv/cmake/way_point_wamv-msg-extras.cmake, /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-extras.cmake)
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/__init__.py
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/__init__.py
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/python2.7/dist-packages/way_point_wamv/srv/_add_way_point.py
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/lib/pkgconfig/way_point_wamv.pc
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_point.h
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointRequest.h
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/include/way_point_wamv/add_way_pointResponse.h
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package.lisp
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/common-lisp/ros/way_point_wamv/srv/way_point_wamv-srv.asd
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/manifest.l
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/roseus/ros/way_point_wamv/srv/add_way_point.l
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/_index.js
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/gennodejs/ros/way_point_wamv/srv/_index.js
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-paths.cmake
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig.cmake
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamvConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/raymond/ros_workspaces/way_point_nav_ws/devel/share/way_point_wamv/cmake/way_point_wamv-msg-extras.cmake
+Already unlinked: {}

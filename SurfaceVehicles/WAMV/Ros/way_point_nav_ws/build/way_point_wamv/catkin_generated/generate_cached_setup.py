@@ -12,16 +12,16 @@ try:
     from catkin.environment_cache import generate_environment_script
 except ImportError:
     # search for catkin package in all workspaces and prepend to path
-    for workspace in "/home/raymond/ros_workspaces/way_point_nav_ws/devel;/home/raymond/velodyne_ws/devel;/home/raymond/catkin_workspaces/velodyne_ws/devel;/opt/ros/melodic".split(';'):
+    for workspace in "/home/rip-acer-2/Workspaces/way_point_nav_ws/devel;/opt/ros/melodic".split(';'):
         python_path = os.path.join(workspace, 'lib/python2.7/dist-packages')
         if os.path.isdir(os.path.join(python_path, 'catkin')):
             sys.path.insert(0, python_path)
             break
     from catkin.environment_cache import generate_environment_script
 
-code = generate_environment_script('/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/env.sh')
+code = generate_environment_script('/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/env.sh')
 
-output_filename = '/home/raymond/ros_workspaces/way_point_nav_ws/build/way_point_wamv/catkin_generated/setup_cached.sh'
+output_filename = '/home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv/catkin_generated/setup_cached.sh'
 with open(output_filename, 'w') as f:
     #print('Generate script for cached setup "%s"' % output_filename)
     f.write('\n'.join(code))

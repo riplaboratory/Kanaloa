@@ -3,7 +3,7 @@
 
 # since this file is sourced either use the provided _CATKIN_SETUP_DIR
 # or fall back to the destination set at configure time
-: ${_CATKIN_SETUP_DIR:=/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv}
+: ${_CATKIN_SETUP_DIR:=/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv}
 CATKIN_SETUP_UTIL_ARGS="--extend --local"
 . "$_CATKIN_SETUP_DIR/setup.sh"
 unset CATKIN_SETUP_UTIL_ARGS

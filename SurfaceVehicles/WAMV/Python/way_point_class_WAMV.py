@@ -35,6 +35,9 @@ class WAMV_Way_Point:
 		# Manual Offset If IMU heading is off 
 		self.imu_degree_offset_bias = 0
 
+		# IMU Orientation, either "ENU" or "NED"
+		self.imu_orientation = "ENU"
+
 		# List Of All Thruster Publishers And Anysubscrbers
 		self.publishers = []
 		self.subscribers = []
@@ -185,8 +188,8 @@ class WAMV_Way_Point:
 		        thrust_values["q4"] = -0.75*max_thrust
 
 		    elif self.distance > 20:
-		        left_thrust = 0.75*max_thrust - degree_offset / 2
-		        right_thrust = 0.75*max_thrust + degree_offset / 2
+		        left_thrust = 0.75*max_thrust - self.degree_offset / 2
+		        right_thrust = 0.75*max_thrust + self.degree_offset / 2
 
 		        if left_thrust >= 0.90*max_thrust: left_thrust = 0.90*max_thrust
 		        if left_thrust <= -0.90*max_thrust: left_thrust = -0.90*max_thrust
@@ -204,8 +207,21 @@ class WAMV_Way_Point:
 
 		    elif self.distance > 10:
 
-		        thrust_values["q3"] = 0.75*max_thrust
-		        thrust_values["q4"] = -0.75*max_thrust
+		    	left_thrust = 0.4*max_thrust - self.degree_offset * 2
+	        	right_thrust = 0.4*max_thrust + self.degree_offset * 2
+
+	        	if left_thrust >= 0.40*max_thrust: left_thrust = 0.40*max_thrust
+		        if left_thrust <= -0.40*max_thrust: left_thrust = -0.40*max_thrust
+		        if right_thrust >= 0.40*max_thrust: right_thrust = 0.40*max_thrust
+		        if right_thrust <= -0.40*max_thrust: right_thrust = -0.40*max_thrust
+
+		    	if 90 < self.degree_offset < 180 or -90 < self.degree_offset < -180:
+
+		    		thrust_values["q3"] = -1*left_thrust
+		        	thrust_values["q4"] = -1*right_thrust
+		        else:
+			        thrust_values["q3"] = left_thrust
+			        thrust_values["q4"] = right_thrust
 
 		    elif self.distance <= 10:
 
@@ -229,7 +245,11 @@ class WAMV_Way_Point:
 
 		    q = imu_data.orientation
 
-		    yaw_rad = atan2(2.0 * (q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z)
+		    if self.imu_orientation "ENU":
+		    	yaw_rad = atan2(2.0 * (q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z)
+		    else:
+		    	yaw_rad = atan2(2.0 * (q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z)
+		    	
 		    yaw_deg = (yaw_rad+3.14159/2)*-180/3.14159
 		    # yaw_deg -= imu_degree_offset_bias # YAW in terms of north, gets larger when going cw
 

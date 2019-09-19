@@ -7,9 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/raymond/velodyne_ws/devel/lib:/home/raymond/catkin_workspaces/velodyne_ws/devel/lib:/opt/ros/melodic/lib"
-export PKG_CONFIG_PATH="/home/raymond/velodyne_ws/devel/lib/pkgconfig:/home/raymond/catkin_workspaces/velodyne_ws/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig"
-export PWD="/home/raymond/ros_workspaces/way_point_nav_ws/build/catkin_tools_prebuild"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/raymond/ros_workspaces/way_point_nav_ws/build/catkin_tools_prebuild:/home/raymond/ros_workspaces/way_point_nav_ws/src/way_point_wamv:/home/raymond/catkin_workspaces/velodyne_ws/src:/home/raymond/velodyne_ws/src:/home/raymond/catkin_workspaces/velodyne_ws/src:/opt/ros/melodic/share"
+export CMAKE_PREFIX_PATH="/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
+export PWD="/home/rip-acer-2/Workspaces/way_point_nav_ws/build/catkin_tools_prebuild"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/catkin_tools_prebuild/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/rip-acer-2/Workspaces/way_point_nav_ws/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"

@@ -1,1 +1,1 @@
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/roseus/ros/way_point_wamv/srv/add_way_point.l
+/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/roseus/ros/way_point_wamv/srv/add_way_point.l

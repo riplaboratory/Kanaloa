@@ -1,1 +1,1 @@
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp
+/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/_package_add_way_point.lisp
