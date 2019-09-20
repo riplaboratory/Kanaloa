@@ -1,1 +1,1 @@
-/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_pointRequest.h
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_pointRequest.h

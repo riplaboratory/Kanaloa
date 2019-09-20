@@ -67,14 +67,14 @@ set(way_point_wamv_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(way_point_wamv_SOURCE_PREFIX /home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv)
-  set(way_point_wamv_DEVEL_PREFIX /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv)
+  set(way_point_wamv_SOURCE_PREFIX /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv)
+  set(way_point_wamv_DEVEL_PREFIX /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv)
   set(way_point_wamv_INSTALL_PREFIX "")
   set(way_point_wamv_PREFIX ${way_point_wamv_DEVEL_PREFIX})
 else()
   set(way_point_wamv_SOURCE_PREFIX "")
   set(way_point_wamv_DEVEL_PREFIX "")
-  set(way_point_wamv_INSTALL_PREFIX /home/rip-acer-2/Workspaces/way_point_nav_ws/install)
+  set(way_point_wamv_INSTALL_PREFIX /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/install)
   set(way_point_wamv_PREFIX ${way_point_wamv_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(way_point_wamv_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include " STREQUAL " ")
+if(NOT "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/include " STREQUAL " ")
   set(way_point_wamv_INCLUDE_DIRS "")
-  set(_include_dirs "/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include")
+  set(_include_dirs "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wa
         message(FATAL_ERROR "Project 'way_point_wamv' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'way_point_wamv' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'way_point_wamv' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/${idir}'.  ${_report}")
     endif()
     _list_append_unique(way_point_wamv_INCLUDE_DIRS ${include})
   endforeach()
@@ -131,7 +131,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib;/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/lib;/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/lib;/home/raymond/velodyne_ws/devel/lib;/home/raymond/catkin_workspaces/velodyne_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

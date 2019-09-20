@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "way_point_wamv: 0 messages, 1 services")
+message(STATUS "way_point_wamv: 0 messages, 2 services")
 
 set(MSG_I_FLAGS "-Isensor_msgs:/opt/ros/melodic/share/sensor_msgs/cmake/../msg;-Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/melodic/share/geometry_msgs/cmake/../msg")
 
@@ -17,9 +17,14 @@ add_custom_target(way_point_wamv_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
 add_custom_target(_way_point_wamv_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "way_point_wamv" "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "way_point_wamv" "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" ""
+)
+
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" NAME_WE)
+add_custom_target(_way_point_wamv_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "way_point_wamv" "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" ""
 )
 
 #
@@ -31,7 +36,13 @@ add_custom_target(_way_point_wamv_generate_messages_check_deps_${_filename}
 
 ### Generating Services
 _generate_srv_cpp(way_point_wamv
-  "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/way_point_wamv
+)
+_generate_srv_cpp(way_point_wamv
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/way_point_wamv
@@ -49,7 +60,9 @@ add_custom_target(way_point_wamv_generate_messages_cpp
 add_dependencies(way_point_wamv_generate_messages way_point_wamv_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+add_dependencies(way_point_wamv_generate_messages_cpp _way_point_wamv_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" NAME_WE)
 add_dependencies(way_point_wamv_generate_messages_cpp _way_point_wamv_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -64,7 +77,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS way_point_wamv_generate_messages_cp
 
 ### Generating Services
 _generate_srv_eus(way_point_wamv
-  "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/way_point_wamv
+)
+_generate_srv_eus(way_point_wamv
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/way_point_wamv
@@ -82,7 +101,9 @@ add_custom_target(way_point_wamv_generate_messages_eus
 add_dependencies(way_point_wamv_generate_messages way_point_wamv_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+add_dependencies(way_point_wamv_generate_messages_eus _way_point_wamv_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" NAME_WE)
 add_dependencies(way_point_wamv_generate_messages_eus _way_point_wamv_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -97,7 +118,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS way_point_wamv_generate_messages_eu
 
 ### Generating Services
 _generate_srv_lisp(way_point_wamv
-  "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/way_point_wamv
+)
+_generate_srv_lisp(way_point_wamv
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/way_point_wamv
@@ -115,7 +142,9 @@ add_custom_target(way_point_wamv_generate_messages_lisp
 add_dependencies(way_point_wamv_generate_messages way_point_wamv_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+add_dependencies(way_point_wamv_generate_messages_lisp _way_point_wamv_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" NAME_WE)
 add_dependencies(way_point_wamv_generate_messages_lisp _way_point_wamv_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -130,7 +159,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS way_point_wamv_generate_messages_li
 
 ### Generating Services
 _generate_srv_nodejs(way_point_wamv
-  "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/way_point_wamv
+)
+_generate_srv_nodejs(way_point_wamv
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/way_point_wamv
@@ -148,7 +183,9 @@ add_custom_target(way_point_wamv_generate_messages_nodejs
 add_dependencies(way_point_wamv_generate_messages way_point_wamv_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+add_dependencies(way_point_wamv_generate_messages_nodejs _way_point_wamv_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" NAME_WE)
 add_dependencies(way_point_wamv_generate_messages_nodejs _way_point_wamv_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -163,7 +200,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS way_point_wamv_generate_messages_no
 
 ### Generating Services
 _generate_srv_py(way_point_wamv
-  "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/way_point_wamv
+)
+_generate_srv_py(way_point_wamv
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/way_point_wamv
@@ -181,7 +224,9 @@ add_custom_target(way_point_wamv_generate_messages_py
 add_dependencies(way_point_wamv_generate_messages way_point_wamv_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv" NAME_WE)
+add_dependencies(way_point_wamv_generate_messages_py _way_point_wamv_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv" NAME_WE)
 add_dependencies(way_point_wamv_generate_messages_py _way_point_wamv_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

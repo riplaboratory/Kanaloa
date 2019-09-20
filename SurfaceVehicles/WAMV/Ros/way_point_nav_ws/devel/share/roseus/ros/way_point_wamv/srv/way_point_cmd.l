@@ -1,0 +1,1 @@
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/roseus/ros/way_point_wamv/srv/way_point_cmd.l

@@ -58,6 +58,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   add_way_point.srv 
+  way_point_cmd.srv
 )
 
 ## Generate actions in the 'action' folder

@@ -1,0 +1,1 @@
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/srv/_way_point_cmd.py

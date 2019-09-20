@@ -1,5 +1,9 @@
-/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh 9
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/./local_setup.zsh 2
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/./cmake.lock 2
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/./local_setup.bash 2
 /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.zsh 9
 /home/raymond/ros_workspaces/way_point_nav_ws/devel/./cmake.lock 9
-/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./cmake.lock 3
 /home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.bash 9
+/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/./cmake.lock 1
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/./local_setup.sh 2
+/home/raymond/ros_workspaces/way_point_nav_ws/devel/./local_setup.sh 9

@@ -6,6 +6,7 @@ from std_msgs.msg import Int32
 
 from sensor_msgs.msg import NavSatFix
 from sensor_msgs.msg import Imu
+from way_point_wamv.srv import *
 
 from math import radians
 from math import atan2
@@ -64,6 +65,7 @@ class WAMV_Way_Point:
 		# self.init_node()
 		self.init_publishers()
 		self.init_subscribers()
+		self.init_services()
 
 
 	##################################################
@@ -112,6 +114,9 @@ class WAMV_Way_Point:
 	def add_way_point(self, coordinates, station_keep_time=0):
 		self.queued_coordinates.append(coordinates)
 		self.queued_station_keep_times.append(station_keep_time)
+
+		if self.navigation_indicator == False:
+			self.set_next_waypoint()
 
 
     ##################################################
@@ -333,6 +338,29 @@ class WAMV_Way_Point:
 		print("\nDistance: " + str(self.distance))
 		print("Angle Offset: " + str(self.degree_offset))
 		print("\n --------------------------------------------------------- \n\n")
+
+
+	##################################################
+	### ROS Services
+	##################################################
+
+	def init_services(self):
+		self.way_point_service = rospy.Service('way_point', add_way_point, self.way_point_response_func)
+
+	def way_point_response_func(self, req):
+		try:
+			lat = req.latitude
+			lon = req.longitude
+			minutes = req.minutes
+
+			self.add_way_point([lat, lon], minutes)
+			print("Recieved Way Point")
+
+			return add_way_pointResponse(recieved=True)
+			
+		except:
+			return add_way_pointResponse(recieved=False)
+
 
 
 
