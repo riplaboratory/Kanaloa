@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/rip-acer-2/Workspaces/way_point_nav_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

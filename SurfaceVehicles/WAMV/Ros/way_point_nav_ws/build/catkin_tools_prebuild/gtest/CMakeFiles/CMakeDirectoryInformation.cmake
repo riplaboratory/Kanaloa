@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/usr/src/googletest")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/rip-acer-2/Workspaces/way_point_nav_ws/build/catkin_tools_prebuild")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/catkin_tools_prebuild")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

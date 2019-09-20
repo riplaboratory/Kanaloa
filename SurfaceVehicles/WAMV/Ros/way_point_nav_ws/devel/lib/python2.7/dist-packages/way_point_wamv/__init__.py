@@ -1,1 +1,1 @@
-/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/__init__.py
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/lib/python2.7/dist-packages/way_point_wamv/__init__.py

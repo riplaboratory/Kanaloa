@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/way_point_wamv_generate_messages_cpp"
-  "/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_point.h"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/add_way_point.h"
+  "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/include/way_point_wamv/way_point_cmd.h"
 )
 
 # Per-language clean rules from dependency scanning.

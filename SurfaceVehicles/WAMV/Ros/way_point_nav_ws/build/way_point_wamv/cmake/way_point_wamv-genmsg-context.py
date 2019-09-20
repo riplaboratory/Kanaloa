@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv"
+services_str = "/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv;/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv"
 pkg_name = "way_point_wamv"
 dependencies_str = "sensor_msgs;std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

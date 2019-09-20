@@ -1,17 +1,25 @@
-[  0%] Built target std_msgs_generate_messages_lisp
-[  0%] Built target sensor_msgs_generate_messages_py
-[  0%] Built target sensor_msgs_generate_messages_lisp
-[  0%] Built target sensor_msgs_generate_messages_eus
-[  0%] Built target std_msgs_generate_messages_py
+[35m[1mScanning dependencies of target _way_point_wamv_generate_messages_check_deps_way_point_cmd[0m
 [  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target _way_point_wamv_generate_messages_check_deps_way_point_cmd
+[  0%] Built target _way_point_wamv_generate_messages_check_deps_add_way_point
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
 [  0%] Built target std_msgs_generate_messages_nodejs
 [  0%] Built target sensor_msgs_generate_messages_nodejs
 [  0%] Built target sensor_msgs_generate_messages_cpp
 [  0%] Built target std_msgs_generate_messages_cpp
-[  0%] Built target _way_point_wamv_generate_messages_check_deps_add_way_point
-[ 28%] Built target way_point_wamv_generate_messages_py
-[ 71%] Built target way_point_wamv_generate_messages_nodejs
-[ 71%] Built target way_point_wamv_generate_messages_eus
-[100%] Built target way_point_wamv_generate_messages_lisp
+[  8%] [34m[1mGenerating EusLisp code from way_point_wamv/way_point_cmd.srv[0m
+[ 16%] [34m[1mGenerating Python code from SRV way_point_wamv/way_point_cmd[0m
+[ 25%] [34m[1mGenerating Lisp code from way_point_wamv/way_point_cmd.srv[0m
+[ 33%] [34m[1mGenerating Javascript code from way_point_wamv/way_point_cmd.srv[0m
+[ 41%] Built target way_point_wamv_generate_messages_lisp
+[ 50%] Built target way_point_wamv_generate_messages_nodejs
+[ 66%] Built target way_point_wamv_generate_messages_eus
+[ 75%] [34m[1mGenerating C++ code from way_point_wamv/way_point_cmd.srv[0m
+[ 83%] [34m[1mGenerating Python srv __init__.py for way_point_wamv[0m
+[ 91%] Built target way_point_wamv_generate_messages_py
 [100%] Built target way_point_wamv_generate_messages_cpp
 [100%] Built target way_point_wamv_generate_messages

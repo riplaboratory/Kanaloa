@@ -1,0 +1,3 @@
+Warning: Cannot symlink from /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/local_setup.sh to existing file /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/./local_setup.sh
+Warning: Source hash: da0e169b6df38d4fd8d06d6c260ffeef
+Warning: Dest hash: 13f4f55c15f86b8bde4741921988f35d

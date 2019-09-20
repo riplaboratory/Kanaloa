@@ -1,1 +1,1 @@
-/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/common-lisp/ros/way_point_wamv/srv/add_way_point.lisp

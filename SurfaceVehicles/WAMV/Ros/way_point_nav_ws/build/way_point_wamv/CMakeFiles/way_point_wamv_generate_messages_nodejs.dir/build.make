@@ -43,26 +43,33 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv
+CMAKE_SOURCE_DIR = /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv
+CMAKE_BINARY_DIR = /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv
 
 # Utility rule file for way_point_wamv_generate_messages_nodejs.
 
 # Include the progress variables for this target.
 include CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/progress.make
 
-CMakeFiles/way_point_wamv_generate_messages_nodejs: /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+CMakeFiles/way_point_wamv_generate_messages_nodejs: /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+CMakeFiles/way_point_wamv_generate_messages_nodejs: /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/way_point_cmd.js
 
 
-/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js: /opt/ros/melodic/lib/gennodejs/gen_nodejs.py
-/home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js: /home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from way_point_wamv/add_way_point.srv"
-	catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv -Isensor_msgs:/opt/ros/melodic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/melodic/share/geometry_msgs/cmake/../msg -p way_point_wamv -o /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js: /opt/ros/melodic/lib/gennodejs/gen_nodejs.py
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js: /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from way_point_wamv/add_way_point.srv"
+	catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/add_way_point.srv -Isensor_msgs:/opt/ros/melodic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/melodic/share/geometry_msgs/cmake/../msg -p way_point_wamv -o /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv
+
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/way_point_cmd.js: /opt/ros/melodic/lib/gennodejs/gen_nodejs.py
+/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/way_point_cmd.js: /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from way_point_wamv/way_point_cmd.srv"
+	catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv/srv/way_point_cmd.srv -Isensor_msgs:/opt/ros/melodic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/melodic/share/geometry_msgs/cmake/../msg -p way_point_wamv -o /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv
 
 way_point_wamv_generate_messages_nodejs: CMakeFiles/way_point_wamv_generate_messages_nodejs
-way_point_wamv_generate_messages_nodejs: /home/rip-acer-2/Workspaces/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+way_point_wamv_generate_messages_nodejs: /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/add_way_point.js
+way_point_wamv_generate_messages_nodejs: /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/devel/.private/way_point_wamv/share/gennodejs/ros/way_point_wamv/srv/way_point_cmd.js
 way_point_wamv_generate_messages_nodejs: CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/build.make
 
 .PHONY : way_point_wamv_generate_messages_nodejs
@@ -77,6 +84,6 @@ CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/clean:
 .PHONY : CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/clean
 
 CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/depend:
-	cd /home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv /home/rip-acer-2/Workspaces/way_point_nav_ws/src/way_point_wamv /home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv /home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv /home/rip-acer-2/Workspaces/way_point_nav_ws/build/way_point_wamv/CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/src/way_point_wamv /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv /home/raymond/Kanaloa/github/Kanaloa/SurfaceVehicles/WAMV/Ros/way_point_nav_ws/build/way_point_wamv/CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/way_point_wamv_generate_messages_nodejs.dir/depend
 
