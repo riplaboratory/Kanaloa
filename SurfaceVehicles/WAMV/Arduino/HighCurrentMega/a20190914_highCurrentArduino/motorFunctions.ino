@@ -29,4 +29,7 @@ void setSpd(int vel, byte fwdpin, byte revpin) {
 void vupdate(){
   voltageSetpoint_left = Vmax/1000.0*q2Motor;
   voltageSetpoint_right = Vmax/1000.0*q1Motor;
+
+  voltageSetpoint_left = 6.0;
+  voltageSetpoint_right = 12.0;
 }
