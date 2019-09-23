@@ -40,8 +40,8 @@ const byte ch5Pin = 50;             // PWM/PPM in from handheld RC receiver chan
 const byte ch6Pin = 52;             // PWM/PPM in from handheld RC receiver channel 6 (LC batt)
 const int voltLowCurrentPin = A1;   // analog in from voltage divider pin for reading low current battery voltage
 const byte redPin = 35;             // digital out to red light relay
-const byte greenPin = 37;           // digital out to green light relay
-const byte bluePin = 39;            // digital out to blue light relay
+const byte greenPin = 39;           // digital out to green light relay
+const byte bluePin = 37;            // digital out to blue light relay
 
 // Constant global variables
 const int nMedian = 8;          // number of readings to take to calculate median from controller inputs (don't make this too large, or else it will slow down the interrupt service routines)
