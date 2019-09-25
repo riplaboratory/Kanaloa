@@ -58,7 +58,7 @@ class WAMV_Way_Point:
 		self.degree_offset = 0
 		self.distance = 0
 
-		self.max_thrust = 1000
+		self.max_thrust = 750 #Max thrust is 1000, 750 default limiter put in place
 
 		# Reverse Multiplier, either == 1 of -1
 		self.q1_rm = 1
@@ -73,6 +73,7 @@ class WAMV_Way_Point:
 
 		# Thrust Values
 		self.thrust_values = {}
+
 
 
 	##################################################
@@ -198,22 +199,22 @@ class WAMV_Way_Point:
 
 			if 180 > self.degree_offset > 30:
 
-				thrust_values["q3"] = 0.75*max_thrust
-				thrust_values["q4"] = -0.75*max_thrust
+				thrust_values["q3"] = 0.5*max_thrust
+				thrust_values["q4"] = -0.5*max_thrust
 
 			elif -180 < self.degree_offset < -30:
 
-			    thrust_values["q3"] = -0.75*max_thrust
-			    thrust_values["q4"] = 0.75*max_thrust
+			    thrust_values["q3"] = -0.5*max_thrust
+			    thrust_values["q4"] = 0.5*max_thrust
 
 			elif self.distance > 20:
-			    left_thrust = 0.75*max_thrust + self.degree_offset * 4
-			    right_thrust = 0.75*max_thrust - self.degree_offset * 4
+			    left_thrust = max_thrust + self.degree_offset * 4
+			    right_thrust = max_thrust - self.degree_offset * 4
 
-			    if left_thrust >= 0.90*max_thrust: left_thrust = 0.90*max_thrust
-			    if left_thrust <= -0.90*max_thrust: left_thrust = -0.90*max_thrust
-			    if right_thrust >= 0.90*max_thrust: right_thrust = 0.90*max_thrust
-			    if right_thrust <= -0.90*max_thrust: right_thrust = -0.90*max_thrust
+			    if left_thrust >= 1.0*max_thrust: left_thrust = 1.0*max_thrust
+			    if left_thrust <= -1.0*max_thrust: left_thrust = -1.0*max_thrust
+			    if right_thrust >= 1.0*max_thrust: right_thrust = 1.0*max_thrust
+			    if right_thrust <= -1.0*max_thrust: right_thrust = -1.0*max_thrust
 
 
 			    thrust_values["q3"] = left_thrust
@@ -226,13 +227,13 @@ class WAMV_Way_Point:
 
 			elif self.distance > 10:
 
-				left_thrust = 0.4*max_thrust + self.degree_offset * 4
-				right_thrust = 0.4*max_thrust - self.degree_offset * 4
+				left_thrust = 0.5*max_thrust + self.degree_offset * 4
+				right_thrust = 0.5*max_thrust - self.degree_offset * 4
 
-				if left_thrust >= 0.40*max_thrust: left_thrust = 0.40*max_thrust
-				if left_thrust <= -0.40*max_thrust: left_thrust = -0.40*max_thrust
-				if right_thrust >= 0.40*max_thrust: right_thrust = 0.40*max_thrust
-				if right_thrust <= -0.40*max_thrust: right_thrust = -0.40*max_thrust
+				if left_thrust >= 0.50*max_thrust: left_thrust = 0.50*max_thrust
+				if left_thrust <= -0.50*max_thrust: left_thrust = -0.50*max_thrust
+				if right_thrust >= 0.50*max_thrust: right_thrust = 0.50*max_thrust
+				if right_thrust <= -0.50*max_thrust: right_thrust = -0.50*max_thrust
 
 				if 90 < self.degree_offset < 180 or -90 < self.degree_offset < -180:
 
@@ -444,6 +445,9 @@ class WAMV_Way_Point:
 
 			elif cmd == "Remove Current Coordinate":
 				self.set_next_waypoint()
+
+			elif "Max Speed " in cmd:
+				self.max_thrust = int(cmd.split("Max Speed ")[1])
 
 			elif cmd == "Kill":
 				self.stop_navigation()
