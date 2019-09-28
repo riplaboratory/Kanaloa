@@ -2,7 +2,8 @@
     Created by: Team Kanaloa (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
     LICENSE: Internal Kanaloa use only
 
-    Control a mtor output voltage
+    PID feed back control of MinnKota Motor controllers output voltage
+    See header file, kanaloaMotor.h, for more information
 
     # Version History
       2019.09.13 - A Trimble (atrimble@hawaii.edu)
@@ -21,10 +22,10 @@ kanaloaMotor::kanaloaMotor(Adafruit_PWMServoDriver& pwm,
                            byte color)
                            :
                            pwm(pwm),
-                           forwardPin(forwardPin),
+                           forwardPin(forwardPin), 
                            reversePin(reversePin),
                            pwmSpd(0),
-                           adcData(0), 
+                           adcData(0),
                            adc(color), 
                            motorVoltage(0), 
                            pidPWMSpd(0), 
@@ -33,11 +34,11 @@ kanaloaMotor::kanaloaMotor(Adafruit_PWMServoDriver& pwm,
                            Ki(300),
                            Kd(0),
                            motor_pid(&motorVoltage, 
-                                     &pidPWMSpd, 
-                                     &voltageSetpoint, 
+                                     &pidPWMSpd,
+                                     &voltageSetpoint,
                                      Kp,
                                      Ki,
-                                     Kd, 
+                                     Kd,
                                      DIRECT){
 }
 
@@ -54,7 +55,7 @@ void kanaloaMotor::pidUpdate() {
   readVoltage();
   motor_pid.Compute();
   pwmSpd = (int) pidPWMSpd;
-  if (abs(voltageSetpoint) <= 0.5) {
+  if (abs(voltageSetpoint) <= DEAD_ZONE_LIMIT) {
     pwmSpd = 0;
   }
   setPWMSpd(pwmSpd);
@@ -103,6 +104,15 @@ double kanaloaMotor::getMotorVoltage() {
 
 double kanaloaMotor::getVoltageSetpoint() const {
   return voltageSetpoint;
+}
+
+void kanaloaMotor::debugOutput() {
+  Serial.print("Voltage (Vsp, Vm): ");
+  Serial.print(getVoltageSetpoint());
+  Serial.print(", ");
+  Serial.print(getMotorVoltage());
+  Serial.print("PWM Command: ");
+  Serial.println(pwmSpd);
 }
 
 void kanaloaMotor::printGains() {
