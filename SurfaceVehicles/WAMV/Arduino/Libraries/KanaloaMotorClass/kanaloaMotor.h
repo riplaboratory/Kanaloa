@@ -13,7 +13,7 @@
  *          - "Adafruit PWM Servo Driver Library" by Adafruit
  *          - "Adafruit ADS1X15" by Adafruit
  *      ## Downloaded
- *          - PID_v1 by Brett Beauregard, ADD GITHUB WEBSITE
+ *          - PID_v1 by Brett Beauregard, https://github.com/br3ttb/Arduino-PID-Library/
  *  
  *  # Version History
  *    2019.09.13 - A Trimble (atrimble@hawaii.edu)
