@@ -15,5 +15,5 @@ You can also output a .txt file by changing the extension of `output.csv` to `ou
 
 Other methods exist, but require more work for the same result, but if you are looking for some typie of specific functionality (e.g. batch export) then parhaps they will work better for you.  Some options to try are: 
 
- -[rosbag_to_csv](https://github.com/AtsushiSakai/rosbag_to_csv) 
+ -[rosbag_to_csv](https://github.com/AtsushiSakai/rosbag_to_csv)
  -[ClearPath Robotics CONVERTING ROS BAG TO CSV](https://www.clearpathrobotics.com/assets/guides/ros/Converting%20ROS%20bag%20to%20CSV.html)
