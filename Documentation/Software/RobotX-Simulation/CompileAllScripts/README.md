@@ -23,7 +23,7 @@ In the competition, the name of the task currently being performed is published 
 
 __2. Edit `task.py`__
 
-Once found, the task name can be added into the script following the same format as the other tasks.
+Once found, the task name can be added into the script following the same format as the other tasks:
 
 	elif task_name == "<task_name>":
 		if current_task != "<task_name>":
@@ -34,7 +34,7 @@ Because the `/vrx/task/info` topic will continuously publish the name of the tas
 
 __2.1 Import the task function/classes from their respective python scripts__
 
-If multiple scripts utilize the same class, they can be renamed as was done with station_keeping and wayfinding.
+If multiple scripts utilize the same class, they can be renamed as was done with station_keeping and wayfinding, exemplified below:
 
 	from wayfinding import WAMV_Way_Point as wayfind
 	from station_keeping import WAMV_Way_Point as station_keep
