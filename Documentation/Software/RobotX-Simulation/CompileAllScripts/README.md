@@ -3,11 +3,13 @@ The script `task.py` identifies the task the WAM-V is currently expected to perf
 
 ## Running task.py
 __1. Navigate to the scripts directory__
-***All scripts used in the 2019 VRX competition are located in the following directory:***
+
+_All scripts used in the 2019 VRX competition are located in the following directory:_
 
 	cd kanaloa_vrx/src/kanaloa_pkg/scripts
 
 __2. Run the script__
+ 
  Currently, `station_keeping.py`, `wayfinding.py`, and `nav_channel.py` can all be run using `task.py`.
 
 	python task.py
