@@ -4,6 +4,8 @@ More information on ROS services can be found [here](http://wiki.ros.org/Service
 
 ## __1.Run the script__ 
 
+Navigate to kanaloa_vrx/src/kanaloa_pkg/scripts directory first.
+
 `python vrx_way_point_class_WAMV.py`
 
 
