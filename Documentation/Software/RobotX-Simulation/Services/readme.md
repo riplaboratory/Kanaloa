@@ -5,7 +5,7 @@ __This is a tutorial for calling the way_point and way_point_cmd services for th
 
 ## Prerequisites
 
-- Download [kanaloa_vrx workspace]  link is dead cuz I didn't upload the workspace to github yet
+- Download kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
 - Install the VRX simulation, [instructions here] link to marsa and jdy tech doc
 
 <hr>
@@ -38,7 +38,7 @@ Then enter the following command:
 
 `python way_point_class_WAMV.py`
 
-Upon pressing enter, you should see a continously printing statement similar to the one pictured below (NEED A PICTURE), and nothing should occur within the simulation.
+Upon pressing enter, nothing should occur within the simulation.
 
 
 ## 3. Call the first service to add a waypoint
@@ -51,7 +51,7 @@ Here is an example using a latitude of 21.3085, longitude of -157.8886, and desi
 
 ###### Note: '--' is used so that negative arguments (such as -157.8886) are not interpreted as command line parsing.
 
-Once called, you should see the service return a statement "recieved: True" and the print statement will now show the new queued coordinates and distance from them, as shown below. There will still be no movement in the simulation. (NEED A PICTURE)
+Once called, you should see the service return a statement "recieved: True" and the print statement will now show the new queued coordinates and distance from them. There will still be no movement in the simulation.
 
 
 ## 4. Call the second service to manage navigation
