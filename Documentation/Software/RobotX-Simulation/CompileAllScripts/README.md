@@ -14,7 +14,7 @@ The tasks submitted for VRX 2019 were stationkeeping, wayfinding, and navigation
 
 ## Prerequisites
 
-- Download [kanaloa_vrx workspace]  link is dead cuz I didn't upload the workspace to github yet
+- Download kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
 - Install the VRX simulation, [instructions here] link to marsa and jdy tech doc
 
 <hr>
