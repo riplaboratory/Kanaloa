@@ -1,7 +1,7 @@
 # Using Waypoint Navigation ROS Services in the VRX Simulation
 Currently, the Station-keeping and Wayfinding tasks are both performed using the WAMV_Way_Point class. Both ROS services used by the WAMV_Way_Point class will need to be called in order to run station_keeping.py and wayfinding.py using manually inputted GPS coordinates. 
 
-__Below is the procedure for calling the way_point and way_point_cmd services for the purpose of station-keeping or wayfinding.__
+__This is a tutorial for calling the way_point and way_point_cmd services for the purpose of station-keeping or wayfinding.__
 
 ## Prerequisites
 
