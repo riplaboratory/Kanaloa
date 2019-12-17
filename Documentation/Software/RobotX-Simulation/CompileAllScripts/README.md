@@ -97,6 +97,6 @@ The hypothetical `dock.py` script from step 2.2 can then be added using the foll
 			dock_main()
 			current_task = "scan_dock" 
 
-######Note: Because the `/vrx/task/info` topic will continuously publish the name of the task being performed while the simulation is running, the `current_task` global variable was introduced to prevent the task function from being started over repeatedly.
+###### Note: Because the `/vrx/task/info` topic will continuously publish the name of the task being performed while the simulation is running, the `current_task` global variable was introduced to prevent the task function from being started over repeatedly.
 
 __The new script will now be successfully added to task.py__
