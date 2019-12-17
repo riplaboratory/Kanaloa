@@ -6,7 +6,7 @@ __This is a tutorial for calling the way_point and way_point_cmd services for th
 ## Prerequisites
 
 - Download [kanaloa_vrx workspace]  link is dead cuz I didn't upload the workspace to github yet
-- VRX workspace, gazebo, generally things I need to link to JUdy and mArsa's tech doc
+- Install the VRX simulation, [instructions here] link to marsa and jdy tech doc
 
 <hr>
 
