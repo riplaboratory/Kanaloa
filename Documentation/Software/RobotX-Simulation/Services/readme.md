@@ -5,7 +5,7 @@ __This is a tutorial for calling the way_point and way_point_cmd services for th
 
 ## Prerequisites
 
-- Download kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
+- Download the kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
 - Install the VRX simulation, [instructions here] link to marsa and jdy tech doc
 
 <hr>
