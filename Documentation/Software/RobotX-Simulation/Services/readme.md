@@ -30,7 +30,11 @@ Note that the code used in this tutorial will only work with
 
 ## 2.Run the script containing the WAMV_Way_Point class
 
-In a new terminal tab, navigate to the kanaloa_vrx/src/kanaloa_pkg/scripts directory first, and enter the following command.
+In a new terminal tab, navigate to the appropriate directory:
+
+`cd kanaloa_vrx/src/kanaloa_pkg/scripts` 
+
+Then enter the following command:
 
 `python way_point_class_WAMV.py`
 
