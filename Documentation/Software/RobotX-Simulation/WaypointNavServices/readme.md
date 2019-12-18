@@ -43,9 +43,9 @@ Upon pressing enter, nothing should occur within the simulation.
 
 ## 3. Call the first service to add a waypoint
 
-In a new terminal window, call `way_point_service`. Arguments are taken in this order: latitude, longitude, and station keeping time in minutes. Waypoints can be queued by calling this service multiple times with the desired waypoint coordinates.
+Arguments for the way_point_service are taken in this order: latitude, longitude, and station keeping time in minutes. Waypoints can be queued by calling this service multiple times with the desired waypoint coordinates.
 
-Here is an example using a latitude of 21.3085, longitude of -157.8886, and desired station-keeping time of 10 minutes:
+In a new terminal window, call `way_point_service`. Here is an example using a latitude of 21.3085, longitude of -157.8886, and desired station-keeping time of 10 minutes:
 
 `rosservice call -- /way_point 21.31085 -157.8886 10`
 
