@@ -1,12 +1,14 @@
 # Development of Dynamic Control for the WAM-V
 
 ## Readings
+### Book
 *Handbook of Marine Craft Hydrodynamics and Motion Control*
-[Link to the book on the Kanaloa drive](https://drive.google.com/open?id=19-EfR_QwlcKtepS_aFD7peaLzxZ65Tyy)
+(https://drive.google.com/open?id=19-EfR_QwlcKtepS_aFD7peaLzxZ65Tyy)
+### Paper
 *Study on Maneuverability and Control of an Autonomous Wave Adaptive Modular Vessel (WAM-V) for Ocean Observation*
-[Link to the paper on the Kanaloa drive] (https://drive.google.com/open?id=1TeaEEUGGvbEN9jk1v1Dhgn1CN401Ei4E)
+(https://drive.google.com/open?id=1TeaEEUGGvbEN9jk1v1Dhgn1CN401Ei4E)
 
-This document describes the development of Dynamic Control for the WAM-V
+### This document describes the development of Dynamic Control for the WAM-V
 
 Currently the WAM-V is controlled in a very simple manner. The thrust is varied by changing the voltage going to the thrusters.
 A better way to control the  WAM-V would be dynamic control. 
