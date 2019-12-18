@@ -4,10 +4,9 @@ Currently, the Station-keeping and Wayfinding tasks are both performed using the
 __This is a tutorial for calling the way_point and way_point_cmd services for the purpose of station-keeping or wayfinding.__
 
 ## Prerequisites
-
-- Download the kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
-- Install the VRX simulation, [instructions here] link to marsa and jdy tech doc
-
+- Install Gazebo Simulator, instructions [here](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
+- Download kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
+- Install the VRX simulation, instructions [here](https://github.com/riplaboratory/Kanaloa/blob/master/Documentation/Software/RobotX-Simulation/readme.md)
 <hr>
 
 ## 1.Open the VRX Simulation in Gazebo
