@@ -64,6 +64,7 @@ As an example, if you were within a docking task world using WORLD=dock0.world(s
 So we know the name of the task is `scan_dock`.
 
 __2. Edit `task.py`__
+
 2.1 Open task.py using any code editor. If Sublime  is installed on your computer, you may use the following command while in the `kanaloa_vrx/src/kanaloa_pkg/scripts` directory:
 
 `subl task.py`
@@ -80,6 +81,7 @@ so the dock_main() function can be imported using:
 If multiple scripts utilize the same class, they can be renamed as was done with station_keeping and wayfinding, exemplified below:
 
 `from wayfinding import WAMV_Way_Point as wayfind`
+
 `from station_keeping import WAMV_Way_Point as station_keep`
 
 
