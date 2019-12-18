@@ -1,4 +1,4 @@
-#PID Controller within the VRX Simulation
+# PID Controller within the VRX Simulation
 
 It was concluded that PID control would not be necessary in the Gazebo simulation since navigation was sufficient with just the existing P controller. In simulation, the motor dynamics are stronger than the inertial movement of the WAM-V, and did not severely affect navigation. 
 As of now, implementation of a PID with the navigation script will not be implemented.
