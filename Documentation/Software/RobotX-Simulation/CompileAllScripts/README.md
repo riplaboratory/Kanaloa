@@ -14,8 +14,9 @@ The tasks submitted for VRX 2019 were stationkeeping, wayfinding, and navigation
 
 ## Prerequisites
 
+- Install Gazebo Simulator, instructions [here](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
 - Download kanaloa_vrx workspace located [here](https://github.com/riplaboratory/KanaloaVrx2019/tree/master/kanaloa_vrx)
-- Install the VRX simulation, [instructions here] link to marsa and jdy tech doc
+- Install the VRX simulation, instructions [here](https://github.com/riplaboratory/Kanaloa/blob/master/Documentation/Software/RobotX-Simulation/readme.md)
 
 <hr>
 
