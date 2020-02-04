@@ -28,7 +28,9 @@ git clone git-repository-url
 Then
 
 ```
-cd ~/catkin_ws && rosdep install -r --ignore-src --from-paths src
+cd ~/catkin_ws
+rosdep update
+rosdep install --from-paths src/ --ignore-src --rosdistro ${ROS DISTRO}
 ```
 
 `rosdep` will search for the necessary dependencies.
