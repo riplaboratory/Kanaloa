@@ -25,45 +25,6 @@ import cv2
 
 bridge = CvBridge()
 
-# lower_red = np.array([140,30,30])
-# upper_red = np.array([179,255,255])
-
-# lower_blue = np.array([108,60,60])
-# upper_blue = np.array([113,120,120])
-
-# lower_yellow = np.array([12,30,30])
-# upper_yellow = np.array([26,255,255])
-
-x_min = 100
-x_max = 550
-y_min = 100
-y_max = 250
-
-mask_plotting = True
-
-lower_red = np.array([140,120,60])
-upper_red = np.array([176,255,200])
-
-lower_blue = np.array([107,170,60])
-upper_blue = np.array([115,220,225])
-
-lower_yellow = np.array([12,30,30])
-upper_yellow = np.array([26,255,255])
-
-lower_green = np.array([74,30,30])
-upper_green = np.array([85,255,255])
-
-lower_gray = np.array([108,60,60])
-upper_gray = np.array([113,120,120])
-
-lower_threshold = {"red": lower_red,"blue": lower_blue, "yellow": lower_yellow, "green": lower_green, "gray": lower_gray}
-upper_threshold = {"red": upper_red,"blue": upper_blue, "yellow": upper_yellow, "green": upper_green, "gray": upper_gray}
-
-color_codes = {"red": (0,0,255), "blue": (255,0,0), "yellow": (0,255,255), "green": (0, 255, 0), "gray": (192,192,192)}
-
-classified_colors_list = []
-times = []
-
 def intro():
 	print("\nTopics:")
 	topics = rospy.get_published_topics()
@@ -76,7 +37,7 @@ def intro():
 		topic_type = topic[1]
 		topic_type = topic_type.split("/", 1)
 		#Sort Topics by type
-		if topic_type[1] == "CompressedImage" or topic_type == "	Image":
+		if topic_type[1] == "CompressedImage" or topic_type[1] == "Image":
 			print i, ") \t", topic_name
 			topic_list.append(topic_name)
 			type_list.append(topic_type[1])
