@@ -18,10 +18,7 @@ void configureRfm9x(RH_RF95 &lora) {
   delay(10);
 
   // Initialize RFM9x module with default values
-  while (!lora.init()) {
-    Serial.println(F("Failed to communicate with the RFM9x module. Re-trying..."));
-    delay(100);
-  }
+  while (!lora.init()) { Serial.println(F("Failed to communicate with the RFM9x module. Retrying...")); delay(100); }
   Serial.println(F("Sucessful communication with the RFM9x module..."));
 
   // Set frequency to 915 MHz using built-in function
@@ -30,25 +27,19 @@ void configureRfm9x(RH_RF95 &lora) {
   lora.spiWrite(0x1d, B01001000);    // 31.25 kHz, 4/8, explicit
   lora.spiWrite(0x1e, B10010100);    // 512 c/s, normal mode, CRC on, reset timeout
   lora.spiWrite(0x26, B00000100);    // static node, LNA gain set internally
-  //  lora.spiWrite(0x26,B00001100);     // mobile node, LNA gain set internally
+//  lora.spiWrite(0x26,B00001100);     // mobile node, LNA gain set internally
+  
 }
-
 
 void configureNeoM8p(SFE_UBLOX_GPS &gnss) {
   
   // Connect to NEO-M8P
   gnss.begin(Wire);
-  while (!gnss.isConnected()) {
-    Serial.println(F("Failed to communicate with the NEO-M8P module. Re-trying..."));
-    delay(100);
-  }
+  while (!gnss.isConnected()) { Serial.println(F("Failed to communicate with the NEO-M8P module. Retrying...")); delay(100); }
   Serial.println(F("Sucessful communication with the NEO-M8P module..."));
 
   // Check survey status of NEO-M8P
-  while (!gnss.getSurveyStatus(2000)) {
-    Serial.println(F("Failed to get survey status of NEO-M8P module. Re-trying..."));
-    delay(100);
-  }
+  while (!gnss.getSurveyStatus(2000)) { Serial.println(F("Failed to get survey status of NEO-M8P module. Retrying...")); delay(100); }
   Serial.println(F("Sucessful survey status check with NEO-M8P module..."));
 
   // Configure NEO-M8P module
@@ -60,49 +51,49 @@ void configureNeoM8p(SFE_UBLOX_GPS &gnss) {
 void launchNeoM8pSurvey(SFE_UBLOX_GPS &gnss) {
 
   // Local vars
-  int minSurveyTime = 5;      // minimum amount of time for survey [s]
-  int minSurveyAcc = 100;     // minimum positional accuracy for survey [m]
+  int minSurveyTime = 10;     // minimum amount of time for survey [s]       (eventually set this to 300 s)
+  int minSurveyAcc = 100;     // minimum positional accuracy for survey [m]   (eventually set this to 2 m)
 
   // Start survey
-  while (!gnss.enableSurveyMode(minSurveyTime, minSurveyAcc)) {
-    Serial.println(F("Failed to start survey on NEO-M8P module. Re-trying..."));
-    delay(100);
-  }
+  while (!gnss.enableSurveyMode(minSurveyTime, minSurveyAcc)) { Serial.println(F("Failed to start survey on NEO-M8P module. Retrying...")); delay(100); }
   Serial.println(F("Sucessful survey start on NEO-M8P module..."));
-  Serial.print(F("  minimum time: "));
+  Serial.print(F("  min elapsed time: "));
   Serial.print(minSurveyTime);
-  Serial.print(F(" [s]; minimum accuracy: "));
+  Serial.print(F(" [s]; min accuracy: "));
   Serial.print(minSurveyAcc);
-  Serial.println(F(" [m]."));
+  Serial.println(F(" [m].")); 
 
   // Wait for survey to complete
-  while (!gnss.svin.valid) {
+  do {
     if (gnss.getSurveyStatus(2000)) {
-      Serial.print(F("  elapsed time: "));
-      Serial.print((String)gnss.svin.observationTime);
-      Serial.print(F(" [s]; accuracy: "));
-      Serial.print((String)gnss.svin.meanAccuracy);
+      Serial.print(F("  elapsed time = "));
+      Serial.print(gnss.svin.observationTime);
+      Serial.print(F(" [s]; accuracy = "));
+      Serial.print(gnss.svin.meanAccuracy);
       Serial.println(F(" [m]."));
     }
-  }
-  Serial.println(F("NEO-M8P survey complete..."));
+    else { Serial.println(F("Survey request failed. Retrying...")); }
+  } while (!gnss.svin.valid);
+  Serial.println(F("Parameters achieved, NEO-M8P survey complete..."));
   
 }
 
 void enableRTCM(SFE_UBLOX_GPS &gnss) {
 
   // Local vars
-  boolean checks = true;
+  boolean rtcmChecks = true;
   
   // RTCM checks
-  checks &= gnss.enableRTCMmessage(UBX_RTCM_1005, COM_PORT_I2C, 1);   // enable message 1005 to output through I2C port, message every second
-  checks &= gnss.enableRTCMmessage(UBX_RTCM_1077, COM_PORT_I2C, 1);
-  checks &= gnss.enableRTCMmessage(UBX_RTCM_1087, COM_PORT_I2C, 1);
-  checks &= gnss.enableRTCMmessage(UBX_RTCM_1230, COM_PORT_I2C, 10);  // enable message every 10 seconds
-  while (!checks) { Serial.println(F("RTCM messages failed to enable, retrying...")); delay(100); }
+  do {
+    rtcmChecks &= gnss.enableRTCMmessage(UBX_RTCM_1005, COM_PORT_I2C, 1);   // enable message 1005 to output through I2C port, message every second
+    rtcmChecks &= gnss.enableRTCMmessage(UBX_RTCM_1077, COM_PORT_I2C, 1);
+    rtcmChecks &= gnss.enableRTCMmessage(UBX_RTCM_1087, COM_PORT_I2C, 1);
+    rtcmChecks &= gnss.enableRTCMmessage(UBX_RTCM_1230, COM_PORT_I2C, 10);  // enable message every 10 seconds
+    if (!rtcmChecks) { Serial.println(F("RTCM messages failed to enable. Retrying...")); delay(100); }
+  } while (!rtcmChecks);
+  Serial.println(F("RTCM message checks passed, NEO-M8P is now broadcasting RTCM messages..."));
 
-  // Broadcase RTCM
-  Serial.print(F("RTCM message enabled, RTCM is now broadcasting..."));
+  // Broadcast RTCM
   gnss.setI2COutput(COM_TYPE_UBX | COM_TYPE_RTCM3);
   
 }
