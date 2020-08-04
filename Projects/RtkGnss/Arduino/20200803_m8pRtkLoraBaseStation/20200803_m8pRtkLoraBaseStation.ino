@@ -65,14 +65,14 @@ void loop()
 }
 
 // This function gets called from the SparkFun Ublox Arduino Library as an interrupt each time RTCM correction data is available
-void SFE_UBLOX_GPS::processRTCM(uint8_t incoming)
+void SFE_UBLOX_GPS::processRTCM(uint8_t hexByte)
 {
   
   // For now, just printing the HEX values to serial... eventually
   if (neom8p.rtcmFrameCounter % 16 == 0) { Serial.println(); }
   Serial.print(F(" "));
-  if (incoming < 0x10) { Serial.print("0"); }
-  Serial.print(incoming, HEX);
+  if (hexByte < 0x10) { Serial.print(F("0")); }
+  Serial.print(hexByte, HEX);
 
   
 //  Test code...
