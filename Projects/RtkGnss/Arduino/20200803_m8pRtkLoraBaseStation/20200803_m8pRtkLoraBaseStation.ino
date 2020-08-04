@@ -22,6 +22,9 @@
 #define rfm9xRstPin 2   // radio reset pin (RST on RFM9x module)
 #define rfm9xIntPin 3   // radio GPIO 0 interrupt pin (G0 on RFM9x module)
 
+// Volatile globals
+boolean configChecks = false;    // status of configuration checks
+
 // Objects
 RH_RF95 rfm9x(rfm9xCsPin, rfm9xIntPin);   // RFM9x radio instance
 SFE_UBLOX_GPS neom8p;                     // NEO-M8P RTK GPS object instance
@@ -33,7 +36,7 @@ void setup()
   pinMode(rfm9xRstPin, OUTPUT);
 
   // Initialize serial communication
-  Serial.begin(9600);                     // if using hardware serial, 115200, but for software serial 9600 is advisable
+  Serial.begin(9600);
   while (!Serial) { delay(1); }
 
   // Configure RFM9x module
@@ -48,8 +51,11 @@ void setup()
   // Launch survey on NEO-M8P module
   launchNeoM8pSurvey(neom8p);
   
-  // enable RTCM messages
+  // Enable RTCM messages
   enableRTCM(neom8p);
+
+  // Set configChecks to true
+  configChecks = true;
         
 }
 
@@ -67,12 +73,16 @@ void loop()
 // This function gets called from the SparkFun Ublox Arduino Library as an interrupt each time RTCM correction data is available
 void SFE_UBLOX_GPS::processRTCM(uint8_t hexByte)
 {
+
+  if (configChecks) {
   
-  // For now, just printing the HEX values to serial... eventually
-  if (neom8p.rtcmFrameCounter % 16 == 0) { Serial.println(); }
-  Serial.print(F(" "));
-  if (hexByte < 0x10) { Serial.print(F("0")); }
-  Serial.print(hexByte, HEX);
+    // For now, just printing the HEX values to serial... eventually
+    if (neom8p.rtcmFrameCounter % 16 == 0) { Serial.println(); }
+    Serial.print(F(" "));
+    if (hexByte < 0x10) { Serial.print(F("0")); }
+    Serial.print(hexByte, HEX);
+
+  }
 
   
 //  Test code...
@@ -106,6 +116,5 @@ void SFE_UBLOX_GPS::processRTCM(uint8_t hexByte)
 //  {
 //    Serial.println("No reply, is there a listener around?");
 //  }
-
 
 }
