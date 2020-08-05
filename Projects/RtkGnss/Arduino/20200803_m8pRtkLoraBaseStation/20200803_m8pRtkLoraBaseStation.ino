@@ -22,8 +22,12 @@
 #define rfm9xRstPin 2   // radio reset pin (RST on RFM9x module)
 #define rfm9xIntPin 3   // radio GPIO 0 interrupt pin (G0 on RFM9x module)
 
+// Globals
+boolean configChecks = false;   // status of configuration checks
+
 // Volatile globals
-boolean configChecks = false;    // status of configuration checks
+byte rtcmSentence[50];    // RTCM byte data is stored in this array
+byte rtcmByteCount = 0;   // number of bytes in current RTCM message
 
 // Objects
 RH_RF95 rfm9x(rfm9xCsPin, rfm9xIntPin);   // RFM9x radio instance
@@ -76,19 +80,22 @@ void SFE_UBLOX_GPS::processRTCM(uint8_t hexByte)
 
   if (configChecks) {
   
-    // For now, just printing the HEX values to serial... eventually
+    // Print RTCM correction data over serial (long term this can be removed since we will send it over RFM9x radio)
     if (neom8p.rtcmFrameCounter % 16 == 0) { Serial.println(); }
     Serial.print(F(" "));
     if (hexByte < 0x10) { Serial.print(F("0")); }
     Serial.print(hexByte, HEX);
+  
+    //Send RTCM over RFM9x module
+//    rfm9x.send((byte)hexByte,1);
+    // need to construct into a sentence in loop and send outside this interrupt function, since sending a radio packet takes a few hundred ms.
 
   }
 
   
-//  Test code...
 //  // Send new packet
 //  Serial.print(F("Sent to RX: '"));
-//  rfm9x.send(incoming , 50);
+//  rfm9x.send(incoming, 50);
 //
 //  // Wait for packet confirmation
 //  delay(10);
