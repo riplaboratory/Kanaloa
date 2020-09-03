@@ -15,7 +15,7 @@ VRX recommends that your computing hardware has:
 
 ## Installing the simulation
 
-This tutorial will walk you through the setup required to prepare a computer to run the VRX simulations. In order to run the VRX simulation, your computer will need a discrete graphics card and must satisfy the minimum System Requirements. All updates and official tutorials can be found here: https://bitbucket.org/osrf/vrx/wiki/Home
+This tutorial will walk you through the setup required to prepare a computer to run the VRX simulations. In order to run the VRX simulation, your computer will need a discrete graphics card and must satisfy the minimum System Requirements. All updates and official tutorials can be found here: ~~https://bitbucket.org/osrf/vrx/wiki/Home~~ https://github.com/osrf/vrx/wiki
 
 These instructions contain information for building the VRX environment in Gazebo. All commands should be run via the command terminal in Ubuntu.
 
