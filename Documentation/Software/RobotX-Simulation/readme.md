@@ -51,7 +51,7 @@ cd ~/vrx_ws/src
 ```
 Clone the VRX repository:
 ```
-hg clone https://bitbucket.org/osrf/vrx
+~~hg clone https://bitbucket.org/osrf/vrx~~ git clone https://github.com/osrf/vrx.git
 ```
 #### 3.2 Build the software
 First, source the ROS `setup.bash` file:
