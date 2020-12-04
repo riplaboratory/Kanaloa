@@ -1,0 +1,27 @@
+<launch>
+
+  <include file="$(find kanaloa)/launch/vrx_custom_urdf.launch" />
+
+  <include file="$(find kanaloa)/launch/rviz.launch" />
+
+  <include file="$(find wamv_gazebo)/launch/localization_example.launch" />
+
+  <node name="vrx_rqt" pkg="rqt_gui" type="rqt_gui">
+  </node>
+
+  <include file="$(find kanaloa)/launch/pointcloud_to_laserscan.launch" />
+
+
+  <!-- <include file="$(find vrx_gazebo)/launch/sandisland.launch" >
+    <arg name="urdf" value="$(find kanaloa)/config/my_wamv_4.urdf" />
+  </include>
+
+  <include file="$(find kanaloa)/launch/robot_state_publisher2.launch" />
+
+  <include file="$(find kanaloa)/launch/rviz.launch" />
+
+  <node name="vrx_rqt" pkg="rqt_gui" type="rqt_gui">
+  </node> -->
+
+
+</launch>

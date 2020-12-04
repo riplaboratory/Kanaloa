@@ -1,0 +1,25 @@
+<launch>
+
+  <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="gps">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="frame_id" value="gps" />
+    <param name="baud" value="9600"/>
+  </node>
+
+  <node pkg="um7" type="um7_driver" name="imu" >
+     <param name="port" value="/dev/imu" />
+     <!-- <param name="linear_acceleration_stdev" value="0.75, 0.0, 0.0, 0.0, 0.75, 0.0, 0.0, 0.0, 0.75" /> -->
+     <param name="linear_acceleration_stdev" value="1" />
+     <param name="angular_velocity_stdev" value="0.1" />
+     <param name="orientation_x_stdev" value="0.1" />
+     <param name="orientation_y_stdev" value="0.1" />
+     <param name="orientation_z_stdev" value="0.1" />
+
+  </node>
+
+  <node pkg="usb_cam" type="usb_cam_node" name="usb_cam" >
+     <param name="video_device" value="/dev/video0" />
+     <!-- <param name="video_device" value="/dev/usb_cam" /> -->
+  </node>
+
+</launch>

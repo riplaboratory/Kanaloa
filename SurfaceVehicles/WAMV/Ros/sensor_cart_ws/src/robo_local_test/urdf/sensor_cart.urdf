@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="Sensor_Cart">
+
+
+<!-- Links -->
+
+  <link name="base_link">
+  </link>
+
+  <link name="cart">
+    <collision>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 .5 .1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 .5 .1"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+
+  <link name="gps">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 .12 .05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 .12 .05"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+
+  <link name="imu_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 .12 .05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 .12 .05"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+
+
+  <link name="front_axle_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.5 .05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.5 .05"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+
+
+  <link name="wheel_LF">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <link name="wheel_RF">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <link name="wheel_LB">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <link name="wheel_RB">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.15" length="0.1"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+
+<!-- Joints -->
+
+  <joint name="cart_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="cart"/>
+  </joint>
+
+  <joint name="gps_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.25 0 0.2"/>
+    <parent link="cart"/>
+    <child link="gps"/>
+  </joint>
+
+
+  <joint name="imu_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.45 0 0.2"/>
+    <parent link="cart"/>
+    <child link="imu_link"/>
+  </joint>
+
+
+  <joint name="front_axle_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.45 0 -0.15"/>
+    <parent link="cart"/>
+    <child link="front_axle_link"/>
+  </joint>
+
+
+
+  <joint name="wheel_LF_joint" type="continuous">
+    <axis rpy="1.570796 0 0" xyz="0 0 1"/>
+    <origin rpy="1.57 0 0" xyz="0 0.30 0"/>
+    <parent link="front_axle_link"/>
+    <child link="wheel_LF"/>
+    <limit effort="100" velocity="20"/>
+    <dynamics damping="1.0" friction="0.7"/>
+  </joint>
+
+  <joint name="wheel_RF_joint" type="continuous">
+    <axis rpy="1.570796 0 0" xyz="0 0 1"/>
+    <origin rpy="1.57 0 0" xyz="0 -0.30 0"/>
+    <parent link="front_axle_link"/>
+    <child link="wheel_RF"/>
+    <limit effort="100" velocity="20"/>
+    <dynamics damping="1.0" friction="0.7"/>
+  </joint>
+
+  <joint name="wheel_LB_joint" type="continuous">
+    <axis rpy="1.570796 0 0" xyz="0 0 1"/>
+    <origin rpy="1.57 0 0" xyz="-0.45 0.3 -0.15"/>
+    <parent link="cart"/>
+    <child link="wheel_LB"/>
+    <limit effort="100" velocity="20"/>
+    <dynamics damping="0.0" friction="0"/>
+  </joint>
+
+  <joint name="wheel_RB_joint" type="continuous">
+    <axis rpy="1.570796 0 0" xyz="0 0 1"/>
+    <origin rpy="1.57 0 0" xyz="-0.45 -0.3 -0.15"/>
+    <parent link="cart"/>
+    <child link="wheel_RB"/>
+    <limit effort="100" velocity="20"/>
+    <dynamics damping="0.0" friction="0"/>
+  </joint>
+
+
+<!-- ROS Control plugin for Gazebo -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/my_robot_model</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+
+<!-- GPS Sensor Plugin -->
+  <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <updateRate>1.0</updateRate>
+      <bodyName>gps</bodyName>
+      <frameId>gps</frameId>
+      <topicName>/fix/fixed</topicName>
+      <velocityTopicName>/vel</velocityTopicName>
+      <referenceLatitude>21.29739633</referenceLatitude>
+      <referenceLongitude>-157.8161197</referenceLongitude>
+      <drift>5.0 5.0 5.0</drift>
+      <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+      <velocityDrift>0 0 0</velocityDrift>
+      <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+    </plugin>
+
+  </gazebo>
+
+
+<!-- IMU Sensor Plugin -->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>10</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu/data</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.15</gaussianNoise>
+        <xyzOffset>0.75 -1.2 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+
+<!-- Controllers -->
+
+  <transmission name="wheel_LF_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="wheel_LF_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="wheel_LF_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="wheel_RF_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="wheel_RF_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="wheel_RF_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- <transmission name="wheel_LB_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="wheel_LB_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="wheel_LB_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="wheel_RB_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="wheel_RB_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="wheel_RB_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission> -->
+
+  <transmission name="front_axle_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="front_axle_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="front_axle_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- Coloring -->
+
+
+  <gazebo reference="cart">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="gps">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="front_axle_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- <gazebo reference="wheel_LB">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel_RF">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel_RB">
+    <material>Gazebo/Black</material>
+  </gazebo> -->
+
+
+
+</robot>

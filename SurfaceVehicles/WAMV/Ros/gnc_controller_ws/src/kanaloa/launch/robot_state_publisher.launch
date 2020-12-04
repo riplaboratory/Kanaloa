@@ -1,0 +1,14 @@
+<launch>
+
+  <!-- <arg name="node_start_delay" default="35" /> -->
+
+  <param name="tf_prefix" type="str" value="wamv" />
+
+  <!-- Load the urdf into the parameter server. -->
+  <param name="wamv/robot_description" textfile="$(find kanaloa)/config/my_wamv_4.urdf"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub">
+     <remap from="robot_description" to="wamv/robot_description" />
+     <remap from="joint_states" to="wamv/joint_states" />
+   </node>
+ </launch>

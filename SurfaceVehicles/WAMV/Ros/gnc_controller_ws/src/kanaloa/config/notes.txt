@@ -1,0 +1,26 @@
+Edit Thruster / Sensor Config:
+/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/thruster_config.yaml
+/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/sensor_config.yaml
+
+Create URDF of WAMV:
+roslaunch vrx_gazebo generate_wamv.launch thruster_yaml:=/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/thruster_config.yaml sensor_yaml:=/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/sensor_config.yaml  wamv_target:=/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/my_wamv_4.urdf
+
+Launch custom WAMV URDF:
+roslaunch vrx_gazebo sandisland.launch urdf:=/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/my_wamv_3.urdf
+
+Standard Setup:
+roslaunch vrx_gazebo sandisland.launch urdf:=/home/<user>/Workspaces/rip_lab_ws/src/kanaloa/config/my_wamv_4.urdf
+roslaunch kanaloa robot_state_publisher.launch
+roslaunch kanaloa rviz.launch
+rqt
+
+Building ROS Navigation Stack From Source:
+sudo apt update
+sudo apt install libsdl-image1.2-dev
+sudo apt install libsdl-dev
+sudo apt install ros-melodic-tf2-sensor-msgs
+cd <into your ws/src folder>
+git clone https://github.com/ros-planning/navigation_msgs.git
+git clone https://github.com/ros-planning/navigation.git
+cd <into your ws folder>
+catkin_make

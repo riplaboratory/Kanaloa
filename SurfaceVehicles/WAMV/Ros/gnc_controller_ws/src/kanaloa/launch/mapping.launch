@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node pkg="gmapping" type="slam_gmapping" name="gmapping_thing" output="screen" >
+    <remap from="scan" to="/wamv/sensors/laser/scan"/>
+    <param name="odom_frame" value="wamv/odom" />
+    <param name="base_frame" value="wamv/base_link" />
+  </node>
+</launch>

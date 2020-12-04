@@ -1,0 +1,24 @@
+<launch>
+
+  <include file="$(find robo_local_test)/launch/sensors.launch" />
+
+  <arg name="urdf" default="$(find robo_local_test)/urdf/sensor_cart.urdf"/>
+
+  <param name="robot_description" textfile="$(arg urdf)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+  </node>
+
+  <!-- <include file="$(find robo_local_test)/launch/robot_localization.launch" /> -->
+
+  <node name="vrx_rqt" pkg="rqt_gui" type="rqt_gui">
+  </node>
+
+  <node name="gps_fix_node" pkg="robo_local_test" type="gps_frame_fix.py" output="screen">
+  </node>
+
+  <node name="imu_orientation_fix_node" pkg="robo_local_test" type="imu_quaternion_fix.py" output="screen">
+  </node>
+
+
+</launch>

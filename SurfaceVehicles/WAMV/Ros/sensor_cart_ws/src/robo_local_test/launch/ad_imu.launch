@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="with_filter" default="true"/>
+  <arg name="with_rviz" default="false"/>
+  <arg name="with_plot" default="false"/>
+  <arg name="device" default="/dev/adis_imu"/>
+  <arg name="frame_id" default="imu_link"/>
+  <arg name="burst_read" default="false"/>
+  <arg name="publish_temperature" default="false"/>
+  <arg name="rate" default="5"/>
+  <arg name="publish_tf" default="false"/>
+  <arg name="publish_debug_topics" default="false"/>
+
+  <node name="imu" pkg="adi_driver" type="adis16470_node" ns="ad_imu">
+    <param name="device" value="$(arg device)"/>
+    <param name="frame_id" value="$(arg frame_id)"/>
+    <param name="burst_mode" value="$(arg burst_read)"/>
+    <param name="publish_temperature" value="$(arg publish_temperature)"/>
+    <param name="rate" value="$(arg rate)"/>
+  </node>
+
+  <node if="$(arg with_filter)" ns="ad_imu"
+    name="imu_filter" pkg="imu_filter_madgwick" type="imu_filter_node">
+  <param name="use_mag" value="false"/>
+  <param name="publish_tf" value="$(arg publish_tf)"/>
+  <param name="publish_debug_topics" value="$(arg publish_debug_topics)"/>
+</node>
+
+</launch>

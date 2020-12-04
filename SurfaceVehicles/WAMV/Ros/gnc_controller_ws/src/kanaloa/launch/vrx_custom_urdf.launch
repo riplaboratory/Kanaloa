@@ -1,0 +1,7 @@
+<launch>
+  <arg name="custom_urdf" value="$(find kanaloa)/config/my_wamv_6.urdf" />
+  <include file="$(find vrx_gazebo)/launch/sandisland.launch" >
+    <arg name="urdf" value="$(arg custom_urdf)" />
+  </include>
+  <param name="wamv/robot_description" textfile="$(arg custom_urdf)"/>
+</launch>

@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="urdf" default="$(find robo_local_test)/urdf/sensor_cart.urdf"/>
+
+  <param name="robot_description" textfile="$(arg urdf)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+  </node>
+
+  <node name="rqt" pkg="rqt_gui" type="rqt_gui">
+  </node>
+
+  <node pkg="rosbag" type="play" name="player" output="screen" args="--clock -l $(find robo_local_test)/bag/cart_gps_imu_only.bag"/>
+
+</launch>

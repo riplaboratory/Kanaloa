@@ -1,0 +1,56 @@
+<launch>
+
+  <!-- Robot Pose -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="roll" default="0"/>
+  <arg name="pitch" default="0"/>
+  <arg name="yaw" default="0"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- <arg name="world_name"   value="$(arg world)"/>
+    <arg name="verbose"      value="$(arg verbose)"/>
+    <arg name="paused"       value="$(arg paused)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui"          value="$(arg gui)" />
+    <arg name="enable_ros_network" value="$(arg enable_ros_network)"/>
+    <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/> -->
+  </include>
+
+  <!-- Load robot model -->
+  <arg name="urdf" default="$(find robo_local_test)/urdf/sensor_cart.urdf"/>
+  <!-- <param name="$(arg namespace)/robot_description"
+         command="$(find xacro)/xacro &#x002D;&#x002D;inorder '$(arg urdf)'
+         thruster_config:=$(arg thrust_config)
+         camera_enabled:=$(arg camera_enabled)
+         gps_enabled:=$(arg gps_enabled)
+         imu_enabled:=$(arg imu_enabled)
+         lidar_enabled:=$(arg lidar_enabled)
+         ground_truth_enabled:=$(arg ground_truth_enabled)
+         namespace:=$(arg namespace) "/> -->
+
+  <param name="robot_description" textfile="$(arg urdf)"/>
+
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+         args="-urdf -param robot_description -model robo_local_test
+         -x $(arg x) -y $(arg y) -z $(arg z)
+         -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+
+
+  <rosparam file="$(find robo_local_test)/config/config.yaml" command="load"/>
+
+  <node name="controller_spawner" pkg ="controller_manager" type="spawner" ns="/my_robot_model"
+         args="wheel_LF_joint_velocity_controller wheel_RF_joint_velocity_controller
+               front_axle_joint_position_controller
+               joint_state_controller"/>
+
+   <!-- Send robot states to tf -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="/my_robot_model">
+    <remap from="joint_states" to="/my_robot_model/joint_states" />
+  </node>
+
+
+</launch>

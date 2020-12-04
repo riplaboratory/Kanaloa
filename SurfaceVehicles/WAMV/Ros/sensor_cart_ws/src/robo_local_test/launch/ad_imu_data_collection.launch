@@ -1,0 +1,36 @@
+<launch>
+
+  <node pkg="rosbag" type="record" name="rosbag_record_diag"
+      args="record -o /home/riplab/Desktop/ /ad_imu/imu/data /ad_imu_robot_localization/odometry/filtered /ad_imu_robot_localization/gps/filtered /ad_imu_robot_localization/odometry/gps /fix/fixed /usb_cam/image_raw/compressed /tf /tf_static /joint_states"/>
+
+  <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="gps">
+
+    <param name="port" value="/dev/rtk_gps"/>
+    <param name="frame_id" value="gps" />
+    <param name="baud" value="9600"/>
+  </node>
+
+  <node name="gps_fix_node" pkg="robo_local_test" type="gps_frame_fix.py" output="screen"></node>
+
+  <arg name="urdf" default="$(find robo_local_test)/urdf/sensor_cart.urdf"/>
+
+  <param name="robot_description" textfile="$(arg urdf)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+  </node>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  </node>
+
+
+  <include file="$(find robo_local_test)/launch/ad_imu.launch" />
+  <include file="$(find robo_local_test)/launch/ad_imu_robot_localization.launch" />
+
+
+  <node pkg="usb_cam" type="usb_cam_node" name="usb_cam" >
+     <param name="video_device" value="/dev/video0" />
+     <param name="framerate" value="10" />
+     <!-- <param name="video_device" value="/dev/usb_cam" /> -->
+  </node>
+
+</launch>

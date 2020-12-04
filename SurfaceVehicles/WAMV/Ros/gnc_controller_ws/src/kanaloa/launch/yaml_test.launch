@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" value="surface_vehicle_config"/>
+
+  <group ns="$(arg namespace)">
+    <arg name="thruster_config_yaml" default="$(find kanaloa)/config/localization_yaml/thruster_config.yaml"/>
+    <param name="thruster_config_yaml" value="$(arg thruster_config_yaml)"/>
+    <rosparam command="load" file="$(arg thruster_config_yaml)" />
+
+
+    <node name="test_node" pkg="kanaloa" type="test" output="screen" required="true"/>
+  </group>
+</launch>
