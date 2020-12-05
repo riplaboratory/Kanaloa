@@ -14,11 +14,29 @@ roslaunch kanaloa vrx_custom_urdf.launch
 
 #### robot_localization
 
+The robot_localization ROS package is used to fuse sensor data, primarily GPS and IMU data, to predict the current state of the robot. In this case, used to project the position, orientation, and linear/angular velocity of the WAMV.  
+
+The robot_localization configuration can be seen in `vrx/wamv_gazebo/localization_example.launch` (Not in this package), and can be launched by the following in terminal:
+
+```bash
+roslaunch wamv_gazebo localization_example.launch
+```
 
 #### move_base
 
+The move_base ROS package is used to help with the Path Planning of the robot. This packages utilizes the state of the WAMV from the robot_localization package, and receives a geometry_msgs/PoseStamped message from either the user or the Behavior Planning node of what the desired state of the robot is. This package then outputs a geometry_msgs/Twist message, which contains the velocity information (linear and angular) that the WAMV should immediately try to achieve in order to follow the generated path to the destination. This velocity should then be passed on to the WAMV base thruster controller.   
 
+The move_package also uses a map of the environment (using the gmapping ROS package) in order to plan a path which avoids any obstacles taking into account the robot's size and the objects in the map. The map is generated using the information from the WAMV's LiDAR, which gets converted to a laser scan to generate a 2D map.
 
+There are a series of configuration files specific to the WAMV used in simulation. These config files can be seen and modified in the `config/move_base` folder. 
+
+To run move_base, gmapping, and pointcloud_to_laserscan ROS packages, just run the following launch files.
+
+```bash
+roslaunch kanaloa move_base.launch
+roslaunch kanaloa mapping.launch
+roslaunch kanaloa pointcloud_to_laserscan.launch
+```
 
 
 ## Dependencies
