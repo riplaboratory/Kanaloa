@@ -441,7 +441,7 @@ void softwareReset(){
    * This functions performs a software reset if the software reset switch is in the "UP" position.
    */
 
-   if (softwareResetCheck == 1){
-    //watchdog.reset();
+   if (softwareResetCheck != 1){
+    watchdog.reset();
    }
 }

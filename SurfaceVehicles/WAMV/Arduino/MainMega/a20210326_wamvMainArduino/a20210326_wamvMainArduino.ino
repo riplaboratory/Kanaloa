@@ -237,7 +237,7 @@ void setup() {
   nh.subscribe(q4_sub);     
 
   // Setup Watchdog
-  //watchdog.enable(Watchdog::TIMEOUT_1S);
+  watchdog.enable(Watchdog::TIMEOUT_4S);
 }
 
 // Counter to limit publishing of battery voltage
@@ -256,7 +256,7 @@ void loop() {
   determineMode();
 
   // Check if we want to reset the Arduino
-  //softwareReset();
+  softwareReset();
 
   // Control light based on operation mode
   controlLight();
