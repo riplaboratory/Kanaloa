@@ -52,6 +52,11 @@ The title will be automatically filled out with your last commit to the branch. 
 
 If there is a conflict, you can review the code to see where it is happening. Due to multiple members working on the same repository, there are chance of them happening. Here is the [documentation on how to resolve it](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github).
 
+## 5. Action Items
+Action items are currently being tracked using this [Google Sheets](https://docs.google.com/spreadsheets/d/1dgpwZHpQM16Ki9ChiyU2lS0WMApJk8ZLYT5470j_FbE/edit?usp=sharing). 
+
+Please note that this spreadsheet is restricted to those in the Kanaloa Google Drive. If you are a member and do not have access, please contact Dr. Trimble or a graduate student for further assistance.
+
 <!-- THIS SECTION COVERS ISSUES AND PROJECT BOARDS. CURRENTLY (SPRING 2021), IT IS NOT BEING USED - Kevin Nguyen (nk279@hawaii.edu)
 ## 5. Issue Usage Convention
 Issues are used to help keep track of tasks, enhancements, and bugs for the project. Before starting work on code you will want to create an issue and when the code is completed and working, you can close the issue so other members know the task has been completed. Issues should be detailed and focused goals that can be individually completed each week. 
