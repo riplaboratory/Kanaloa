@@ -98,7 +98,7 @@ To create a project board, first go to the [projects tab](https://github.com/rip
 - When an issue is closed, it will be automatically moved to the `Done` column.
 
 If the issue is not for coding, but a task for the team, you can also create cards by clicking on the `+` in any of the columns. The text field supports markdown, so you can create the task similar to how you would for an issue's description.
-->
+-->
 ## Extra Resources
 - [GitHub Desktop](https://desktop.github.com/) (this is a great UI for those starting to learn GitHub)
 - [GitHub Documentation](https://docs.github.com/en)
