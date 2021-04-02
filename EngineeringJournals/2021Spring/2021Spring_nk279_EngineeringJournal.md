@@ -231,6 +231,20 @@ Team Kanaloa VIP
 
 25 March 2021
 - Created a `update-github-sop` branch on `riplaboratory/Kanaloa` repository
-    - Moved all my work from my personal repository to this one
+- Moved all my work from my personal repository to branch `nk279-work`
+    - Engineering Journals, Documentation, Code, Docker submissions
 - General Team Meeting
     - Update on action items
+
+29 March 2021
+- GNC Meeting
+    - 2 members and grad students were not able to make it due to other commitments
+    - Quick meeting, went over updates and action items
+
+1 April 2021
+- Started on Code Documentation Templates
+    - Needed: C, Python, Matlab, Arduino
+- Kai J. suggested adding how to find previous versions of code in the SOP
+    - Click on the file and then `history` to see all changes made to that specific document
+- General Team Meeting
+    - Updates and Action items
