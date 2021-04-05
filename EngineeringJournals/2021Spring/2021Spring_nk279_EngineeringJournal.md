@@ -248,3 +248,14 @@ Team Kanaloa VIP
     - Click on the file and then `history` to see all changes made to that specific document
 - General Team Meeting
     - Updates and Action items
+
+3 April 2021
+- Added `Version History` to `README.md`
+- Create Code Documentation Templates for:
+    - C
+    - Python
+    - Arduino
+
+4 April 2021
+- Create Documentation Tempalte for Markdown
+- Sent email to Dr. Trimble to Review
