@@ -52,16 +52,25 @@ The title will be automatically filled out with your last commit to the branch. 
 
 If there is a conflict, you can review the code to see where it is happening. Due to multiple members working on the same repository, there are chance of them happening. Here is the [documentation on how to resolve it](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github).
 
-## 5. Action Items
+## 5. Version History
+To view the version history of a file, click on the file's name then `History` on the top right. This feature allows you to see all commits that affected this file as well as view the version the file was during the time of that commit. You can also bring back the repository to that current state of time if you are looking at various files within the repository.
+
+It is useful for:
+- Tracking changes to code line-by-line
+    - Especially useful when tracking down problems
+- Finding out who made the commit 
+    - Knowing the author of the code will allow you to understand their thought proccess when making the code
+
+## 6. Action Items
 Action items are currently being tracked using this [Google Sheets](https://docs.google.com/spreadsheets/d/1dgpwZHpQM16Ki9ChiyU2lS0WMApJk8ZLYT5470j_FbE/edit?usp=sharing). 
 
 Please note that this spreadsheet is restricted to those in the Kanaloa Google Drive. If you are a member and do not have access, please contact Dr. Trimble or a graduate student for further assistance.
 
 <!-- THIS SECTION COVERS ISSUES AND PROJECT BOARDS. CURRENTLY (SPRING 2021), IT IS NOT BEING USED - Kevin Nguyen (nk279@hawaii.edu)
-## 5. Issue Usage Convention
+## 7. Issue Usage Convention
 Issues are used to help keep track of tasks, enhancements, and bugs for the project. Before starting work on code you will want to create an issue and when the code is completed and working, you can close the issue so other members know the task has been completed. Issues should be detailed and focused goals that can be individually completed each week. 
 
-### 5.1. Issue Naming Convention
+### 7.1. Issue Naming Convention
 Issues should be a brief description of the goal. For example, an issue named "Issues SOP" can have the following description:
 ```
 ### Create a guide on how to create an issue for the purpose of this repository
@@ -72,7 +81,7 @@ Issues should be a brief description of the goal. For example, an issue named "I
 ```
 Issues support styling with Markdown.
 
-### 5.2. Creating an Issue
+### 7.2. Creating an Issue
 To create an issue, click on the `Issues` tab or [here](https://github.com/riplaboratory/Kanaloa/issues). On this page, click on `New issue`. Fill out the fields on the right-hand side. Below is a brief description of what should be done. You can then click on `Submit new issue` to finish creating it. 
 
 - `Assignees`: Team Member assigned to and responsible for the issue. Typically, there should only be one assignee. As often as possible, tasks should be focused enough to be completed by a single individual. It can be left blank if it is still unknown and the task is just currently being planned. 
@@ -81,22 +90,22 @@ To create an issue, click on the `Issues` tab or [here](https://github.com/ripla
 
 Properly assigning this information will simplify tracking who is working on the issue, what the issue is, and what the issue is contributing towards. Once an issue is created, a new thread is made that other members can also comment on if help is needed.
 
-### 5.3. Closing an Issue
+### 7.3. Closing an Issue
 An issue can be closed once the task has been completed. You will need to got back to the [issues page](https://github.com/riplaboratory/Kanaloa/issues). If there is a lot of issues currently open, click on the `Assignee` field and select your name so that you can filter it to issues assigned to you. Click on your issue and for most scenarios, you can click on `Close issue`. 
 
 **Exceptions**:
 - If you are not able to complete the issue, leave a comment and unassign yourself from it. 
 - If the team determines the issue is not worth pursuing, leave a comment and close the issue.  
 
-## 6. Project Board Usage
+## 8. Project Board Usage
 Project boards allows work to be organize and prioritized. It can be used to create a checklist or a roadmap to work towards completing a goal. It allows an easy view of task that still need to be done, task in progress, and task that have been done. This feature can be automated so that when a pull request goes through, your task is marked as done and the issue is closed. 
 
 Project boards are a valuable tool to help with project management and workflow. It displays issues that still need to be done, in progress, and completed, along with the label and assignee of the issue. This visual allows the team to see where they are currently at with their completion of their goal and if the pace needs to be picked up to finish it on time. 
 
-### 6.1. Project Board Naming Convention
+### 8.1. Project Board Naming Convention
 Your project board name should be a short description of the overall goal you or your team is trying to achieve. Your description should be the general goal of the project. The issues you create for this project will be the goal broken down into more focused task that work towards the completion of it.
 
-### 6.2. Creating a Project Board
+### 8.2. Creating a Project Board
 To create a project board, first go to the [projects tab](https://github.com/riplaboratory/Kanaloa/projects). Click on `New project` then enter a name and description for it. For project template, choose `Automated kanban`. Doing this will automatically move issues and pull requests across To do, In progress and Done columns. For our purposes, these are the only three columns that will be needed.
 
 - When a new issue is created, it will be automatically moved to the `To do` column.
