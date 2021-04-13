@@ -259,3 +259,30 @@ Team Kanaloa VIP
 4 April 2021
 - Create Documentation Tempalte for Markdown
 - Sent email to Dr. Trimble to Review
+
+5 April 2021
+- Dr. Trimble agrees with the created templates 
+    - Need to think on what should use the in-code versioning and what needs manual versioning (in file name)
+        - Manual Versioning:
+            - Configuration files
+            - Documents (PDFs, TXT, Schematics)
+        - In-Code Versioning:
+            - Software for vessels
+                - Drive Controller
+                - Way Point Navigation
+                - Station Keeping
+
+7 April 2021
+- Emergency WAM-V meeting
+    - I will take over on managing meetings for WAM-V due to Alex S. being on medical leave
+
+8 April 2021
+- General Team Meeting
+    - Updates and action items
+    - Dicussions on CoE banquet
+    - Need to organize WAM-V meetings, there have not been any minutes or records of them
+- Sent out email to WAM-V team to schedule a meeting for FR reviews
+
+12 April 2021
+- Picked up MSI laptop
+    
