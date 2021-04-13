@@ -285,4 +285,12 @@ Team Kanaloa VIP
 
 12 April 2021
 - Picked up MSI laptop
-    - Trasnferred work from my VM onto GitHub to put onto MSI laptop (riplaboratory/Kanaloa/Projects/Darknet/darknet)
+    - Transferred work from my VM onto GitHub to put onto MSI laptop (riplaboratory/Kanaloa/Projects/Darknet/darknet)
+        - cfg
+        - custom_data
+        - data
+        - images
+        - labels
+        - weights
+- GNC Team Meeting
+    - Updates and action items
