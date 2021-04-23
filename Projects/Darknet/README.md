@@ -19,6 +19,14 @@ Then compile
 ```sh
 make
 ```
+NOTE: If you have a GPU, CUDNN, and OpenCV installed, change parameters `GPU`, `CUDNN`, and `OPENCV` to 1 so that training will go much faster. NOTE: Be sure not to leave any whitespaces as it can cause compiling errors when running `make`. By default, you will see this at the top when editing `Makefile`
+```Makefile
+GPU=0
+CUDNN=0
+CUDNN_HALF=0
+OPENCV=0
+...
+```
 
 ### 2. Darknet Set-up
 Note: File names used in this documentation are just examples. It is highly suggest you used detailed names as there are many `.cfg` and `.data` files that come included with the cloned darknet repository.
@@ -50,6 +58,7 @@ Darknet requires the following files:
 - `darknet/cfg/custom_test.cfg` (optional, name to match network/usage)
 - `darknet/images/train.txt`
 - `darknet/images/test.txt`
+- `darknet/weights` can be found [here](https://drive.google.com/drive/folders/1avzyAFq82Vc5SBlOv1QPWNvzBRWjOVTQ)
 
 ##### 2.2.1 Classes
 The `classes.names` file should include the names of the classes you will be training Darknet to look for. These names should be in the same order as the classes defined in your YOLO files. If your YOLO classes are predefined in this order
@@ -79,6 +88,17 @@ backup = backup
 
 ##### 2.2.3 Custom Train and Test
 These two files are configured slightly different. You can find the full files Kanaloa uses [here](). 
+
+#### 2.3 Configuring Makefile
+By default, you will see this at the top when editing `Makefile`
+```Makefile
+GPU=0
+CUDNN=0
+CUDNN_HALF=0
+OPENCV=0
+...
+```
+If you have a GPU, CUDNN, and OpenCV installed, change parameters `GPU`, `CUDNN`, and `OPENCV` to 1 so that training will go much faster. NOTE: Be sure not to leave any whitespaces as it can cause compiling errors when running `make`.
 
 ### 3. Usage
 The following shows how to use Darknet to train and test the network.

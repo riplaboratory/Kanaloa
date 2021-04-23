@@ -291,6 +291,34 @@ Team Kanaloa VIP
         - data
         - images
         - labels
-        - weights
+    - Need to get the weights, currently the file size exceeds 100MB limit for GitHub
 - GNC Team Meeting
     - Updates and action items
+
+14 April 2021
+- Moved weights to Kanaloa Shared Google Drive since GitHub has a limit
+    - Located in New Structure > Projects > GNC > Object Classification > Darknet
+- Darknet is set up on MSI laptop to make predicitions
+    - Training is still a bit slow, gotta figure out how to configure it with a GPU
+
+15 April 2021
+- General Team Meeting
+    - Updates and action items
+    - Progress on CoE banquet
+
+16 April 2021
+- WAMV Meeting
+    - Discussed functional requirements with graduate students
+    - Followed up with the team to have them complete it by Monday since the task has been past due for a while
+
+19 April 2021
+- WAMV Meeting
+    - Making sure everyone's functional requirements will be ready for review
+    - Updates and action items
+
+22 April 2021
+- General Team Meeting
+    - Action items and updates
+    - CoE banquet updates
+- Oscar contacted me regarding the project and will be contacting Dr. Trimble for further discussion.
+- Alex S. is back and will be taking back WAMV System Integrator Role
