@@ -17,7 +17,9 @@
  *  
  *  # Version History
  *    2019.09.13 - A Trimble (atrimble@hawaii.edu)
- *      Initial Creation
+ *    	- Initial Creation
+ *    2021.05.02 - Kai Jones (kaijones@hawaii.edu)
+ *    	- Trimmed VMAX from 24.0 to 22.0. We want to limit voltage output to thrusters because circuit breakers keep tripping. 
  */
 
 #ifndef kanaloaMotor_h
@@ -29,7 +31,7 @@
 #define PWM_SPD_MIN -4095
 #define PID_SAMPLE_TIME 100
 #define CALIBRATION_CONSTANT 0.003768 //20.1*0.1875/1000
-#define VMAX 24.0
+#define VMAX 22.0  // Original value 24.0. We trimmed this voltage down to prevent current spike to trip circuit breakers.
 #define QMAX 1000.0
 #define DEAD_ZONE_LIMIT 2 
 
