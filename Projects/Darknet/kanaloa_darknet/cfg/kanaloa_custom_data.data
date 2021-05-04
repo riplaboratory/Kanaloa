@@ -1,0 +1,5 @@
+classes = 3
+train = /home/kevin/darknet/images/train.txt
+valid = /home/kevin/darknet/images/test.txt
+names = /home/kevin/darknet/images/classes.names
+backup = backup
