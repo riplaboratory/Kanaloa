@@ -322,3 +322,33 @@ Team Kanaloa VIP
     - CoE banquet updates
 - Oscar contacted me regarding the project and will be contacting Dr. Trimble for further discussion.
 - Alex S. is back and will be taking back WAMV System Integrator Role
+
+26 April 2021
+- WAMV Meeting
+    - Updates
+    - Notebooks and Documentation
+    - Informed that if they plan to upload to GitHub, they will need to ask a grad student to give them permission to do it
+- GNC Meeting
+    - Updates and action items
+
+28 April 2021
+- Running Darknet control test for training time
+    - After 2 hours, I realized I had an error on the Makefile; a `!` instead of `1` for `CUDA` since it was slow and not using the GPU
+    - Installed latest CUDA toolkit (v11.3)
+    - Need to install cuDNN
+
+29 April 2021
+- cuDNN v8.1.1 installed
+- Had to update make file with
+    ```Makefile
+    ifeq ($(GPU), 1) 
+    COMMON+= -DGPU -I/usr/local/cuda-11.3/include/
+    CFLAGS+= -DGPU
+    LDFLAGS+= -L/usr/local/cuda11.3/lib64 -lcuda -lcudart -lcublas -lcurand
+    endif
+    ```
+- Compiles successfully
+- Running training gives an error related with CUDA
+- General Team Meeting
+    - Updates
+    - Kanaloa Final Deliverables
