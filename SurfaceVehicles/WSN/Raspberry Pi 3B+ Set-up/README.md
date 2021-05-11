@@ -75,7 +75,7 @@ There is an issue with the way ssh is set-up in this particular Ubuntu MATE imag
  3. Reinstall the ssh client
  `sudo apt-get install openssh-server`
 
-The ssh client is now properly set-up. More information on operating ssh is provided in the Setting up Wireless Webcam documentation INSERT LINK HERE
+The ssh client is now properly set-up. More information on operating ssh is provided in the [Wireless Webcam Set-up documentation](https://github.com/riplaboratory/Kanaloa/tree/master/SurfaceVehicles/WSN/Wireless%20Webcam%20Set-up) 
 
  ### Installing ROS Melodic
  The last thing needed on the Pi is ROS Melodic. This can be done through a terminal window on the Pi, or you may do this by ssh-ing into the Pi from another machine.
