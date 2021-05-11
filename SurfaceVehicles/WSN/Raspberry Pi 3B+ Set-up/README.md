@@ -28,9 +28,9 @@ First, the appropriate Ubuntu MATE image will have to be flashed to an SD card, 
 
 	[ubuntu-mate-18.04.2-beta1-desktop-armhf+raspi-ext4.img.xz](https://releases.ubuntu-mate.org/archived/bionic/armhf/ubuntu-mate-18.04.2-beta1-desktop-armhf+raspi-ext4.img.xz "ubuntu-mate-18.04.2-beta1-desktop-armhf+raspi-ext4.img.xz") 
 
-	which will automatically download the Ubuntu MATE image to 		your computer once you click it.
+	which will automatically download the Ubuntu MATE image to 		your computer once you click it. It will take a while to download.
 
-	 **The .xz file has also been uploaded to the Kanaloa GitHub here ADD A LINK HERE TO WHERE IT IS**
+	 **The .xz file is 1.17 GB, and so cannot be included in the GitHub due to the 100 MB file limit**
 
 2. Extract the contents of the downloaded image.
 3. Using the adapter, insert your microSD card into your computer.
