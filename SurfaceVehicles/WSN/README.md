@@ -1,6 +1,6 @@
 # Wireless Sensor Nodes (WSN)
 
-This directory contains the software documentation for the Wireless Sensor Node (WSN) project, researched and developed by the F20-S21 Senior Design Team. Basic Standard of Procedure to get WSN running from Groundstation is in the SOP directory. 
+This directory contains software documentation for the Wireless Sensor Node (WSN) project, researched and developed by the F20-S21 Senior Design Team. Basic Standard of Procedure to get WSN running from Groundstation is in the SOP directory. 
 
 <img width="1040" alt="Screen Shot 2021-05-11 at 12 19 47 PM" src="https://user-images.githubusercontent.com/43556054/117891755-2fdd6400-b253-11eb-99b5-da9334a73471.png">
 
