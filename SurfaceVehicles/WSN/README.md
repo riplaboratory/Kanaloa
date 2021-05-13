@@ -21,6 +21,7 @@ The project was split into three subsystems: Mechanical, Electrical, and Communi
 
 [Drive Documentation](https://drive.google.com/drive/u/1/folders/1-ApjlZHGvEL8MjFoPhoDieKhJmRhKBXQ)
 
+The F20-S21 team website can also be found here:
 [WSN Team Website](http://rip.eng.hawaii.edu/research/unmanned-x-systems/team-kanaloa-wireless-sensor-nodes/)
 
 
