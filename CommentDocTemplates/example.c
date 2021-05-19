@@ -1,6 +1,7 @@
 /** 
  *  @file example.c
- *  Created by: Team Kanaloa (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
+ *  COPYWRITE: Created by and for Team Kanaloa. All rights reserved
+ *             (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
  *  LICENSE: Internal Kanaloa use only
  *  
  *  @brief What does this file do?
