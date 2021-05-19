@@ -1,7 +1,5 @@
 """ 
   Name: example.py
-  Created by: Team Kanaloa (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
-  LICENSE: Internal Kanaloa use only
     
   Description: What does this file do?
     
@@ -23,7 +21,7 @@
       ## Output 1: [unit], description (if function return)
       ## other output description, plots, actions, ROS topics, etc.
   
-  # Version History
+  # VERSION HISTORY
     @date     2019.09.13 
     @author   Example Author (example@hawaii.edu)
     @brief    Initial creation
@@ -32,6 +30,11 @@
     @author   Modified by
     @brief    What changes were made?
               You can hard wrap the changes if the first line runs long
+ 
+  # COPYWRITE: Created by and for Team Kanaloa. All rights reserved.
+               (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
+  
+  # LICENSE: Internal Kanaloa use only
 """
 
 def myExample(a, b):
