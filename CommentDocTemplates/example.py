@@ -8,12 +8,13 @@
       - 2.5 V constant ouput control board. Requires 2 channels one to 
           provide forward commands and one to provide reverse commands
       - ADS1115 ADC circuit
-  # LIBRARIES
-      ## Library Manager (Sketch ->Include Library -> Manage Libraries)
-          - "Adafruit PWM Servo Driver Library" by Adafruit
-          - "Adafruit ADS1X15" by Adafruit
-      ## Downloaded
-          - PID_v1 by Brett Beauregard, https://github.com/br3ttb/Arduino-PID-Library/
+  # MODULES
+      ## Default (i.e. modules that are part of the default installation of python)
+          - math
+      ## Downloaded (i.e. modules that need to be installed from external sources
+          - numpy (https://numpy.org)
+      ## Internal (i.e. modules created by team Kanloa)
+          - motorController.py (file location in github structure)
   # INPUTS
       ## Input 1: [unit], description 
       ## Input 2: [unit], description
