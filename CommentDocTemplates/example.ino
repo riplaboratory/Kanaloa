@@ -1,16 +1,14 @@
 /** 
   Name: example.ino
-  Created by: Team Kanaloa (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
-  LICENSE: Internal Kanaloa use only
-    
+      
   Purpose: What does this file do?
     
-  # Hardware - hardware the code is designed to control
+  # HARDWARE - hardware the code is designed to control
       - PWM Servo shield
       - 2.5 V constant ouput control board. Requires 2 channels one to 
           provide forward commands and one to provide reverse commands
       - ADS1115 ADC circuit
-  # Libraries
+  # LIBRARIES
       ## Library Manager (Sketch ->Include Library -> Manage Libraries)
           - "Adafruit PWM Servo Driver Library" by Adafruit
           - "Adafruit ADS1X15" by Adafruit
@@ -32,6 +30,11 @@
     @author   Modified by
     @brief    What changes were made?
               You can hard wrap the changes if the first line runs long
+              
+  # COPYWRITE: Created by and for Team Kanaloa. All rights reserved
+               (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
+               
+  # LICENSE:  Internal Kanaloa use only              
  */
 
 /**
