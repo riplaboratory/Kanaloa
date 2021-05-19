@@ -1,7 +1,7 @@
 /** 
   Name: example.ino
       
-  Purpose: What does this file do?
+  Description: What does this file do?
     
   # HARDWARE - hardware the code is designed to control
       - PWM Servo shield
