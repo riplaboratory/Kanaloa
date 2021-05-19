@@ -3,12 +3,12 @@
     
   Description: What does this file do?
     
-  # Hardware - hardware the code is designed to control
+  # HARDWARE - hardware the code is designed to control or use
       - PWM Servo shield
       - 2.5 V constant ouput control board. Requires 2 channels one to 
           provide forward commands and one to provide reverse commands
       - ADS1115 ADC circuit
-  # Libraries
+  # LIBRARIES
       ## Library Manager (Sketch ->Include Library -> Manage Libraries)
           - "Adafruit PWM Servo Driver Library" by Adafruit
           - "Adafruit ADS1X15" by Adafruit
