@@ -1,17 +1,14 @@
 /** 
- *  @file example.c
- *  COPYWRITE: Created by and for Team Kanaloa. All rights reserved
- *             (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
- *  LICENSE: Internal Kanaloa use only
+ *  @file example.c (or .cpp as appropriate)
  *  
  *  @brief What does this file do?
  *  
- *  # Hardware - hardware the code is designed to control
+ *  # HARDWARE - hardware the code is designed to control
  *      - PWM Servo shield
  *      - 2.5 V constant ouput control board. Requires 2 channels one to 
  *          provide forward commands and one to provide reverse commands
  *      - ADS1115 ADC circuit
- *  # Libraries
+ *  # LIBRARIES
  *      ## Library Manager (Sketch ->Include Library -> Manage Libraries)
  *          - "Adafruit PWM Servo Driver Library" by Adafruit
  *          - "Adafruit ADS1X15" by Adafruit
@@ -24,7 +21,7 @@
  *      ## Output 1: [unit], description (if function return)
  *      ## other output description, plots, actions, ROS topics, etc.
  *
- *  # Version History
+ *  # VERSION HISTORY
  *    @date     2019.09.13 
  *    @author   Example Author (example@hawaii.edu)
  *    @brief    Initial creation
@@ -33,11 +30,15 @@
  *    @author   Modified by
  *    @brief    What changes were made?
  *              You can hard wrap the changes if the first line runs long
+ *
+ *  # COPYWRITE: Created by and for Team Kanaloa. All rights reserved
+ *             (http://rip.eng.hawaii.edu/research/unmanned-x-systems/)
+ *
+ *  # LICENSE: Internal Kanaloa use only
  */
 
 /**
  * @brief This function adds two numbers together
- * 
  * @param a first addend
  * @param b second addend
  * @return  Sum of the addends
