@@ -2,7 +2,7 @@ Kevin Nguyen
 nk279@hawaii.edu
 Team Kanaloa VIP
 
-### Notes
+### Journal/Notes
 
 11 September 2021
 + Brainstorming new project ideas
@@ -32,6 +32,15 @@ Team Kanaloa VIP
         + If the sensor your working with is the LiDAR, I think your problem is currently how to interpret data into something meaningful (for us)
         + If it’s for object detection, then maybe it’s to use sensor data to interpret “objects” which is an ambiguous definition
 
+06 October 2021
++ Feedback on project
+    + populating the obstacles into a map so that it would be something that the WAM-V can understand instead of what we can understand. 
+        + mapping the no-go zones. references to work off of: 
+            + [[ROS Q&A] 119 - ROS Mapping Tutorial. How To Provide a Map](https://youtu.be/K1ZFkR4YsRQ)
+            + [Can my Robot Dog Draw a Map?](https://www.youtube.com/watch?v=_j70sNWkWxs)
+            + [mapviz](http://wiki.ros.org/mapviz)
+    + clarify LiDAR instead of sensor data
+
 ### Project
 #### Description
 > Object detection is the process of detectiong things that are not considered traversable terrain (water). The simplest variation of this for us to use in VRX would be to identify a vrx object from the camera using some type of classifier (such as a neural network). And then based off where we see the object in the picture, location the camera is mounted, location the lidar is mounted, we are able to read in the Lidar point cloud data (those red dots you see in my pictures) to try get an average of the distance in that particular area. 
@@ -43,13 +52,15 @@ Team Kanaloa VIP
 > \- Raymond 
 
 #### Mission Statement
-To be able to use sensor data to interpret obstacles such as totems, polyforms, and surmarks and display it to the user so that information can be easily interpreted. This will be necessary in the future so that this data can be used for future problems such as behaviour planning. This will be a documented procedure so that any parts left unfinished can be easily transferred to a new member and further improve our understanding of the data.
+By the end of the Fall 2021 semester I will be able to use LiDAR data to interpret obstacles and map out "no-go" zones that tell the WAM-V and user where they need to avoid going. Along the way, this will be well documented so that the code is easy to understand and modify to adapt to other systems such as the UPSV. This will be necessary for the WAM-V's future so other issues such as behaviour planning can be addressed.
 #### Primary Objectives
-Currently, our team does not have any existing code that is able to subscribe to `sensor_msgs` PointCloud2 data that is outputted and have no way to interpret it. What we have at the moment is the basic idea of how we will use object detection but have not methods implemented. This has halted our issues of being able to test and apply behaviour planning methods. Furthermore, to those who are not directly working with these messages, it can be easy to be misinterpret this ambiguous data set as the data is for more lower level programming (binary). Our objective is to be able to use a Point Cloud Library (PCL) in preferably Python to be able to interpret and output this data to the user. This piece of software will also be well documented with in-code comments and documentation so that it can be reworked in the future or easily implemented into other systems (WAM-V, UPSV, etc.).
++ To be able to use the LiDAR messages to map out objects that can be understood by both the WAM-V and the user using packages in ROS and Python
++ I will have documentation that allows anyone to understand and modify the code to their needs
++ The code will be able to be adjusted to adapt to other systems other than the WAM-V (ex. UPSV)
 #### Success Criteria
-Success in object detection will be to have this basic idea of implemented in Python. It should be able to output data that is easily read and interpreted so that we can understand the `fields` object in the data set. This will also have documentation (`README.md` and in-code comments) that talks about the system set up (how to install ROS, what packages are needed), what each function does, as well as expected inputs and outputs. Implementation of this software should be able to be easily reconfigured and applied to different systems such as WAMV, UPSV, etc.
+Success in object detection will be able to use Python and ROS to map out LiDAR data to be understood by the WAM-V and user. This map will display which zones of the course are to be avoided. I will also have documentation (`README.md` and in-code comments) that talks about the system set up (how to install ROS, what packages are needed), what each function does, as well as expected inputs and outputs. Implementation of this software should be able to be easily reconfigured and applied to different systems such as WAMV, UPSV, etc.
 ### Functional Requirements
-| Functional Requirement ID | Objective |
+| Functional Requirement ID | Function Requirement Desc. |
 | :---:                     |   :---   |
 | <ul><li>[ ] 1</li></ul>   | Software is able to interepret the `fields` object in the `sensor_msgs` data set and output it so that a member can be able to read it |
 | <ul><li>[ ] 2</li></ul>   | Documentation on created software to include system set-up, configuration, and expected output so that future members can be ready to modify it within a week | 
