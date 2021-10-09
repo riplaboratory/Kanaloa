@@ -62,7 +62,7 @@ Success in object detection will be able to use Python and ROS to map out LiDAR 
 ### Functional Requirements
 | Functional Requirement ID | Function Requirement Desc. |
 | :---:                     |   :---   |
-| <ul><li>[ ] 1</li></ul>   | Software is able to interepret the `fields` object in the `sensor_msgs` data set and output it so that a member can be able to read it |
+| <ul><li>[ ] 1</li></ul>   | LiDAR messages are able to map objects on the field |
 | <ul><li>[ ] 2</li></ul>   | Documentation on created software to include system set-up, configuration, and expected output so that future members can be ready to modify it within a week | 
 | <ul><li>[ ] 3</li></ul>   | Software will be easily adapatable in different systems Kanaloa uses |
 
