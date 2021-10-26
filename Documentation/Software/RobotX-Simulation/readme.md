@@ -13,6 +13,11 @@ VRX recommends that your computing hardware has:
 - 8 Gb of RAM
 - Discrete Graphics Card, e.g. Nvidia GTX 650
 
+#### Note
+ - As of July 6, 2021, the original VRX repository has been migrated to compatibility for Ubuntu 20.04 and ROS Noetic. 
+ - The following documentation will be using an old branch in order to work with the prerequisites stated above.
+ - VRX with the prequisites above is now only community supported and not officially supported by OSRF
+
 ## Installing the simulation
 
 This tutorial will walk you through the setup required to prepare a computer to run the VRX simulations. In order to run the VRX simulation, your computer will need a discrete graphics card and must satisfy the minimum System Requirements. All updates and official tutorials can be found here: ~~https://bitbucket.org/osrf/vrx/wiki/Home~~ https://github.com/osrf/vrx/wiki
@@ -53,6 +58,14 @@ Clone the VRX repository:
 ~~hg clone https://bitbucket.org/osrf/vrx~~ 
 ```
 git clone https://github.com/osrf/vrx.git
+```
+Navigate to the cloned repository:
+```
+cd ~/vrx_ws/src/vrx
+``
+Switch to the `noetic_migration` branch:
+```
+git checkout noetic_migration
 ```
 #### 3.2 Build the software
 First, source the ROS `setup.bash` file:
@@ -189,7 +202,7 @@ Note that compared to the [default sensor configuration](https://bitbucket.org/o
 
 Run the script to generate your WAM-V's URDF with these newly specified thrusters and sensors. Note: on most systems, `$HOME` is `/home/<username>`. If this is not the case, you can change all uses of `$HOME` to `/home/<username>`.
 ```
-$ roslaunch vrx_gazebo generate_wamv.launch thruster_yaml:=$HOME/my_wamv/thruster_config.yaml sensor_yaml:=$HOME/my_wamv/sensor_config.yaml wamv_target:=$HOME/my_wamv/my_wamv.urdf
+roslaunch vrx_gazebo generate_wamv.launch thruster_yaml:=$HOME/my_wamv/thruster_config.yaml sensor_yaml:=$HOME/my_wamv/sensor_config.yaml wamv_target:=$HOME/my_wamv/my_wamv.urdf
 ```
 Parameters Explained:
 - `thruster_yaml`: the input - the full path of the thruster YAML configuration file. If not given, the script uses the [default thruster yaml](https://bitbucket.org/osrf/vrx/src/default/vrx_gazebo/src/vrx_gazebo_python/generator_scripts/wamv_config/example_thruster_config.yaml).
