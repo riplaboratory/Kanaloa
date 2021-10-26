@@ -62,7 +62,7 @@ git clone https://github.com/osrf/vrx.git
 Navigate to the cloned repository:
 ```
 cd ~/vrx_ws/src/vrx
-``
+```
 Switch to the `noetic_migration` branch:
 ```
 git checkout noetic_migration
