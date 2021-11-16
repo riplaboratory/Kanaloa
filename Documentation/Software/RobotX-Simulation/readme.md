@@ -13,11 +13,6 @@ VRX recommends that your computing hardware has:
 - 8 Gb of RAM
 - Discrete Graphics Card, e.g. Nvidia GTX 650
 
-#### Note
- - As of July 6, 2021, the original VRX repository has been migrated to compatibility for Ubuntu 20.04 and ROS Noetic. 
- - The following documentation will be using an old branch in order to work with the prerequisites stated above.
- - VRX with the prequisites above is now only community supported and not officially supported by OSRF
-
 ## Installing the simulation
 
 This tutorial will walk you through the setup required to prepare a computer to run the VRX simulations. In order to run the VRX simulation, your computer will need a discrete graphics card and must satisfy the minimum System Requirements. All updates and official tutorials can be found here: ~~https://bitbucket.org/osrf/vrx/wiki/Home~~ https://github.com/osrf/vrx/wiki
@@ -34,6 +29,7 @@ sudo apt full-upgrade
 
 ### 2. Setup and install dependencies
 ```
+sudo apt install -y build-essential cmake cppcheck curl git gnupg libeigen3-dev libgles2-mesa-dev lsb-release pkg-config protobuf-compiler qtbase5-dev python3-dbg python3-pip python3-venv ruby software-properties-common wget 
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
@@ -41,7 +37,7 @@ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt update
 DIST=melodic
 GAZ=gazebo9
-sudo apt install cmake mercurial git ruby libeigen3-dev ${GAZ} lib${GAZ}-dev pkg-config python ros-${DIST}-gazebo-plugins ros-${DIST}-gazebo-ros ros-${DIST}-hector-gazebo-plugins ros-${DIST}-joy ros-${DIST}-joy-teleop ros-${DIST}-key-teleop ros-${DIST}-robot-localization ros-${DIST}-robot-state-publisher ros-${DIST}-rviz ros-${DIST}-ros-base ros-${DIST}-teleop-tools ros-${DIST}-teleop-twist-keyboard ros-${DIST}-velodyne-simulator ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins protobuf-compiler
+sudo apt install ${GAZ} lib${GAZ}-dev ros-${DIST}-gazebo-plugins ros-${DIST}-gazebo-ros ros-${DIST}-hector-gazebo-plugins ros-${DIST}-joy ros-${DIST}-joy-teleop ros-${DIST}-key-teleop ros-${DIST}-robot-localization ros-${DIST}-robot-state-publisher ros-${DIST}-joint-state-publisher ros-${DIST}-rviz ros-${DIST}-ros-base ros-${DIST}-teleop-tools ros-${DIST}-teleop-twist-keyboard ros-${DIST}-velodyne-simulator ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins
 ```
 
 ### 3. Build VRX from source
@@ -63,10 +59,7 @@ Navigate to the cloned repository:
 ```
 cd ~/vrx_ws/src/vrx
 ```
-Switch to the `noetic_migration` branch:
-```
-git checkout noetic_migration
-```
+
 #### 3.2 Build the software
 First, source the ROS `setup.bash` file:
 ```
@@ -116,8 +109,9 @@ This option was created by the developers of VRX and is convenient to use in ord
 roslaunch vrx_gazebo sandisland.launch
 ```
 To use the keyboard, we use the [teleop_twist_keyboard](http://wiki.ros.org/teleop_twist_keyboard) package, along with a custom [twist2thrust.py](https://bitbucket.org/osrf/vrx/src/default/vrx_gazebo/nodes/twist2thrust.py) node to convert the Twist messages to two Float32 messages for the left and right thrusters. Forward velocity (twist.linear.x) is mapped to axial thrust (right+left) and rotational velocity (twist.linear.z) is mapped to differential thrust (usvdrive.right-usvdrive.left).
+~~roslaunch robotx_gazebo usv_keydrive.launch~~
 ```
-roslaunch robotx_gazebo usv_keydrive.launch
+roslaunch vrx_gazebo usv_keydrive.launch
 ```
 The basic setup from the example above only works for the `H` and `T` propulsion configurations. This is because the topic names for the thrusters in the holonomic 'X' configuration are different, due to having more thrusters in differing orientations. 
 

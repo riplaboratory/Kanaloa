@@ -41,6 +41,26 @@ Team Kanaloa VIP
             + [mapviz](http://wiki.ros.org/mapviz)
     + clarify LiDAR instead of sensor data
 
+25 October 2021
++ Finally got vrx simulation running on my system again
++ Running into issues:
+    + A lot of errors appearing in RViz (i.e., Model)
+    + Need to figure out how to visualize with PointCloud2
+
+15 Novemeber 2021
++ VRX simulation works with latest repo, updated `README.md`
++ Rviz works fine now
++ Created launch file for pointcloud_to_laserscan
++ Issues:
+    + New VRX requires Python3, but Melodic depends on Python2.7
+        + `export ROS_PYTHON_VERSION=3`
+
+Sources:
++ [How to transform PointCloud2 with TF?](https://answers.ros.org/question/9103/how-to-transform-pointcloud2-with-tf/)
++ [[ROS Q&A] 120 - How To Convert a PointCloud Into a Laser Scan](https://www.youtube.com/watch?v=IFNikTHN1pk&ab_channel=TheConstruct)
+
+    
+
 ### Project
 #### Description
 > Object detection is the process of detectiong things that are not considered traversable terrain (water). The simplest variation of this for us to use in VRX would be to identify a vrx object from the camera using some type of classifier (such as a neural network). And then based off where we see the object in the picture, location the camera is mounted, location the lidar is mounted, we are able to read in the Lidar point cloud data (those red dots you see in my pictures) to try get an average of the distance in that particular area. 
@@ -62,7 +82,7 @@ Success in object detection will be able to use Python and ROS to map out LiDAR 
 ### Functional Requirements
 | Functional Requirement ID | Function Requirement Desc. |
 | :---:                     |   :---   |
-| <ul><li>[ ] 1</li></ul>   | LiDAR messages are able to map objects on the field |
+| <ul><li>[x] 1</li></ul>   | LiDAR messages are able to map objects on the field |
 | <ul><li>[ ] 2</li></ul>   | Documentation on created software to include system set-up, configuration, and expected output so that future members can be ready to modify it within a week | 
 | <ul><li>[ ] 3</li></ul>   | Software will be easily adapatable in different systems Kanaloa uses |
 
@@ -77,3 +97,12 @@ Success in object detection will be able to use Python and ROS to map out LiDAR 
 + data - actual point daya, size is (`row_step` * `height`)
 
 
+sudo apt install -y build-essential cmake cppcheck curl git gnupg libeigen3-dev libgles2-mesa-dev lsb-release pkg-config protobuf-compiler qtbase5-dev python3-dbg python3-pip python3-venv ruby software-properties-common wget 
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt update
+DIST=melodic
+GAZ=gazebo9
+sudo apt install ${GAZ} lib${GAZ}-dev ros-${DIST}-gazebo-plugins ros-${DIST}-gazebo-ros ros-${DIST}-hector-gazebo-plugins ros-${DIST}-joy ros-${DIST}-joy-teleop ros-${DIST}-key-teleop ros-${DIST}-robot-localization ros-${DIST}-robot-state-publisher ros-${DIST}-joint-state-publisher ros-${DIST}-rviz ros-${DIST}-ros-base ros-${DIST}-teleop-tools ros-${DIST}-teleop-twist-keyboard ros-${DIST}-velodyne-simulator ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins
