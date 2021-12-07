@@ -55,11 +55,30 @@ Team Kanaloa VIP
     + New VRX requires Python3, but Melodic depends on Python2.7
         + `export ROS_PYTHON_VERSION=3`
 
+20 November 2021
++ Tried out pointcloud to laserscan package
++ RViz was still broken
+    + Set my system back up with the latest VRX workspace from OSRF
+    + RViz works fine
++ Fixing RViz also fixed my issue with interpreting pointcloud 2 data
+    + Did not go further with pointcloud to laserscan
+
+29 November 2021
++ Started working on an example usage code for the Lidar in ROS
++ Having issues with interpreting `fields` for `x`, `y`, `z`
+
+1 December 2021
++ Got working code in python
++ I am able to simply write out a way to access the `fields` `x`, `y`, `z`
+    + Since time is limited, I will just be printing it out
+    + Pending documentation on code
+
+6 December 2021
++ Finished Documentation and closed out my work
+
 Sources:
 + [How to transform PointCloud2 with TF?](https://answers.ros.org/question/9103/how-to-transform-pointcloud2-with-tf/)
 + [[ROS Q&A] 120 - How To Convert a PointCloud Into a Laser Scan](https://www.youtube.com/watch?v=IFNikTHN1pk&ab_channel=TheConstruct)
-
-    
 
 ### Project
 #### Description
@@ -83,8 +102,8 @@ Success in object detection will be able to use Python and ROS to map out LiDAR 
 | Functional Requirement ID | Function Requirement Desc. |
 | :---:                     |   :---   |
 | <ul><li>[x] 1</li></ul>   | LiDAR messages are able to map objects on the field |
-| <ul><li>[ ] 2</li></ul>   | Documentation on created software to include system set-up, configuration, and expected output so that future members can be ready to modify it within a week | 
-| <ul><li>[ ] 3</li></ul>   | Software will be easily adapatable in different systems Kanaloa uses |
+| <ul><li>[x] 2</li></ul>   | Documentation on created software to include system set-up, configuration, and expected output so that future members can be ready to modify it within a week | 
+| <ul><li>[x] 3</li></ul>   | Software will be easily adapatable in different systems Kanaloa uses |
 
 ### `sensor_msgs` key
 + fields.name - type `string`
@@ -95,14 +114,3 @@ Success in object detection will be able to use Python and ROS to map out LiDAR 
 + point_step - length of point in bytes
 + row_step - length of row in bytes
 + data - actual point daya, size is (`row_step` * `height`)
-
-
-sudo apt install -y build-essential cmake cppcheck curl git gnupg libeigen3-dev libgles2-mesa-dev lsb-release pkg-config protobuf-compiler qtbase5-dev python3-dbg python3-pip python3-venv ruby software-properties-common wget 
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-sudo apt update
-DIST=melodic
-GAZ=gazebo9
-sudo apt install ${GAZ} lib${GAZ}-dev ros-${DIST}-gazebo-plugins ros-${DIST}-gazebo-ros ros-${DIST}-hector-gazebo-plugins ros-${DIST}-joy ros-${DIST}-joy-teleop ros-${DIST}-key-teleop ros-${DIST}-robot-localization ros-${DIST}-robot-state-publisher ros-${DIST}-joint-state-publisher ros-${DIST}-rviz ros-${DIST}-ros-base ros-${DIST}-teleop-tools ros-${DIST}-teleop-twist-keyboard ros-${DIST}-velodyne-simulator ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins
