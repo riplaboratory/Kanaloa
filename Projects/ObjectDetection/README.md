@@ -4,11 +4,11 @@ This directory contains documentation on visualizing and interpreting PointCloud
 
 ## Installation
 This tutorial assumes that you already have the following installed:
-+ ROS Melodic
 + Ubuntu 18.04
++ ROS Melodic
 + VRX Simulation
 
-You will then need to install the following
+You will then need to install the following 
 ```
 sudo apt install -y build-essential cmake cppcheck curl git gnupg libeigen3-dev libgles2-mesa-dev lsb-release pkg-config protobuf-compiler qtbase5-dev python3-dbg python3-pip python3-venv ruby software-properties-common wget ros-melodic-joint-state-publisher
 
@@ -33,6 +33,10 @@ If it is not yet added, then you can click on `Add` above the camers on the left
 if you move the WAM-V, then you should start seeing a screen similar to the one below.
 
 ![Lidar in Rviz](images/rviz-pc2-lidar.png)
+
+### Troubleshooting
++ If `numpy` module is not found, you can install it by doing `pip3 install numpy`
++ You may run into issues launching Gazebo due to a "symbol lookup error". If that is the case, run `sudo apt upgrade libignition-math2`
 
 ## Code Usage
 An example of how to interpret data can be found in `lidarMsgs.py`. Here is a small break down of what the code does:
@@ -94,8 +98,36 @@ chmod +x lidarMsgs.py
 ```
 Now, if you have not already done so, launch Gazebo, and then run the following command to run the script
 ```
-py3 lidarMsgs.py
+python3 lidarMsgs.py
 ```
-You can run this along with RViz to get an idea of what the WAM-V sees with what is being printed. However, due to time limitation, this code is not fully
-completed and prints everything the publisher puts out. Due to this, the data is being given fast and can be overwhelming. Before using this for any case, you
-would want to slightly improve my code so that it prints at a rate that is more manageable to read.
+
+## Further Development
+After further research, it seems I strayed off slightly into the wrong direction. While PointCloud2 data is useful in RViz when it comes to live object detection,
+it does not help much in code at first glance since the data is given in pixel/image coordinates in reference to the frame of the image rather than real world
+coordinates, or the xyz in meters. There are two ways that I have researched to get a real world measurement, and it is by either converting to 
+PointCloud (pcl) or to LaserScan.
+
+(Refer to `4` in resources) There may be simpler implementations, but if I were to approach this issue again with the knowledge I know, I would want to convert to
+LaserScan data. by doing so, you will be able to get a [`ranges`](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html) field which is 
+an array of data for distance to an object in meters. A laser scan ignores the height of an object so you have are only looking at the object in 2D (distance and width). 
+The `ranges` array provides multiple points along the width, so taking the center of the range you would be able to get the center of the object from my nderstanding. 
+If that is the case, then find the middle value should be fairly simple. Pseudocode for it would be: 
+```py
+middle = len(array) / 2 # ex. len(array) = 10 so then 10 / 2 = 5
+center_of_obj = array[middle] # which would be used to access array[5]
+```
+
+If you would like to take on the challenge of converting to pcl, there would be a lot of math involved. Starting off, you can refer to `5` in resources. They provide
+an answer similar to what I did, but instead use a numpy array in their conversion. Since I have not looked into this enough to understand the math well enough to
+explain, you can reference `6` in resources for a detailed information on how you would use the pixel/image coordiantes to get real world coordinates.
+
+Ideally, all this information from the LiDAR would be used alongside an object classifier in order to map out the surroundings of the WAM-V. This map would then be used 
+to help with obstacle avoidance and planning for the WAM-V to make decisions autonomously.
+
+### Resources
+1. [sensor_msgs.point_cloud2 Namespace Reference](http://docs.ros.org/en/noetic/api/sensor_msgs/html/namespacesensor__msgs_1_1point__cloud2.html#afaff776c6be14a36216560613dcd50df)
+2. [How to transform PointCloud2 with TF?](https://answers.ros.org/question/9103/how-to-transform-pointcloud2-with-tf/)
+3. [[ROS Q&A] 120 - How To Convert a PointCloud Into a Laser Scan](https://www.youtube.com/watch?v=IFNikTHN1pk&ab_channel=TheConstruct)
+4. [[ROS Q&A] 040 - How to check the distance to an obstacle using a laser](https://www.youtube.com/watch?v=q3Dn5U3cSWk)
+5. [how to effeciently convert ROS PointCloud2 to pcl point cloud and visualize it in python](https://stackoverflow.com/questions/39772424/how-to-effeciently-convert-ros-pointcloud2-to-pcl-point-cloud-and-visualize-it-i?rq=1)
+6. [Calculate X, Y, Z Real World Coordinates from Image Coordinates using OpenCV](https://www.fdxlabs.com/calculate-x-y-z-real-world-coordinates-from-a-single-camera-using-opencv/)

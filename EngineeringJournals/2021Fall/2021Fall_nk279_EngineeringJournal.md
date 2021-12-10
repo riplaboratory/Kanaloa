@@ -113,4 +113,4 @@ Success in object detection will be able to use Python and ROS to map out LiDAR 
 + is_bigendian - is this data big endian?
 + point_step - length of point in bytes
 + row_step - length of row in bytes
-+ data - actual point daya, size is (`row_step` * `height`)
++ data - actual point data, size is (`row_step` * `height`)
