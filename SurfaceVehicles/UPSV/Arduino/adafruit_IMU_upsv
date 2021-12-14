@@ -1,0 +1,308 @@
+// Based off of an existing package for adafruit IMU, this was developed by tabata viso-naffah
+// updated as of Nov 24, 2021
+// publishes IMU sensor msg data, as well as temperature data for a thermocouple measuring the NUC's surface temp.
+// also publishes a warning message for overheating
+// Basic demo for accelerometer readings from Adafruit ICM20948
+
+#include <Adafruit_ICM20X.h>
+#include <Adafruit_ICM20948.h>
+#include <Adafruit_Sensor.h>
+#include <Wire.h>
+
+#include <ros.h>
+#include <ros/time.h>
+#include <sensor_msgs/Imu.h>
+#include <sensor_msgs/Temperature.h>
+#include <std_msgs/String.h>
+
+ros::NodeHandle nh;
+
+sensor_msgs::Imu imu_msg;
+sensor_msgs::Temperature nuc_msg;
+std_msgs::String nuc_str_msg;
+
+ros::Publisher pub_imu("imu/data", &imu_msg);
+ros::Publisher pub_nuc("nuc/data", &nuc_msg);
+ros::Publisher pub_nuc_str("nuc/status", &nuc_str_msg);
+
+// DEFINING PINS FOR THE IMU
+Adafruit_ICM20948 icm;
+uint16_t measurement_delay_us = 65535; // Delay between measurements for testing
+// For SPI mode, we need a CS pin
+#define ICM_CS 53
+// For software-SPI mode we need SCK/MOSI/MISO pins
+#define ICM_SCK 52
+#define ICM_MISO 50
+#define ICM_MOSI 51
+
+// DEFINING PINS FOR THE NUC TEMP SENSOR
+#define TC_PIN A0
+#define AREF 5.0
+#define ADC_RESOLUTION 10
+
+// DEFINING VARIABLES FOR QUATERNION CALCS (IMU ORIENTATION)
+double cy, sy, cp, sp, cr, sr;
+double yaw, pitch, roll;
+
+// DEFINING VARIABLES FOR TEMPERATURE SENSING 
+double reading, voltage, temperature;
+double get_voltage(int raw_adc) {
+  return raw_adc * (AREF / (pow(2, ADC_RESOLUTION)-1));  
+}
+
+double get_temperature(int raw_adc) {
+  return (1.1362 * raw_adc) - 282.63;
+}
+
+// DEFINING TEMP WARNING MESSAGES
+char temp_accep[] = "Temperature is acceptable.";
+char temp_high[] = "WARNING!! WARNING!! Temperature is high.";
+
+void setup(void) {
+
+  nh.initNode();
+  nh.advertise(pub_imu);
+  nh.advertise(pub_nuc);
+  nh.advertise(pub_nuc_str);
+
+  Serial.begin(115200);
+  while (!Serial)
+    delay(10); // will pause Zero, Leonardo, etc until serial console opens
+
+  // Serial.println("Adafruit ICM20948 test!");
+
+  // Try to initialize!
+  if (!icm.begin_I2C()) {
+    // if (!icm.begin_SPI(ICM_CS)) {
+    // if (!icm.begin_SPI(ICM_CS, ICM_SCK, ICM_MISO, ICM_MOSI)) {
+
+    //   Serial.println("Failed to find ICM20948 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+  // Serial.println("ICM20948 Found!");
+  icm.setAccelRange(ICM20948_ACCEL_RANGE_16_G); //set accel range to +- 16G
+  // Serial.print("Accelerometer range set to: ");
+  switch (icm.getAccelRange()) {
+    case ICM20948_ACCEL_RANGE_2_G:
+      //   Serial.println("+-2G");
+      break;
+    case ICM20948_ACCEL_RANGE_4_G:
+      //   Serial.println("+-4G");
+      break;
+    case ICM20948_ACCEL_RANGE_8_G:
+      //   Serial.println("+-8G");
+      break;
+    case ICM20948_ACCEL_RANGE_16_G:
+      //  Serial.println("+-16G");
+      break;
+  }
+  //  Serial.println("OK");
+
+  icm.setGyroRange(ICM20948_GYRO_RANGE_2000_DPS); //set gyro range to +- 2000 dps
+  //  Serial.print("Gyro range set to: ");
+  switch (icm.getGyroRange()) {
+    case ICM20948_GYRO_RANGE_250_DPS:
+      //  Serial.println("250 degrees/s");
+      break;
+    case ICM20948_GYRO_RANGE_500_DPS:
+      //   Serial.println("500 degrees/s");
+      break;
+    case ICM20948_GYRO_RANGE_1000_DPS:
+      //   Serial.println("1000 degrees/s");
+      break;
+    case ICM20948_GYRO_RANGE_2000_DPS:
+      //   Serial.println("2000 degrees/s");
+      break;
+  }
+
+  //  icm.setAccelRateDivisor(4095);
+  uint16_t accel_divisor = icm.getAccelRateDivisor();
+  float accel_rate = 1125 / (1.0 + accel_divisor);
+
+  /* Serial.print("Accelerometer data rate divisor set to: ");
+    Serial.println(accel_divisor);
+    Serial.print("Accelerometer data rate (Hz) is approximately: ");
+    Serial.println(accel_rate);
+  */
+  //  icm.setGyroRateDivisor(255);
+  uint8_t gyro_divisor = icm.getGyroRateDivisor();
+  float gyro_rate = 1100 / (1.0 + gyro_divisor);
+  /*
+    Serial.print("Gyro data rate divisor set to: ");
+    Serial.println(gyro_divisor);
+    Serial.print("Gyro data rate (Hz) is approximately: ");
+    Serial.println(gyro_rate);
+  */
+  icm.setMagDataRate(AK09916_MAG_DATARATE_10_HZ);
+  //  Serial.print("Magnetometer data rate set to: ");
+  switch (icm.getMagDataRate()) {
+    case AK09916_MAG_DATARATE_SHUTDOWN:
+      //   Serial.println("Shutdown");
+      break;
+    case AK09916_MAG_DATARATE_SINGLE:
+      //   Serial.println("Single/One shot");
+      break;
+    case AK09916_MAG_DATARATE_10_HZ:
+      //  Serial.println("10 Hz");
+      break;
+    case AK09916_MAG_DATARATE_20_HZ:
+      //   Serial.println("20 Hz");
+      break;
+    case AK09916_MAG_DATARATE_50_HZ:
+      //   Serial.println("50 Hz");
+      break;
+    case AK09916_MAG_DATARATE_100_HZ:
+      //   Serial.println("100 Hz");
+      break;
+  }
+  // Serial.println();
+
+}
+
+void loop() {
+
+  //  /* Get a new normalized sensor event */
+  sensors_event_t accel;
+  sensors_event_t gyro;
+  sensors_event_t mag;
+  sensors_event_t temp;
+  icm.getEvent(&accel, &gyro, &temp, &mag);
+
+  // IMU HEADER
+  imu_msg.header.stamp = nh.now();
+  imu_msg.header.frame_id = "imu_link";
+
+
+  // ORIENTATION (derived from magnetometer data)
+ 
+  roll = mag.magnetic.x;
+  pitch = mag.magnetic.y;
+  yaw = mag.magnetic.z;
+
+  // Create cos/sin of yaw/pitch/roll for Quaternion
+  cy = cos(yaw * 0.5);
+  sy = sin(yaw * 0.5);
+  cp = cos(pitch * 0.5);
+  sp = sin(pitch * 0.5);
+  cr = cos(roll * 0.5);
+  sr = sin(roll * 0.5);
+
+  imu_msg.orientation_covariance[0] = 0;
+  imu_msg.orientation_covariance[4] = 0;
+  imu_msg.orientation_covariance[8] = 0;
+
+  imu_msg.orientation.x = sr * cp * cy - cr * sp * sy;
+  imu_msg.orientation.y = cr * sp * cy + sr * cp * sy;
+  imu_msg.orientation.z = cr * cp * sy - sr * sp * cy;
+  imu_msg.orientation.w = cr * cp * cy + sr * sp * sy;
+
+
+  // ANGULAR VELOCITY (prints gyro data)
+
+  imu_msg.angular_velocity_covariance[0] = 2.578;
+  imu_msg.angular_velocity_covariance[4] = 2.578;
+  imu_msg.angular_velocity_covariance[8] = 2.578;
+
+  //maybe needs to be converted to rad/s
+  imu_msg.angular_velocity.x = gyro.gyro.x;
+  imu_msg.angular_velocity.y = gyro.gyro.y;
+  imu_msg.angular_velocity.z = gyro.gyro.z;
+
+
+  // LINEAR ACCELERATION (prints accelerometer data)
+
+  imu_msg.linear_acceleration_covariance[0] = 1.485;
+  imu_msg.linear_acceleration_covariance[4] = 1.485;
+  imu_msg.linear_acceleration_covariance[8] = 1.485;
+
+  imu_msg.linear_acceleration.x = accel.acceleration.x;
+  imu_msg.linear_acceleration.y = accel.acceleration.y;
+  imu_msg.linear_acceleration.z = accel.acceleration.z;
+
+
+  // TEMPERATURE READINGS 
+
+  reading = analogRead(TC_PIN);
+  voltage = get_voltage(reading);
+  temperature = get_temperature(reading);
+
+  nuc_msg.header.stamp = nh.now();
+  nuc_msg.header.frame_id = "base_link";
+  nuc_msg.temperature = temperature;
+  nuc_msg.variance = 2;
+
+  // logic for temperature status update
+  if (temperature > 40 || temperature == 40){
+    nuc_str_msg.data = temp_high;
+  }else{
+    nuc_str_msg.data = temp_accep;
+  }
+
+  pub_imu.publish( &imu_msg );
+  pub_nuc.publish( &nuc_msg );
+  pub_nuc_str.publish( &nuc_str_msg );
+  nh.spinOnce();
+
+  /*
+    Serial.print("\t\tTemperature ");
+    Serial.print(temp.temperature);
+    Serial.println(" deg C");
+  */
+  /* Display the results (acceleration is measured in m/s^2) */
+
+  /*
+    Serial.print("\t\tAccel X: ");
+    Serial.print(accel.acceleration.x);
+    Serial.print(" \tY: ");
+    Serial.print(accel.acceleration.y);
+    Serial.print(" \tZ: ");
+    Serial.print(accel.acceleration.z);
+    Serial.println(" m/s^2 ");
+
+    Serial.print("\t\tMag X: ");
+    Serial.print(mag.magnetic.x);
+    Serial.print(" \tY: ");
+    Serial.print(mag.magnetic.y);
+    Serial.print(" \tZ: ");
+    Serial.print(mag.magnetic.z);
+    Serial.println(" uT");
+  */
+
+
+  /* Display the results (acceleration is measured in m/s^2) */
+  /*
+    Serial.print("\t\tGyro X: ");
+    Serial.print(gyro.gyro.x);
+    Serial.print(" \tY: ");
+    Serial.print(gyro.gyro.y);
+    Serial.print(" \tZ: ");
+    Serial.print(gyro.gyro.z);
+    Serial.println(" radians/s ");
+    Serial.println();
+  */
+  delay(1000);
+
+  //  Serial.print(temp.temperature);
+  //
+  //  Serial.print(",");
+  //
+  //  Serial.print(accel.acceleration.x);
+  //  Serial.print(","); Serial0.print(accel.acceleration.y);
+  //  Serial.print(","); Serial.print(accel.acceleration.z);
+  //
+  //  Serial.print(",");
+  //  Serial.print(gyro.gyro.x);
+  //  Serial.print(","); Serial.print(gyro.gyro.y);
+  //  Serial.print(","); Serial.print(gyro.gyro.z);
+  //
+  //  Serial.print(",");
+  //  Serial.print(mag.magnetic.x);
+  //  Serial.print(","); Serial.print(mag.magnetic.y);
+  //  Serial.print(","); Serial.print(mag.magnetic.z);
+
+  //  Serial.println();
+  //
+  //  delayMicroseconds(measurement_delay_us);
+}
